@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- https://phpunit.de/manual/current/en/appendixes.configuration.html -->
+<!-- https://symfony.com/doc/current/doctrine.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/6.0/phpunit.xsd"
+          backupGlobals="false"
+          colors="true"
+          bootstrap="tests/bootstrap.php">
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <server name="KERNEL_CLASS" value="App\Kernel" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
+        <env name="DATABASE_URL" value="mysql://anakin_skywalker:starwars@127.0.0.1:3306/cwc_test" />
+        <env name="LOCALE_DEFAULT" value="en" />
+        <env name="LOCALE" value="pt" />
+        <env name="BOOTSTRAP_SCHEMA_DROP_ENV" value="test" />
+        <env name="BOOTSTRAP_SCHEMA_CREATE_ENV" value="test" />
+        <env name="BOOTSTRAP_FIXTURES_LOAD_ENV" value="test" />
+        <env name="APP_ENV" value="dev"/>
+        <env name="APP_SECRET" value="doNotUseThisSecret"/>
+    </php>
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+    </listeners>
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

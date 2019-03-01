@@ -1,0 +1,28 @@
+/var/cache/*
+!/var/cache/.gitignore
+/var/log/*
+!/var/log/.gitignore
+/public/bundles/*
+!/public/bundles/.gitkeep
+/public/vendor
+!/public/vendor/.gitignore
+public/images/characters/*
+!public/images/characters/.gitignore
+!public/images/characters/default/*
+public/images/locales/*
+!public/images/locales/.gitignore
+!public/images/locales/default/*
+/src/Repository
+/vendor/
+.phpunit
+*.backup
+*.cache
+*~
+*.ori
+/.env.*.local
+/.env.local
+/.web-server-pid
+
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###

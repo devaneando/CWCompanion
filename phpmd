@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    PATH="./src"
+else
+    PATH="${1}"
+fi
+
+/usr/bin/reset
+
+/usr/bin/php ./bin/security-checker security:check ./composer.json
+
+TO_IGNORE=`pwd`/src/Migrations,\
+`pwd`/src/kernel.php,\
+`pwd`/src/Security/LoginFormAuthenticator.php,\
+`pwd`/src/Admin/Type/SecurityRolesType.php
+
+# controversial,design,unusedcode,phpmd.xml \
+/usr/bin/php vendor/bin/phpmd "${PATH}" text phpmd.xml --exclude $TO_IGNORE

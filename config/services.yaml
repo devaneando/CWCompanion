@@ -1,0 +1,26 @@
+parameters:
+    locale: '%env(LOCALE)%'
+    sender_address: "%env(SENDER_ADDRESS)%"
+    sender_name: "%env(SENDER_NAME)%"
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Admin/Type,DependencyInjection,DataFixtures,Entity,Migrations,Tests,Twig,Kernel.php}'
+    App\Admin\Type\:
+        resource: '../src/Admin/Type'
+        tags: [form.type]
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+    App\DataFixtures\:
+        resource: '../src/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+    App\Entity\Repository\:
+        resource: '../src/Entity/Repository'
+    App\Twig\:
+        resource: '../src/Twig'
+        tags: [twig.extension]

@@ -1,0 +1,11 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    translator: { fallbacks: ["%locale%"] }
+    default_locale: en
+    csrf_protection: true
+    session:
+        handler_id: ~
+        cookie_secure: auto
+        cookie_samesite: lax
+    php_errors:
+        log: true
