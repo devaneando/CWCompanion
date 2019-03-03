@@ -9,15 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entity\Repository\TemperamentRepository")
- * @ORM\Table(name="temperaments",
+ * @ORM\Entity(repositoryClass="App\Entity\Repository\CharacterTypeRepository")
+ * @ORM\Table(
+ *     name="character_types",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unique_temperaments_name", columns={"name"})
+ *         @ORM\UniqueConstraint(name="unique_character_types_name", columns={"name"})
  *     }
  * )
  * @ORM\HasLifecycleCallbacks()
  */
-class Temperament
+class CharacterType
 {
     /**
      * @var int
@@ -29,6 +30,7 @@ class Temperament
     use IdTrait;
 
     /**
+     * @var string
      * @ORM\Column(name="name", type="string", length=120, unique=true)
      * @Assert\NotNull(message="validator.not_blank")
      * @Assert\NotBlank(message="validator.not_blank")
