@@ -2,11 +2,11 @@
 
 namespace App\Processor;
 
-use App\Exception\File\UnexistentFile;
 use App\Exception\Image\CorruptedImageFile;
+use App\Exception\Image\InvalidHash;
 use App\Exception\Image\InvalidImage;
-use App\Exception\Parameter\InvalidHash;
-use App\Exception\Parameter\InvalidImageType;
+use App\Exception\Image\InvalidImageType;
+use App\Exception\Image\UnexistentFile;
 use App\Model\Image;
 use App\Traits\ConstantValidationTrait;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -83,7 +83,7 @@ class ImageProcessor
         }
 
         if (false === in_array($imageInfo['mime'], self::$validMimeTypes)) {
-            throw new InvalidImage(null, 'Only .jpg and .png images are accepted.');
+            throw new InvalidImage('Only .jpg and .png images are accepted.');
         }
 
         $image->setExtension('jpg');

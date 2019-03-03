@@ -24,3 +24,8 @@ services:
     App\Twig\:
         resource: '../src/Twig'
         tags: [twig.extension]
+
+    ##### Test only
+    test.processor.image:
+        alias: App\Processor\ImageProcessor
+        public: true
