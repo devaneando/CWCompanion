@@ -13,7 +13,7 @@ class LoadEducationalDegrees extends AbstractDataFixture
      */
     public function getOrder()
     {
-        return 5;
+        return 7;
     }
 
     /**
@@ -23,7 +23,6 @@ class LoadEducationalDegrees extends AbstractDataFixture
     {
         $this->loadData('educational_degrees.yaml');
         foreach (array_keys($this->getData()) as $key) {
-            $item = $this->getData($key);
             $educationalDegree = new EducationalDegree();
             $educationalDegree->setName($key);
             $manager->persist($educationalDegree);

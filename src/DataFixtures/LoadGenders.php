@@ -3,17 +3,17 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\AbstractDataFixture;
-use App\Entity\Sexuality;
+use App\Entity\Gender;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadSexualities extends AbstractDataFixture
+class LoadGenders extends AbstractDataFixture
 {
     /**
      * {@inheritdoc}
      */
     public function getOrder()
     {
-        return 9;
+        return 8;
     }
 
     /**
@@ -21,13 +21,13 @@ class LoadSexualities extends AbstractDataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $this->loadData('sexualities.yaml');
+        $this->loadData('genders.yaml');
         foreach (array_keys($this->getData()) as $key) {
-            $sexuality = new Sexuality();
-            $sexuality->setName($key);
-            $manager->persist($sexuality);
+            $gender = new Gender();
+            $gender->setName($key);
+            $manager->persist($gender);
             $manager->flush();
-            $this->setReference('sexuality_'.$this->slugify($key), $sexuality);
+            $this->setReference('gender_'.$this->slugify($key), $gender);
             $this->stepIt();
         }
         $this->getOutput()->writeln('');

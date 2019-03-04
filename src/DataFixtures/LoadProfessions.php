@@ -23,7 +23,6 @@ class LoadProfessions extends AbstractDataFixture
     {
         $this->loadData('professions.yaml');
         foreach (array_keys($this->getData()) as $key) {
-            $item = $this->getData($key);
             $profession = new Profession();
             $profession->setName($key);
             $manager->persist($profession);
