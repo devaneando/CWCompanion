@@ -18,6 +18,8 @@ services:
         tags: ['controller.service_arguments']
     App\DataFixtures\:
         resource: '../src/DataFixtures'
+        arguments:
+            - '@translator'
         tags: ['doctrine.fixture.orm']
     App\Entity\Repository\:
         resource: '../src/Entity/Repository'

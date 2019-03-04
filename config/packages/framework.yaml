@@ -1,7 +1,5 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    translator: { fallbacks: ["%locale%"] }
-    default_locale: en
     csrf_protection: true
     session:
         handler_id: ~
