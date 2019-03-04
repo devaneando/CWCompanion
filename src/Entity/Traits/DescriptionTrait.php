@@ -9,7 +9,7 @@ trait DescriptionTrait
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(string $description = null): self
     {
         $this->description = trim($description);
 
