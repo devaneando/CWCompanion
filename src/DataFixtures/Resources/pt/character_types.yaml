@@ -1,0 +1,38 @@
+# Retirado de https://www.estudopratico.com.br/literatura-conheca-os-tipos-de-personagens/
+# e de https://learn.lexiconic.net/characters.htm
+# e de http://www.escolavirtual.pt/assets/conteudos/downloads/8por/8por060101.pdf
+Protagonista:
+    description:
+        - É a personagem -- *herói ou anti-herói* -- principal da estória, em torno da qual a trama é desenvolvida.
+        -
+        - "Ex.: **Frodo Baggins**, de '*O Senhor dos Anéis*'."
+Coprotagonista:
+    description:
+        - É quase tão importante quanto o protagonista, ajudando-o intensamente na busca pelo seu objetivo, e estando com ele na grande maioria das cenas.
+        -
+        - "Ex.: **Sam**, de '*O Senhor dos Anéis*'."
+Antagonista:
+    description:
+        - O antagonista contrapõe-se ao protagonista.
+        - Embora seja uma personagem principal, nem sempre está presente na narrativa.
+        -
+        - Geralmente é o vilão da história e pode não ser uma pessoa, mas algo que dificulta os objetivos do protagonista, como um objeto, um monstro, um espírito, ou uma instituição, dentre outros.
+        -
+        - "Ex.: **Sauron**, de '*O Senhor dos Anéis*'."
+Coadjuvante:
+    description:
+        - Uma personagem secundária, que auxilia no desenvolvimento da estória.
+        -
+        - "Ex.: **Boromir**, de '*O Senhor dos Anéis*'."
+Oponente:
+    description:
+        - É uma personagem que tem uma relação próxima com o antagonista e que compartilha, em algum nível, os mesmos objetivos.
+        -
+        - "Ex.: **Saruman**, o Branco, de '*O Senhor dos Anéis*'."
+Falso protagonista:
+    description:
+        - É uma personagem apresentado de forma a induzir o leitor em erro, acreditando que ela é o foco principal da estória para, mais tarde, que a verdade seja revelada.
+Figurante:
+    description:
+        - É uma personagem cujo papel é meramente ilustrativo.
+        - São usadas apenas para compor um cenário.
