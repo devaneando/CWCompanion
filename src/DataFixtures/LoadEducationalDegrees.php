@@ -3,17 +3,17 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\AbstractDataFixture;
-use App\Entity\Profession;
+use App\Entity\EducationalDegree;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadProfessions extends AbstractDataFixture
+class LoadEducationalDegrees extends AbstractDataFixture
 {
     /**
      * {@inheritdoc}
      */
     public function getOrder()
     {
-        return 3;
+        return 5;
     }
 
     /**
@@ -21,14 +21,14 @@ class LoadProfessions extends AbstractDataFixture
      */
     public function load(ObjectManager $manager)
     {
-        $this->loadData('professions.yaml');
+        $this->loadData('educational_degrees.yaml');
         foreach (array_keys($this->getData()) as $key) {
             $item = $this->getData($key);
-            $profession = new Profession();
-            $profession->setName($key);
-            $manager->persist($profession);
+            $educationalDegree = new EducationalDegree();
+            $educationalDegree->setName($key);
+            $manager->persist($educationalDegree);
             $manager->flush();
-            $this->setReference('profession_'.$this->slugify($key), $profession);
+            $this->setReference('educational_degree_'.$this->slugify($key), $educationalDegree);
             $this->stepIt();
         }
         $this->getOutput()->writeln('');

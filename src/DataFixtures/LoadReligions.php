@@ -44,7 +44,7 @@ class LoadReligions extends AbstractDataFixture
                     ->setParent($parent);
                 $manager->persist($child);
                 $manager->flush();
-                $this->setReference('religion_'.$this->slugify($item), $parent);
+                $this->setReference('religion_'.$this->slugify($item), $child);
                 $this->stepIt();
             }
         }
