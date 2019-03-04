@@ -1,0 +1,183 @@
+# Retirando de https://www.mariahelena.pt/pt/pages/introducao-a-astrologia---as-carateristicas-dos-signos
+Capricórnio:
+    start: "2019-01-01"
+    end: "2019-01-19"
+    start_complementary: "2019-12-22"
+    end_complementary: "2019-12-31"
+    description:
+        - "Os nativos deste signo são pessoas práticas, ambiciosas e determinadas, e que têm uma personalidade pouco aberta a mudanças."
+        -
+        - "Esforçam-se por aquilo que pretendem alcançar e não desistem dos objectivos a que se propõem."
+        - "Nem sempre aquilo em que se aplicam é fácil, mas têm uma grande capacidade de dar a volta por cima às situações."
+        - "Derrubam os obstáculos com garra e coragem."
+        -
+        - "São muito persistentes e sabem perfeitamente aquilo que querem alcançar e até onde querem chegar."
+        - "Por outro lado, são muito sinceros e generosos, mas não expressam com facilidade o que sentem, chegando ao ponto de serem vistos como um pouco insensíveis."
+        -
+        - "- **Características positivas**: prático, prudente, ambicioso, conservador, disciplinado, paciente, cuidadoso, reservado."
+        - "- **Características negativas**: pessimista, ambicioso, fatalista, convencional, rígido."
+Aquário:
+    start: "2019-01-20"
+    end: "2019-02-18"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos deste signo são pessoas de natureza optimista, que se distinguem pela forma independente como vivem a vida e pela sua criatividade."
+        - "Apreciam o debate de assuntos e ideias com pessoas inteligentes e capazes de conduzir uma conversa cabal e sofisticada."
+        -
+        - "O contacto com a Natureza é algo que lhes suscita muito interesse e como são amantes da liberdade, tendem a ornamentar o mundo com o seu espírito rebelde e aventureiro."
+        - "Preocupados com as causas humanitárias, não hesitam em ajudar quem se encontre em dificuldades."
+        -
+        - "- **Características positivas**: amigável, humanitário, honesto, leal, original, inventivo, independente, intelectual."
+        - "- **Características negativas**: excêntrico, imprevisível, não emocional, desligado."
+Peixes:
+    start: "2019-02-19"
+    end: "2019-03-20"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos deste signo são pessoas com grande capacidade intuitiva."
+        - "São afectivos e sensíveis ao que os rodeia."
+        -
+        - "Preocupam-se mais com a felicidade dos outros em detrimento do seu próprio bem-estar."
+        - "Gostam de ser correspondidos no amor e não criam malquerença a ninguém."
+        - "Por amor são capazes de tudo e raramente contrariam a vontade de quem gostam."
+        -
+        - "São simpáticos, compreensivos e muito tolerantes, mantém a calma em todas as situações e nunca se exaltam com quem os rodeia."
+        -
+        - "- **Características positivas**: imaginativos, sensíveis, compassivos, amáveis, altruístas, intuitivos, empáticos."
+        - "- **Características negativas**: escapistas, idealistas, secretos, vagos, influenciáveis."
+Carneiro:
+    start: "2019-03-21"
+    end: "2019-04-19"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "O Carneiro é um signo de Fogo, que representa a força, a coragem e a determinação."
+        - "As pessoas nascidas sob a influência deste elemento são impacientes, honestas, optimistas e dotadas de uma enorme vitalidade."
+        -
+        - "- **Características positivas**: aventureiro, enérgico, pioneiro, corajoso, entusiasta, confiante, dinâmico."
+        - "- **Características negativas**: egoísta, explosivo, impulsivo, impaciente, imprudente."
+Touro:
+    start: "2019-04-20"
+    end: "2019-05-20"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "O Touro é um signo de Terra, que representa a concentração, a racionalidade e a inteligência prática."
+        - "Desenvolve a paciência, a passividade e a auto-disciplina."
+        -
+        - "Os nativos de signos de Terra têm muita força de vontade e perseguem os seus objectivos até os conseguirem alcançar."
+        - "Estes nativos são, normalmente, trabalhadores, competentes e obstinados."
+        -
+        - "- **Características positivas**: paciente, fiável, amoroso, persistente, determinado."
+        - "- **Características negativas**: possessivo, ciumento, ressentido, comodista."
+Gémeos:
+    start: "2019-05-21"
+    end: "2019-06-20"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos de Gémeos são sensíveis, divertidos e extremamente comunicativos."
+        - "Gostam muito de viajar, de conhecer novas pessoas e culturas, pois a comunicação é um dos seus pontos fortes."
+        -
+        - "De natureza curiosa e inquieta, só ficam satisfeitos quando todas as suas questões são respondidas."
+        - "Amantes da liberdade, detestam assumir compromissos e cumprir horários."
+        -
+        - "Por vezes agem de maneira contraditória, o que pode ser explicado pela dualidade própria do seu signo."
+        -
+        - "- **Características positivas**: adaptável, versátil, comunicativo, espirituoso, intelectual, eloquente, jovial, vivo e curioso."
+        - "- **Características negativas**: nervoso, tenso, superficial, inconsistente"
+Caranguejo:
+    start: "2019-06-21"
+    end: "2019-07-22"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos de Caranguejo são sensíveis, vulneráveis e carinhosos."
+        - "De temperamento instável, mudam de humor com uma facilidade extraordinária, facto explicado pelo seu astro regente ser a Lua."
+        -
+        - "Têm uma imaginação muito forte e uma grande facilidade em trabalhar em profissões que envolvam o lado criativo."
+        -
+        - "Quando têm filhos, são muito dedicados e capazes dos maiores sacrifícios para os ver felizes."
+        - "Estes nativos protegem as suas famílias com todas as forças e estão sempre presentes nos momentos mais importantes, apoiando e reconfortando aqueles que amam."
+        -
+        - "- **Características positivas**: emocional, simpático, empático, intuitivo, imaginativo, perspicaz, cauteloso, protector."
+        - "- **Características negativas**: instável, demasiado emocional, melindroso, possessivo."
+Leão:
+    start: "2019-07-23"
+    end: "2019-08-22"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos de Leão são simpáticos, extrovertidos e divertidos."
+        - "Como é característico do elemento Fogo, são optimistas e generosos."
+        -
+        - "Activos e dinâmicos, possuem um espírito inato de liderança."
+        - "De personalidade forte e um pouco egocêntrica, gostam de ser sempre notados, o que de facto acontece, uma vez que parecem possuir o brilho do Sol, seu astro regente."
+        -
+        - "A expressividade e a expansividade são duas características marcantes da sua personalidade e por isso estão sempre rodeados de amigos com quem podem sempre contar."
+        -
+        - "- **Características positivas**: generoso, criativo, entusiasta, expansivo, fiel."
+        - "- **Características negativas**: vaidoso, autoritário, intolerante, dramático."
+Virgem:
+    start: "2019-08-23"
+    end: "2019-09-22"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos de Virgem são práticos, inteligentes, perspicazes e extremamente organizados."
+        - "De temperamento racional, valorizam a sua vida profissional e dedicam-lhe grande parte do seu tempo."
+        -
+        - "Como são perfeccionistas, tudo o que fazem é bem feito e nunca ninguém tem nada a apontar ao seu trabalho, no entanto, nas raras vezes em que são repreendidos ficam magoados consigo próprios porque não corresponderam às suas próprias expectativas."
+        -
+        - "Não deixam nada ao acaso, nem os mais pequenos pormenores são esquecidos, e detestam a desorganização, a desarrumação e a falta de pontualidade."
+        -
+        - "- **Características positivas**: modesto, tímido, meticuloso, prático, fiável, diligente, inteligente, analítico."
+        - "- **Características negativas**: meticuloso, preocupado, crítico, áspero, perfeccionista, conservador."
+Balança:
+    start: "2019-09-23"
+    end: "2019-10-22"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos de Balança são pessoas muito afáveis e que espalham charme por onde passam."
+        - "Apreciam tudo o que é bonito e dão grande importância ao que vestem e ao que comem."
+        - "O gosto por peças de arte constitui um dos seus maiores interesses."
+        -
+        - "Além de serem muito mediadores, defendem até às últimas consequências aquilo em que acreditam, mas são porém muito justos e leais, não se deixando enganar pelas falsas aparências."
+        - "Sabem reconhecer quando não têm razão e como são extremamente equilibrados estão sempre rodeados de bons amigos."
+        -
+        - "- **Características positivas**: diplomata, urbano, romântico, encantador, adaptável, sociável, idealista, pacífico."
+        - "- **Características negativas**: indeciso, variável, crédulo, comodista, facilmente influenciável, fútil."
+Escorpião:
+    start: "2019-10-23"
+    end: "2019-11-21"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos de Escorpião são pessoas muito determinadas, inteligentes, perspicazes e possessivas."
+        - "Embora sejam regidos pelo elemento Água, mostram uma personalidade impetuosa e forte."
+        -
+        - "Os nativos deste signo possuem uma posição bastante vincada perante a vida."
+        - "São muito directos e verdadeiros na forma como expressam os seus pontos de vista."
+        - "Por vezes, chegam a ser hostis com a excessiva frontalidade, manifestando alguma intolerância e arrogância."
+        -
+        - "- **Características positivas**: poderoso, apaixonado, profundo, vigoroso, magnético, emocional, intuitivo, intenso."
+        - "- **Características negativas**: ciumento, ressentido, compulsivo, obsessivo, secreto, obstinado."
+Sagitário:
+    start: "2019-11-22"
+    end: "2019-12-21"
+    start_complementary: Null
+    end_complementary: Null
+    description:
+        - "Os nativos de Sagitário são optimistas, bem-dispostos, honestos e extravagantes."
+        - "São tolerantes e despreocupados, pelo que é muito fácil trabalhar ou relacionar-se com estes nativos."
+        -
+        - "Adoram viajar, e por isso estão sempre de malas feitas, à espera de uma nova oportunidade de alargar os seus horizontes, aliás isto é o que os move, porque, como possuem um espírito curioso e aventureiro, estão sempre em busca de novas aprendizagens e experiências de vida."
+        - "Gostam da liberdade e por isso têm uma certa dificuldade em assumir compromissos sérios."
+        - "São uma verdadeira força da Natureza."
+        -
+        - "- **Características positivas**: optimista, amante da liberdade, jovial, bem-humorado, honesto, directo, intelectual, filósofo, generoso."
+        - "- **Características negativas**: cegamente optimista, descuidado, irresponsável, agitado, sem tacto."
+
