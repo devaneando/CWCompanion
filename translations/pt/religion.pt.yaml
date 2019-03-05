@@ -1,0 +1,13 @@
+admin:
+    label:
+        description: Descrição
+        id: Id
+        name: Nome
+menu:
+    item:
+        religion: Religião
+Action: Action
+Menu Item Religion: Religião
+Religion Create: Criar religião
+Religion List: Listar religião
+Religion: Religião

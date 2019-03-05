@@ -1,4 +1,11 @@
 services:
+    sonata.admin.religion:
+        class: App\Admin\ReligionAdmin
+        arguments: [~, App\Entity\Religion, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.religion, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.sexuality:
         class: App\Admin\SexualityAdmin
         arguments: [~, App\Entity\Sexuality, ~]
