@@ -129,4 +129,28 @@ abstract class AbstractDataFixture extends AbstractFixture implements OrderedFix
 
         return $slugify->slugify($name);
     }
+
+    public function arrayToDescription($value = null)
+    {
+        if (true === empty($value)) {
+            return '';
+        }
+        if (false === is_array($value)) {
+            return $value;
+        }
+
+        $description = '';
+        foreach ($value as $line) {
+            if (true === empty($line)) {
+                $description .= "\n\n";
+
+                continue;
+            }
+            $line = trim($line);
+            $line .= (preg_match('/^[A-Za-z0-9]+.*$/', $line)) ? ' ' : "\n";
+            $description .= $line;
+        }
+
+        return $description;
+    }
 }

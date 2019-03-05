@@ -27,18 +27,8 @@ class LoadTemperaments extends AbstractDataFixture
             $temperament = new Temperament();
             $temperament->setName($key);
 
-            $description = null;
-            if (false === empty($item['description'])) {
-                foreach ($item['description'] as $line) {
-                    if (true === empty($line)) {
-                        $description .= "\n\n";
-
-                        continue;
-                    }
-                    $description .= $line.' ';
-                }
-            }
-            if (null !== $description) {
+            $description = $this->arrayToDescription($item['description']);
+            if (false === empty($description)) {
                 $temperament->setDescription($description);
             }
 

@@ -47,7 +47,8 @@ class LoadZodiac extends AbstractDataFixture
                     $description .= $line.' ';
                 }
             }
-            if (null !== $description) {
+            $description = $this->arrayToDescription($item['description']);
+            if (false === empty($description)) {
                 $zodiac->setDescription($description);
             }
 
