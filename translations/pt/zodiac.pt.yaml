@@ -1,0 +1,17 @@
+admin:
+    label:
+        description: Descrição
+        end_complementary: Fim (Complementar)
+        end: Fim
+        id: Id
+        name: Nome
+        start_complementary: Início (Complementar)
+        start: Início
+menu:
+    item:
+        zodiac: Zodíaco
+Action: Action
+Zodiac Create: Criar signo
+Zodiac List: Listar signos
+Zodiac: Zodíaco
+Menu Item Zodiac: Zodíaco
