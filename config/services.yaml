@@ -1,3 +1,6 @@
+imports:
+    - { resource: sonata.services.yaml }
+
 parameters:
     locale: '%env(LOCALE)%'
     sender_address: "%env(SENDER_ADDRESS)%"

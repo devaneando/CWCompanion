@@ -1,0 +1,7 @@
+services:
+    sonata.admin.zodiac:
+        class: App\Admin\ZodiacAdmin
+        arguments: [~, App\Entity\Zodiac, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.zodiac, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true

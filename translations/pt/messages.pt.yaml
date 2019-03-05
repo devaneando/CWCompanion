@@ -4,3 +4,7 @@ login:
     remember-me: 'Mantenha-me logado'
     sign-in: 'Entrar'
     username: Nome de utilizador
+menu:
+    item:
+        shared: Comum
+        zodiac: Zodíaco
