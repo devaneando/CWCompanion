@@ -1,4 +1,11 @@
 services:
+    sonata.admin.profession:
+        class: App\Admin\ProfessionAdmin
+        arguments: [~, App\Entity\Profession, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.profession, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.religion:
         class: App\Admin\ReligionAdmin
         arguments: [~, App\Entity\Religion, ~]

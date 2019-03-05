@@ -1,0 +1,13 @@
+admin:
+    label:
+        description: Descrição
+        id: Id
+        name: Nome
+menu:
+    item:
+        profession: Profissão
+Action: Action
+Menu Item Profession: Profissão
+Profession Create: Criar profissão
+Profession List: Listar profissão
+Profession: Profissão
