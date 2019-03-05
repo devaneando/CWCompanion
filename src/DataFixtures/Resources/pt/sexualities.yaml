@@ -1,5 +1,15 @@
 Assexual:
+    description: É a falta (ou um nível muito pequeno) de atração sexual por outra pessoa, seja ela homem ou mulher.
+    default: false
 Bissexual:
+    description: É a atração sexual por ambos os sexos, masculino e feminino.
+    default: false
 Heterossexual:
+    description: É a atração sexual pelo sexo oposto.
+    default: true
 Homossexual:
+    description: É a atração sexual pelo mesmo sexo.
+    default: false
 Transexual:
+    description: É a atração sexual marcada pela mudança do sexo.
+    default: false

@@ -1,5 +1,15 @@
 Assexuado:
+    description: Um indivíduo que não possui orgãos sexuais reprodutivos.
+    default: false
 Feminino:
+    description: Um indivíduo do sexo feminino.
+    default: false
 Hermafrodita:
+    description: Um indivíduo que possui os mais de um sexo..
+    default: false
 Indeterminado:
+    description: O sexo é indeterminado.
+    default: true
 Masculino:
+    description: Um indivíduo do sexo masculino.
+    default: false

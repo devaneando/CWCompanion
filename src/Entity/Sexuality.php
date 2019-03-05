@@ -12,7 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Entity\Repository\SexualityRepository")
  * @ORM\Table(name="sexualities",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unique_sexualities_name", columns={"name"})
+ *         @ORM\UniqueConstraint(name="unique_sexualities_name", columns={"name"}),
+ *         @ORM\UniqueConstraint(name="unique_sexualities_predefined", columns={"predefined"})
  *     }
  * )
  * @ORM\HasLifecycleCallbacks()
@@ -46,4 +47,21 @@ class Sexuality
      */
     protected $description;
     use DescriptionTrait;
+
+    /**
+     * @ORM\Column(name="predefined", type="boolean", nullable=true, unique=true)
+     */
+    protected $predefined;
+
+    public function getPredefined()
+    {
+        return $this->predefined;
+    }
+
+    public function setPredefined($predefined): self
+    {
+        $this->predefined = $predefined;
+
+        return $this;
+    }
 }
