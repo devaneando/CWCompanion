@@ -1,0 +1,13 @@
+admin:
+    label:
+        description: Descrição
+        id: Id
+        name: Nome
+menu:
+    item:
+        temperament: Temperament
+Action: Action
+Menu Item Temperament: Temperamento
+Temperament Create: Criar temperamento
+Temperament List: Listar temperamentos
+Temperament: Temperamento

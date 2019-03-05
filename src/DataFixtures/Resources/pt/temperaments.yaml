@@ -3,6 +3,7 @@
 Colérico:
     description:
         - "Este temperamento é explosivo, ambicioso e dominador."
+        -
         - "Indivíduos coléricos são determinados e possuem grande capacidade de planejamento, além de muita energia e impulsividade."
         - "São líderes natos e explosivos."
         -
@@ -24,6 +25,7 @@ Colérico:
 Sanguíneo:
     description:
         - "Este temperamento é expansivo, otimista e impulsivo."
+        -
         - "Extrovertidos e sensíveis, os sanguíneos são indivíduos que não passam desapercebidos, pois são espontâneos e gostam de interagir."
         - "Além disso, costumam fazer gestos largos e falar bem em público."
         -
@@ -46,6 +48,7 @@ Sanguíneo:
 Fleumático:
     description:
         - "Este temperamento é sonhador, pacífico, dócil."
+        -
         - "Os fleumáticos prezam a rotina, o silêncio e dificilmente perdem o controle, pois costumam avaliar antes de reagir."
         - "São pacientes, observadores, disciplinados, preferem não manifestar suas opiniões em público e não costumam reagir bem às críticas."
         -
@@ -67,6 +70,7 @@ Fleumático:
 Melancólico:
     description:
         - "Este temperamento é tímido, artístico e solitário."
+        -
         - "Os melancólicos têm a sensibilidade muito aflorada, e são pessoas profundas, detalhistas e introvertidas, com tendência a guardar seus sentimentos."
         - "São fiéis, desconfiados e tendem a escolher profissões que possam exercer sozinhos."
         -
