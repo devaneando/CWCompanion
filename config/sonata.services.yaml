@@ -1,4 +1,11 @@
 services:
+    sonata.admin.sexuality:
+        class: App\Admin\SexualityAdmin
+        arguments: [~, App\Entity\Sexuality, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.sexuality, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.temperament:
         class: App\Admin\TemperamentAdmin
         arguments: [~, App\Entity\Temperament, ~]

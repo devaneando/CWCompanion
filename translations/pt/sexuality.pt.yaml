@@ -1,0 +1,13 @@
+admin:
+    label:
+        description: Descrição
+        id: Id
+        name: Nome
+menu:
+    item:
+        sexuality: Sexualidade
+Action: Action
+Menu Item Sexuality: Sexualidade
+Sexuality Create: Criar sexualidade
+Sexuality List: Listar sexualidades
+Sexuality: Sexualidade

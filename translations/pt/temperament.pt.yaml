@@ -5,7 +5,7 @@ admin:
         name: Nome
 menu:
     item:
-        temperament: Temperament
+        temperament: Temperamento
 Action: Action
 Menu Item Temperament: Temperamento
 Temperament Create: Criar temperamento
