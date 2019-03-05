@@ -6,6 +6,7 @@ use App\Entity\Repository\UserRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use FOS\UserBundle\Doctrine\UserManager;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -24,6 +25,9 @@ abstract class AbstractDataFixture extends AbstractFixture implements OrderedFix
     /** @var TranslatorInterface */
     private $translator;
 
+    /** @var UserManager */
+    private $userManager;
+
     /** @var string */
     private $locale;
 
@@ -36,10 +40,11 @@ abstract class AbstractDataFixture extends AbstractFixture implements OrderedFix
     /** @var ProgressBar */
     private $progressBar;
 
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator, UserManager $userManager)
     {
         $this->translator = $translator;
         $this->locale = $this->translator->getLocale();
+        $this->userManager = $userManager;
     }
 
     /**
@@ -52,6 +57,11 @@ abstract class AbstractDataFixture extends AbstractFixture implements OrderedFix
         }
 
         return $this->output;
+    }
+
+    public function getUserManager(): UserManager
+    {
+        return $this->userManager;
     }
 
     /**

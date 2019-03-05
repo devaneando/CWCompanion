@@ -1,6 +1,8 @@
 framework:
     secret: '%env(APP_SECRET)%'
     csrf_protection: true
+    templating:
+        engines: ['twig']
     session:
         handler_id: ~
         cookie_secure: auto

@@ -1,0 +1,14 @@
+Administrador:
+    username: admin
+    email: admin@cwc.local
+    password: admin
+    superadmin: true
+    roles:
+        - ROLE_SUPER_ADMIN
+Robin Hobb:
+    username: robin.hobb
+    email: robin.hobb@cwc.local
+    password: test
+    superadmin: false
+    roles:
+        - ROLE_ADMIN

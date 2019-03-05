@@ -20,6 +20,7 @@ services:
         resource: '../src/DataFixtures'
         arguments:
             - '@translator'
+            - '@fos_user.user_manager'
         tags: ['doctrine.fixture.orm']
     App\Entity\Repository\:
         resource: '../src/Entity/Repository'
