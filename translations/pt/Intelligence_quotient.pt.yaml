@@ -1,0 +1,15 @@
+admin:
+    label:
+        description: Descrição
+        id: Id
+        maximum: Máximo
+        minimum: Mínimo
+        name: Nome
+menu:
+    item:
+        intelligence_quotient: QI
+Action: Action
+Menu Item Intelligence Quotient: QI
+Intelligence Quotient Create: Criar QI
+Intelligence Quotient List: Listar QI
+Intelligence Quotient: QI

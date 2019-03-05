@@ -1,4 +1,11 @@
 services:
+    sonata.admin.intelligence_quotient:
+        class: App\Admin\IntelligenceQuotientAdmin
+        arguments: [~, App\Entity\IntelligenceQuotient, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.intelligence_quotient, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.profession:
         class: App\Admin\ProfessionAdmin
         arguments: [~, App\Entity\Profession, ~]
