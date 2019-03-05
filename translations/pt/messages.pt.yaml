@@ -1,0 +1,6 @@
+login:
+    cmm: 'Entrar'
+    password: Palavra passe
+    remember-me: 'Mantenha-me logado'
+    sign-in: 'Entrar'
+    username: Nome de utilizador

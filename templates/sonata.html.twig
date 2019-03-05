@@ -1,0 +1,45 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link   rel="stylesheet"
+            href="/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link   rel = "stylesheet"
+            type = "text/css"
+            href = "/static/css/sonata.css" />
+    <link   rel = "stylesheet"
+            type = "text/css"
+            href = "/vendor/components-font-awesome/css/font-awesome.css" />
+    <link   rel = "stylesheet"
+            type = "text/css"
+            href = "/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://twemoji.maxcdn.com/2/twemoji.min.js?11.0"></script>
+    <script type="text/javascript"
+            src="/bundles/sonatacore/vendor/moment/min/moment-with-locales.min.js"></script>
+    <script type="text/javascript"
+            src="/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/vendor/markdown/lib/markdown.js"></script>
+    <script type="text/javascript"
+            src="/vendor/marked/lib/marked.js"></script>
+    <script type="text/javascript"
+            src="/vendor/turndown/turndown.js"></script>
+    <script type="text/javascript"
+            src="/vendor/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script type="text/javascript"
+            src="/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+{% endblock %}
+
+{% block meta_tags %}
+    {{ parent() }}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+{% endblock %}

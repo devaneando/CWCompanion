@@ -1,0 +1,38 @@
+sonata_admin:
+    title: 'Creative Writer Companion'
+    title_logo: /static/images/logo.png
+    translate_group_label: true
+    admin_services:
+        -
+            label_translator_strategy: sonata.admin.label.strategy.underscore
+    dashboard:
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: left }
+        groups:
+            admin:
+                label: menu.item.admin
+                label_catalogue: messages
+                roles: [ROLE_SUPER_ADMIN]
+                icon: "<i class=\"fa fa-cogs\"></i>"
+            shared:
+                label: menu.item.shared
+                label_catalogue: messages
+                roles: [ROLE_SUPER_ADMIN]
+                icon: "<i class=\"fa fa-cog\"></i>"
+            project:
+                label: menu.item.project
+                label_catalogue: messages
+                roles: [ROLE_WRITER]
+                icon: "<i class=\"fa fa-user-o\"></i>"
+    templates:
+        layout:  sonata.html.twig
+    assets:
+        extra_stylesheets:
+            - bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-blue-light.min.css
+        remove_stylesheets:
+            - bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-black.min.css
+
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]

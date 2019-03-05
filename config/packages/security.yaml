@@ -13,4 +13,20 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            pattern: ^/
             anonymous: true
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                login_path: user_login
+                check_path: user_login
+            logout:
+                path: /user/logout
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+    access_control:
+        - { path: ^/user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/writer/, role: ROLE_ADMIN }

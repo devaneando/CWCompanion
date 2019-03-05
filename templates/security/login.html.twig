@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel = "stylesheet" type = "text/css" href = "/static/css/login.css" />
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <form class="form-signin" method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <h2 class="form-signin-heading h3 mb-3 font-weight-normal">{{ 'login.cmm'|trans }}</h1>
+        <label for="inputUsername" class="sr-only">{{ 'login.username'|trans }}</label>
+        <input  type="text"
+                value="{{ last_username }}"
+                name="username"
+                id="inputUsername"
+                class="form-control"
+                placeholder="{{ 'login.username'|trans }}"
+                required autofocus>
+        <label for="inputPassword" class="sr-only">{{ 'login.password'|trans }}</label>
+        <input  type="password"
+                name="password"
+                id="inputPassword"
+                class="form-control"
+                placeholder="{{ 'login.password'|trans }}" required>
+        <input  type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}">
+        {# See https://symfony.com/doc/current/security/remember_me.html #}
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me">{{ 'login.remember-me'|trans }}
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit">
+            {{ 'login.sign-in'|trans }}
+        </button>
+    </form>
+</div>
+{% endblock %}
