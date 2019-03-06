@@ -1,0 +1,15 @@
+admin:
+    label:
+        code: Código
+        description: Descrição
+        id: Id
+        name: Nome
+        predefined: Predefinido
+menu:
+    item:
+        country: País
+Action: Action
+Menu Item Country: País
+Country Create: Criar país
+Country List: Listar país
+Country: País

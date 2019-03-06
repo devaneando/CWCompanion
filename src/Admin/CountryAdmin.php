@@ -38,6 +38,14 @@ final class CountryAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id', null, ['label' => 'admin.label.id'])
+            ->add(
+                'code',
+                null,
+                [
+                    'label' => 'admin.label.code',
+                    'template' => 'form/list/flag.html.twig',
+                ]
+            )
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add(
                 'description',
@@ -70,6 +78,14 @@ final class CountryAdmin extends AbstractAdmin
         $showMapper
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add(
+                'code',
+                null,
+                [
+                    'label' => 'admin.label.code',
+                    'template' => 'form/show/flag.html.twig',
+                ]
+            )
             ->add(
                 'description',
                 null,
