@@ -32,4 +32,39 @@ abstract class AbstractBaseRepository extends ServiceEntityRepository
 
         return $items[rand(0, count($items) - 1)];
     }
+
+    public function findAll(): array
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder
+            ->select('ent')
+            ->from($this->_entityName, 'ent')
+            ->addOrderBy('ent.name', 'ASC');
+
+        if (true === in_array('predefined', $this->getEntityManager()->getClassMetadata()->getColumnNames())) {
+            $queryBuilder->addOrderBy('ent.predefined', 'ASC');
+        }
+
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function ensurePredefined(object $object, bool $predefined)
+    {
+        if (false === in_array('predefined', $this->getEntityManager()->getClassMetadata()->getColumnNames())) {
+            return;
+        }
+        if (false === $predefined) {
+            return;
+        }
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder
+            ->update($this->_entityName, 'ent')
+            ->set('ent.predefined', false)
+            ->where('ent.id != object');
+        $query = $queryBuilder->getQuery();
+        $query->setParameter('object', $object->getId());
+        $query->execute();
+    }
 }

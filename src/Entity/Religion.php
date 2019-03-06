@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\IdTrait;
 use App\Entity\Traits\NameTrait;
+use App\Entity\Traits\PredefinedTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -53,6 +54,13 @@ class Religion
      */
     protected $description;
     use DescriptionTrait;
+
+    /**
+     * @var bool
+     * @ORM\Column(name="predefined", type="boolean", nullable=true)
+     */
+    protected $predefined = false;
+    use PredefinedTrait;
 
     public function getParent(): ?self
     {
