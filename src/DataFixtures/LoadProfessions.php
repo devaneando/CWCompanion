@@ -23,8 +23,18 @@ class LoadProfessions extends AbstractDataFixture
     {
         $this->loadData('professions.yaml');
         foreach (array_keys($this->getData()) as $key) {
+            if (true === in_array($key, ['description', 'predefined'])) {
+                continue;
+            }
+            $item = $this->getData($key);
             $profession = new Profession();
-            $profession->setName($key);
+            $profession
+                ->setName($key)
+                ->setPredefined($item['predefined']);
+            $description = $this->arrayToDescription($item['description']);
+            if (false === empty($description)) {
+                $profession->setDescription($description);
+            }
             $manager->persist($profession);
             $manager->flush();
             $this->setReference('profession_'.$this->slugify($key), $profession);

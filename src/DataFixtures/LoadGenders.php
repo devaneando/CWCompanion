@@ -23,8 +23,18 @@ class LoadGenders extends AbstractDataFixture
     {
         $this->loadData('genders.yaml');
         foreach (array_keys($this->getData()) as $key) {
+            if (true === in_array($key, ['description', 'predefined'])) {
+                continue;
+            }
+            $item = $this->getData($key);
             $gender = new Gender();
-            $gender->setName($key);
+            $gender
+                ->setName($key)
+                ->setPredefined($item['predefined']);
+            $description = $this->arrayToDescription($item['description']);
+            if (false === empty($description)) {
+                $gender->setDescription($description);
+            }
             $manager->persist($gender);
             $manager->flush();
             $this->setReference('gender_'.$this->slugify($key), $gender);

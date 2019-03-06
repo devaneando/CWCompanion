@@ -23,10 +23,12 @@ class LoadTemperaments extends AbstractDataFixture
     {
         $this->loadData('temperaments.yaml');
         foreach (array_keys($this->getData()) as $key) {
+            if (true === in_array($key, ['description', 'predefined'])) {
+                continue;
+            }
             $item = $this->getData($key);
             $temperament = new Temperament();
             $temperament->setName($key);
-
             $description = $this->arrayToDescription($item['description']);
             if (false === empty($description)) {
                 $temperament->setDescription($description);

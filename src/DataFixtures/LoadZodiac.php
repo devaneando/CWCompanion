@@ -23,6 +23,9 @@ class LoadZodiac extends AbstractDataFixture
     {
         $this->loadData('zodiac_signs.yaml');
         foreach (array_keys($this->getData()) as $key) {
+            if (true === in_array($key, ['description', 'predefined'])) {
+                continue;
+            }
             $item = $this->getData($key);
             $zodiac = new Zodiac();
 
@@ -35,17 +38,6 @@ class LoadZodiac extends AbstractDataFixture
             }
             if (null !== $item['end_complementary']) {
                 $zodiac->setEndComplementary(\DateTime::createFromFormat('Y-m-d', $item['end_complementary']));
-            }
-            $description = null;
-            if (false === empty($item['description'])) {
-                foreach ($item['description'] as $line) {
-                    if (true === empty($line)) {
-                        $description .= "\n\n";
-
-                        continue;
-                    }
-                    $description .= $line.' ';
-                }
             }
             $description = $this->arrayToDescription($item['description']);
             if (false === empty($description)) {

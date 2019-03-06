@@ -1,93 +1,276 @@
 Animismo:
+    predefined: false
+    description: null
     Batuque:
+        predefined: false
+        description: null
     Candomblé:
+        predefined: false
+        description: null
     Quimbanda:
+        predefined: false
+        description: null
     Santería:
+        predefined: false
+        description: null
     Tambor de Mina:
+        predefined: false
+        description: null
     Umbanda:
+        predefined: false
+        description: null
     Vodu:
+        predefined: false
+        description: null
     Xangô do Nordeste:
+        predefined: false
+        description: null
 Atonismo:
+        predefined: false
+        description: null
 Ayyavazhi:
+        predefined: false
+        description: null
 Bramanismo:
+        predefined: false
+        description: null
 Budismo:
+    predefined: false
+    description: null
     Budismo tibetano:
+        predefined: false
+        description: null
     Hinaiana:
+        predefined: false
+        description: null
     Honmon Butsuryu-Shu:
+        predefined: false
+        description: null
     Mahayana:
+        predefined: false
+        description: null
     Nitiren:
+        predefined: false
+        description: null
     Reiyukai:
+        predefined: false
+        description: null
     Teravada:
+        predefined: false
+        description: null
     Terra Pura:
+        predefined: false
+        description: null
     Zen:
+        predefined: false
+        description: null
 Cheondoísmo:
+        predefined: false
+        description: null
 Cientologia:
+        predefined: false
+        description: null
 Confucionismo:
+        predefined: false
+        description: null
 Conscienciologia:
+        predefined: false
+        description: null
 Cristianismo:
+    predefined: true
+    description: null
     Adventismo:
+        predefined: false
+        description: null
     Anglicanismo:
+        predefined: false
+        description: null
     Catolicismo ortodoxo:
+        predefined: false
+        description: null
     Catolicismo:
+        predefined: false
+        description: null
     Nestorianismo:
+        predefined: false
+        description: null
     Protestantismo neo-pentecostal:
+        predefined: false
+        description: null
     Protestantismo pentecostal:
+        predefined: false
+        description: null
     Protestantismo tradicional:
+        predefined: false
+        description: null
 Espiritismo:
+    predefined: false
+    description: null
 Fé Bahá'í:
+    predefined: false
+    description: null
 Hinduísmo:
+    predefined: false
+    description: null
     Bacti-ioga:
+        predefined: false
+        description: null
     Brahma Kumaris:
+        predefined: false
+        description: null
     Hare Krishna:
+        predefined: false
+        description: null
     Osho:
+        predefined: false
+        description: null
     Sathya Sai Baba:
+        predefined: false
+        description: null
     Shaktismo:
+        predefined: false
+        description: null
     Vajrayana:
+        predefined: false
+        description: null
     Vedanta:
+        predefined: false
+        description: null
     Vixnuísmo:
+        predefined: false
+        description: null
     Xivaismo:
+        predefined: false
+        description: null
 Igreja Messiânica Mundial:
+    predefined: false
+    description: null
 Islamismo:
+    predefined: false
+    description: null
     Carijismo:
+        predefined: false
+        description: null
     Fundamentalismo Islâmico:
+        predefined: false
+        description: null
     Ibadismo:
+        predefined: false
+        description: null
     Sufismo:
+        predefined: false
+        description: null
     Sunismo:
+        predefined: false
+        description: null
     Xiismo:
+        predefined: false
+        description: null
 Jainismo:
+        predefined: false
+        description: null
 Judaísmo:
+    predefined: false
+    description: null
     Judaísmo chassídico:
+        predefined: false
+        description: null
     Judaísmo conservador:
+        predefined: false
+        description: null
     Judaísmo humanístico:
+        predefined: false
+        description: null
     Judaísmo messiânico:
+        predefined: false
+        description: null
     Judaísmo ortodoxo:
+        predefined: false
+        description: null
     Judaísmo reconstrucionista:
+        predefined: false
+        description: null
     Judaísmo reformista:
+        predefined: false
+        description: null
     Mashichismo:
+        predefined: false
+        description: null
     Samaritanos:
+        predefined: false
+        description: null
 Luciferianismo:
-Messiânica:
+        predefined: false
+        description: null
 Mitraísmo:
+    predefined: false
+    description: null
 Mormonismo:
+    predefined: false
+    description: null
 Nova Era:
+    predefined: false
+    description: null
 Ocultismo:
+    predefined: false
+    description: null
 Rastafarianismo:
+    predefined: false
+    description: null
 Reconstrucionismo:
+    predefined: false
+    description: null
     Ásatrú:
+        predefined: false
+        description: null
     Druidismo:
+        predefined: false
+        description: null
     Helenismo:
+        predefined: false
+        description: null
     Kemetismo:
+        predefined: false
+        description: null
     Odinismo:
+        predefined: false
+        description: null
     Religio Romana:
+        predefined: false
+        description: null
     Wicca:
+        predefined: false
+        description: null
     Xamanismo:
+        predefined: false
+        description: null
 Religião tradicional chinesa:
+    predefined: false
+    description: null
 Satanismo:
+    predefined: false
+    description: null
 Seicho-no-ie:
+    predefined: false
+    description: null
 Sikhismo:
+    predefined: false
+    description: null
 Taoísmo:
+    predefined: false
+    description: null
 Tenrikyo:
+    predefined: false
+    description: null
 Testemunhas de Jeová:
+    predefined: false
+    description: null
 Unitário-Universalismo:
+    predefined: false
+    description: null
 Xintoísmo:
+    predefined: false
+    description: null
 Zoroastrismo:
+    predefined: false
+    description: null

@@ -1,10 +1,30 @@
 Analfabeto:
+    predefined: false
+    description: null
 Bacharelato:
+    predefined: false
+    description: null
 Doutoramento:
+    predefined: false
+    description: null
 Ensino básico:
+    predefined: false
+    description: null
 Ensino médio:
+    predefined: false
+    description: null
 Ensino secundário:
+    predefined: true
+    description: null
 Licenciatura:
+    predefined: false
+    description: null
 Mestrado:
+    predefined: false
+    description: null
 Pós-doutoramento:
+    predefined: false
+    description: null
 Pós-graduação:
+    predefined: false
+    description: null

@@ -23,22 +23,17 @@ class LoadCharacterTypes extends AbstractDataFixture
     {
         $this->loadData('character_types.yaml');
         foreach (array_keys($this->getData()) as $key) {
+            if (true === in_array($key, ['description', 'predefined'])) {
+                continue;
+            }
             $item = $this->getData($key);
             $characterType = new CharacterType();
 
-            $characterType->setName($key);
-            $description = null;
-            if (false === empty($item['description'])) {
-                foreach ($item['description'] as $line) {
-                    if (true === empty($line)) {
-                        $description .= "\n\n";
-
-                        continue;
-                    }
-                    $description .= $line.' ';
-                }
-            }
-            if (null !== $description) {
+            $characterType
+                ->setName($key)
+                ->setPredefined($item['predefined']);
+            $description = $this->arrayToDescription($item['description']);
+            if (false === empty($description)) {
                 $characterType->setDescription($description);
             }
 

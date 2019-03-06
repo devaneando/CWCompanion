@@ -1,89 +1,267 @@
 Advogado:
+    predefined: false
+    description: null
 Agente imobiliário:
+    predefined: false
+    description: null
 Agrónomo:
+    predefined: false
+    description: null
 Antropólogo:
+    predefined: false
+    description: null
 Arquiteto:
+    predefined: false
+    description: null
 Artista:
+    predefined: false
+    description: null
 Assassino:
+    predefined: false
+    description: null
 Assistente Social:
+    predefined: false
+    description: null
 Atleta Profissional:
+    predefined: false
+    description: null
 Ator:
+    predefined: false
+    description: null
 Bibliotecário:
+    predefined: false
+    description: null
 Biólogo:
+    predefined: false
+    description: null
 Bombeiro:
+    predefined: false
+    description: null
 Camponês:
+    predefined: false
+    description: null
 Comediante:
+    predefined: false
+    description: null
 Comerciante:
+    predefined: false
+    description: null
 Construtor:
+    predefined: false
+    description: null
 Contador:
+    predefined: false
+    description: null
 Dentista:
+    predefined: false
+    description: null
 Desempregado:
+    predefined: false
+    description: null
 Detetive:
+    predefined: true
+    description: null
 Detetive privado:
+    predefined: false
+    description: null
 Economista:
+    predefined: false
+    description: null
 Empregado de balcão:
+    predefined: false
+    description: null
 Empregado de mesa:
+    predefined: false
+    description: null
 Empregado Doméstico:
+    predefined: false
+    description: null
 Empresário:
+    predefined: false
+    description: null
 Enfermeiro:
+    predefined: false
+    description: null
 Engenheiro:
+    predefined: false
+    description: null
 Enólogo:
+    predefined: false
+    description: null
 Escravagista:
+    predefined: false
+    description: null
 Escravo:
+    predefined: false
+    description: null
 Estatístico:
+    predefined: false
+    description: null
 Farmacêutico:
+    predefined: false
+    description: null
 Fisioterapeuta:
+    predefined: false
+    description: null
 Fonoaudiólogo:
+    predefined: false
+    description: null
 Gangster:
+    predefined: false
+    description: null
 Garimpeiro:
+    predefined: false
+    description: null
 Geógrafo:
+    predefined: false
+    description: null
 Geólogo:
+    predefined: false
+    description: null
 Gestor:
+    predefined: false
+    description: null
 Guerreiro:
+    predefined: false
+    description: null
 Hacker:
+    predefined: false
+    description: null
 Historiador:
+    predefined: false
+    description: null
 Jornalista:
+    predefined: false
+    description: null
 Ladrão:
+    predefined: false
+    description: null
 Leiloeiro:
+    predefined: false
+    description: null
 Massagista:
+    predefined: false
+    description: null
 Médico:
+    predefined: false
+    description: null
 Mercenário:
+    predefined: false
+    description: null
 Micro-biólogo:
+    predefined: false
+    description: null
 Militar:
+    predefined: false
+    description: null
 Monge:
+    predefined: false
+    description: null
 Motorista:
+    predefined: false
+    description: null
 Músico:
+    predefined: false
+    description: null
 Museólogo:
+    predefined: false
+    description: null
 Nobre:
+    predefined: false
+    description: null
 Nutricionista:
+    predefined: false
+    description: null
 Oceanógrafo:
+    predefined: false
+    description: null
 Orientador Educacional:
+    predefined: false
+    description: null
 Padre:
+    predefined: false
+    description: null
 Palhaço:
+    predefined: false
+    description: null
 Pastor:
+    predefined: false
+    description: null
 Pescador:
+    predefined: false
+    description: null
 Piloto:
+    predefined: false
+    description: null
 Policial:
+    predefined: false
+    description: null
 Político:
+    predefined: false
+    description: null
 Professor:
+    predefined: false
+    description: null
 Programador informático:
+    predefined: false
+    description: null
 Prostituta:
+    predefined: false
+    description: null
 Proxeneta:
+    predefined: false
+    description: null
 Psicólogo:
+    predefined: false
+    description: null
 Publicitário:
+    predefined: false
+    description: null
 Químico:
+    predefined: false
+    description: null
 Radialista:
+    predefined: false
+    description: null
 Relações Públicas:
+    predefined: false
+    description: null
 Sacerdote:
+    predefined: false
+    description: null
 Secretário:
+    predefined: false
+    description: null
 Sem-abrigo:
+    predefined: false
+    description: null
 Sociólogo:
+    predefined: false
+    description: null
 Soldado:
+    predefined: false
+    description: null
 Solicitador:
+    predefined: false
+    description: null
 Sommelier:
+    predefined: false
+    description: null
 Taxista:
+    predefined: false
+    description: null
 Trabalhador de obras:
+    predefined: false
+    description: null
 Tradutor:
+    predefined: false
+    description: null
 Traficante de drogas:
+    predefined: false
+    description: null
 Vendedor:
+    predefined: false
+    description: null
 Veterinário:
+    predefined: false
+    description: null
