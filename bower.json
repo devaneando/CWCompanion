@@ -21,6 +21,7 @@
     "turndown": "^4.0.1",
     "jquery.hotkeys": "jQuery.Hotkeys#^0.2.0",
     "components-font-awesome": "4.7.0",
-    "bootstrap-markdown": "^2.10.0"
+    "bootstrap-markdown": "^2.10.0",
+    "flag-icon-css": "^3.3.0"
   }
 }

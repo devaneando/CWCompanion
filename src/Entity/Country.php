@@ -68,4 +68,16 @@ class Country
      */
     protected $predefined = false;
     use PredefinedTrait;
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = trim($code);
+
+        return $this;
+    }
 }

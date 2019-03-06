@@ -1,0 +1,753 @@
+Afeganistão:
+    predefined: false
+    code: af
+África do Sul:
+    predefined: false
+    code: za
+Ilhas Alanda:
+    predefined: false
+    code: ax
+Albânia:
+    predefined: false
+    code: al
+Alemanha:
+    predefined: false
+    code: de
+Andorra:
+    predefined: false
+    code: ad
+Angola:
+    predefined: false
+    code: ao
+Anguilla:
+    predefined: false
+    code: ai
+Antárctida:
+    predefined: false
+    code: aq
+Antígua e Barbuda:
+    predefined: false
+    code: ag
+Antilhas Holandesas:
+    predefined: false
+    code: an
+Arábia Saudita:
+    predefined: false
+    code: sa
+Argélia:
+    predefined: false
+    code: dz
+Argentina:
+    predefined: false
+    code: ar
+Arménia:
+    predefined: false
+    code: am
+Aruba:
+    predefined: false
+    code: aw
+Austrália:
+    predefined: false
+    code: au
+Austria:
+    predefined: false
+    code: at
+Azerbaijão:
+    predefined: false
+    code: az
+Bahamas:
+    predefined: false
+    code: bs
+Bahrein:
+    predefined: false
+    code: bh
+Bangladesh:
+    predefined: false
+    code: bd
+Barbados:
+    predefined: false
+    code: bb
+Bélgica:
+    predefined: false
+    code: be
+Belize:
+    predefined: false
+    code: bz
+Benim:
+    predefined: false
+    code: bj
+Bermudas:
+    predefined: false
+    code: bm
+Bielorrússia:
+    predefined: false
+    code: by
+Butão:
+    predefined: false
+    code: bt
+Bolívia:
+    predefined: false
+    code: bo
+Bósnia e Herzegovina:
+    predefined: false
+    code: ba
+Botsuana:
+    predefined: false
+    code: bw
+Ilha Bouvet:
+    predefined: false
+    code: bv
+Brasil:
+    predefined: false
+    code: br
+Brunei:
+    predefined: false
+    code: bn
+Bulgária:
+    predefined: false
+    code: bg
+Burkina Faso:
+    predefined: false
+    code: bf
+Burundi:
+    predefined: false
+    code: bi
+Camboja:
+    predefined: false
+    code: kh
+Camarões:
+    predefined: false
+    code: cm
+Canadá:
+    predefined: false
+    code: ca
+Cabo Verde:
+    predefined: false
+    code: cv
+Ilhas Cayman:
+    predefined: false
+    code: ky
+Cazaquistão:
+    predefined: false
+    code: kz
+Chade:
+    predefined: false
+    code: td
+Chile:
+    predefined: false
+    code: cl
+China:
+    predefined: false
+    code: cn
+Chipre:
+    predefined: false
+    code: cy
+Ilha Christmas:
+    predefined: false
+    code: cx
+Ilhas Cocos:
+    predefined: false
+    code: cc
+Colômbia:
+    predefined: false
+    code: co
+Comores:
+    predefined: false
+    code: km
+Congo:
+    predefined: false
+    code: cg
+Ilhas Cook:
+    predefined: false
+    code: ck
+Coreia do Norte:
+    predefined: false
+    code: kp
+Coreia do Sul:
+    predefined: false
+    code: kr
+Costa Rica:
+    predefined: false
+    code: cr
+Costa do Marfim:
+    predefined: false
+    code: ci
+Croácia:
+    predefined: false
+    code: hr
+Cuba:
+    predefined: false
+    code: cu
+Dinamarca:
+    predefined: false
+    code: dk
+Djibouti:
+    predefined: false
+    code: dj
+Dominica:
+    predefined: false
+    code: dm
+Equador:
+    predefined: false
+    code: ec
+Egito:
+    predefined: false
+    code: eg
+El Salvador:
+    predefined: false
+    code: sv
+Emirados Árabes Unidos:
+    predefined: false
+    code: ae
+Eritreia:
+    predefined: false
+    code: er
+Escócia:
+    predefined: false
+    code: gb-sct
+Eslováquia:
+    predefined: false
+    code: sk
+Eslovênia:
+    predefined: false
+    code: si
+Espanha:
+    predefined: false
+    code: es
+Estados Unidos:
+    predefined: false
+    code: us
+Ilhas Menores Distantes dos Estados Unidos:
+    predefined: false
+    code: um
+Estônia:
+    predefined: false
+    code: ee
+Etiópia:
+    predefined: false
+    code: et
+Ilhas Feroé:
+    predefined: false
+    code: fo
+Fiji:
+    predefined: false
+    code: fj
+Filipinas:
+    predefined: false
+    code: ph
+Finlândia:
+    predefined: false
+    code: fi
+França:
+    predefined: false
+    code: fr
+Terras Austrais e Antárticas Francesas:
+    predefined: false
+    code: tf
+Gabão:
+    predefined: false
+    code: ga
+Gana:
+    predefined: false
+    code: gh
+Gâmbia:
+    predefined: false
+    code: gm
+Geórgia:
+    predefined: false
+    code: ge
+Ilhas Geórgia do Sul e Sandwich do Sul:
+    predefined: false
+    code: gs
+Gibraltar:
+    predefined: false
+    code: gi
+Granada:
+    predefined: false
+    code: gd
+Grécia:
+    predefined: false
+    code: gr
+Gronelândia:
+    predefined: false
+    code: gl
+Guadalupe:
+    predefined: false
+    code: gp
+Guam:
+    predefined: false
+    code: gu
+Guatemala:
+    predefined: false
+    code: gt
+Guernsey:
+    predefined: false
+    code: gg
+Guiné:
+    predefined: false
+    code: gn
+Guiné-Bissau:
+    predefined: false
+    code: gw
+Guiné Equatorial:
+    predefined: false
+    code: gq
+Guiana:
+    predefined: false
+    code: gy
+Guiana Francesa:
+    predefined: false
+    code: gf
+Haiti:
+    predefined: false
+    code: ht
+Ilha Heard e Ilhas McDonald:
+    predefined: false
+    code: hm
+Honduras:
+    predefined: false
+    code: hn
+Hong Kong:
+    predefined: false
+    code: hk
+Hungria:
+    predefined: false
+    code: hu
+Iémen:
+    predefined: false
+    code: ye
+Índia:
+    predefined: false
+    code: in
+Indonésia:
+    predefined: false
+    code: id
+Inglaterra:
+    predefined: false
+    code: gb-eng
+Irã:
+    predefined: false
+    code: ir
+Iraque:
+    predefined: false
+    code: iq
+Irlanda:
+    predefined: false
+    code: ie
+Irlanda do Norte:
+    predefined: false
+    code: gb-nir
+Ilha de Man:
+    predefined: false
+    code: im
+Islândia:
+    predefined: false
+    code: is
+Israel:
+    predefined: false
+    code: il
+Itália:
+    predefined: false
+    code: it
+Jamaica:
+    predefined: false
+    code: jm
+Japão:
+    predefined: false
+    code: jp
+Jersey:
+    predefined: false
+    code: je
+Jordânia:
+    predefined: false
+    code: jo
+Kiribati:
+    predefined: false
+    code: ki
+Kosovo:
+    predefined: false
+    code: xk
+Kuwait:
+    predefined: false
+    code: kw
+Laos:
+    predefined: false
+    code: la
+Letônia:
+    predefined: false
+    code: lv
+Lesoto:
+    predefined: false
+    code: ls
+Líbano:
+    predefined: false
+    code: lb
+Libéria:
+    predefined: false
+    code: lr
+Líbia:
+    predefined: false
+    code: ly
+Liechtenstein:
+    predefined: false
+    code: li
+Lituânia:
+    predefined: false
+    code: lt
+Luxemburgo:
+    predefined: false
+    code: lu
+Macau:
+    predefined: false
+    code: mo
+Macedónia:
+    predefined: false
+    code: mk
+Madagáscar:
+    predefined: false
+    code: mg
+Malásia:
+    predefined: false
+    code: my
+Malaui:
+    predefined: false
+    code: mw
+Maldivas:
+    predefined: false
+    code: mv
+Mali:
+    predefined: false
+    code: ml
+Malta:
+    predefined: false
+    code: mt
+Ilhas Malvinas:
+    predefined: false
+    code: fk
+Ilhas Marshall:
+    predefined: false
+    code: mh
+Marianas Setentrionais:
+    predefined: false
+    code: mp
+Marrocos:
+    predefined: false
+    code: ma
+Martinica:
+    predefined: false
+    code: mq
+Mauritânia:
+    predefined: false
+    code: mr
+Maurícia:
+    predefined: false
+    code: mu
+Mayotte:
+    predefined: false
+    code: yt
+México:
+    predefined: false
+    code: mx
+Mianmar:
+    predefined: false
+    code: mm
+Estados Federados da Micronésia:
+    predefined: false
+    code: fm
+Moldávia:
+    predefined: false
+    code: md
+Mónaco:
+    predefined: false
+    code: mc
+Mongólia:
+    predefined: false
+    code: mn
+Montenegro:
+    predefined: false
+    code: me
+Montserrat:
+    predefined: false
+    code: ms
+Moçambique:
+    predefined: false
+    code: mz
+Namíbia:
+    predefined: false
+    code: na
+Nauru:
+    predefined: false
+    code: nr
+Nepal:
+    predefined: false
+    code: np
+Nova Caledônia:
+    predefined: false
+    code: nc
+Nova Zelândia:
+    predefined: false
+    code: nz
+Nicarágua:
+    predefined: false
+    code: ni
+Níger:
+    predefined: false
+    code: ne
+Nigéria:
+    predefined: false
+    code: ng
+Niue:
+    predefined: false
+    code: nu
+Ilha Norfolk:
+    predefined: false
+    code: nf
+Noruega:
+    predefined: false
+    code: no
+Omã:
+    predefined: false
+    code: om
+País de Gales:
+    predefined: false
+    code: gb-wls
+Países Baixos:
+    predefined: false
+    code: nl
+Palau:
+    predefined: false
+    code: pw
+Palestina:
+    predefined: false
+    code: ps
+Panamá:
+    predefined: false
+    code: pa
+Papua-Nova Guiné:
+    predefined: false
+    code: pg
+Paquistão:
+    predefined: false
+    code: pk
+Paraguai:
+    predefined: false
+    code: py
+Peru:
+    predefined: false
+    code: pe
+Pitcairn:
+    predefined: false
+    code: pn
+Polinésia Francesa:
+    predefined: false
+    code: pf
+Polónia:
+    predefined: false
+    code: pl
+Portugal:
+    predefined: true
+    code: pt
+Porto Rico:
+    predefined: false
+    code: pr
+Qatar:
+    predefined: false
+    code: qa
+Quênia:
+    predefined: false
+    code: ke
+Quirguistão:
+    predefined: false
+    code: kg
+Reino Unido:
+    predefined: false
+    code: gb
+Território Britânico do Oceano Índico:
+    predefined: false
+    code: io
+Ilhas Virgens Britânicas:
+    predefined: false
+    code: vg
+República Centro-Africana:
+    predefined: false
+    code: cf
+República Checa:
+    predefined: false
+    code: cz
+República Democrática do Congo:
+    predefined: false
+    code: cd
+República Dominicana:
+    predefined: false
+    code: do
+Taiwan:
+    predefined: false
+    code: tw
+Reunião:
+    predefined: false
+    code: re
+Romênia:
+    predefined: false
+    code: ro
+Rússia:
+    predefined: false
+    code: ru
+Ruanda:
+    predefined: false
+    code: rw
+Saara Ocidental:
+    predefined: false
+    code: eh
+Ilhas Salomão:
+    predefined: false
+    code: sb
+Samoa:
+    predefined: false
+    code: ws
+Samoa Americana:
+    predefined: false
+    code: as
+Saint-Barthélemy:
+    predefined: false
+    code: bl
+Santa Helena (território):
+    predefined: false
+    code: sh
+Santa Lúcia:
+    predefined: false
+    code: lc
+Saint Martin:
+    predefined: false
+    code: mf
+São Cristóvão e Névis:
+    predefined: false
+    code: kn
+São Pedro e Miquelão:
+    predefined: false
+    code: pm
+São Vicente e Granadinas:
+    predefined: false
+    code: vc
+São Marinho:
+    predefined: false
+    code: sm
+São Tomé e Príncipe:
+    predefined: false
+    code: st
+Senegal:
+    predefined: false
+    code: sn
+Serra Leoa:
+    predefined: false
+    code: sl
+Sérvia:
+    predefined: false
+    code: rs
+Seychelles:
+    predefined: false
+    code: sc
+Singapura:
+    predefined: false
+    code: sg
+Síria:
+    predefined: false
+    code: sy
+Somália:
+    predefined: false
+    code: so
+Sri Lanka:
+    predefined: false
+    code: lk
+Sudão:
+    predefined: false
+    code: sd
+Suécia:
+    predefined: false
+    code: se
+Suazilândia:
+    predefined: false
+    code: sz
+Suíça:
+    predefined: false
+    code: ch
+Suriname:
+    predefined: false
+    code: sr
+Svalbard:
+    predefined: false
+    code: sj
+Tadjiquistão:
+    predefined: false
+    code: tj
+Tailândia:
+    predefined: false
+    code: th
+Tanzânia:
+    predefined: false
+    code: tz
+Timor-Leste:
+    predefined: false
+    code: tl
+Togo:
+    predefined: false
+    code: tg
+Toquelau:
+    predefined: false
+    code: tk
+Tonga:
+    predefined: false
+    code: to
+Trinidad e Tobago:
+    predefined: false
+    code: tt
+Tunísia:
+    predefined: false
+    code: tn
+Turcomenistão:
+    predefined: false
+    code: tm
+Turquia:
+    predefined: false
+    code: tr
+Turcas e Caicos:
+    predefined: false
+    code: tc
+Tuvalu:
+    predefined: false
+    code: tv
+Ucrânia:
+    predefined: false
+    code: ua
+Uganda:
+    predefined: false
+    code: ug
+Ilhas Virgens Americanas:
+    predefined: false
+    code: vi
+Uruguai:
+    predefined: false
+    code: uy
+Uzbequistão:
+    predefined: false
+    code: uz
+Vanuatu:
+    predefined: false
+    code: vu
+Vaticano:
+    predefined: false
+    code: va
+Venezuela:
+    predefined: false
+    code: ve
+Vietname:
+    predefined: false
+    code: vn
+Wallis e Futuna:
+    predefined: false
+    code: wf
+Zâmbia:
+    predefined: false
+    code: zm
+Zimbábue:
+    predefined: false
+    code: zw
