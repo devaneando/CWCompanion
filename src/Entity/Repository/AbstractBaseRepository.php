@@ -41,7 +41,10 @@ abstract class AbstractBaseRepository extends ServiceEntityRepository
             ->from($this->_entityName, 'ent')
             ->addOrderBy('ent.name', 'ASC');
 
-        if (true === in_array('predefined', $this->getEntityManager()->getClassMetadata()->getColumnNames())) {
+        if (true === in_array(
+            'predefined',
+            $this->getEntityManager()->getClassMetadata($this->_entityName)->getColumnNames())
+        ) {
             $queryBuilder->addOrderBy('ent.predefined', 'ASC');
         }
 
@@ -50,21 +53,23 @@ abstract class AbstractBaseRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function ensurePredefined(object $object, bool $predefined)
+    public function ensurePredefined(object $object)
     {
-        if (false === in_array('predefined', $this->getEntityManager()->getClassMetadata()->getColumnNames())) {
+        if (false === in_array(
+            'predefined',
+            $this->getEntityManager()->getClassMetadata($this->_entityName)->getColumnNames())
+        ) {
             return;
         }
-        if (false === $predefined) {
+        if (false === $object->isPredefined()) {
             return;
         }
         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
         $queryBuilder
             ->update($this->_entityName, 'ent')
-            ->set('ent.predefined', false)
-            ->where('ent.id != object');
+            ->set('ent.predefined', $queryBuilder->expr()->literal(false))
+            ->where($queryBuilder->expr()->neq('ent.id', $queryBuilder->expr()->literal($object->getId())));
         $query = $queryBuilder->getQuery();
-        $query->setParameter('object', $object->getId());
         $query->execute();
     }
 }

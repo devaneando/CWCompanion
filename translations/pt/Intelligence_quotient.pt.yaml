@@ -5,6 +5,7 @@ admin:
         maximum: Máximo
         minimum: Mínimo
         name: Nome
+        predefined: Predefinido
 menu:
     item:
         intelligence_quotient: QI

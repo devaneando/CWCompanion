@@ -3,6 +3,7 @@ admin:
         description: Descrição
         id: Id
         name: Nome
+        predefined: Predefinido
 menu:
     item:
         profession: Profissão
