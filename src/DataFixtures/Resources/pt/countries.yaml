@@ -28,9 +28,6 @@ Antárctida:
 Antígua e Barbuda:
     predefined: false
     code: ag
-Antilhas Holandesas:
-    predefined: false
-    code: an
 Arábia Saudita:
     predefined: false
     code: sa
@@ -478,6 +475,9 @@ Namíbia:
 Nauru:
     predefined: false
     code: nr
+Nenhum:
+    predefined: false
+    code: nh
 Nepal:
     predefined: false
     code: np

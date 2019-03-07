@@ -54,12 +54,14 @@ class Zodiac
     /**
      * @var \DateTimeInterface
      * @ORM\Column(name="start", type="date", nullable=false, unique=true)
+     * @Assert\NotNull(message="validator.not_blank")
      */
     protected $start;
 
     /**
      * @var \DateTimeInterface
      * @ORM\Column(name="end", type="date", nullable=false, unique=true)
+     * @Assert\NotNull(message="validator.not_blank")
      */
     protected $end;
 

@@ -1,43 +1,43 @@
-Animismo:
+Agnóstico:
+    predefined: false
+    description: null
+Animista:
     predefined: false
     description: null
     Batuque:
         predefined: false
         description: null
-    Candomblé:
+    Candomblecista:
         predefined: false
         description: null
-    Quimbanda:
+    Quimbandista:
         predefined: false
         description: null
-    Santería:
+    Santerista:
         predefined: false
         description: null
-    Tambor de Mina:
+    Umbandista:
         predefined: false
         description: null
-    Umbanda:
+    Voduísta:
         predefined: false
         description: null
-    Vodu:
+Ateu:
         predefined: false
         description: null
-    Xangô do Nordeste:
-        predefined: false
-        description: null
-Atonismo:
+Atonista:
         predefined: false
         description: null
 Ayyavazhi:
         predefined: false
         description: null
-Bramanismo:
+Bramanista:
         predefined: false
         description: null
-Budismo:
+Budista:
     predefined: false
     description: null
-    Budismo tibetano:
+    Budista tibetano:
         predefined: false
         description: null
     Hinaiana:
@@ -58,58 +58,55 @@ Budismo:
     Teravada:
         predefined: false
         description: null
-    Terra Pura:
+    Budista zen:
         predefined: false
         description: null
-    Zen:
+Cheondoísta:
         predefined: false
         description: null
-Cheondoísmo:
+Cientologista:
         predefined: false
         description: null
-Cientologia:
-        predefined: false
-        description: null
-Confucionismo:
+Confucionista:
         predefined: false
         description: null
 Conscienciologia:
         predefined: false
         description: null
-Cristianismo:
+Cristião:
     predefined: true
     description: null
-    Adventismo:
+    Adventista:
         predefined: false
         description: null
-    Anglicanismo:
+    Anglicano:
         predefined: false
         description: null
-    Catolicismo ortodoxo:
+    Católico ortodoxo:
         predefined: false
         description: null
-    Catolicismo:
+    Católico:
         predefined: false
         description: null
-    Nestorianismo:
+    Evangélico neo-pentecostal:
         predefined: false
         description: null
-    Protestantismo neo-pentecostal:
+    Evangélico pentecostal:
         predefined: false
         description: null
-    Protestantismo pentecostal:
+    Evangélico tradicional:
         predefined: false
         description: null
-    Protestantismo tradicional:
+    Nestoriano:
         predefined: false
         description: null
-Espiritismo:
+Espirita:
     predefined: false
     description: null
 Fé Bahá'í:
     predefined: false
     description: null
-Hinduísmo:
+Hindu:
     predefined: false
     description: null
     Bacti-ioga:
@@ -136,141 +133,141 @@ Hinduísmo:
     Vedanta:
         predefined: false
         description: null
-    Vixnuísmo:
+    Vixnuísta:
         predefined: false
         description: null
-    Xivaismo:
+    Xivaista:
         predefined: false
         description: null
-Igreja Messiânica Mundial:
+Messiánico:
     predefined: false
     description: null
-Islamismo:
+Islamita:
     predefined: false
     description: null
-    Carijismo:
+    Carijista:
         predefined: false
         description: null
-    Fundamentalismo Islâmico:
+    Fundamentalista Islâmico:
         predefined: false
         description: null
-    Ibadismo:
+    Ibadista:
         predefined: false
         description: null
-    Sufismo:
+    Sufita:
         predefined: false
         description: null
-    Sunismo:
+    Sunita:
         predefined: false
         description: null
-    Xiismo:
+    Xiita:
         predefined: false
         description: null
-Jainismo:
+Jainista:
         predefined: false
         description: null
-Judaísmo:
+Judeu:
     predefined: false
     description: null
-    Judaísmo chassídico:
+    Judeu chassídico:
         predefined: false
         description: null
-    Judaísmo conservador:
+    Judeu conservador:
         predefined: false
         description: null
-    Judaísmo humanístico:
+    Judeu humanísta:
         predefined: false
         description: null
-    Judaísmo messiânico:
+    Judeu messiânico:
         predefined: false
         description: null
-    Judaísmo ortodoxo:
+    Judeu ortodoxo:
         predefined: false
         description: null
-    Judaísmo reconstrucionista:
+    Judeu reconstrucionista:
         predefined: false
         description: null
-    Judaísmo reformista:
+    Judeu reformista:
         predefined: false
         description: null
-    Mashichismo:
+    Mashichista:
         predefined: false
         description: null
-    Samaritanos:
+    Samaritano:
         predefined: false
         description: null
-Luciferianismo:
+Luciferianista:
         predefined: false
         description: null
-Mitraísmo:
+Mitraíta:
     predefined: false
     description: null
-Mormonismo:
+Mórmon:
     predefined: false
     description: null
-Nova Era:
+Seguidor da Nova Era:
     predefined: false
     description: null
-Ocultismo:
+Ocultista:
     predefined: false
     description: null
-Rastafarianismo:
+Rastafari:
     predefined: false
     description: null
-Reconstrucionismo:
+Reconstrucionista:
     predefined: false
     description: null
     Ásatrú:
         predefined: false
         description: null
-    Druidismo:
+    Druida:
         predefined: false
         description: null
-    Helenismo:
+    Helenista:
         predefined: false
         description: null
-    Kemetismo:
+    Kemetista:
         predefined: false
         description: null
-    Odinismo:
+    Odinista:
         predefined: false
         description: null
-    Religio Romana:
+    Segudiro da religião Romana:
         predefined: false
         description: null
-    Wicca:
+    Wiccan:
         predefined: false
         description: null
-    Xamanismo:
+    Xamã:
         predefined: false
         description: null
-Religião tradicional chinesa:
+Seguidor da religião tradicional chinesa:
     predefined: false
     description: null
-Satanismo:
+Satanista:
     predefined: false
     description: null
 Seicho-no-ie:
     predefined: false
     description: null
-Sikhismo:
+Sikhista:
     predefined: false
     description: null
-Taoísmo:
+Taoísta:
     predefined: false
     description: null
 Tenrikyo:
     predefined: false
     description: null
-Testemunhas de Jeová:
+Testemunha de Jeová:
     predefined: false
     description: null
-Unitário-Universalismo:
+Unitarianista:
     predefined: false
     description: null
-Xintoísmo:
+Xintoísta:
     predefined: false
     description: null
-Zoroastrismo:
+Zoroástrista:
     predefined: false
     description: null
