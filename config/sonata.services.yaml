@@ -8,6 +8,15 @@ services:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.country, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
+    sonata.admin.gender:
+        class: App\Admin\GenderAdmin
+        arguments: [~, App\Entity\Gender, ~]
+        calls:
+            - [setRepository, ['@App\Entity\Repository\CountryRepository']]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.gender, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.intelligence_quotient:
         class: App\Admin\IntelligenceQuotientAdmin
         arguments: [~, App\Entity\IntelligenceQuotient, ~]

@@ -13,7 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Entity\Repository\GenderRepository")
  * @ORM\Table(name="genders",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unique_genders_name", columns={"name"})
+ *         @ORM\UniqueConstraint(name="unique_genders_name", columns={"name"}),
+ *         @ORM\UniqueConstraint(name="unique_genders_code", columns={"code"})
  *     }
  * )
  * @ORM\HasLifecycleCallbacks()
@@ -28,6 +29,18 @@ class Gender
      */
     protected $id;
     use IdTrait;
+
+    /**
+     * @var string
+     * @ORM\Column(name="code", type="string", length=1, unique=true)
+     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\Length(
+     *     max = 1,
+     *     maxMessage="validator.length_max.code"
+     * )
+     */
+    protected $code;
 
     /**
      * @ORM\Column(name="name", type="string", length=120, unique=true)
@@ -54,4 +67,16 @@ class Gender
      */
     protected $predefined = false;
     use PredefinedTrait;
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = trim($code);
+
+        return $this;
+    }
 }

@@ -1,0 +1,15 @@
+admin:
+    label:
+        code: Código
+        description: Descrição
+        id: Id
+        name: Nome
+        predefined: Predefinido
+menu:
+    item:
+        gender: Sexo
+Action: Action
+Menu Item Gender: Sexo
+Gender Create: Criar Sexo
+Gender List: Listar Sexo
+Gender: Sexo
