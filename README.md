@@ -25,6 +25,14 @@ GRANT ALL PRIVILEGES ON cwc_test.* TO 'anakin_skywalker'@'%';
 FLUSH PRIVILEGES;
 ```
 
+## Install bower
+
+```bash
+curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo npm install -g bower
+```
+
 ## Download the vendors
 
 ```bash
