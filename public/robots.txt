@@ -1,0 +1,168 @@
+User-agent: Applebot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: baiduspider
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Bingbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Googlebot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Googlebot-Image
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: ia_archiver
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: msnbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Naverbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: seznambot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Slurp
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: teoma
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Twitterbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Yandex
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Yeti
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Applebot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: baiduspider
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Bingbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Googlebot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: ia_archiver
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: msnbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Naverbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: seznambot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Slurp
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: teoma
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Twitterbot
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Yandex
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: Yeti
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
+User-agent: *
+Disallow: /bundles/
+Disallow: /static/
+Disallow: /vendor/
+Allow: /images
+
