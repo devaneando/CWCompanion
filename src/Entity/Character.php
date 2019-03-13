@@ -127,7 +127,7 @@ class Character
     protected $birthCity;
 
     /**
-     * @var string
+     * @var ExtendedDate
      * @ORM\Column(name="birth_date", type="string", length=20, nullable=false)
      */
     protected $birthdate;
@@ -157,7 +157,7 @@ class Character
     protected $cityOfDeath;
 
     /**
-     * @var string
+     * @var ExtendedDate
      * @ORM\Column(name="death_date", type="string", length=20, nullable=true)
      */
     protected $dateOfDeath;
@@ -394,7 +394,7 @@ class Character
 
     /**
      * @var string
-     * @ORM\Column(name="personality", type="text", nullable=false)
+     * @ORM\Column(name="personality", type="text", nullable=true)
      */
     protected $personality;
 
@@ -601,7 +601,7 @@ class Character
         return $this;
     }
 
-    protected function setDefaultPicture(): self
+    public function setDefaultPicture(): self
     {
         if (null !== $this->picture) {
             return $this;
@@ -698,16 +698,15 @@ class Character
         return $this;
     }
 
-    public function getBirthdate(): ?string
+    public function getBirthdate(): ?ExtendedDate
     {
-        return $this->birthdate;
+        return new ExtendedDate($this->birthdate);
     }
 
     /** @throws InvalidExtendedDateStamp */
-    public function setBirthdate(string $birthdate = null): self
+    public function setBirthdate(ExtendedDate $birthdate = null): self
     {
-        ExtendedDate::validateExtendedDateStamp($birthdate);
-        $this->birthdate = trim($birthdate);
+        $this->birthdate = $birthdate;
 
         return $this;
     }
@@ -748,16 +747,15 @@ class Character
         return $this;
     }
 
-    public function getDateOfDeath(): ?string
+    public function getDateOfDeath(): ?ExtendedDate
     {
-        return $this->dateOfDeath;
+        return new ExtendedDate($this->dateOfDeath);
     }
 
     /** @throws InvalidExtendedDateStamp */
-    public function setDateOfDeath(string $dateOfDeath = null): self
+    public function setDateOfDeath(ExtendedDate $dateOfDeath = null): self
     {
-        ExtendedDate::validateExtendedDateStamp($dateOfDeath);
-        $this->dateOfDeath = trim($dateOfDeath);
+        $this->dateOfDeath = $dateOfDeath;
 
         return $this;
     }

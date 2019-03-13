@@ -3,14 +3,10 @@
 namespace App\Admin\Type;
 
 use App\Admin\Mapper\ExtendedDateMapper;
-use App\Model\ExtendedDate;
-use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;

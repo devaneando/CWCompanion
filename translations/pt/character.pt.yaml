@@ -1,0 +1,103 @@
+admin:
+    block:
+        emotional:
+            bl_001: " "
+            bl_002: " "
+        inherited:
+            bl_001: "Identidade"
+            bl_002: " "
+            bl_003: " "
+        intelectual:
+            bl_001: " "
+            bl_002: " "
+        life_style:
+            bl_001: " "
+            bl_002: " "
+        physical:
+            bl_001: " "
+            bl_002: " "
+        relationship:
+            bl_001: " "
+        spiritual:
+            bl_001: " "
+    label:
+        bad_habits: Maus hábitos
+        birth_city: Cidade natal
+        birth_country: País natal
+        birthdate: Data de nascimento
+        body_type: Tipo físico
+        character_type: Tipo de personagem
+        children: Filhos
+        city_of_death: Cidade onde morreu
+        concept: Conceito
+        country_of_death: País onde morreu
+        current_occupation_nice: Gosta do que faz?
+        current_occupation: Ocupação
+        date_of_death: Data da morte
+        deepest_secret: Maior segredo
+        distinguishing_marks: Marcas distintivas
+        dominant_temperament: Temperamento dominante
+        dress_style: Modo de vestir
+        educational_level: Nível de escolaridade
+        emotional_traumas: Traumas emocionais
+        enemies: Inimigos
+        eyes: Olhos
+        favorite_food: Comida(s) favorita(s)
+        favorite_music: Gostos musicais
+        favorite_sports: Desporto(s) favorito(s)
+        friends: Amigos
+        full_name: Nome completo
+        gender: Sexo
+        general_notes: Notas gerais
+        good_habits: Bons hábitos
+        hair: Cabelos
+        health_problems: Problemas de saúde
+        height: Altura
+        hobbies: Hobbies
+        home_city: Cidade onde vive
+        home_country: País onde vive
+        id: Id
+        income: Renda
+        iq_level: QI
+        nickname: Alcunha
+        odor: Cheiro
+        parents: Pais
+        personal_history: História pessoal
+        personality: Personalidade
+        picture: Imagem
+        religion: Religião
+        religious: É religioso?
+        secondary_temperament: Temperamento secundário
+        self_view: Visão de si mesmo
+        sexuality: Sexualidade
+        siblings: Irmãos
+        significant_others: Conhecidos que sejam relevantes
+        skills: Habilidade
+        skin: Pele
+        slug: Slug
+        speech_pattern: Modo de falar
+        spiritual_beliefs: Crenças espirituais
+        spiritual_effects_in_life: Efeitos das crenças espirituais na sua vida
+        spouse: Esposo(a)
+        uploaded_picture: Picture
+        what_frightens: O que amedronta?
+        what_makes_happy: O que faz feliz?
+        what_motivates: O que motiva?
+        what_would_change: O que mudaria na sua vida?
+        zodiac_sign: Signo
+    tab:
+        emotional: Características emocionais
+        inherited: Características herdadas
+        intelectual: Características intelectuais
+        life_style: Estilo de vida
+        physical: "Características físicas"
+        relationship: Relacionamentos
+        spiritual: Espiritualidade
+menu:
+    item:
+        character: Personagem
+Action: Action
+Character Create: Criar personagem
+Character List: Listar personagens
+Character: Personagem
+Menu Item Character: Personagem

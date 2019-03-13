@@ -1,4 +1,13 @@
 services:
+    sonata.admin.character:
+        class: App\Admin\CharacterAdmin
+        arguments: [~, App\Entity\Character, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.character }
+        calls:
+            - ['setZodiacRepository', ['@App\Entity\Repository\ZodiacRepository']]
+        public: true
+
     sonata.admin.country:
         class: App\Admin\CountryAdmin
         arguments: [~, App\Entity\Country, ~]

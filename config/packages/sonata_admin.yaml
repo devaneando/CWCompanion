@@ -17,13 +17,13 @@ sonata_admin:
             shared:
                 label: menu.item.shared
                 label_catalogue: messages
-                roles: [ROLE_SUPER_ADMIN]
+                roles: [ROLE_ADMIN]
                 icon: "<i class=\"fa fa-cog\"></i>"
-            project:
-                label: menu.item.project
+            writing:
+                label: menu.item.writing
                 label_catalogue: messages
                 roles: [ROLE_ADMIN]
-                icon: "<i class=\"fas fa-pen-alt\"></i>"
+                icon: "<i class=\"fa fa-pencil\"></i>"
     templates:
         layout:  sonata.html.twig
     assets:
