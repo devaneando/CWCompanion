@@ -3,6 +3,9 @@ framework:
     csrf_protection: true
     templating:
         engines: ['twig']
+        form:
+            resources:
+                - ':form/type/extended_date.html.twig'
     session:
         handler_id: ~
         cookie_secure: auto

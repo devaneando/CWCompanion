@@ -5,6 +5,9 @@ monolog:
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: warning
             channels: ["!event", "!php"]
+            excluded_404s:
+                # regex: exclude all 404 errors from the logs
+                - ^/
         php:
             type: stream
             path: "%kernel.logs_dir%/php.%kernel.environment%.log"

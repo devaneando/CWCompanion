@@ -22,7 +22,4 @@ public/images/locales/*
 /.env.*.local
 /.env.local
 /.web-server-pid
-
-###> phpunit/phpunit ###
-/phpunit.xml
-###< phpunit/phpunit ###
+.idea

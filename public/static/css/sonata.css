@@ -5,3 +5,13 @@
 .image_show {
     max-height: 250px;
 }
+
+.form-inline {
+    display: inline-block;
+    max-width: 100px;
+}
+
+.extended_date_widget {
+    display: block;
+    min-height: 50px;
+}

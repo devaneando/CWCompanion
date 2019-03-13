@@ -1,0 +1,19 @@
+{% block extended_date_widget %}
+<div class="extended_date_widget">
+    {% spaceless %}
+        <div class="col-sm-3">
+            {{ form_widget(form.children.year) }}
+        </div>
+        <div class="col-sm-3">
+            {{ form_widget(form.children.anno_domini) }}
+            {{ form_label(form.children.anno_domini) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_widget(form.children.month) }}
+        </div>
+        <div class="col-sm-2">
+            {{ form_widget(form.children.day) }}
+        </div>
+    {% endspaceless %}
+</div>
+{% endblock %}

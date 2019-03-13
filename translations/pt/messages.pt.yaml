@@ -1,3 +1,7 @@
+day:
+    none: Dia
+extended_date:
+    anno_domini: DC
 login:
     cmm: 'Entrar'
     password: Palavra passe
@@ -7,3 +11,18 @@ login:
 menu:
     item:
         shared: Comum
+        writing: Escrita
+month:
+    none: Mês
+    january: Janeiro
+    february: Fevereiro
+    march: Março
+    april: Abril
+    may: Maio
+    june: Junho
+    july: Julho
+    august: Agosto
+    september: Setembro
+    october: Outubro
+    november: Novembro
+    december: Dezembro
