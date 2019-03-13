@@ -18,6 +18,8 @@ services:
         tags: [form.type]
     App\Controller\:
         resource: '../src/Controller'
+        calls:
+            - ['setLogger', ['@logger']]
         tags: ['controller.service_arguments']
     App\DataFixtures\:
         resource: '../src/DataFixtures'
