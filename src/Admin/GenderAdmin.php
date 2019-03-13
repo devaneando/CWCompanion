@@ -39,10 +39,12 @@ final class GenderAdmin extends AbstractAdmin
         $listMapper
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add(
-                'code',
+                'icon',
                 null,
                 [
-                    'label' => 'admin.label.code',                ]
+                    'label' => 'admin.label.icon',
+                    'template' => 'form/list/gender.html.twig',
+                ]
             )
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add(
@@ -67,6 +69,8 @@ final class GenderAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('code', MarkDownType::class, ['label' => 'admin.label.code'])
+            ->add('icon', MarkDownType::class, ['label' => 'admin.label.icon'])
             ->add('description', MarkDownType::class, ['label' => 'admin.label.description'])
             ->add('predefined', null, ['label' => 'admin.label.predefined']);
     }
@@ -76,6 +80,14 @@ final class GenderAdmin extends AbstractAdmin
         $showMapper
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add(
+                'icon',
+                null,
+                [
+                    'label' => 'admin.label.icon',
+                    'template' => 'form/show/gender.html.twig',
+                ]
+            )
             ->add(
                 'code',
                 null,

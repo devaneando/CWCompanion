@@ -32,6 +32,9 @@ class LoadGenders extends AbstractDataFixture
                 ->setName($key)
                 ->setCode($item['code'])
                 ->setPredefined($item['predefined']);
+            if (null !== $item['icon']) {
+                $gender->setIcon($item['icon']);
+            }
             $description = $this->arrayToDescription($item['description']);
             if (false === empty($description)) {
                 $gender->setDescription($description);

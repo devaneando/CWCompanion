@@ -22,8 +22,8 @@ sonata_admin:
             project:
                 label: menu.item.project
                 label_catalogue: messages
-                roles: [ROLE_WRITER]
-                icon: "<i class=\"fa fa-user-o\"></i>"
+                roles: [ROLE_ADMIN]
+                icon: "<i class=\"fas fa-pen-alt\"></i>"
     templates:
         layout:  sonata.html.twig
     assets:

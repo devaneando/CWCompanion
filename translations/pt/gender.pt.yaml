@@ -2,6 +2,7 @@ admin:
     label:
         code: Código
         description: Descrição
+        icon: Ícone
         id: Id
         name: Nome
         predefined: Predefinido

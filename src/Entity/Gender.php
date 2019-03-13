@@ -43,6 +43,16 @@ class Gender
     protected $code;
 
     /**
+     * @var string
+     * @ORM\Column(name="icon", type="string", length=60, unique=false)
+     * @Assert\Length(
+     *     max = 60,
+     *     maxMessage="validator.length_max.icon"
+     * )
+     */
+    protected $icon;
+
+    /**
      * @ORM\Column(name="name", type="string", length=120, unique=true)
      * @Assert\NotNull(message="validator.not_blank")
      * @Assert\NotBlank(message="validator.not_blank")
@@ -76,6 +86,18 @@ class Gender
     public function setCode(string $code): self
     {
         $this->code = trim($code);
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = trim($icon);
 
         return $this;
     }
