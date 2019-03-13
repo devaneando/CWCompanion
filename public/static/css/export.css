@@ -1,0 +1,35 @@
+/* #00ced1
+#78b7af
+#9d9e8d
+#b3856d
+#c2694d
+#cb482e
+#d1000d */
+
+.from-top{
+    padding-top: 20px;
+}
+
+.left {
+    text-align: left
+}
+
+h1 {
+    text-align: center;
+    color: #9d9e8d;
+}
+
+h2 {
+    text-align: center;
+    color: #9d9e8d;
+    border-bottom: 1px solid #78b7af;
+}
+
+h3 {
+    text-align: left;
+    color: #c2694d;
+}
+
+b {
+    color:#9d9e8d;
+}

@@ -1,0 +1,162 @@
+{% trans_default_domain 'character' %}
+<title>{{ character.nickname }}</title>
+<pre>
+# {{ character.nickname }}
+&lt;img src=&quot;{{ character.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
+
+**{{ character.fullName }}** (_{{ birthData() }}{{ deathData() }}_) {{ 'text.is_a_character'|trans() }} **{{ character.characterType.name }}**  {{ 'text.conceptualized_as'|trans() }} **{{ character.concept }}**.
+
+{{ character.nickname }}, {{ ageData() }}, {{ genderdata() }}, {{ character.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ character.zodiacSign }}.
+
+### {{ 'title.inherited_characteristics'|trans() }}
+
+**Olhos**: {{ character.eyes|maybeNull }}
+
+**Pele**: {{ character.skin|maybeNull }}
+
+**Cabelos**: {{ character.hair|maybeNull }}
+
+**Odor**: {{ character.odor|maybeNull }}
+
+**Tipo físico**: {{ character.bodyType|maybeNull }}
+
+**Altura**: {{ character.height|maybeNull }}
+
+### {{ 'title.distinctive_marks'|trans() }}
+
+{{ character.distinguishingMarks|maybeNull }}
+
+### {{ 'title.health_problems'|trans() }}
+
+{{ character.healthProblems|maybeNull }}
+
+### {{ 'title.speech_patterns'|trans() }}
+
+{{ character.speechPattern|maybeNull }}
+
+### Notas
+
+{{ character.generalNotes|maybeNull }}
+
+### {{ 'title.lifestyle'|trans() }}
+
+{{ character.nickname }} vive em {{ homeData() }}, {{ occupationData() }}. {{ 'text.earns'|trans()|capitalize }} {{ character.income|maybeNull() }}
+
+### Estilo pessoal:
+
+{{ character.dressStyle|maybeNull() }}
+
+### {{ 'title.hobbies'|trans() }}
+
+{{ character.hobbies|maybeNull() }}
+
+### {{ 'title.healthy_habits'|trans() }}
+
+{{ character.goodHabits|maybeNull() }}
+
+### {{ 'title.bad_habits'|trans() }}
+
+{{ character.badHabits|maybeNull() }}
+
+### {{ 'title.music_preferences'|trans() }}
+
+{{ character.favoriteMusic|maybeNull() }}
+
+### {{ 'title.sports_preferences'|trans() }}
+
+{{ character.favoriteSports|maybeNull() }}
+
+### {{ 'title.gastronomic_preferences'|trans() }}
+
+{{ character.favoriteFood|maybeNull() }}
+
+### {{ 'title.intellectual_characteristics'|trans() }}
+
+{{ character.nickname }} tem uma {{ character.iqLevel|maybeNull }} {{ 'text.and'|trans()|capitalize }} {{ 'text.is'|trans()|capitalize }} {{ character.educationalLevel|maybeNull }}.
+
+### Habilidades
+
+{{ character.skills|maybeNull() }}
+
+### Visão de si mesmo
+
+{{ character.selfView|maybeNull() }}
+
+### Características emocionais
+
+{{ character.nickname }} {{ temperamentData() }}.
+
+### Personalidade
+
+{{ character.personality|maybeNull() }}
+
+### Traumas
+
+{{ character.emotionalTraumas|maybeNull() }}
+
+### O que motiva?
+
+{{ character.whatMotivates|maybeNull() }}
+
+### O que faz feliz?
+
+{{ character.whatMakesHappy|maybeNull() }}
+
+### Do que tem medo?
+
+{{ character.whatFrightens|maybeNull() }}
+
+### O que mudaria na sua vida
+
+{{ character.whatWouldChange|maybeNull() }}
+
+### Seu maior segredo
+
+{{ character.deepestSecret|maybeNull() }}
+
+### Crenças e espiritualidade
+
+{{ character.nickname }} {{spiritualData() }}.
+
+### Crenças religiosas
+
+{{ character.spiritualBeliefs|maybeNull() }}
+
+### De que maneira suas crenças afetam sua vida?
+
+{{ character.spiritualEffectsInLife|maybeNull() }}
+
+### Família e relacionamentos
+
+### Pais
+
+{{ character.parents|maybeNull() }}
+
+### Irmãos
+
+{{ character.siblings|maybeNull() }}
+
+### Filhos
+
+{{ character.children|maybeNull() }}
+
+### Cônjuges e exes
+
+{{ character.spouse|maybeNull() }}
+
+### Amigos
+
+{{ character.friends|maybeNull() }}
+
+### Inimigos
+
+{{ character.enemies|maybeNull() }}
+
+### Outros relacionamentos importantes
+
+{{ character.significantOthers|maybeNull() }}
+
+### História pessoal
+
+{{ character.personalHistory|maybeNull() }}
+</pre>

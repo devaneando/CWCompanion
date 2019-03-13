@@ -1,4 +1,4 @@
-Entidade cósmica:
+Inteligência de entidade cósmica:
     predefined: false
     description: null
     min: 350
@@ -8,7 +8,7 @@ Inteligência alienígena avançada:
     description: null
     min: 200
     max: 349
-Superdotado:
+Inteligência superdotada:
     predefined: false
     description: null
     min: 130
@@ -33,7 +33,7 @@ Embotamento ligeiro:
     description: null
     min: 80
     max: 89
-Limítrofe:
+Inteligência limítrofe:
     predefined: false
     description: null
     min: 66

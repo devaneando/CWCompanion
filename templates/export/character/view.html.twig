@@ -1,0 +1,174 @@
+{% extends 'export.html.twig' %}
+{% trans_default_domain 'character' %}
+
+{% block title %}{{ character.nickname }}{% endblock %}
+
+{% block content %}
+
+<div class="img mb-4" style="background-image: url({{ character.picture }});"></div>
+<div class="desc">
+    <h1 class="mb-4">{{ character.nickname }}</h1>
+    <p class="mb-4">
+        <b>{{ character.fullName }}</b> (<i>{{ birthData() }}{{ deathData() }}</i>) {{ 'text.is_a_character'|trans() }} <b>{{ character.characterType.name }}
+        </b> {{ 'text.conceptualized_as'|trans() }} <b>{{ character.concept }}</b>.<br />
+        {{ character.nickname }}, {{ ageData() }}, {{ genderdata() }}, {{ character.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ character.zodiacSign }}.
+    </p>
+</div>
+<div class="desc left">
+    <h2>{{ 'title.inherited_characteristics'|trans() }}</h2>
+    <p><b>Olhos</b>: {{ character.eyes|maybeNull }}</p>
+    <p><b>Pele</b>: {{ character.skin|maybeNull }}</p>
+    <p><b>Cabelos</b>: {{ character.hair|maybeNull }}</p>
+    <p><b>Odor</b>: {{ character.odor|maybeNull }}</p>
+    <p><b>Tipo físico</b>: {{ character.bodyType|maybeNull }}</p>
+    <p><b>Altura</b>: {{ character.height|maybeNull }}</p>
+
+<h3>{{ 'title.distinctive_marks'|trans() }}</h3>
+
+{{ character.distinguishingMarks|maybeNull|markdown }}
+
+<h3>{{ 'title.health_problems'|trans() }}</h3>
+
+{{ character.healthProblems|maybeNull|markdown }}
+
+<h3>{{ 'title.speech_patterns'|trans() }}</h3>
+
+{{ character.speechPattern|maybeNull|markdown }}
+
+<h3>Notas</h3>
+
+{{ character.generalNotes|maybeNull|markdown }}
+
+<h2>{{ 'title.lifestyle'|trans() }}</h2>
+
+<p class="mb-4">
+    {{ character.nickname }} vive em {{ homeData() }}, {{ occupationData() }}.
+    &nbsp;{{ 'text.earns'|trans()|capitalize  }} {{ character.income|maybeNull() }}
+</p>
+
+<h3>Estilo pessoal:</h3>
+
+{{ character.dressStyle|maybeNull()|markdown() }}
+
+<h3>{{ 'title.hobbies'|trans() }}</h3>
+
+{{ character.hobbies|maybeNull()|markdown() }}
+
+<h3>{{ 'title.healthy_habits'|trans() }}</h3>
+
+{{ character.goodHabits|maybeNull() |markdown()}}
+
+<h3>{{ 'title.bad_habits'|trans() }}</h3>
+
+{{ character.badHabits|maybeNull()|markdown() }}
+
+<h3>{{ 'title.music_preferences'|trans() }}</h3>
+
+{{ character.favoriteMusic|maybeNull()|markdown() }}
+
+<h3>{{ 'title.sports_preferences'|trans() }}</h3>
+
+{{ character.favoriteSports|maybeNull()|markdown() }}
+
+<h3>{{ 'title.gastronomic_preferences'|trans() }}</h3>
+
+{{ character.favoriteFood|maybeNull()|markdown() }}
+
+<h2>{{ 'title.intellectual_characteristics'|trans() }}</h2>
+
+<p class="mb-4">
+    {{ character.nickname }} tem uma {{ character.iqLevel|maybeNull }} {{ 'text.and'|trans()|capitalize  }}
+    &nbsp;{{ 'text.is'|trans()|capitalize  }} {{ character.educationalLevel|maybeNull }}.
+</p>
+
+<h3>Habilidades</h3>
+
+{{ character.skills|maybeNull()|markdown() }}
+
+<h3>Visão de si mesmo</h3>
+
+{{ character.selfView|maybeNull()|markdown() }}
+
+<h2>Características emocionais</h2>
+
+<p class="mb-4">
+{{ character.nickname }} {{ temperamentData() }}.
+</p>
+
+<h3>Personalidade</h3>
+
+{{ character.personality|maybeNull()|markdown() }}
+
+<h3>Traumas</h3>
+
+{{ character.emotionalTraumas|maybeNull()|markdown() }}
+
+<h3>O que motiva?</h3>
+
+{{ character.whatMotivates|maybeNull()|markdown() }}
+
+<h3>O que faz feliz?</h3>
+
+{{ character.whatMakesHappy|maybeNull()|markdown() }}
+
+<h3>Do que tem medo?</h3>
+
+{{ character.whatFrightens|maybeNull()|markdown() }}
+
+<h3>O que mudaria na sua vida</h3>
+
+{{ character.whatWouldChange|maybeNull()|markdown() }}
+
+<h3>Seu maior segredo</h3>
+
+{{ character.deepestSecret|maybeNull()|markdown() }}
+
+<h2>Crenças e espiritualidade</h2>
+
+{{ character.nickname }} {{spiritualData() }}.
+
+<h3>Crenças religiosas</h3>
+
+{{ character.spiritualBeliefs|maybeNull()|markdown() }}
+
+<h3>De que maneira suas crenças afetam sua vida?</h3>
+
+{{ character.spiritualEffectsInLife|maybeNull()|markdown() }}
+
+<h2>Família e relacionamentos</h2>
+
+<h3>Pais</h3>
+
+{{ character.parents|maybeNull()|markdown() }}
+
+<h3>Irmãos</h3>
+
+{{ character.siblings|maybeNull()|markdown() }}
+
+<h3>Filhos</h3>
+
+{{ character.children|maybeNull()|markdown() }}
+
+<h3>Cônjuges e exes</h3>
+
+{{ character.spouse|maybeNull()|markdown() }}
+
+<h3>Amigos</h3>
+
+{{ character.friends|maybeNull()|markdown() }}
+
+<h3>Inimigos</h3>
+
+{{ character.enemies|maybeNull()|markdown() }}
+
+<h3>Outros relacionamentos importantes</h3>
+
+{{ character.significantOthers|maybeNull()|markdown() }}
+
+<h2>História pessoal</h2>
+
+{{ character.personalHistory|maybeNull()|markdown() }}
+
+
+</div>
+{% endblock %}

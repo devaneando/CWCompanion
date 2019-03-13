@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+        <link rel="stylesheet" href="/static/lib/elen/css/open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/animate.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/magnific-popup.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/aos.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/ionicons.min.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/jquery.timepicker.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/flaticon.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/icomoon.css">
+        <link rel="stylesheet" href="/static/lib/elen/css/style.css">
+        <link rel="stylesheet" href="/static/css/export.css">
+        {% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        <div id="colorlib-page">
+            <div class="hero-wrap hero-wrap-2 " style="background-color: #00ced1;">
+                <div class="overlay"></div>
+                <div class=" from-top d-flex justify-content-center align-items-center">
+                    <div class="col-md-8 text text-center">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ftco-loader" class="show fullscreen">
+            <svg class="circular" width="48px" height="48px">
+                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+            </svg>
+        </div>
+        {% block javascripts_bottom %}
+        <script src="/static/lib/elen/js/jquery.min.js"></script>
+        <script src="/static/lib/elen/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="/static/lib/elen/js/popper.min.js"></script>
+        <script src="/static/lib/elen/js/bootstrap.min.js"></script>
+        <script src="/static/lib/elen/js/jquery.easing.1.3.js"></script>
+        <script src="/static/lib/elen/js/jquery.waypoints.min.js"></script>
+        <script src="/static/lib/elen/js/jquery.stellar.min.js"></script>
+        <script src="/static/lib/elen/js/owl.carousel.min.js"></script>
+        <script src="/static/lib/elen/js/jquery.magnific-popup.min.js"></script>
+        <script src="/static/lib/elen/js/aos.js"></script>
+        <script src="/static/lib/elen/js/jquery.animateNumber.min.js"></script>
+        <script src="/static/lib/elen/js/bootstrap-datepicker.js"></script>
+        <script src="/static/lib/elen/js/jquery.timepicker.min.js"></script>
+        <script src="/static/lib/elen/js/scrollax.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="/static/lib/elen/js/google-map.js"></script>
+        <script src="/static/lib/elen/js/main.js"></script>
+        {% endblock %}
+    </body>
+</html>

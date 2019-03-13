@@ -711,6 +711,17 @@ class Character
         return $this;
     }
 
+    public function getAge(): int
+    {
+        $currentYear = new \DateTime();
+        $currentYear = (int)$currentYear->format('Y');
+        if (null !== $this->getDateOfDeath()) {
+            $currentYear = $this->getDateOfDeath()->getYear();
+        }
+
+        return $currentYear - $this->getBirthdate()->getYear();
+    }
+
     public function getZodiacSign(): ?Zodiac
     {
         return $this->zodiacSign;

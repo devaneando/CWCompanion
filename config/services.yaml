@@ -31,6 +31,8 @@ services:
         resource: '../src/Entity/Repository'
     App\Twig\:
         resource: '../src/Twig'
+        calls:
+            - ['setTranslator', ['@translator']]
         tags: [twig.extension]
 
     ##### Test only
