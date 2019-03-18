@@ -6,10 +6,10 @@
     max-height: 250px;
 }
 
-.form-inline {
+/* .form-inline {
     display: inline-block;
     max-width: 100px;
-}
+} */
 
 .extended_date_widget {
     display: block;
