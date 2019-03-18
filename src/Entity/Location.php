@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\PredefinedTrait;
+use App\Model\Image;
+use App\Processor\ImageProcessor;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -57,6 +60,12 @@ class Location
 
     /**
      * @var string
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     */
+    protected $picture;
+
+    /**
+     * @var string
      * @ORM\Column(name="slug", type="string", length=60, nullable=false)
      */
     protected $slug;
@@ -79,13 +88,6 @@ class Location
      * @ORM\Column(name="general_notes", type="text", nullable=true)
      */
     protected $generalNotes;
-
-    /**
-     * @var bool
-     * @ORM\Column(name="predefined", type="boolean", nullable=true)
-     */
-    protected $predefined = false;
-    use PredefinedTrait;
 
     public function __construct()
     {
@@ -163,6 +165,69 @@ class Location
         $this->slug = $slugify->slugify($this->name);
 
         return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture = null): self
+    {
+        $this->picture = trim($picture);
+
+        return $this;
+    }
+
+    public function getUploadedPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setUploadedPicture(UploadedFile $uploadedPicture = null): self
+    {
+        if (null === $uploadedPicture) {
+            return $this;
+        }
+
+        /** @var Image $image */
+        $image = ImageProcessor::get(ImageProcessor::upload($uploadedPicture));
+        $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_LOCALE, $this->getId());
+        $this->picture = $image->getWebPath();
+
+        return $this;
+    }
+
+    public function setDefaultPicture(): self
+    {
+        if (null !== $this->picture) {
+            return $this;
+        }
+
+        $image = ImageProcessor::IMAGE_LOCALE;
+        $date = new \DateTime();
+        $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
+        if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
+            mkdir(ImageProcessor::PATH_UPLOAD);
+        }
+        copy($image, $newImage);
+
+        try {
+            /** @var Image $image */
+            $image = ImageProcessor::get($newImage);
+            $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_LOCALE, $this->getId());
+            $this->picture = $image->getWebPath();
+
+            return $this;
+        } catch (\Exception $ex) {
+            throw new \Exception(
+                'Something unexpected happened in '.basename($ex->getFile()).'#'.$ex->getLine().': '.$ex->getMessage(),
+                0,
+                $ex
+            );
+
+            return $this;
+        }
     }
 
     public function getHistory(): ?string

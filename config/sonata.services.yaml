@@ -42,6 +42,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.intelligence_quotient, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
+    sonata.admin.location:
+        class: App\Admin\LocationAdmin
+        arguments: [~, App\Entity\Location, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.location, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.location_type:
         class: App\Admin\LocationTypeAdmin
         arguments: [~, App\Entity\LocationType, ~]

@@ -29,6 +29,7 @@ class ImageProcessor
     const IMAGE_CHARACTER_FEMALE = self::PATH_CHARACTERS_DEFAULT.'/female.png';
     const IMAGE_CHARACTER_MALE = self::PATH_CHARACTERS_DEFAULT.'/male.png';
     const IMAGE_CHARACTER_UNKNOWN = self::PATH_CHARACTERS_DEFAULT.'/unknown.png';
+    const IMAGE_LOCALE = self::PATH_LOCALES_DEFAULT.'/locale.png';
 
     const IMAGE_TYPE_CHARACTER = 'character';
     const IMAGE_TYPE_LOCALE = 'locale';

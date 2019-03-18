@@ -1,0 +1,19 @@
+menu:
+    item:
+        location: Local
+admin:
+    label:
+        description: Descrição
+        general_notes: Notas
+        history: História
+        id: Id
+        name: Nome
+        picture: Imagem
+        predefined: Predefinido
+        slug: Slug
+        uploaded_picture: Imagem
+Action: Ações
+Menu Item Location: Local
+Location Create: Criar local
+Location List: Listar locais
+Location: Local

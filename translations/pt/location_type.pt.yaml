@@ -7,7 +7,7 @@ admin:
         id: Id
         name: Nome
         predefined: Predefinido
-Action: Action
+Action: Ações
 Menu Item Location Type: Tipo de local
 Location Type Create: Criar tipo de local
 Location Type List: Listar tipo de local

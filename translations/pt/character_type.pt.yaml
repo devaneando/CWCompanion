@@ -7,7 +7,7 @@ admin:
         id: Id
         name: Nome
         predefined: Predefinido
-Action: Action
+Action: Ações
 Menu Item Character Type: Tipo de personagem
 Character Type Create: Criar tipo de personagem
 Character Type List: Listar tipo de personagem
