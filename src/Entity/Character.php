@@ -34,9 +34,9 @@ class Character
     const GENDER_UNKNOWN = 'u';
     const PERSONALITY_EXTROVERT = 'ext';
     const PERSONALITY_INTROVERT = 'int';
+
     /**
      * @var UuidInterface
-     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
@@ -543,16 +543,23 @@ class Character
     public function setNickname(string $nickname): self
     {
         $this->nickname = trim($nickname);
-        $this->getSlug();
+        $this->setSlug();
 
         return $this;
+    }
+
+    public function setSlug(): ?string
+    {
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify($this->nickname);
+
+        return $this->slug;
     }
 
     public function getSlug(): ?string
     {
         if (null === $this->slug) {
-            $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->nickname);
+            $this->setSlug();
         }
 
         return $this->slug;
