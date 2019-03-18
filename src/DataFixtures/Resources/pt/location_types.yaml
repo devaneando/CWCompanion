@@ -1,0 +1,48 @@
+Apartamento:
+    predefined: false
+    description: null
+Castelo medieval:
+    predefined: false
+    description: null
+Cemitério:
+    predefined: false
+    description: null
+Escritório:
+    predefined: false
+    description: null
+Estacionamento:
+    predefined: false
+    description: null
+Exterior desértico:
+    predefined: false
+    description: null
+Exterior praia:
+    predefined: false
+    description: null
+Exterior rural:
+    predefined: false
+    description: null
+Exterior urbano:
+    predefined: false
+    description: null
+Hospício:
+    predefined: false
+    description: null
+Hospital:
+    predefined: false
+    description: null
+Mansão:
+    predefined: false
+    description: null
+Quarto:
+    predefined: false
+    description: null
+Restaurante:
+    predefined: false
+    description: null
+Sala:
+    predefined: true
+    description: null
+Vivenda:
+    predefined: false
+    description: null

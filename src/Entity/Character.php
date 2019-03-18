@@ -238,7 +238,7 @@ class Character
 
     /**
      * @var string
-     * @ORM\Column(name="generalNotes", type="text", nullable=true)
+     * @ORM\Column(name="general_notes", type="text", nullable=true)
      */
     protected $generalNotes;
 
