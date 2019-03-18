@@ -1,0 +1,14 @@
+menu:
+    item:
+        location_type: Tipo de local
+admin:
+    label:
+        description: Descrição
+        id: Id
+        name: Nome
+        predefined: Predefinido
+Action: Action
+Menu Item Location Type: Tipo de local
+Location Type Create: Criar tipo de local
+Location Type List: Listar tipo de local
+Location Type: Tipo de local

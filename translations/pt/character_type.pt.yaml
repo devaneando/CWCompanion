@@ -1,0 +1,14 @@
+menu:
+    item:
+        character_type: Tipo de personagem
+admin:
+    label:
+        description: Descrição
+        id: Id
+        name: Nome
+        predefined: Predefinido
+Action: Action
+Menu Item Character Type: Tipo de personagem
+Character Type Create: Criar tipo de personagem
+Character Type List: Listar tipo de personagem
+Character Type: Tipo de personagem

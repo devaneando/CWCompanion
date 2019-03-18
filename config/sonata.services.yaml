@@ -3,9 +3,16 @@ services:
         class: App\Admin\CharacterAdmin
         arguments: [~, App\Entity\Character, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.character }
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.character, label_translator_strategy: "sonata.admin.label.strategy.native" }
         calls:
             - ['setZodiacRepository', ['@App\Entity\Repository\ZodiacRepository']]
+        public: true
+
+    sonata.admin.character_type:
+        class: App\Admin\CharacterTypeAdmin
+        arguments: [~, App\Entity\CharacterType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.character_type, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
     sonata.admin.country:
@@ -34,6 +41,14 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.intelligence_quotient, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
+
+    sonata.admin.location_type:
+        class: App\Admin\LocationTypeAdmin
+        arguments: [~, App\Entity\LocationType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.location_type, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
 
     sonata.admin.profession:
         class: App\Admin\ProfessionAdmin
