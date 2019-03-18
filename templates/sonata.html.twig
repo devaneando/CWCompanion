@@ -56,3 +56,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 {% endblock %}
+
+{% block body_attributes -%}
+    class="sonata-bc skin-blue-light fixed
+    {% if app.request.cookies.get('sonata_sidebar_hide') -%}
+        sidebar-collapse
+    {%- endif -%}"
+{%- endblock -%}

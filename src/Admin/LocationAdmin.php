@@ -60,6 +60,8 @@ final class LocationAdmin extends AbstractAdmin
                 ]
             )
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('parent', null, ['label' => 'admin.label.parent'])
+            ->add('children', null, ['label' => 'admin.label.children'])
             ->add('slug', null, ['label' => 'admin.label.slug'])
             ->add(
                 'description',
@@ -108,6 +110,8 @@ final class LocationAdmin extends AbstractAdmin
         $formMapper
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('parent', null, ['label' => 'admin.label.parent'])
+            ->add('children', null, ['label' => 'admin.label.children'])
             ->add('description', MarkDownType::class, ['label' => 'admin.label.description'])
             ->add('history', MarkDownType::class, ['label' => 'admin.label.history'])
             ->add('generalNotes', MarkDownType::class, ['label' => 'admin.label.general_notes']);
@@ -118,6 +122,7 @@ final class LocationAdmin extends AbstractAdmin
         $showMapper
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('parent', null, ['label' => 'admin.label.parent'])
             ->add('slug', null, ['label' => 'admin.label.slug'])
             ->add(
                 'picture',

@@ -9,6 +9,7 @@ use App\Processor\ImageProcessor;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -107,6 +108,18 @@ class Location
     public function setParent(?self $parent): self
     {
         $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getChildren(): ?PersistentCollection
+    {
+        return $this->children;
+    }
+
+    public function setChildren(?PersistentCollection $children): self
+    {
+        $this->children = $children;
 
         return $this;
     }
