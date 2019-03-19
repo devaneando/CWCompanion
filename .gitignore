@@ -6,12 +6,27 @@
 !/public/bundles/.gitkeep
 /public/vendor
 !/public/vendor/.gitignore
+
+# Images Character
 public/images/characters/*
 !public/images/characters/.gitignore
 !public/images/characters/default/*
+
+# Images Locales
 public/images/locales/*
 !public/images/locales/.gitignore
 !public/images/locales/default/*
+
+# Images References
+public/images/references/*
+!public/images/references/.gitignore
+!public/images/references/default/*
+
+# Images KeyItems
+public/images/key-items/*
+!public/images/key-items/.gitignore
+!public/images/key-items/default/*
+
 /src/Repository
 /vendor/
 .phpunit
