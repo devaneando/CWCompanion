@@ -54,131 +54,54 @@ final class CharacterAdmin extends AbstractAdmin
         $datagridMapper
             ->add('id', null, ['label'=> 'admin.label.id'])
             ->add('nickname', null, ['label'=> 'admin.label.nickname'])
-            ->add('slug', null, ['label'=> 'admin.label.slug'])
             ->add('fullName', null, ['label'=> 'admin.label.full_name'])
-            ->add('picture', null, ['label'=> 'admin.label.picture'])
             ->add('gender', null, ['label'=> 'admin.label.gender'])
             ->add('characterType', null, ['label'=> 'admin.label.character_type'])
             ->add('concept', null, ['label'=> 'admin.label.concept'])
-            ->add('zodiacSign', null, ['label'=> 'admin.label.zodiac_sign'])
-            ->add('birthCountry', null, ['label'=> 'admin.label.birth_country'])
-            ->add('birthCity', null, ['label'=> 'admin.label.birth_city'])
-            ->add('birthdate', null, ['label'=> 'admin.label.birthdate'])
-            ->add('cityOfDeath', null, ['label'=> 'admin.label.city_of_death'])
-            ->add('dateOfDeath', null, ['label'=> 'admin.label.date_of_death'])
-            ->add('eyes', null, ['label'=> 'admin.label.eyes'])
-            ->add('skin', null, ['label'=> 'admin.label.skin'])
-            ->add('hair', null, ['label'=> 'admin.label.hair'])
-            ->add('bodyType', null, ['label'=> 'admin.label.body_type'])
-            ->add('height', null, ['label'=> 'admin.label.height'])
-            ->add('distinguishingMarks', null, ['label'=> 'admin.label.distinguishing_marks'])
-            ->add('healthProblems', null, ['label'=> 'admin.label.health_problems'])
-            ->add('speechPattern', null, ['label'=> 'admin.label.speech_pattern'])
-            ->add('odor', null, ['label'=> 'admin.label.odor'])
-            ->add('generalNotes', null, ['label'=> 'admin.label.general_notes'])
-            ->add('homeCountry', null, ['label'=> 'admin.label.home_country'])
-            ->add('homeCity', null, ['label'=> 'admin.label.home_city'])
-            ->add('currentOccupation', null, ['label'=> 'admin.label.current_occupation'])
-            ->add('currentOccupationNice', null, ['label'=> 'admin.label.current_occupation_nice'])
-            ->add('income', null, ['label'=> 'admin.label.income'])
-            ->add('sexuality', null, ['label'=> 'admin.label.sexuality'])
-            ->add('dressStyle', null, ['label'=> 'admin.label.dress_style'])
-            ->add('hobbies', null, ['label'=> 'admin.label.hobbies'])
-            ->add('goodHabits', null, ['label'=> 'admin.label.good_habits'])
-            ->add('badHabits', null, ['label'=> 'admin.label.bad_habits'])
-            ->add('favoriteMusic', null, ['label'=> 'admin.label.favorite_music'])
-            ->add('favoriteSports', null, ['label'=> 'admin.label.favorite_sports'])
-            ->add('favoriteFood', null, ['label'=> 'admin.label.favorite_food'])
-            ->add('iqLevel', null, ['label'=> 'admin.label.iq_level'])
-            ->add('educationalLevel', null, ['label'=> 'admin.label.educational_level'])
-            ->add('skills', null, ['label'=> 'admin.label.skills'])
-            ->add('selfView', null, ['label'=> 'admin.label.self_view'])
-            ->add('dominantTemperament', null, ['label'=> 'admin.label.dominant_temperament'])
-            ->add('secondaryTemperament', null, ['label'=> 'admin.label.secondary_temperament'])
-            ->add('personality', null, ['label'=> 'admin.label.personality'])
-            ->add('emotionalTraumas', null, ['label'=> 'admin.label.emotional_traumas'])
-            ->add('whatMotivates', null, ['label'=> 'admin.label.what_motivates'])
-            ->add('whatMakesHappy', null, ['label'=> 'admin.label.what_makes_happy'])
-            ->add('whatFrightens', null, ['label'=> 'admin.label.what_frightens'])
-            ->add('whatWouldChange', null, ['label'=> 'admin.label.what_would_change'])
-            ->add('deepestSecret', null, ['label'=> 'admin.label.deepest_secret'])
-            ->add('religious', null, ['label'=> 'admin.label.religious'])
-            ->add('spiritualBeliefs', null, ['label'=> 'admin.label.spiritual_beliefs'])
-            ->add('spiritualEffectsInLife', null, ['label'=> 'admin.label.spiritual_effects_in_life'])
-            ->add('parents', null, ['label'=> 'admin.label.parents'])
-            ->add('siblings', null, ['label'=> 'admin.label.siblings'])
-            ->add('children', null, ['label'=> 'admin.label.children'])
-            ->add('spouse', null, ['label'=> 'admin.label.spouse'])
-            ->add('friends', null, ['label'=> 'admin.label.friends'])
-            ->add('enemies', null, ['label'=> 'admin.label.enemies'])
-            ->add('significantOthers', null, ['label'=> 'admin.label.significant_others'])
-            ->add('personalHistory', null, ['label'=> 'admin.label.personal_history']);
+            ->add('birthdate', null, ['label'=> 'admin.label.birthdate']);
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('id', null, ['label'=> 'admin.label.id'])
+            ->add(
+                'picture',
+                null,
+                [
+                    'label' => 'admin.label.picture',
+                    'template' => 'form/list/picture.html.twig',
+                ]
+            )
+            ->add(
+                'characterType',
+                null,
+                [
+                    'label'=> 'admin.label.character_type',
+                    'sortable' => true,
+                    'route' => ['name' => 'show'],
+                ]
+            )
             ->add('nickname', null, ['label'=> 'admin.label.nickname'])
-            ->add('slug', null, ['label'=> 'admin.label.slug'])
-            ->add('fullName', null, ['label'=> 'admin.label.full_name'])
-            ->add('picture', null, ['label'=> 'admin.label.picture'])
-            ->add('gender', null, ['label'=> 'admin.label.gender'])
-            ->add('characterType', null, ['label'=> 'admin.label.character_type'])
-            ->add('concept', null, ['label'=> 'admin.label.concept'])
-            ->add('zodiacSign', null, ['label'=> 'admin.label.zodiac_sign'])
-            ->add('birthCountry', null, ['label'=> 'admin.label.birth_country'])
-            ->add('birthCity', null, ['label'=> 'admin.label.birth_city'])
+            ->add(
+                'concept',
+                null,
+                [
+                    'label' => 'admin.label.concept',
+                    'template' => 'form/list/markdown.html.twig',
+                    'sortable' => true,
+                ]
+            )
+            ->add(
+                'gender',
+                null,
+                [
+                    'label' => 'admin.label.gender',
+                    'template' => 'form/list/gender_symbol.html.twig',
+                    'sortable' => true,
+                    'route' => ['name' => 'show'],
+                ]
+            )
             ->add('birthdate', null, ['label'=> 'admin.label.birthdate'])
-            ->add('cityOfDeath', null, ['label'=> 'admin.label.city_of_death'])
-            ->add('dateOfDeath', null, ['label'=> 'admin.label.date_of_death'])
-            ->add('eyes', null, ['label'=> 'admin.label.eyes'])
-            ->add('skin', null, ['label'=> 'admin.label.skin'])
-            ->add('hair', null, ['label'=> 'admin.label.hair'])
-            ->add('bodyType', null, ['label'=> 'admin.label.body_type'])
-            ->add('height', null, ['label'=> 'admin.label.height'])
-            ->add('distinguishingMarks', null, ['label'=> 'admin.label.distinguishing_marks'])
-            ->add('healthProblems', null, ['label'=> 'admin.label.health_problems'])
-            ->add('speechPattern', null, ['label'=> 'admin.label.speech_pattern'])
-            ->add('odor', null, ['label'=> 'admin.label.odor'])
-            ->add('generalNotes', null, ['label'=> 'admin.label.general_notes'])
-            ->add('homeCountry', null, ['label'=> 'admin.label.home_country'])
-            ->add('homeCity', null, ['label'=> 'admin.label.home_city'])
-            ->add('currentOccupation', null, ['label'=> 'admin.label.current_occupation'])
-            ->add('currentOccupationNice', null, ['label'=> 'admin.label.current_occupation_nice'])
-            ->add('income', null, ['label'=> 'admin.label.income'])
-            ->add('sexuality', null, ['label'=> 'admin.label.sexuality'])
-            ->add('dressStyle', null, ['label'=> 'admin.label.dress_style'])
-            ->add('hobbies', null, ['label'=> 'admin.label.hobbies'])
-            ->add('goodHabits', null, ['label'=> 'admin.label.good_habits'])
-            ->add('badHabits', null, ['label'=> 'admin.label.bad_habits'])
-            ->add('favoriteMusic', null, ['label'=> 'admin.label.favorite_music'])
-            ->add('favoriteSports', null, ['label'=> 'admin.label.favorite_sports'])
-            ->add('favoriteFood', null, ['label'=> 'admin.label.favorite_food'])
-            ->add('iqLevel', null, ['label'=> 'admin.label.iq_level'])
-            ->add('educationalLevel', null, ['label'=> 'admin.label.educational_level'])
-            ->add('skills', null, ['label'=> 'admin.label.skills'])
-            ->add('selfView', null, ['label'=> 'admin.label.self_view'])
-            ->add('dominantTemperament', null, ['label'=> 'admin.label.dominant_temperament'])
-            ->add('secondaryTemperament', null, ['label'=> 'admin.label.secondary_temperament'])
-            ->add('personality', null, ['label'=> 'admin.label.personality'])
-            ->add('emotionalTraumas', null, ['label'=> 'admin.label.emotional_traumas'])
-            ->add('whatMotivates', null, ['label'=> 'admin.label.what_motivates'])
-            ->add('whatMakesHappy', null, ['label'=> 'admin.label.what_makes_happy'])
-            ->add('whatFrightens', null, ['label'=> 'admin.label.what_frightens'])
-            ->add('whatWouldChange', null, ['label'=> 'admin.label.what_would_change'])
-            ->add('deepestSecret', null, ['label'=> 'admin.label.deepest_secret'])
-            ->add('religious', null, ['label'=> 'admin.label.religious'])
-            ->add('spiritualBeliefs', null, ['label'=> 'admin.label.spiritual_beliefs'])
-            ->add('spiritualEffectsInLife', null, ['label'=> 'admin.label.spiritual_effects_in_life'])
-            ->add('parents', null, ['label'=> 'admin.label.parents'])
-            ->add('siblings', null, ['label'=> 'admin.label.siblings'])
-            ->add('children', null, ['label'=> 'admin.label.children'])
-            ->add('spouse', null, ['label'=> 'admin.label.spouse'])
-            ->add('friends', null, ['label'=> 'admin.label.friends'])
-            ->add('enemies', null, ['label'=> 'admin.label.enemies'])
-            ->add('significantOthers', null, ['label'=> 'admin.label.significant_others'])
-            ->add('personalHistory', null, ['label'=> 'admin.label.personal_history'])
             ->add('_action', null, [
                 'actions'=> [
                     'show'=> [],
@@ -344,67 +267,377 @@ final class CharacterAdmin extends AbstractAdmin
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
+        /** ----- Tab Inherited ---------------------------------------------------------------------- */
         $showMapper
+            ->tab('tab_inherited', ['label'=> 'admin.tab.inherited'])
+            ->with('in_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.inherited.bl_001'])
             ->add('id', null, ['label'=> 'admin.label.id'])
             ->add('nickname', null, ['label'=> 'admin.label.nickname'])
             ->add('slug', null, ['label'=> 'admin.label.slug'])
-            ->add('fullName', null, ['label'=> 'admin.label.full_name'])
-            ->add('picture', null, ['label'=> 'admin.label.picture'])
-            ->add('gender', null, ['label'=> 'admin.label.gender'])
-            ->add('characterType', null, ['label'=> 'admin.label.character_type'])
+            ->add('characterType', null, ['label'=> 'admin.label.character_type', 'route' => ['name' => 'show']])
             ->add('concept', null, ['label'=> 'admin.label.concept'])
-            ->add('zodiacSign', null, ['label'=> 'admin.label.zodiac_sign'])
-            ->add('birthCountry', null, ['label'=> 'admin.label.birth_country'])
-            ->add('birthCity', null, ['label'=> 'admin.label.birth_city'])
+            ->add('gender', null, ['label'=> 'admin.label.gender', 'route' => ['name' => 'show']])
+            ->add('fullName', null, ['label'=> 'admin.label.full_name'])
             ->add('birthdate', null, ['label'=> 'admin.label.birthdate'])
-            ->add('cityOfDeath', null, ['label'=> 'admin.label.city_of_death'])
+            ->add('birthCountry', null, ['label'=> 'admin.label.birth_country', 'route' => ['name' => 'show']])
+            ->add('birthCity', null, ['label'=> 'admin.label.birth_city'])
             ->add('dateOfDeath', null, ['label'=> 'admin.label.date_of_death'])
-            ->add('eyes', null, ['label'=> 'admin.label.eyes'])
-            ->add('skin', null, ['label'=> 'admin.label.skin'])
-            ->add('hair', null, ['label'=> 'admin.label.hair'])
+            ->add('countryOfDeath', null, ['label'=> 'admin.label.country_of_death', 'route' => ['name' => 'show']])
+            ->add('cityOfDeath', null, ['label'=> 'admin.label.city_of_death'])
+            ->end()
+            ->with('in_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.inherited.bl_002'])
+            ->add(
+                'picture',
+                null,
+                [
+                    'label' => 'admin.label.picture',
+                    'template' => 'form/show/picture.html.twig',
+                ]
+            )
+            ->add(
+                'generalNotes',
+                null,
+                [
+                    'label' => 'admin.label.general_notes',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->with('in_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.inherited.bl_003'])
+            ->add(
+                'personalHistory',
+                null,
+                [
+                    'label' => 'admin.label.personal_history',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->end();
+
+        /** ----- Tab Physical ---------------------------------------------------------------------- */
+        $showMapper
+            ->tab('tab_physical', ['label'=> 'admin.tab.physical'])
+            ->with('phy_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.physical.bl_001'])
             ->add('bodyType', null, ['label'=> 'admin.label.body_type'])
             ->add('height', null, ['label'=> 'admin.label.height'])
-            ->add('distinguishingMarks', null, ['label'=> 'admin.label.distinguishing_marks'])
-            ->add('healthProblems', null, ['label'=> 'admin.label.health_problems'])
-            ->add('speechPattern', null, ['label'=> 'admin.label.speech_pattern'])
-            ->add('odor', null, ['label'=> 'admin.label.odor'])
-            ->add('generalNotes', null, ['label'=> 'admin.label.general_notes'])
-            ->add('homeCountry', null, ['label'=> 'admin.label.home_country'])
+            ->add(
+                'eyes',
+                null,
+                [
+                    'label' => 'admin.label.eyes',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'skin',
+                null,
+                [
+                    'label' => 'admin.label.skin',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'hair',
+                null,
+                [
+                    'label' => 'admin.label.hair',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'odor',
+                null,
+                [
+                    'label' => 'admin.label.odor',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->with('phy_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.physical.bl_002'])
+            ->add(
+                'distinguishingMarks',
+                null,
+                [
+                    'label' => 'admin.label.distinguishing_marks',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'healthProblems',
+                null,
+                [
+                    'label' => 'admin.label.health_problems',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'speechPattern',
+                null,
+                [
+                    'label' => 'admin.label.speech_pattern',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->end();
+
+        /** ----- Tab Life Style ---------------------------------------------------------------------- */
+        $showMapper
+            ->tab('tab_life_style', ['label'=> 'admin.tab.life_style'])
+            ->with('lst_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.life_style.bl_001'])
+            ->add('sexuality', null, ['label'=> 'admin.label.sexuality', 'route' => ['name' => 'show']])
+            ->add('homeCountry', null, ['label'=> 'admin.label.home_country', 'route' => ['name' => 'show']])
             ->add('homeCity', null, ['label'=> 'admin.label.home_city'])
-            ->add('currentOccupation', null, ['label'=> 'admin.label.current_occupation'])
+            ->add(
+                'income',
+                null,
+                [
+                    'label' => 'admin.label.income',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add('currentOccupation', null, ['label'=> 'admin.label.current_occupation', 'route' => ['name' => 'show']])
             ->add('currentOccupationNice', null, ['label'=> 'admin.label.current_occupation_nice'])
-            ->add('income', null, ['label'=> 'admin.label.income'])
-            ->add('sexuality', null, ['label'=> 'admin.label.sexuality'])
-            ->add('dressStyle', null, ['label'=> 'admin.label.dress_style'])
-            ->add('hobbies', null, ['label'=> 'admin.label.hobbies'])
-            ->add('goodHabits', null, ['label'=> 'admin.label.good_habits'])
-            ->add('badHabits', null, ['label'=> 'admin.label.bad_habits'])
-            ->add('favoriteMusic', null, ['label'=> 'admin.label.favorite_music'])
-            ->add('favoriteSports', null, ['label'=> 'admin.label.favorite_sports'])
-            ->add('favoriteFood', null, ['label'=> 'admin.label.favorite_food'])
-            ->add('iqLevel', null, ['label'=> 'admin.label.iq_level'])
-            ->add('educationalLevel', null, ['label'=> 'admin.label.educational_level'])
-            ->add('skills', null, ['label'=> 'admin.label.skills'])
-            ->add('selfView', null, ['label'=> 'admin.label.self_view'])
-            ->add('dominantTemperament', null, ['label'=> 'admin.label.dominant_temperament'])
-            ->add('secondaryTemperament', null, ['label'=> 'admin.label.secondary_temperament'])
-            ->add('personality', null, ['label'=> 'admin.label.personality'])
-            ->add('emotionalTraumas', null, ['label'=> 'admin.label.emotional_traumas'])
-            ->add('whatMotivates', null, ['label'=> 'admin.label.what_motivates'])
-            ->add('whatMakesHappy', null, ['label'=> 'admin.label.what_makes_happy'])
-            ->add('whatFrightens', null, ['label'=> 'admin.label.what_frightens'])
-            ->add('whatWouldChange', null, ['label'=> 'admin.label.what_would_change'])
-            ->add('deepestSecret', null, ['label'=> 'admin.label.deepest_secret'])
+            ->end()
+            ->with('lst_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.life_style.bl_002'])
+            ->add(
+                'dressStyle',
+                null,
+                [
+                    'label' => 'admin.label.dress_style',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'goodHabits',
+                null,
+                [
+                    'label' => 'admin.label.good_habits',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'badHabits',
+                null,
+                [
+                    'label' => 'admin.label.bad_habits',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'favoriteMusic',
+                null,
+                [
+                    'label' => 'admin.label.favorite_music',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'favoriteSports',
+                null,
+                [
+                    'label' => 'admin.label.favorite_sports',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'favoriteFood',
+                null,
+                [
+                    'label' => 'admin.label.favorite_food',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'hobbies',
+                null,
+                [
+                    'label' => 'admin.label.hobbies',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->end();
+
+        /** ----- Tab Intelectual ---------------------------------------------------------------------- */
+        $showMapper
+            ->tab('tab_intelectual', ['label'=> 'admin.tab.intelectual'])
+            ->with('int_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.intelectual.bl_001'])
+            ->add('iqLevel', null, ['label'=> 'admin.label.iq_level', 'route' => ['name' => 'show']])
+            ->add('educationalLevel', null, ['label'=> 'admin.label.educational_level', 'route' => ['name' => 'show']])
+            ->add(
+                'skills',
+                null,
+                [
+                    'label' => 'admin.label.skills',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'personality',
+                null,
+                [
+                    'label' => 'admin.label.personality',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->with('int_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.intelectual.bl_002'])
+            ->add('dominantTemperament', null, ['label'=> 'admin.label.dominant_temperament', 'route' => ['name' => 'show']])
+            ->add('secondaryTemperament', null, ['label'=> 'admin.label.secondary_temperament', 'route' => ['name' => 'show']])
+            ->add(
+                'selfView',
+                null,
+                [
+                    'label' => 'admin.label.self_view',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'whatWouldChange',
+                null,
+                [
+                    'label' => 'admin.label.what_would_change',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->end();
+
+        /** ----- Tab Emotional ---------------------------------------------------------------------- */
+        $showMapper
+            ->tab('tab_emotional', ['label'=> 'admin.tab.emotional'])
+            ->with('emo_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.emotional.bl_001'])
+            ->add(
+                'emotionalTraumas',
+                null,
+                [
+                    'label' => 'admin.label.emotional_traumas',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'deepestSecret',
+                null,
+                [
+                    'label' => 'admin.label.deepest_secret',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'whatMotivates',
+                null,
+                [
+                    'label' => 'admin.label.what_motivates',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'whatMakesHappy',
+                null,
+                [
+                    'label' => 'admin.label.what_makes_happy',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'whatFrightens',
+                null,
+                [
+                    'label' => 'admin.label.what_frightens',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->end();
+
+        /** ----- Tab Spiritual ---------------------------------------------------------------------- */
+        $showMapper
+            ->tab('tab_spiritual', ['label'=> 'admin.tab.spiritual'])
+            ->with('spi_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.spiritual.bl_001'])
+            ->add('religion', null, ['label'=> 'admin.label.religion', 'route' => ['name' => 'show']])
             ->add('religious', null, ['label'=> 'admin.label.religious'])
-            ->add('spiritualBeliefs', null, ['label'=> 'admin.label.spiritual_beliefs'])
-            ->add('spiritualEffectsInLife', null, ['label'=> 'admin.label.spiritual_effects_in_life'])
-            ->add('parents', null, ['label'=> 'admin.label.parents'])
-            ->add('siblings', null, ['label'=> 'admin.label.siblings'])
-            ->add('children', null, ['label'=> 'admin.label.children'])
-            ->add('spouse', null, ['label'=> 'admin.label.spouse'])
-            ->add('friends', null, ['label'=> 'admin.label.friends'])
-            ->add('enemies', null, ['label'=> 'admin.label.enemies'])
-            ->add('significantOthers', null, ['label'=> 'admin.label.significant_others'])
-            ->add('personalHistory', null, ['label'=> 'admin.label.personal_history']);
+            ->add(
+                'spiritualBeliefs',
+                null,
+                [
+                    'label' => 'admin.label.spiritual_beliefs',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'spiritualEffectsInLife',
+                null,
+                [
+                    'label' => 'admin.label.spiritual_effects_in_life',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->end();
+
+        /** ----- Tab Relationship ---------------------------------------------------------------------- */
+        $showMapper
+            ->tab('tab_relationship', ['label'=> 'admin.tab.relationship'])
+            ->with('rel_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.relationship.bl_001'])
+            ->add(
+                'parents',
+                null,
+                [
+                    'label' => 'admin.label.parents',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'siblings',
+                null,
+                [
+                    'label' => 'admin.label.siblings',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'children',
+                null,
+                [
+                    'label' => 'admin.label.children',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'spouse',
+                null,
+                [
+                    'label' => 'admin.label.spouse',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'friends',
+                null,
+                [
+                    'label' => 'admin.label.friends',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'enemies',
+                null,
+                [
+                    'label' => 'admin.label.enemies',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->add(
+                'significantOthers',
+                null,
+                [
+                    'label' => 'admin.label.significant_others',
+                    'template' => 'form/show/markdown.html.twig',
+                ]
+            )
+            ->end()
+            ->end();
     }
 }
