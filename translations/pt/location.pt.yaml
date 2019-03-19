@@ -2,12 +2,18 @@ menu:
     item:
         location: Local
 admin:
+    block:
+        bl_001: " "
+        bl_002: " "
+        bl_003: " "
     label:
+        children: Filhos
         description: Descrição
         general_notes: Notas
         history: História
         id: Id
         name: Nome
+        parent: Pai
         picture: Imagem
         predefined: Predefinido
         slug: Slug

@@ -50,7 +50,6 @@ final class LocationAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('id', null, ['label' => 'admin.label.id'])
             ->add(
                 'picture',
                 null,
@@ -60,33 +59,8 @@ final class LocationAdmin extends AbstractAdmin
                 ]
             )
             ->add('name', null, ['label' => 'admin.label.name'])
-            ->add('parent', null, ['label' => 'admin.label.parent'])
-            ->add('children', null, ['label' => 'admin.label.children'])
-            ->add('slug', null, ['label' => 'admin.label.slug'])
-            ->add(
-                'description',
-                null,
-                [
-                    'label' => 'admin.label.description',
-                    'template' => 'form/list/markdown.html.twig',
-                ]
-            )
-            ->add(
-                'history',
-                null,
-                [
-                    'label' => 'admin.label.history',
-                    'template' => 'form/list/markdown.html.twig',
-                ]
-            )
-            ->add(
-                'generalNotes',
-                null,
-                [
-                    'label' => 'admin.label.general_notes',
-                    'template' => 'form/list/markdown.html.twig',
-                ]
-            )
+            ->add('parent', null, ['label' => 'admin.label.parent', 'sortable' => true])
+            ->add('children', null, ['label' => 'admin.label.children', 'sortable' => true])
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -108,22 +82,32 @@ final class LocationAdmin extends AbstractAdmin
             $pictureUploadedOptions['help'] = '<img id="member-edit-picture" src="'.$path.'" style=" max-height: 250px;"/>';
         }
         $formMapper
-            ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
+            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add('parent', null, ['label' => 'admin.label.parent'])
             ->add('children', null, ['label' => 'admin.label.children'])
+            ->end()
+            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
+            ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
+            ->end()
+            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
             ->add('description', MarkDownType::class, ['label' => 'admin.label.description'])
             ->add('history', MarkDownType::class, ['label' => 'admin.label.history'])
-            ->add('generalNotes', MarkDownType::class, ['label' => 'admin.label.general_notes']);
+            ->add('generalNotes', MarkDownType::class, ['label' => 'admin.label.general_notes'])
+            ->end();
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
+            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
-            ->add('parent', null, ['label' => 'admin.label.parent'])
             ->add('slug', null, ['label' => 'admin.label.slug'])
+            ->add('parent', null, ['label' => 'admin.label.parent'])
+            ->add('children', null, ['label' => 'admin.label.children'])
+            ->end()
+            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
             ->add(
                 'picture',
                 null,
@@ -132,6 +116,8 @@ final class LocationAdmin extends AbstractAdmin
                     'template' => 'form/show/picture.html.twig',
                 ]
             )
+            ->end()
+            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
             ->add(
                 'description',
                 null,
@@ -155,6 +141,7 @@ final class LocationAdmin extends AbstractAdmin
                     'label' => 'admin.label.general_notes',
                     'template' => 'form/show/markdown.html.twig',
                 ]
-            );
+            )
+            ->end();
     }
 }
