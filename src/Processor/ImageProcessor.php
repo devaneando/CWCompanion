@@ -15,24 +15,34 @@ class ImageProcessor
 {
     const PUBLIC_IMAGES = '/images';
     const PUBLIC_CHARACTERS = self::PUBLIC_IMAGES.'/characters';
+    const PUBLIC_KEY_ITEMS = self::PUBLIC_IMAGES.'/key-items';
     const PUBLIC_LOCALES = self::PUBLIC_IMAGES.'/locales';
+    const PUBLIC_CONCEPTS = self::PUBLIC_IMAGES.'/concepts';
 
     const PATH_UPLOAD = '/tmp/cwc';
     const PATH_PUBLIC = __DIR__.'/../../public';
     const PATH_DEFAULT = '/default';
     const PATH_CHARACTERS = self::PATH_PUBLIC.self::PUBLIC_CHARACTERS;
     const PATH_CHARACTERS_DEFAULT = self::PATH_CHARACTERS.self::PATH_DEFAULT;
+    const PATH_KEY_ITEMS = self::PATH_PUBLIC.self::PUBLIC_KEY_ITEMS;
+    const PATH_KEY_ITEMS_DEFAULT = self::PATH_KEY_ITEMS.self::PATH_DEFAULT;
     const PATH_LOCALES = self::PATH_PUBLIC.self::PUBLIC_LOCALES;
     const PATH_LOCALES_DEFAULT = self::PATH_LOCALES.self::PATH_DEFAULT;
+    const PATH_CONCEPTS = self::PATH_PUBLIC.self::PUBLIC_CONCEPTS;
+    const PATH_CONCEPTS_DEFAULT = self::PATH_CONCEPTS.self::PATH_DEFAULT;
 
     const IMAGE_HEIGHT = 512;
     const IMAGE_CHARACTER_FEMALE = self::PATH_CHARACTERS_DEFAULT.'/female.png';
     const IMAGE_CHARACTER_MALE = self::PATH_CHARACTERS_DEFAULT.'/male.png';
     const IMAGE_CHARACTER_UNKNOWN = self::PATH_CHARACTERS_DEFAULT.'/unknown.png';
     const IMAGE_LOCALE = self::PATH_LOCALES_DEFAULT.'/locale.png';
+    const IMAGE_KEY_ITEM = self::PATH_KEY_ITEMS_DEFAULT.'/key-item.png';
+    const IMAGE_CONCEPT = self::PATH_CONCEPTS_DEFAULT.'/concept.png';
 
     const IMAGE_TYPE_CHARACTER = 'character';
+    const IMAGE_TYPE_KEY_ITEM = 'key-item';
     const IMAGE_TYPE_LOCALE = 'locale';
+    const IMAGE_TYPE_CONCEPT = 'concept';
 
     /** @var array */
     public static $imageTypes = [
@@ -164,11 +174,39 @@ class ImageProcessor
      */
     public static function getImagePath(Image $image, string $type, string $hash = null)
     {
-        if (self::IMAGE_TYPE_CHARACTER !== $type && self::IMAGE_TYPE_LOCALE !== $type) {
+        if (self::IMAGE_TYPE_CHARACTER !== $type
+            && self::IMAGE_TYPE_LOCALE !== $type
+            && self::IMAGE_TYPE_KEY_ITEM !== $type
+            && self::IMAGE_TYPE_CONCEPT !== $type
+        ) {
             throw new InvalidImageType();
         }
-        $pathImage = (self::IMAGE_TYPE_CHARACTER === $type) ? self::PATH_CHARACTERS : self::PATH_LOCALES;
-        $publicImage  = (self::IMAGE_TYPE_CHARACTER === $type) ? self::PUBLIC_CHARACTERS : self::PUBLIC_LOCALES;
+        switch ($type) {
+            case self::IMAGE_TYPE_CHARACTER:
+                $pathImage = self::PATH_CHARACTERS;
+                $publicImage = self::PUBLIC_CHARACTERS;
+
+                break;
+            case self::IMAGE_TYPE_KEY_ITEM:
+                $pathImage = self::PATH_KEY_ITEMS;
+                $publicImage = self::PUBLIC_KEY_ITEMS;
+
+                break;
+            case self::IMAGE_TYPE_LOCALE:
+                $pathImage = self::PATH_LOCALES;
+                $publicImage = self::PATH_LOCALES_DEFAULT;
+
+                break;
+            case self::IMAGE_TYPE_CONCEPT:
+                $pathImage = self::PATH_CONCEPTS;
+                $publicImage = self::PATH_CONCEPTS_DEFAULT;
+
+                break;
+            default:
+                throw new InvalidImageType();
+
+                break;
+        }
 
         $date = new \DateTime();
         $pathImage .= $date->format('/Y-m');
