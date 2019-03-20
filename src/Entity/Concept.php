@@ -12,15 +12,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entity\Repository\ReferenceRepository")
- * @ORM\Table(name="references",
+ * @ORM\Entity(repositoryClass="App\Entity\Repository\ConceptRepository")
+ * @ORM\Table(name="concepts",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unique_references_name", columns={"name"})
+ *         @ORM\UniqueConstraint(name="unique_concepts_name", columns={"name"})
  *     }
  * )
  * @ORM\HasLifecycleCallbacks()
  */
-class Reference
+class Concept
 {
     /**
      * @var UuidInterface
@@ -57,16 +57,9 @@ class Reference
 
     /**
      * @var string
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
-    protected $description;
-    use DescriptionTrait;
-
-    /**
-     * @var string
-     * @ORM\Column(name="general_notes", type="text", nullable=true)
-     */
-    protected $generalNotes;
+    protected $content;
 
     public function getId(): ?UuidInterface
     {
@@ -167,14 +160,14 @@ class Reference
         }
     }
 
-    public function getGeneralNotes(): ?string
+    public function getContent(): ?string
     {
-        return $this->generalNotes;
+        return $this->content;
     }
 
-    public function setGeneralNotes(string $generalNotes): self
+    public function setContent(string $content): self
     {
-        $this->generalNotes = trim($generalNotes);
+        $this->content = trim($content);
 
         return $this;
     }

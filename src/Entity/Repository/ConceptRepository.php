@@ -2,14 +2,14 @@
 
 namespace App\Entity\Repository;
 
-use App\Entity\Reference;
+use App\Entity\Concept;
 use App\Entity\Repository\AbstractBaseRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class ReferenceRepository extends AbstractBaseRepository
+class ConceptRepository extends AbstractBaseRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Reference::class);
+        parent::__construct($registry, Concept::class);
     }
 }
