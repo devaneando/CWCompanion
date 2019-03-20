@@ -147,7 +147,7 @@ class KeyItem
             return $this;
         }
 
-        $image = ImageProcessor::IMAGE_LOCALE;
+        $image = ImageProcessor::IMAGE_KEY_ITEM;
         $date = new \DateTime();
         $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
         if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
@@ -158,7 +158,7 @@ class KeyItem
         try {
             /** @var Image $image */
             $image = ImageProcessor::get($newImage);
-            $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_LOCALE, $this->getId());
+            $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_KEY_ITEM, $this->getId());
             $this->picture = $image->getWebPath();
 
             return $this;

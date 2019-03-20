@@ -1,13 +1,6 @@
 services:
-    sonata.admin.character:
-        class: App\Admin\CharacterAdmin
-        arguments: [~, App\Entity\Character, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.character, label_translator_strategy: "sonata.admin.label.strategy.native" }
-        calls:
-            - ['setZodiacRepository', ['@App\Entity\Repository\ZodiacRepository']]
-        public: true
 
+    ##### Shared group
     sonata.admin.character_type:
         class: App\Admin\CharacterTypeAdmin
         arguments: [~, App\Entity\CharacterType, ~]
@@ -40,13 +33,6 @@ services:
             - [setRepository, ['@App\Entity\Repository\IntelligenceQuotientRepository']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.intelligence_quotient, label_translator_strategy: "sonata.admin.label.strategy.native" }
-        public: true
-
-    sonata.admin.location:
-        class: App\Admin\LocationAdmin
-        arguments: [~, App\Entity\Location, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.location, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
     sonata.admin.location_type:
@@ -96,4 +82,35 @@ services:
         arguments: [~, App\Entity\Zodiac, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.zodiac, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
+    ##### Writing groupd
+    sonata.admin.character:
+        class: App\Admin\CharacterAdmin
+        arguments: [~, App\Entity\Character, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.character, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        calls:
+            - ['setZodiacRepository', ['@App\Entity\Repository\ZodiacRepository']]
+        public: true
+
+    sonata.admin.concept:
+        class: App\Admin\ConceptAdmin
+        arguments: [~, App\Entity\Concept, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.concept, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
+    sonata.admin.key_item:
+        class: App\Admin\KeyItemAdmin
+        arguments: [~, App\Entity\KeyItem, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.key_item, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
+    sonata.admin.location:
+        class: App\Admin\LocationAdmin
+        arguments: [~, App\Entity\Location, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.location, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true

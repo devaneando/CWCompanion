@@ -29,6 +29,8 @@ parameters:
     reportMagicMethods: false
     reportMagicProperties: false
     ignoreErrors:
+        - "#Method.*should return.*PersistentCollection|null but returns.*ArrayCollection.#"
+        - "#Property.*ArrayCollection.*does not accept.*PersistentCollection.*#"
     internalErrorsCountLimit: 50
     reportUnmatchedIgnoredErrors: true
     scopeClass: PHPStan\Analyser\Scope

@@ -203,7 +203,7 @@ class Concept
             return $this;
         }
 
-        $image = ImageProcessor::IMAGE_LOCALE;
+        $image = ImageProcessor::IMAGE_CONCEPT;
         $date = new \DateTime();
         $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
         if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
@@ -214,7 +214,7 @@ class Concept
         try {
             /** @var Image $image */
             $image = ImageProcessor::get($newImage);
-            $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_LOCALE, $this->getId());
+            $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_CONCEPT, $this->getId());
             $this->picture = $image->getWebPath();
 
             return $this;

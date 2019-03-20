@@ -1,0 +1,23 @@
+menu:
+    item:
+        concept: Conceito
+admin:
+    block:
+        bl_001: " "
+        bl_002: " "
+        bl_003: " "
+    label:
+        children: Filhos
+        content: Conteúdo
+        id: Id
+        name: Nome
+        parent: Pai
+        picture: Imagem
+        predefined: Predefinido
+        slug: Slug
+        uploaded_picture: Imagem
+Action: Ações
+Menu Item Concept: Conceito
+Concept Create: Criar conceito
+Concept List: Listar conceitos
+Concept: Conceito

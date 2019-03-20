@@ -1,0 +1,25 @@
+menu:
+    item:
+        key_item: Item chave
+admin:
+    block:
+        bl_001: " "
+        bl_002: " "
+        bl_003: " "
+    label:
+        children: Filhos
+        description: Descrição
+        general_notes: Notas
+        history: História
+        id: Id
+        name: Nome
+        parent: Pai
+        picture: Imagem
+        predefined: Predefinido
+        slug: Slug
+        uploaded_picture: Imagem
+Action: Ações
+Menu Item Key Item: Item chave
+Key Item Create: Criar item chave
+Key Item List: Listar items chave
+Key Item: Item chave
