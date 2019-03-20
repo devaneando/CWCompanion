@@ -6,7 +6,9 @@ use App\Entity\Traits\DescriptionTrait;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -44,6 +46,19 @@ class Concept
     protected $name;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Concept", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     * @var self
+     * @ORM\ManyToOne(targetEntity="Concept", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parent;
+
+    /**
      * @var string
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
@@ -61,9 +76,63 @@ class Concept
      */
     protected $content;
 
+    public function __construct()
+    {
+        $this->children = new ArrayCollection();
+    }
+
     public function getId(): ?UuidInterface
     {
         return $this->id;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getChildren(): ?PersistentCollection
+    {
+        return $this->children;
+    }
+
+    public function setChildren(?PersistentCollection $children): self
+    {
+        $this->children = $children;
+
+        return $this;
+    }
+
+    public function addChild(self $child): self
+    {
+        if ($this === $child) {
+            return $this;
+        }
+        if (true === $this->children->contains($child)) {
+            return $this;
+        }
+        $this->children->add($child);
+        $child->setParent($this);
+
+        return $this;
+    }
+
+    public function removeChild(self $child): self
+    {
+        if (false === $this->children->contains($child)) {
+            return $this;
+        }
+        $this->children->remove($child);
+        $child->setParent(null);
+
+        return $this;
     }
 
     public function getName(): ?string
