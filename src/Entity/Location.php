@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Location
 {
     /** @var string */
-    protected static $pictureType = ImageProcessor::IMAGE_TYPE_LOCALE;
+    protected $pictureType = ImageProcessor::IMAGE_TYPE_LOCALE;
 
     /**
      * @var UuidInterface

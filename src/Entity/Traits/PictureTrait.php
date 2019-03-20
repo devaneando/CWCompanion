@@ -33,7 +33,7 @@ trait PictureTrait
 
         /** @var Image $image */
         $image = ImageProcessor::get(ImageProcessor::upload($uploadedPicture));
-        $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_LOCALE, $this->getId());
+        $image = ImageProcessor::move($image, $this->pictureType, $this->getId());
         $this->picture = $image->getWebPath();
 
         return $this;
