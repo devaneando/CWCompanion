@@ -18,9 +18,9 @@ public/images/locales/*
 !public/images/locales/default/*
 
 # Images References
-public/images/references/*
-!public/images/references/.gitignore
-!public/images/references/default/*
+public/images/concepts/*
+!public/images/concepts/.gitignore
+!public/images/concepts/default/*
 
 # Images KeyItems
 public/images/key-items/*

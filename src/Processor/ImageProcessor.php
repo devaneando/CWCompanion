@@ -194,12 +194,12 @@ class ImageProcessor
                 break;
             case self::IMAGE_TYPE_LOCALE:
                 $pathImage = self::PATH_LOCALES;
-                $publicImage = self::PATH_LOCALES_DEFAULT;
+                $publicImage = self::PUBLIC_LOCALES;
 
                 break;
             case self::IMAGE_TYPE_CONCEPT:
                 $pathImage = self::PATH_CONCEPTS;
-                $publicImage = self::PATH_CONCEPTS_DEFAULT;
+                $publicImage = self::PUBLIC_CONCEPTS;
 
                 break;
             default:
