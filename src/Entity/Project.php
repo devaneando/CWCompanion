@@ -2,10 +2,16 @@
 
 namespace App\Entity;
 
+use App\Entity\Chapter;
+use App\Entity\Traits\DescriptionTrait;
+use App\Entity\Traits\PictureTrait;
 use App\Entity\Traits\SlugTrait;
+use App\Processor\ImageProcessor;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\Repository\ProjectRepository")
@@ -18,6 +24,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Project
 {
+    /** @var string */
+    protected $pictureType = ImageProcessor::IMAGE_TYPE_PROJECT;
+
     /**
      * @var UuidInterface
      * @ORM\Id
@@ -51,9 +60,62 @@ class Project
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     protected $picture;
+    use PictureTrait;
+
+    /**
+     * @var string
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    protected $description;
+    use DescriptionTrait;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Chapter", mappedBy="project")
+     */
+    private $chapters;
+
+    public function __construct()
+    {
+        $this->chapters = new ArrayCollection();
+    }
 
     public function getId(): ?UuidInterface
     {
         return $this->id;
+    }
+
+    public function getChapters(): ?ArrayCollection
+    {
+        return $this->chapters;
+    }
+
+    public function setChapters(?PersistentCollection $chapters): self
+    {
+        $this->chapters = $chapters;
+
+        return $this;
+    }
+
+    public function addChapter(Chapter $object): self
+    {
+        if (true === $this->chapters->contains($object)) {
+            return $this;
+        }
+        $this->chapters->add($object);
+        $object->setProject($this);
+
+        return $this;
+    }
+
+    public function removeChapter(Chapter $object): self
+    {
+        if (false === $this->chapters->contains($object)) {
+            return $this;
+        }
+        $this->chapters->removeElement($object);
+        $object->setProject(null);
+
+        return $this;
     }
 }
