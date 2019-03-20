@@ -15,9 +15,10 @@ class ImageProcessor
 {
     const PUBLIC_IMAGES = '/images';
     const PUBLIC_CHARACTERS = self::PUBLIC_IMAGES.'/characters';
+    const PUBLIC_CONCEPTS = self::PUBLIC_IMAGES.'/concepts';
     const PUBLIC_KEY_ITEMS = self::PUBLIC_IMAGES.'/key-items';
     const PUBLIC_LOCALES = self::PUBLIC_IMAGES.'/locales';
-    const PUBLIC_CONCEPTS = self::PUBLIC_IMAGES.'/concepts';
+    const PUBLIC_PROJECTS = self::PUBLIC_IMAGES.'/projects';
 
     const PATH_UPLOAD = '/tmp/cwc';
     const PATH_PUBLIC = __DIR__.'/../../public';
@@ -30,6 +31,8 @@ class ImageProcessor
     const PATH_LOCALES_DEFAULT = self::PATH_LOCALES.self::PATH_DEFAULT;
     const PATH_CONCEPTS = self::PATH_PUBLIC.self::PUBLIC_CONCEPTS;
     const PATH_CONCEPTS_DEFAULT = self::PATH_CONCEPTS.self::PATH_DEFAULT;
+    const PATH_PROJECTS = self::PATH_PUBLIC.self::PUBLIC_PROJECTS;
+    const PATH_PROJECTS_DEFAULT = self::PATH_PROJECTS.self::PATH_DEFAULT;
 
     const IMAGE_HEIGHT = 512;
     const IMAGE_CHARACTER_FEMALE = self::PATH_CHARACTERS_DEFAULT.'/female.png';
@@ -38,11 +41,13 @@ class ImageProcessor
     const IMAGE_LOCALE = self::PATH_LOCALES_DEFAULT.'/locale.png';
     const IMAGE_KEY_ITEM = self::PATH_KEY_ITEMS_DEFAULT.'/key-item.png';
     const IMAGE_CONCEPT = self::PATH_CONCEPTS_DEFAULT.'/concept.png';
+    const IMAGE_PROJECT = self::PATH_CONCEPTS_DEFAULT.'/project.png';
 
     const IMAGE_TYPE_CHARACTER = 'character';
     const IMAGE_TYPE_KEY_ITEM = 'key-item';
     const IMAGE_TYPE_LOCALE = 'locale';
     const IMAGE_TYPE_CONCEPT = 'concept';
+    const IMAGE_TYPE_PROJECT = 'project';
 
     /** @var array */
     public static $imageTypes = [
@@ -200,6 +205,11 @@ class ImageProcessor
             case self::IMAGE_TYPE_CONCEPT:
                 $pathImage = self::PATH_CONCEPTS;
                 $publicImage = self::PUBLIC_CONCEPTS;
+
+                break;
+            case self::IMAGE_TYPE_PROJECT:
+                $pathImage = self::PATH_PROJECTS;
+                $publicImage = self::PUBLIC_PROJECTS;
 
                 break;
             default:
