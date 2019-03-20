@@ -11,6 +11,7 @@ use App\Entity\Profession;
 use App\Entity\Religion;
 use App\Entity\Sexuality;
 use App\Entity\Temperament;
+use App\Entity\Traits\PictureTrait;
 use App\Entity\Zodiac;
 use App\Exception\ExtendedDate\InvalidExtendedDateStamp;
 use App\Model\ExtendedDate;
@@ -19,7 +20,6 @@ use App\Processor\ImageProcessor;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -34,6 +34,9 @@ class Character
     const GENDER_UNKNOWN = 'u';
     const PERSONALITY_EXTROVERT = 'ext';
     const PERSONALITY_INTROVERT = 'int';
+
+    /** @var string */
+    protected $pictureType = ImageProcessor::IMAGE_TYPE_CHARACTER;
 
     /**
      * @var UuidInterface
@@ -79,6 +82,7 @@ class Character
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     protected $picture;
+    use PictureTrait;
 
     /**
      * @var Gender
@@ -573,37 +577,6 @@ class Character
     public function setFullName(string $fullName): self
     {
         $this->fullName = trim($fullName);
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(string $picture = null): self
-    {
-        $this->picture = trim($picture);
-
-        return $this;
-    }
-
-    public function getUploadedPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setUploadedPicture(UploadedFile $uploadedPicture = null): self
-    {
-        if (null === $uploadedPicture) {
-            return $this;
-        }
-
-        /** @var Image $image */
-        $image = ImageProcessor::get(ImageProcessor::upload($uploadedPicture));
-        $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_CHARACTER, $this->getId());
-        $this->picture = $image->getWebPath();
 
         return $this;
     }

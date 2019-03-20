@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\DescriptionTrait;
+use App\Entity\Traits\PictureTrait;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Cocur\Slugify\Slugify;
@@ -24,6 +25,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Concept
 {
+    /** @var string */
+    protected $pictureType = ImageProcessor::IMAGE_TYPE_CONCEPT;
+
     /**
      * @var UuidInterface
      * @ORM\Id
@@ -46,6 +50,12 @@ class Concept
     protected $name;
 
     /**
+     * @var string
+     * @ORM\Column(name="slug", type="string", length=60, nullable=false)
+     */
+    protected $slug;
+
+    /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Concept", mappedBy="parent")
      */
@@ -63,12 +73,7 @@ class Concept
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     protected $picture;
-
-    /**
-     * @var string
-     * @ORM\Column(name="slug", type="string", length=60, nullable=false)
-     */
-    protected $slug;
+    use PictureTrait;
 
     /**
      * @var string
@@ -162,37 +167,6 @@ class Concept
     {
         $slugify = new Slugify();
         $this->slug = $slugify->slugify($this->name);
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(string $picture = null): self
-    {
-        $this->picture = trim($picture);
-
-        return $this;
-    }
-
-    public function getUploadedPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setUploadedPicture(UploadedFile $uploadedPicture = null): self
-    {
-        if (null === $uploadedPicture) {
-            return $this;
-        }
-
-        /** @var Image $image */
-        $image = ImageProcessor::get(ImageProcessor::upload($uploadedPicture));
-        $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_LOCALE, $this->getId());
-        $this->picture = $image->getWebPath();
 
         return $this;
     }

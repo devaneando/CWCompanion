@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\PictureTrait;
+use App\Entity\Traits\SlugTrait;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
-use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
@@ -66,6 +66,7 @@ class Location
      * @ORM\Column(name="slug", type="string", length=60, nullable=false)
      */
     protected $slug;
+    use SlugTrait;
 
     /**
      * @var string
@@ -148,37 +149,6 @@ class Location
         }
         $this->children->remove($child);
         $child->setParent(null);
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = trim($name);
-        $this->setSlug();
-
-        return $this;
-    }
-
-    public function __toString(): string
-    {
-        return (true === empty($this->getName())) ? '' : $this->getName();
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(): self
-    {
-        $slugify = new Slugify();
-        $this->slug = $slugify->slugify($this->name);
 
         return $this;
     }
