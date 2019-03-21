@@ -1,0 +1,23 @@
+menu:
+    item:
+        project: Projeto
+admin:
+    block:
+        bl_001: " "
+        bl_002: " "
+        bl_003: " "
+    label:
+        description: Descrição
+        chapters: Capítulos
+        id: Id
+        name: Nome
+        parent: Pai
+        picture: Imagem
+        predefined: Predefinido
+        slug: Slug
+        uploaded_picture: Imagem
+Action: Ações
+Menu Item Project: Projeto
+Project Create: Criar projeto
+Project List: Listar projetos
+Project: Projeto

@@ -41,7 +41,7 @@ class ImageProcessor
     const IMAGE_LOCALE = self::PATH_LOCALES_DEFAULT.'/locale.png';
     const IMAGE_KEY_ITEM = self::PATH_KEY_ITEMS_DEFAULT.'/key-item.png';
     const IMAGE_CONCEPT = self::PATH_CONCEPTS_DEFAULT.'/concept.png';
-    const IMAGE_PROJECT = self::PATH_CONCEPTS_DEFAULT.'/project.png';
+    const IMAGE_PROJECT = self::PATH_PROJECTS_DEFAULT.'/project.png';
 
     const IMAGE_TYPE_CHARACTER = 'character';
     const IMAGE_TYPE_KEY_ITEM = 'key-item';
@@ -183,6 +183,7 @@ class ImageProcessor
             && self::IMAGE_TYPE_LOCALE !== $type
             && self::IMAGE_TYPE_KEY_ITEM !== $type
             && self::IMAGE_TYPE_CONCEPT !== $type
+            && self::IMAGE_TYPE_PROJECT !== $type
         ) {
             throw new InvalidImageType();
         }

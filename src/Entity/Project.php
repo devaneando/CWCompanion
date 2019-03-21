@@ -6,6 +6,7 @@ use App\Entity\Chapter;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\PictureTrait;
 use App\Entity\Traits\SlugTrait;
+use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -85,7 +86,40 @@ class Project
         return $this->id;
     }
 
-    public function getChapters(): ?ArrayCollection
+    public function setDefaultPicture(): self
+    {
+        if (null !== $this->picture) {
+            return $this;
+        }
+
+        $image = ImageProcessor::IMAGE_PROJECT;
+        $date = new \DateTime();
+        $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
+        if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
+            mkdir(ImageProcessor::PATH_UPLOAD);
+        }
+        copy($image, $newImage);
+
+        try {
+            /** @var Image $image */
+            $image = ImageProcessor::get($newImage);
+            $image = ImageProcessor::move($image, ImageProcessor::IMAGE_TYPE_PROJECT, $this->getId());
+            $this->picture = $image->getWebPath();
+
+            return $this;
+        } catch (\Exception $ex) {
+            throw new \Exception(
+                'Something unexpected happened in '.basename($ex->getFile()).'#'.$ex->getLine().': '.$ex->getMessage(),
+                0,
+                $ex
+            );
+
+            return $this;
+        }
+    }
+
+    /** @return PersistentCollection|ArrayCollection */
+    public function getChapters()
     {
         return $this->chapters;
     }
