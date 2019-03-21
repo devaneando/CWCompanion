@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Chapter;
 use App\Entity\Character;
+use App\Entity\KeyItem;
 use App\Entity\Location;
 use App\Entity\Traits\DescriptionTrait;
 use App\Exception\Parameter\InvalidAmbient;
@@ -92,9 +93,21 @@ class Scene
      */
     protected $characters;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="KeyItem", inversedBy="scenes")
+     * @ORM\JoinTable(
+     *      name="scenes_key_items",
+     *      joinColumns={@ORM\JoinColumn(name="scene_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="key_item_id", referencedColumnName="id")}
+     * )
+     */
+    protected $keyItems;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
+        $this->keyItems = new ArrayCollection();
     }
 
     public function getId(): ?UuidInterface
@@ -209,6 +222,40 @@ class Scene
             return $this;
         }
         $this->characters->removeElement($object);
+        $object->removeScene($this);
+
+        return $this;
+    }
+
+    public function getKeyItems(): ?ArrayCollection
+    {
+        return $this->keyItems;
+    }
+
+    public function setKeyItems(?PersistentCollection $keyItems): self
+    {
+        $this->keyItems = $keyItems;
+
+        return $this;
+    }
+
+    public function addKeyItem(KeyItem $object): self
+    {
+        if (true === $this->keyItems->contains($object)) {
+            return $this;
+        }
+        $this->keyItems->add($object);
+        $object->addScene($this);
+
+        return $this;
+    }
+
+    public function removeKeyItem(KeyItem $object): self
+    {
+        if (false === $this->keyItems->contains($object)) {
+            return $this;
+        }
+        $this->keyItems->removeElement($object);
         $object->removeScene($this);
 
         return $this;

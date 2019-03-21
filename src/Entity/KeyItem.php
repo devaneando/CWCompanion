@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use App\Entity\Scene;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\PictureTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,6 +36,12 @@ class KeyItem
      * @ORM\Column(name="id", type="uuid", unique=true)
      */
     protected $id;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Scene", mappedBy="keyItems")
+     */
+    protected $scenes;
 
     /**
      * @var string
@@ -78,6 +87,11 @@ class KeyItem
      * @ORM\Column(name="general_notes", type="text", nullable=true)
      */
     protected $generalNotes;
+
+    public function __construct()
+    {
+        $this->scenes = new ArrayCollection();
+    }
 
     public function getId(): ?UuidInterface
     {
@@ -136,6 +150,40 @@ class KeyItem
     public function setGeneralNotes(string $generalNotes): self
     {
         $this->generalNotes = trim($generalNotes);
+
+        return $this;
+    }
+
+    public function getScenes(): ?ArrayCollection
+    {
+        return $this->scenes;
+    }
+
+    public function setScenes(?PersistentCollection $scenes): self
+    {
+        $this->scenes = $scenes;
+
+        return $this;
+    }
+
+    public function addScene(Scene $object): self
+    {
+        if (true === $this->scenes->contains($object)) {
+            return $this;
+        }
+        $this->scenes->add($object);
+        $object->addKeyItem($this);
+
+        return $this;
+    }
+
+    public function removeScene(Scene $object): self
+    {
+        if (false === $this->scenes->contains($object)) {
+            return $this;
+        }
+        $this->scenes->removeElement($object);
+        $object->removeKeyItem($this);
 
         return $this;
     }
