@@ -1,0 +1,21 @@
+menu:
+    item:
+        chapter: Capítulo
+admin:
+    block:
+        bl_001: " "
+        bl_002: " "
+        bl_003: " "
+    label:
+        content: Conteúdo
+        description: Descrição
+        id: Id
+        name: Nome
+        project: Projeto
+        scenes: Cenas
+        slug: Slug
+Action: Ações
+Menu Item Chapter: Capítulo
+Chapter Create: Criar capítulo
+Chapter List: Listar capítulos
+Chapter: Capítulo

@@ -82,7 +82,15 @@ final class ProjectAdmin extends AbstractAdmin
         $formMapper
             ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
             ->add('name', null, ['label' => 'admin.label.name'])
-            ->add('chapters', null, ['label' => 'admin.label.chapters'])
+            ->add(
+                'chapters',
+                null,
+                [
+                    'label'=> 'admin.label.chapters',
+                    'sortable' => true,
+                    'route' => ['name' => 'show'],
+                ]
+            )
             ->end()
             ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
@@ -99,7 +107,15 @@ final class ProjectAdmin extends AbstractAdmin
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add('slug', null, ['label' => 'admin.label.slug'])
-            ->add('chapters', null, ['label' => 'admin.label.chapters'])
+            ->add(
+                'chapters',
+                null,
+                [
+                    'label'=> 'admin.label.chapters',
+                    'sortable' => true,
+                    'route' => ['name' => 'show'],
+                ]
+            )
             ->end()
             ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
             ->add(

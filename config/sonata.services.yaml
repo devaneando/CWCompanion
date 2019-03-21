@@ -84,7 +84,22 @@ services:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.zodiac, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
-    ##### Writing groupd
+    ##### Writing group
+
+    sonata.admin.project:
+        class: App\Admin\ProjectAdmin
+        arguments: [~, App\Entity\Project, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.project, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
+    sonata.admin.chapter:
+        class: App\Admin\ChapterAdmin
+        arguments: [~, App\Entity\Chapter, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.chapter, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.character:
         class: App\Admin\CharacterAdmin
         arguments: [~, App\Entity\Character, ~]
@@ -115,9 +130,3 @@ services:
             - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.location, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
-    sonata.admin.project:
-        class: App\Admin\ProjectAdmin
-        arguments: [~, App\Entity\Project, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.project, label_translator_strategy: "sonata.admin.label.strategy.native" }
-        public: true
