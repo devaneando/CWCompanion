@@ -83,6 +83,12 @@ class Scene
     use DescriptionTrait;
 
     /**
+     * @var string
+     * @ORM\Column(name="notes", type="text", nullable=true)
+     */
+    protected $notes;
+
+    /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Character", inversedBy="scenes")
      * @ORM\JoinTable(
@@ -189,6 +195,18 @@ class Scene
     public function setDescription(?string $description): self
     {
         $this->description = trim($description);
+
+        return $this;
+    }
+
+    public function getNotes(): ?string
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(?string $notes): self
+    {
+        $this->notes = trim($notes);
 
         return $this;
     }
