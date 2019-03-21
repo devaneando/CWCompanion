@@ -16,6 +16,12 @@ admin:
         predefined: Predefinido
         slug: Slug
         uploaded_picture: Imagem
+ambient:
+    EXT: Exterior
+    INT: Interior
+time:
+    DAY: Dia
+    NIGHT: Noite
 Action: Ações
 Menu Item Scene: Cena
 Scene Create: Criar cena
