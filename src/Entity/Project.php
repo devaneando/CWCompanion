@@ -124,7 +124,8 @@ class Project
         return $this->chapters;
     }
 
-    public function setChapters(?PersistentCollection $chapters): self
+    /** @param ArrayCollection|PersistentCollection|null $chapters */
+    public function setChapters($chapters): self
     {
         $this->chapters = $chapters;
 

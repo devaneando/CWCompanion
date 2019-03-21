@@ -124,12 +124,14 @@ class Location
         return $this;
     }
 
-    public function getChildren(): ?ArrayCollection
+    /** @return ArrayCollection|PersistentCollection */
+    public function getChildren()
     {
         return $this->children;
     }
 
-    public function setChildren(?PersistentCollection $children): self
+    /** @param ArrayCollection|PersistentCollection|null $children */
+    public function setChildren($children): self
     {
         $this->children = $children;
 
@@ -217,12 +219,14 @@ class Location
         return $this;
     }
 
-    public function getScenes(): ?ArrayCollection
+    /** @return ArrayCollection|PersistentCollection */
+    public function getScenes()
     {
         return $this->scenes;
     }
 
-    public function setScenes(?PersistentCollection $scenes): self
+    /** @param ArrayCollection|PersistentCollection|null $scenes */
+    public function setScenes($scenes): self
     {
         $this->scenes = $scenes;
 

@@ -102,12 +102,14 @@ class Concept
         return $this;
     }
 
-    public function getChildren(): ?PersistentCollection
+    /** @return ArrayCollection|PersistentCollection */
+    public function getChildren()
     {
         return $this->children;
     }
 
-    public function setChildren(?PersistentCollection $children): self
+    /** @param ArrayCollection|PersistentCollection|null $children */
+    public function setChildren($children): self
     {
         $this->children = $children;
 

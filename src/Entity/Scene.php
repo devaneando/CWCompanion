@@ -211,12 +211,14 @@ class Scene
         return $this;
     }
 
-    public function getCharacters(): ?ArrayCollection
+    /** @return ArrayCollection|PersistentCollection */
+    public function getCharacters()
     {
         return $this->characters;
     }
 
-    public function setCharacters(?PersistentCollection $characters): self
+    /** @param ArrayCollection|PersistentCollection|null $characters */
+    public function setCharacters($characters): self
     {
         $this->characters = $characters;
 
@@ -245,12 +247,14 @@ class Scene
         return $this;
     }
 
-    public function getKeyItems(): ?ArrayCollection
+    /** @return ArrayCollection|PersistentCollection */
+    public function getKeyItems()
     {
         return $this->keyItems;
     }
 
-    public function setKeyItems(?PersistentCollection $keyItems): self
+    /** @param ArrayCollection|PersistentCollection|null $keyItems */
+    public function setKeyItems($keyItems): self
     {
         $this->keyItems = $keyItems;
 

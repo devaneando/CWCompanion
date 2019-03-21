@@ -154,12 +154,14 @@ class KeyItem
         return $this;
     }
 
-    public function getScenes(): ?ArrayCollection
+    /** @return ArrayCollection|PersistentCollection */
+    public function getScenes()
     {
         return $this->scenes;
     }
 
-    public function setScenes(?PersistentCollection $scenes): self
+    /** @param ArrayCollection|PersistentCollection|null $scenes */
+    public function setScenes($scenes): self
     {
         $this->scenes = $scenes;
 
