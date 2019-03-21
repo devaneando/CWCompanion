@@ -13,8 +13,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 final class ChapterAdmin extends AbstractAdmin
 {
-    protected $baseRouteName = 'writing_chapter';
-    protected $baseRoutePattern = 'writing/chapter';
+    protected $baseRouteName = 'project_chapter';
+    protected $baseRoutePattern = 'project/chapter';
     protected $datagridValues = [
         '_sort_by'=> 'name',
         '_sort_order'=> 'ASC',

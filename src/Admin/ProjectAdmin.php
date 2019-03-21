@@ -15,8 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 final class ProjectAdmin extends AbstractAdmin
 {
-    protected $baseRouteName = 'writing_project';
-    protected $baseRoutePattern = 'writing/project';
+    protected $baseRouteName = 'project_project';
+    protected $baseRoutePattern = 'project/project';
     protected $datagridValues = [
         '_sort_by'=> 'name',
         '_sort_order'=> 'ASC',

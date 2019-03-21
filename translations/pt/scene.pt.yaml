@@ -1,0 +1,23 @@
+menu:
+    item:
+        scene: Cena
+admin:
+    block:
+        bl_001: " "
+        bl_002: " "
+        bl_003: " "
+    label:
+        description: Descrição
+        chapters: Capítulos
+        id: Id
+        name: Nome
+        parent: Pai
+        picture: Imagem
+        predefined: Predefinido
+        slug: Slug
+        uploaded_picture: Imagem
+Action: Ações
+Menu Item Scene: Cena
+Scene Create: Criar cena
+Scene List: Listar cenas
+Scene: Cena
