@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Scene;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\PictureTrait;
 use App\Entity\Traits\SlugTrait;
@@ -40,14 +41,14 @@ class Location
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Location", mappedBy="parent")
      */
-    private $children;
+    protected $children;
 
     /**
      * @var self
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @var string
@@ -94,9 +95,16 @@ class Location
      */
     protected $generalNotes;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Scene", mappedBy="location")
+     */
+    protected $scenes;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->scenes = new ArrayCollection();
     }
 
     public function getId(): ?UuidInterface
@@ -116,7 +124,7 @@ class Location
         return $this;
     }
 
-    public function getChildren(): ?PersistentCollection
+    public function getChildren(): ?ArrayCollection
     {
         return $this->children;
     }
@@ -205,6 +213,40 @@ class Location
     public function setGeneralNotes(string $generalNotes): self
     {
         $this->generalNotes = trim($generalNotes);
+
+        return $this;
+    }
+
+    public function getScenes(): ?ArrayCollection
+    {
+        return $this->scenes;
+    }
+
+    public function setScenes(?PersistentCollection $scenes): self
+    {
+        $this->scenes = $scenes;
+
+        return $this;
+    }
+
+    public function addScene(Scene $object): self
+    {
+        if (true === $this->scenes->contains($object)) {
+            return $this;
+        }
+        $this->scenes->add($object);
+        $object->setLocation($this);
+
+        return $this;
+    }
+
+    public function removeScene(Scene $object): self
+    {
+        if (false === $this->scenes->contains($object)) {
+            return $this;
+        }
+        $this->scenes->removeElement($object);
+        $object->setLocation(null);
 
         return $this;
     }

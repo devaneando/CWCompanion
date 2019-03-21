@@ -73,7 +73,7 @@ class Project
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Chapter", mappedBy="project")
      */
-    private $chapters;
+    protected $chapters;
 
     public function __construct()
     {

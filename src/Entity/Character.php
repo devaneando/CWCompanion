@@ -9,6 +9,7 @@ use App\Entity\Gender;
 use App\Entity\IntelligenceQuotient;
 use App\Entity\Profession;
 use App\Entity\Religion;
+use App\Entity\Scene;
 use App\Entity\Sexuality;
 use App\Entity\Temperament;
 use App\Entity\Traits\PictureTrait;
@@ -18,7 +19,9 @@ use App\Model\ExtendedDate;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -46,6 +49,12 @@ class Character
      * @ORM\Column(name="id", type="uuid", unique=true)
      */
     protected $id;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Scene", mappedBy="characters")
+     */
+    protected $scenes;
 
     /**
      * @var string
@@ -522,6 +531,11 @@ class Character
      */
     protected $personalHistory;
 
+    public function __construct()
+    {
+        $this->scenes = new ArrayCollection();
+    }
+
     public function getId(): ?UuidInterface
     {
         return $this->id;
@@ -530,6 +544,40 @@ class Character
     public function setId(UuidInterface $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getScenes(): ?ArrayCollection
+    {
+        return $this->scenes;
+    }
+
+    public function setScenes(?PersistentCollection $scenes): self
+    {
+        $this->scenes = $scenes;
+
+        return $this;
+    }
+
+    public function addScene(Scene $object): self
+    {
+        if (true === $this->scenes->contains($object)) {
+            return $this;
+        }
+        $this->scenes->add($object);
+        $object->addCharacter($this);
+
+        return $this;
+    }
+
+    public function removeScene(Scene $object): self
+    {
+        if (false === $this->scenes->contains($object)) {
+            return $this;
+        }
+        $this->scenes->removeElement($object);
+        $object->removeCharacter($this);
 
         return $this;
     }

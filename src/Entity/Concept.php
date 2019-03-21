@@ -58,14 +58,14 @@ class Concept
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Concept", mappedBy="parent")
      */
-    private $children;
+    protected $children;
 
     /**
      * @var self
      * @ORM\ManyToOne(targetEntity="Concept", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @var string

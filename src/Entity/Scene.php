@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Entity\Chapter;
+use App\Entity\Character;
+use App\Entity\Location;
 use App\Entity\Traits\DescriptionTrait;
 use App\Exception\Parameter\InvalidAmbient;
 use App\Exception\Parameter\InvalidTime;
 use App\Traits\ConstantValidationTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -39,7 +43,7 @@ class Scene
      * @ORM\ManyToOne(targetEntity="Chapter", inversedBy="scenes")
      * @ORM\JoinColumn(name="chapter_id", referencedColumnName="id")
      */
-    private $chapter;
+    protected $chapter;
 
     /**
      * @var int
@@ -56,6 +60,13 @@ class Scene
     protected $ambient;
 
     /**
+     * @var Location
+     * @ORM\ManyToOne(targetEntity="Location", inversedBy="scenes")
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
+     */
+    protected $location;
+
+    /**
      * @var string
      * @ORM\Column(name="time", type="string", length=5, unique=false, nullable=false, options={"default":"DAY"})
      * @Assert\NotNull(message="validator.not_blank")
@@ -69,6 +80,22 @@ class Scene
      */
     protected $description;
     use DescriptionTrait;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Character", inversedBy="scenes")
+     * @ORM\JoinTable(
+     *      name="scenes_characters",
+     *      joinColumns={@ORM\JoinColumn(name="scene_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="character_id", referencedColumnName="id")}
+     * )
+     */
+    protected $characters;
+
+    public function __construct()
+    {
+        $this->characters = new ArrayCollection();
+    }
 
     public function getId(): ?UuidInterface
     {
@@ -114,6 +141,18 @@ class Scene
         return $this;
     }
 
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
     public function getTime(): ?string
     {
         return $this->time;
@@ -137,6 +176,40 @@ class Scene
     public function setDescription(?string $description): self
     {
         $this->description = trim($description);
+
+        return $this;
+    }
+
+    public function getCharacters(): ?ArrayCollection
+    {
+        return $this->characters;
+    }
+
+    public function setCharacters(?PersistentCollection $characters): self
+    {
+        $this->characters = $characters;
+
+        return $this;
+    }
+
+    public function addCharacter(Character $object): self
+    {
+        if (true === $this->characters->contains($object)) {
+            return $this;
+        }
+        $this->characters->add($object);
+        $object->addScene($this);
+
+        return $this;
+    }
+
+    public function removeCharacter(Character $object): self
+    {
+        if (false === $this->characters->contains($object)) {
+            return $this;
+        }
+        $this->characters->removeElement($object);
+        $object->removeScene($this);
 
         return $this;
     }

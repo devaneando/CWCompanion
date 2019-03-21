@@ -49,13 +49,13 @@ class Chapter
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="chapters")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
-    private $project;
+    protected $project;
 
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Scene", mappedBy="chapter")
      */
-    private $scenes;
+    protected $scenes;
 
     /**
      * @var string
