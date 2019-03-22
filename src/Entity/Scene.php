@@ -26,7 +26,7 @@ class Scene
     const AMBIENT_EXTERIOR = 'EXT';
     const AMBIENT_INTERIOR = 'INT';
     const TIME_DAY = 'DAY';
-    const TIME_NIGHT = 'NIGHT ';
+    const TIME_NIGHT = 'NIGHT';
 
     use ConstantValidationTrait;
 

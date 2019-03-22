@@ -7,15 +7,16 @@ admin:
         bl_002: " "
         bl_003: " "
     label:
+        ambient: Ambiente
+        chapter: Capítulo
+        characters: Personagens
         description: Descrição
-        chapters: Capítulos
         id: Id
-        name: Nome
-        parent: Pai
-        picture: Imagem
-        predefined: Predefinido
-        slug: Slug
-        uploaded_picture: Imagem
+        key_items: Items chave
+        location: Local
+        notes: Notas
+        scene: Cena
+        time: Horário
 ambient:
     EXT: Exterior
     INT: Interior

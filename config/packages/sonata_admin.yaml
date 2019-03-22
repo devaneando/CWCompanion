@@ -30,7 +30,8 @@ sonata_admin:
                 roles: [ROLE_ADMIN]
                 icon: "<i class=\"fa fa-pencil\"></i>"
     templates:
-        layout:  sonata.html.twig
+        layout: sonata.html.twig
+        base_list_field: 'CRUD/base_list_field.html.twig'
     assets:
         extra_stylesheets:
             - bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-blue-light.min.css
