@@ -32,6 +32,7 @@ sonata_admin:
     templates:
         layout: sonata.html.twig
         base_list_field: 'CRUD/base_list_field.html.twig'
+        edit: 'CRUD/edit.html.twig'
     assets:
         extra_stylesheets:
             - bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-blue-light.min.css
