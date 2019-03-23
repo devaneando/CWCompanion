@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class ExtraActionsAdminController extends CRUDController
+abstract class ExtraActionsController extends CRUDController
 {
     use LoggerTrait;
 

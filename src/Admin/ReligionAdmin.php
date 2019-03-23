@@ -4,26 +4,19 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Traits\EnsurePredefinedTrait;
 use App\Admin\Type\MarkDownType;
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class ReligionAdmin extends AbstractAdmin
+final class ReligionAdmin extends AbstractExtraActionsAdmin
 {
     use EnsurePredefinedTrait;
     protected $baseRouteName = 'shared_religion';
     protected $baseRoutePattern = 'shared/religion';
-    protected $datagridValues = [
-        '_sort_by' => 'name',
-        '_sort_order' => 'ASC',
-        '_per_page' => 512,
-    ];
-    protected $maxPerPage = 512;
-    protected $perPageOptions = [64, 128, 256, 512];
     protected $translationDomain = 'religion';
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void

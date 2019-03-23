@@ -4,25 +4,18 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 
-final class ZodiacAdmin extends AbstractAdmin
+final class ZodiacAdmin extends AbstractExtraActionsAdmin
 {
     protected $baseRouteName = 'shared_zodiac';
     protected $baseRoutePattern = 'shared/zodiac';
-    protected $datagridValues = [
-        '_sort_by' => 'name',
-        '_sort_order' => 'ASC',
-        '_per_page' => 512,
-    ];
-    protected $maxPerPage = 512;
-    protected $perPageOptions = [64, 128, 256, 512];
     protected $translationDomain = 'zodiac';
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void

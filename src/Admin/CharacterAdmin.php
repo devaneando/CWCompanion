@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\ExtendedDateType;
 use App\Admin\Type\MarkDownType;
 use App\Entity\Character;
-use App\Model\ExtendedDate;
 use App\Traits\Repository\ZodiacRepositoryTrait;
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -17,18 +16,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
-final class CharacterAdmin extends AbstractAdmin
+final class CharacterAdmin extends AbstractExtraActionsAdmin
 {
     use ZodiacRepositoryTrait;
     protected $baseRouteName = 'writing_character';
     protected $baseRoutePattern = 'writing/character';
-    protected $datagridValues = [
-        '_sort_by'=> 'name',
-        '_sort_order'=> 'ASC',
-        '_per_page'=> 512,
-    ];
-    protected $maxPerPage = 512;
-    protected $perPageOptions = [64, 128, 256, 512];
     protected $translationDomain = 'character';
 
     public function preUpdate($object)

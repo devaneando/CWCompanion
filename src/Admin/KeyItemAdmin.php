@@ -4,26 +4,19 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
 use App\Entity\KeyItem;
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-final class KeyItemAdmin extends AbstractAdmin
+final class KeyItemAdmin extends AbstractExtraActionsAdmin
 {
     protected $baseRouteName = 'shared_key_item';
     protected $baseRoutePattern = 'shared/key-item';
-    protected $datagridValues = [
-        '_sort_by' => 'name',
-        '_sort_order' => 'ASC',
-        '_per_page' => 512,
-    ];
-    protected $maxPerPage = 512;
-    protected $perPageOptions = [64, 128, 256, 512];
     protected $translationDomain = 'key_item';
 
     public function preUpdate($object)
