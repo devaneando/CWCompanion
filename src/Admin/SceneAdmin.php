@@ -4,26 +4,19 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\AmbientType;
 use App\Admin\Type\MarkDownType;
 use App\Admin\Type\TimeType;
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class SceneAdmin extends AbstractAdmin
+final class SceneAdmin extends AbstractExtraActionsAdmin
 {
     protected $baseRouteName = 'project_scene';
     protected $baseRoutePattern = 'project/scene';
-    protected $datagridValues = [
-        '_sort_by'=> 'name',
-        '_sort_order'=> 'ASC',
-        '_per_page'=> 512,
-    ];
-    protected $maxPerPage = 512;
-    protected $perPageOptions = [64, 128, 256, 512];
     protected $translationDomain = 'scene';
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void

@@ -102,7 +102,7 @@ services:
 
     sonata.admin.scene:
         class: App\Admin\SceneAdmin
-        arguments: [~, App\Entity\Scene, ~]
+        arguments: [~, App\Entity\Scene, App\Controller\CRUD\SceneAdminController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: project, label: menu.item.scene, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
