@@ -57,7 +57,6 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
                 [
                     'label'=> 'admin.label.project',
                     'sortable' => true,
-                    'route' => ['name' => 'show'],
                 ]
             )
             ->add(
@@ -66,7 +65,6 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
                 [
                     'label'=> 'admin.label.scenes',
                     'sortable' => true,
-                    'route' => ['name' => 'show'],
                 ]
             )
             ->add('content', MarkDownType::class, ['label' => 'admin.label.content']);

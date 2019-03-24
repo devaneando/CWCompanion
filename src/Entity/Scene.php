@@ -116,6 +116,20 @@ class Scene
         $this->keyItems = new ArrayCollection();
     }
 
+    /**
+     * Get a string representation of the object.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        if (true === empty($this->scene)) {
+            return '';
+        }
+
+        return $this->getScene();
+    }
+
     public function getId(): ?UuidInterface
     {
         return $this->id;

@@ -81,7 +81,6 @@ final class ProjectAdmin extends AbstractExtraActionsAdmin
                 [
                     'label'=> 'admin.label.chapters',
                     'sortable' => true,
-                    'route' => ['name' => 'show'],
                 ]
             )
             ->end()
