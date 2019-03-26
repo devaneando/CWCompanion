@@ -4,13 +4,13 @@
     {{ parent() }}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
     <link href="/static/css/preview.css" rel="stylesheet">
+    <link href="/static/lib/Prism/prism.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-{% endblock %}
-
-{% block sonata_admin_content %}
-    {% block content %}
-    {% endblock %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}

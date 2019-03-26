@@ -4,7 +4,7 @@
 {% block title %}{{ character.nickname }}{% endblock %}
 
 {% block content %}
-<pre>
+<pre><code class="markdown">
 # {{ character.nickname }}
 &lt;img src=&quot;{{ character.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
 
@@ -162,5 +162,5 @@
 ### {{ 'title.personal_history'|trans() }}
 
 {{ character.personalHistory|maybeNull() }}
-</pre>
+</code></pre>
 {% endblock %}

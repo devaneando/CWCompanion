@@ -63,3 +63,10 @@
         sidebar-collapse
     {%- endif -%}"
 {%- endblock -%}
+
+{% block sonata_admin_content %}
+    {% block content %}
+    {% endblock %}
+    {% block javascripts_end %}
+    {% endblock %}
+{% endblock %}
