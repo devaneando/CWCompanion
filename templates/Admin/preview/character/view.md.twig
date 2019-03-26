@@ -1,0 +1,166 @@
+{% extends 'sonata_preview.html.twig' %}
+{% trans_default_domain 'character' %}
+
+{% block title %}{{ character.nickname }}{% endblock %}
+
+{% block content %}
+<pre>
+# {{ character.nickname }}
+&lt;img src=&quot;{{ character.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
+
+**{{ character.fullName }}** (_{{ birthData() }}{{ deathData() }}_) {{ 'text.is_a_character'|trans() }} **{{ character.characterType.name }}**  {{ 'text.conceptualized_as'|trans() }} **{{ character.concept }}**.
+
+{{ character.nickname }}, {{ ageData() }}, {{ genderdata() }}, {{ character.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ character.zodiacSign }}.
+
+### {{ 'title.inherited_characteristics'|trans() }}
+
+**{{ 'title.eyes'|trans() }}**: {{ character.eyes|maybeNull }}
+
+**{{ 'title.skin'|trans() }}**: {{ character.skin|maybeNull }}
+
+**{{ 'title.eyehairs'|trans() }}**: {{ character.hair|maybeNull }}
+
+**{{ 'title.odor'|trans() }}**: {{ character.odor|maybeNull }}
+
+**{{ 'title.body_type'|trans() }}**: {{ character.bodyType|maybeNull }}
+
+**{{ 'title.height'|trans() }}**: {{ character.height|maybeNull }}
+
+### {{ 'title.distinctive_marks'|trans() }}
+
+{{ character.distinguishingMarks|maybeNull }}
+
+### {{ 'title.health_problems'|trans() }}
+
+{{ character.healthProblems|maybeNull }}
+
+### {{ 'title.speech_patterns'|trans() }}
+
+{{ character.speechPattern|maybeNull }}
+
+### {{ 'title.notes'|trans() }}
+
+{{ character.generalNotes|maybeNull }}
+
+### {{ 'title.lifestyle'|trans() }}
+
+{{ character.nickname }} {{ 'text.lives_in'|trans() }} {{ homeData() }}, {{ occupationData() }}. {{ 'text.earns'|trans()|capitalize }} {{ character.income|maybeNull() }}
+
+### {{ 'title.lifestyle'|trans() }}
+
+{{ character.dressStyle|maybeNull() }}
+
+### {{ 'title.hobbies'|trans() }}
+
+{{ character.hobbies|maybeNull() }}
+
+### {{ 'title.healthy_habits'|trans() }}
+
+{{ character.goodHabits|maybeNull() }}
+
+### {{ 'title.bad_habits'|trans() }}
+
+{{ character.badHabits|maybeNull() }}
+
+### {{ 'title.music_preferences'|trans() }}
+
+{{ character.favoriteMusic|maybeNull() }}
+
+### {{ 'title.sports_preferences'|trans() }}
+
+{{ character.favoriteSports|maybeNull() }}
+
+### {{ 'title.gastronomic_preferences'|trans() }}
+
+{{ character.favoriteFood|maybeNull() }}
+
+### {{ 'title.intellectual_characteristics'|trans() }}
+
+{{ character.nickname }} {{ 'text.has_a'|trans() }} {{ character.iqLevel|maybeNull }} {{ 'text.and'|trans()|capitalize }} {{ 'text.is'|trans()|capitalize }} {{ character.educationalLevel|maybeNull }}.
+
+### {{ 'title.skills'|trans() }}
+
+{{ character.skills|maybeNull() }}
+
+### {{ 'title.vision_of_self'|trans() }}
+
+{{ character.selfView|maybeNull() }}
+
+### {{ 'title.emotional_characteristics'|trans() }}
+
+{{ character.nickname }} {{ temperamentData() }}.
+
+### {{ 'title.personality'|trans() }}
+
+{{ character.personality|maybeNull() }}
+
+### {{ 'title.traumas'|trans() }}
+
+{{ character.emotionalTraumas|maybeNull() }}
+
+### {{ 'title.what_motivates_you'|trans() }}
+
+{{ character.whatMotivates|maybeNull() }}
+
+### {{ 'title.what_makes_you_happy'|trans() }}
+
+{{ character.whatMakesHappy|maybeNull() }}
+
+### {{ 'title.what_are_you_afraid'|trans() }}
+
+{{ character.whatFrightens|maybeNull() }}
+
+### {{ 'title.what_would_change_in_your_life'|trans() }}
+
+{{ character.whatWouldChange|maybeNull() }}
+
+### {{ 'title.your_biggest_secret'|trans() }}
+
+{{ character.deepestSecret|maybeNull() }}
+
+### {{ 'title.beliefs_and_spirituality'|trans() }}
+{{ character.nickname }} {{spiritualData() }}.
+
+### {{ 'title.religious_beliefs'|trans() }}
+
+{{ character.spiritualBeliefs|maybeNull() }}
+
+### {{ 'title.how_do_your_beliefs_affect_your_life'|trans() }}
+
+{{ character.spiritualEffectsInLife|maybeNull() }}
+
+### {{ 'title.family_relationships'|trans() }}
+
+### {{ 'title.parents'|trans() }}
+
+{{ character.parents|maybeNull() }}
+
+### {{ 'title.siblings'|trans() }}
+
+{{ character.siblings|maybeNull() }}
+
+### {{ 'title.children'|trans() }}
+
+{{ character.children|maybeNull() }}
+
+### {{ 'title.spouses_and_exes'|trans() }}
+
+{{ character.spouse|maybeNull() }}
+
+### {{ 'title.friends'|trans() }}
+
+{{ character.friends|maybeNull() }}
+
+### {{ 'title.enemies'|trans() }}
+
+{{ character.enemies|maybeNull() }}
+
+### {{ 'title.other_important_relationships'|trans() }}
+
+{{ character.significantOthers|maybeNull() }}
+
+### {{ 'title.personal_history'|trans() }}
+
+{{ character.personalHistory|maybeNull() }}
+</pre>
+{% endblock %}

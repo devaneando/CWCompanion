@@ -101,53 +101,60 @@ Character Create: Criar personagem
 Character List: Listar personagens
 Character: Personagem
 Menu Item Character: Personagem
-
 text:
     age_data: "{0} cuja idade é desconhecida|]1, Inf[ com %age% anos"
+    and_is: e é
     and: e
-    and_follows: e segue
     but_also: mas também
+    conceptualized_as: conceptualizada como
     earns: ganha
+    has_a: tem uma
+    is_a_character: é uma personagem
     is_gender_defined: é do sexo %gender%
     is_gender_undefined: é de sexo %gender%
     is_gender: é %gender%
     is_not: não é
+    is_zodiac_sign: e é do signo de
     is: é
+    lives_in: vive em
     mainly: predominantemente
     no_value: não preenchido
     occupation_is_nice: gosta do que faz
     occupation_is_not_nice: não gosta do que faz
     religious: religioso
-    is_a_character: é uma personagem
-    is_zodiac_sign: e é do signo de
-    conceptualized_as: conceptualizada como
 title:
     bad_habits: Maus hábitos
     beliefs_and_spirituality: Crenças e espiritualidade
-    brothers: Irmãos
+    body_type: Tipo físico
     children: Filhos
     distinctive_marks: Marcas distintivas
     emotional_characteristics: Características emocionais
     enemies: Inimigos
+    eyes: Olhos
     family_relationships: Família e relacionamentos
     friends: Amigos
     gastronomic_preferences: Preferências gastronómicas
+    hair: Cabelos
     health_problems: Problemas de saúde
     healthy_habits: Hábitos saudáveis
+    height: Altura
     hobbies: Hobbies
     how_do_your_beliefs_affect_your_life: De que maneira suas crenças afetam sua vida?
     inherited_characteristics: Características herdadas
     intellectual_characteristics: Características intelectuais
     lifestyle: Estilo de vida
     music_preferences: Preferências musicais
-    news: Notais
+    notes: Notas
+    odor: Odor
     other_important_relationships: Outros relacionamentos importantes
     parents: Pais
     personal_history: História pessoal
     personal_style: Estilo pessoal
     personality: Personalidade
     religious_beliefs: Crenças religiosas
+    siblings: Irmãos
     skills: Habilidades
+    skin: Pele
     speech_patterns: Padrões de fala
     sports_preferences: Preferências desportivas
     spouses_and_exes: Cônjuges e exes
@@ -156,5 +163,5 @@ title:
     what_are_you_afraid: Do que tem medo?
     what_makes_you_happy: O que faz feliz?
     what_motivates_you: O que motiva?
-    what_would_change_in_your_life: O que mudaria na sua vida
+    what_would_change_in_your_life: O que mudaria na sua vida?
     your_biggest_secret: Seu maior segredo

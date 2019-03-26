@@ -1,5 +1,6 @@
 action:
     cancel: Cancelar
+    preview: Preview
 day:
     none: Dia
 extended_date:

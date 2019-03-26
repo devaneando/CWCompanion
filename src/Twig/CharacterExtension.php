@@ -163,7 +163,7 @@ class CharacterExtension extends \Twig_Extension
 
         $line = (true === $character->isReligious()) ? $this->getTranslator()->trans('text.is', [], 'character') : $this->getTranslator()->trans('text.is_not', [], 'character');
         $line .= ' '.$this->getTranslator()->trans('text.religious', [], 'character').' '
-            .$this->getTranslator()->trans('text.and_follows', [], 'character').' '.$character->getReligion();
+            .$this->getTranslator()->trans('text.and_is', [], 'character').' '.$character->getReligion();
 
         return $line;
     }

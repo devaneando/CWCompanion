@@ -1,0 +1,217 @@
+{% extends 'sonata_preview.html.twig' %}
+{% trans_default_domain 'character' %}
+
+{% block title %}{{ character.nickname }}{% endblock %}
+
+{% block content %}
+
+<div id="ww">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 centered">
+                <img src="{{ character.picture }}" alt="{{ character.nickname }}">
+                <h1>{{ character.nickname }}</h1>
+                <p>
+                    <b>{{ character.fullName }}</b> (<i>{{ birthData() }}{{ deathData() }}</i>) {{ 'text.is_a_character'|trans() }} <b>{{ character.characterType.name }}
+                    </b> {{ 'text.conceptualized_as'|trans() }} <b>{{ character.concept }}</b>.<br />
+                    {{ character.nickname }}, {{ ageData() }}, {{ genderdata() }}, {{ character.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ character.zodiacSign }}.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row left">
+        <h2>
+            <i class="fas fa-compress-arrows-alt"></i>
+            {{ 'title.inherited_characteristics'|trans() }}
+        </h2>
+    </div>
+    <div class="row left">
+        <p><b>{{ 'title.eyes'|trans() }}</b>: {{ character.eyes|maybeNull }}</p>
+        <p><b>{{ 'title.skin'|trans() }}</b>: {{ character.skin|maybeNull }}</p>
+        <p><b>{{ 'title.eyehairs'|trans() }}</b>: {{ character.hair|maybeNull }}</p>
+        <p><b>{{ 'title.odor'|trans() }}</b>: {{ character.odor|maybeNull }}</p>
+        <p><b>{{ 'title.body_type'|trans() }}</b>: {{ character.bodyType|maybeNull }}</p>
+        <p><b>{{ 'title.height'|trans() }}</b>: {{ character.height|maybeNull }}</p>
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.distinctive_marks'|trans() }}</h3>
+        {{ character.distinguishingMarks|maybeNull|markdown }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.health_problems'|trans() }}</h3>
+        {{ character.healthProblems|maybeNull|markdown }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.speech_patterns'|trans() }}</h3>
+        {{ character.speechPattern|maybeNull|markdown }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.notes'|trans() }}</h3>
+        {{ character.generalNotes|maybeNull|markdown }}
+    </div>
+
+    <div class="row left">
+        <h2>
+            <i class="fas fa-tshirt"></i>
+            {{ 'title.lifestyle'|trans() }}
+        </h2>
+    </div>
+    <div class="row left">
+        <p>
+            {{ character.nickname }} {{ 'text.lives_in'|trans() }} {{ homeData() }}, {{ occupationData() }}.
+            &nbsp;{{ 'text.earns'|trans()|capitalize  }} {{ character.income|maybeNull() }}
+        </p>
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.lifestyle'|trans() }}</h3>
+        {{ character.dressStyle|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.hobbies'|trans() }}</h3>
+        {{ character.hobbies|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.healthy_habits'|trans() }}</h3>
+        {{ character.goodHabits|maybeNull() |markdown()}}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.bad_habits'|trans() }}</h3>
+        {{ character.badHabits|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.music_preferences'|trans() }}</h3>
+        {{ character.favoriteMusic|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.sports_preferences'|trans() }}</h3>
+        {{ character.favoriteSports|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.gastronomic_preferences'|trans() }}</h3>
+        {{ character.favoriteFood|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h2>
+            <i class="fas fa-brain"></i>
+            {{ 'title.intellectual_characteristics'|trans() }}
+        </h2>
+    </div>
+    <div class="row left">
+        <p class="mb-4">{{ 'title.lifestyle'|trans() }}
+            {{ character.nickname }} {{ 'text.has_a'|trans() }} {{ character.iqLevel|maybeNull }} {{ 'text.and'|trans()|capitalize  }}
+            &nbsp;{{ 'text.is'|trans()|capitalize  }} {{ character.educationalLevel|maybeNull }}.
+        </p>
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.skills'|trans() }}</h3>
+        {{ character.skills|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.vision_of_self'|trans() }}</h3>
+        {{ character.selfView|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h2>
+            <i class="fas fa-heartbeat"></i>
+            {{ 'title.emotional_characteristics'|trans() }}
+        </h2>
+    </div>
+    <div class="row left">
+        <p class="mb-4">
+            {{ character.nickname }} {{ temperamentData() }}.
+        </p>
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.personality'|trans() }}</h3>
+        {{ character.personality|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.traumas'|trans() }}</h3>
+        {{ character.emotionalTraumas|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.what_motivates_you'|trans() }}</h3>
+        {{ character.whatMotivates|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.what_makes_you_happy'|trans() }}</h3>
+        {{ character.whatMakesHappy|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.what_are_you_afraid'|trans() }}</h3>
+        {{ character.whatFrightens|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.what_would_change_in_your_life'|trans() }}</h3>
+        {{ character.whatWouldChange|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.your_biggest_secret'|trans() }}</h3>
+        {{ character.deepestSecret|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h2>
+            <i class="fas fa-pray"></i>
+            {{ 'title.beliefs_and_spirituality'|trans() }}
+        </h2>
+    </div>
+    <div class="row left">
+        {{ character.nickname }} {{spiritualData() }}.
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.religious_beliefs'|trans() }}</h3>
+        {{ character.spiritualBeliefs|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.how_do_your_beliefs_affect_your_life'|trans() }}</h3>
+        {{ character.spiritualEffectsInLife|maybeNull()|markdown() }}
+    </div>
+
+    <div class="row left">
+        <h2>
+            <i class="fas fa-baby"></i>
+            {{ 'title.family_relationships'|trans() }}
+        </h2>
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.parents'|trans() }}</h3>
+        {{ character.parents|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.siblings'|trans() }}</h3>
+        {{ character.siblings|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.children'|trans() }}</h3>
+        {{ character.children|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.spouses_and_exes'|trans() }}</h3>
+        {{ character.spouse|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+    <h3>{{ 'title.friends'|trans() }}</h3>
+        {{ character.friends|maybeNull()|markdown() }}
+        </div>
+    <div class="row left">
+        <h3>{{ 'title.enemies'|trans() }}</h3>
+        {{ character.enemies|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h3>{{ 'title.other_important_relationships'|trans() }}</h3>
+        {{ character.significantOthers|maybeNull()|markdown() }}
+    </div>
+    <div class="row left">
+        <h2>
+            <i class="fas fa-user-secret"></i>
+            {{ 'title.personal_history'|trans() }}
+        </h2>
+    </div>
+    <div class="row left">
+        {{ character.personalHistory|maybeNull()|markdown() }}
+    </div>
+</div>
+{% endblock %}

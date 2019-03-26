@@ -12,6 +12,7 @@ use App\Traits\Repository\ZodiacRepositoryTrait;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -22,6 +23,24 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
     protected $baseRouteName = 'writing_character';
     protected $baseRoutePattern = 'writing/character';
     protected $translationDomain = 'character';
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        parent::configureRoutes($collection);
+        $collection->add('preview', $this->getRouterIdParameter().'/preview/{type}', ['type' => 'html']);
+    }
+
+    public function configureActionButtons($action, $object = null)
+    {
+        $list = parent::configureActionButtons($action, $object);
+        if (in_array($action, ['show', 'list']) && $object) {
+            $list['preview'] = [
+                'template' => 'Button/preview_button.html.twig',
+            ];
+        }
+
+        return $list;
+    }
 
     public function preUpdate($object)
     {
@@ -98,6 +117,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 'actions'=> [
                     'show'=> [],
                     'edit'=> [],
+                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete'=> [],
                 ],
             ]);

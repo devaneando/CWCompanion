@@ -1,0 +1,16 @@
+{% extends 'sonata.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="/static/css/preview.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sonata_admin_content %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}

@@ -19,7 +19,9 @@ abstract class AbstractExtraActionsAdmin extends AbstractAdmin
 
     protected function configureRoutes(RouteCollection $collection)
     {
-        $collection->add('cancel', $this->getBaseRouteName().'/cancel');
+        parent::configureRoutes($collection);
+        $collection
+            ->add('cancel');
     }
 
     public function configureActionButtons($action, $object = null)
