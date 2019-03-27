@@ -18,6 +18,7 @@ final class ProjectAdmin extends AbstractExtraActionsAdmin
     protected $baseRouteName = 'project_project';
     protected $baseRoutePattern = 'project/project';
     protected $translationDomain = 'project';
+    protected $hasRoutePreview = true;
 
     public function preUpdate($object)
     {

@@ -3,37 +3,37 @@
 namespace App\Twig;
 
 use App\Entity\Character;
-use App\Traits\Services\TranslatorTrait;
+use App\Twig\AbstractPreviewExtension;
 
-class CharacterExtension extends \Twig_Extension
+class CharacterExtension extends AbstractPreviewExtension
 {
-    use TranslatorTrait;
-
     public function getFilters(): array
     {
         return [
-            'maybeNull' => new \Twig_SimpleFilter('maybeNull', [$this, 'getMaybeNull'], ['needs_context' => false]),
+            'maybe_null' => new \Twig_SimpleFilter('maybe_null', [$this, 'getMaybeNull'], ['needs_context' => false]),
         ];
     }
 
     public function getFunctions(): array
     {
         return [
-            'birthData' => new \Twig_Function('birthData', [$this, 'getBirthData'], ['needs_context' => true]),
-            'deathData' => new \Twig_Function('deathData', [$this, 'getDeathData'], ['needs_context' => true]),
-            'ageData' => new \Twig_Function('ageData', [$this, 'getAgeData'], ['needs_context' => true]),
-            'genderdata' => new \Twig_Function('genderdata', [$this, 'getGenderdata'], ['needs_context' => true]),
-            'homeData' => new \Twig_Function('homeData', [$this, 'getHomeData'], ['needs_context' => true]),
-            'occupationData' => new \Twig_Function('occupationData', [$this, 'getOccupationData'], ['needs_context' => true]),
-            'temperamentData' => new \Twig_Function('temperamentData', [$this, 'getTemperamentData'], ['needs_context' => true]),
-            'spiritualData' => new \Twig_Function('spiritualData', [$this, 'getSpiritualData'], ['needs_context' => true]),
+            'birth_data' => new \Twig_Function('birth_data', [$this, 'getBirthData'], ['needs_context' => true]),
+            'death_data' => new \Twig_Function('death_data', [$this, 'getDeathData'], ['needs_context' => true]),
+            'age_data' => new \Twig_Function('age_data', [$this, 'getAgeData'], ['needs_context' => true]),
+            'gender_data' => new \Twig_Function('gender_data', [$this, 'getGenderdata'], ['needs_context' => true]),
+            'home_data' => new \Twig_Function('home_data', [$this, 'getHomeData'], ['needs_context' => true]),
+            'occupation_data' => new \Twig_Function('occupation_data', [$this, 'getOccupationData'], ['needs_context' => true]),
+            'temperament_data' => new \Twig_Function('temperament_data', [$this, 'getTemperamentData'], ['needs_context' => true]),
+            'spiritual_data' => new \Twig_Function('spiritual_data', [$this, 'getSpiritualData'], ['needs_context' => true]),
+            'the_character' => new \Twig_Function('the_character', [$this, 'getCharacter'], ['needs_context' => false]),
+            'the_characters' => new \Twig_Function('the_characters', [$this, 'getCharacters'], ['needs_context' => false]),
         ];
     }
 
     public function getBirthData($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         $line = (null !== $character->getBirthCountry()) ? $character->getBirthCountry().', ' : '';
         $line .= (null !== $character->getBirthCity()) ? $character->getBirthCity().', ' : '';
@@ -45,7 +45,7 @@ class CharacterExtension extends \Twig_Extension
     public function getDeathData($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         if (null === $character->getDateOfDeath()) {
             return '';
@@ -62,7 +62,7 @@ class CharacterExtension extends \Twig_Extension
     public function getAgeData($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         return $this->getTranslator()->transChoice(
             'text.age_data',
@@ -75,7 +75,7 @@ class CharacterExtension extends \Twig_Extension
     public function getGenderdata($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         switch ($character->getGender()->getCode()) {
             case 'm':
@@ -115,7 +115,7 @@ class CharacterExtension extends \Twig_Extension
     public function getHomeData($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         if (true === is_null($character->getHomeCountry() && true === is_null($character->getHomeCity()))) {
             return $this->getTranslator()->trans('text.no_value', [], 'character');
@@ -132,7 +132,7 @@ class CharacterExtension extends \Twig_Extension
     public function getOccupationData($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         $label = (true === empty($character->isCurrentOccupationNice())) ? 'text.occupation_is_not_nice' : 'text.occupation_is_nice';
         $line = $this->getTranslator()->trans('text.is', [], 'character').' '
@@ -145,7 +145,7 @@ class CharacterExtension extends \Twig_Extension
     public function getTemperamentData($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         $line = $this->getTranslator()->trans('text.is', [], 'character').' '.$this->getTranslator()->trans('text.mainly', [], 'character').' '.
         $character->getDominantTemperament();
@@ -159,12 +159,79 @@ class CharacterExtension extends \Twig_Extension
     public function getSpiritualData($context): string
     {
         /** @var Character $character */
-        $character = $context['character'];
+        $character = $context['object'];
 
         $line = (true === $character->isReligious()) ? $this->getTranslator()->trans('text.is', [], 'character') : $this->getTranslator()->trans('text.is_not', [], 'character');
         $line .= ' '.$this->getTranslator()->trans('text.religious', [], 'character').' '
             .$this->getTranslator()->trans('text.and_is', [], 'character').' '.$character->getReligion();
 
         return $line;
+    }
+
+    protected function getCharacterAsMarkdown(Character $character): string
+    {
+        return sprintf(
+            '[%s](%s)',
+            $character->getNickname(),
+            'writing_character_preview'
+        );
+    }
+
+    public function getCharacter(Character $character, $type = self::TYPE_HTML, string $class=''): string
+    {
+        if (self::TYPE_MARKDOWN === trim($type)) {
+            return $this->getCharacterAsMarkdown($character);
+        }
+
+        return sprintf(
+            '<a class="%s" href="%s" target="_blank" alt="%s">%s</a>',
+            $class,
+            'writing_character_preview',
+            $character->getNickname(),
+            $character->getNickname()
+        );
+    }
+
+    protected function getCharactersAsMarkdown($object): string
+    {
+        if (false === method_exists($object, 'getCharacters')) {
+            return '';
+        }
+
+        if (true === empty($object->getCharacters())) {
+            return '';
+        }
+
+        $result = '';
+        /** @var Character $character */
+        foreach ($object->getCharacters() as $character) {
+            $result .= sprintf("- %s\n", $this->getCharacterAsMarkdown($character));
+        }
+
+        return $result;
+    }
+
+    public function getCharacters($object, $type = self::TYPE_HTML, string $class=''): string
+    {
+        if (self::TYPE_MARKDOWN === trim($type)) {
+            return $this->getCharactersAsMarkdown($object);
+        }
+
+        if (false === method_exists($object, 'getCharacters')) {
+            return '';
+        }
+
+        if (true === empty($object->getCharacters())) {
+            return '';
+        }
+
+        $result = "<ul>\n";
+        /** @var Character $character */
+        foreach ($object->getCharacters() as $character) {
+            $result .= sprintf("    <li>%s</li>\n", $this->getCharacter($character, self::TYPE_HTML, $class));
+        }
+        $result .= "</ul>\n";
+
+        return $result;
     }
 }

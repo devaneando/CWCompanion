@@ -1,166 +1,166 @@
 {% extends 'sonata_preview.html.twig' %}
 {% trans_default_domain 'character' %}
 
-{% block title %}{{ character.nickname }}{% endblock %}
+{% block title %}{{ object.nickname }}{% endblock %}
 
 {% block content %}
 <pre><code class="markdown">
-# {{ character.nickname }}
-&lt;img src=&quot;{{ character.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
+# {{ object.nickname }}
+&lt;img src=&quot;{{ object.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
 
-**{{ character.fullName }}** (_{{ birthData() }}{{ deathData() }}_) {{ 'text.is_a_character'|trans() }} **{{ character.characterType.name }}**  {{ 'text.conceptualized_as'|trans() }} **{{ character.concept }}**.
+**{{ object.fullName }}** (_{{ birthData() }}{{ deathData() }}_) {{ 'text.is_a_object'|trans() }} **{{ object.characterType.name }}**  {{ 'text.conceptualized_as'|trans() }} **{{ object.concept }}**.
 
-{{ character.nickname }}, {{ ageData() }}, {{ genderdata() }}, {{ character.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ character.zodiacSign }}.
+{{ object.nickname }}, {{ ageData() }}, {{ genderdata() }}, {{ object.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ object.zodiacSign }}.
 
-### {{ 'title.inherited_characteristics'|trans() }}
+### {{ 'title.inherited_objectistics'|trans() }}
 
-**{{ 'title.eyes'|trans() }}**: {{ character.eyes|maybeNull }}
+**{{ 'title.eyes'|trans() }}**: {{ object.eyes|maybe_null }}
 
-**{{ 'title.skin'|trans() }}**: {{ character.skin|maybeNull }}
+**{{ 'title.skin'|trans() }}**: {{ object.skin|maybe_null }}
 
-**{{ 'title.eyehairs'|trans() }}**: {{ character.hair|maybeNull }}
+**{{ 'title.eyehairs'|trans() }}**: {{ object.hair|maybe_null }}
 
-**{{ 'title.odor'|trans() }}**: {{ character.odor|maybeNull }}
+**{{ 'title.odor'|trans() }}**: {{ object.odor|maybe_null }}
 
-**{{ 'title.body_type'|trans() }}**: {{ character.bodyType|maybeNull }}
+**{{ 'title.body_type'|trans() }}**: {{ object.bodyType|maybe_null }}
 
-**{{ 'title.height'|trans() }}**: {{ character.height|maybeNull }}
+**{{ 'title.height'|trans() }}**: {{ object.height|maybe_null }}
 
 ### {{ 'title.distinctive_marks'|trans() }}
 
-{{ character.distinguishingMarks|maybeNull }}
+{{ object.distinguishingMarks|maybe_null }}
 
 ### {{ 'title.health_problems'|trans() }}
 
-{{ character.healthProblems|maybeNull }}
+{{ object.healthProblems|maybe_null }}
 
 ### {{ 'title.speech_patterns'|trans() }}
 
-{{ character.speechPattern|maybeNull }}
+{{ object.speechPattern|maybe_null }}
 
 ### {{ 'title.notes'|trans() }}
 
-{{ character.generalNotes|maybeNull }}
+{{ object.generalNotes|maybe_null }}
 
 ### {{ 'title.lifestyle'|trans() }}
 
-{{ character.nickname }} {{ 'text.lives_in'|trans() }} {{ homeData() }}, {{ occupationData() }}. {{ 'text.earns'|trans()|capitalize }} {{ character.income|maybeNull() }}
+{{ object.nickname }} {{ 'text.lives_in'|trans() }} {{ homeData() }}, {{ occupationData() }}. {{ 'text.earns'|trans()|capitalize }} {{ object.income|maybe_null() }}
 
 ### {{ 'title.lifestyle'|trans() }}
 
-{{ character.dressStyle|maybeNull() }}
+{{ object.dressStyle|maybe_null() }}
 
 ### {{ 'title.hobbies'|trans() }}
 
-{{ character.hobbies|maybeNull() }}
+{{ object.hobbies|maybe_null() }}
 
 ### {{ 'title.healthy_habits'|trans() }}
 
-{{ character.goodHabits|maybeNull() }}
+{{ object.goodHabits|maybe_null() }}
 
 ### {{ 'title.bad_habits'|trans() }}
 
-{{ character.badHabits|maybeNull() }}
+{{ object.badHabits|maybe_null() }}
 
 ### {{ 'title.music_preferences'|trans() }}
 
-{{ character.favoriteMusic|maybeNull() }}
+{{ object.favoriteMusic|maybe_null() }}
 
 ### {{ 'title.sports_preferences'|trans() }}
 
-{{ character.favoriteSports|maybeNull() }}
+{{ object.favoriteSports|maybe_null() }}
 
 ### {{ 'title.gastronomic_preferences'|trans() }}
 
-{{ character.favoriteFood|maybeNull() }}
+{{ object.favoriteFood|maybe_null() }}
 
-### {{ 'title.intellectual_characteristics'|trans() }}
+### {{ 'title.intellectual_objectistics'|trans() }}
 
-{{ character.nickname }} {{ 'text.has_a'|trans() }} {{ character.iqLevel|maybeNull }} {{ 'text.and'|trans()|capitalize }} {{ 'text.is'|trans()|capitalize }} {{ character.educationalLevel|maybeNull }}.
+{{ object.nickname }} {{ 'text.has_a'|trans() }} {{ object.iqLevel|maybe_null }} {{ 'text.and'|trans()|capitalize }} {{ 'text.is'|trans()|capitalize }} {{ object.educationalLevel|maybe_null }}.
 
 ### {{ 'title.skills'|trans() }}
 
-{{ character.skills|maybeNull() }}
+{{ object.skills|maybe_null() }}
 
 ### {{ 'title.vision_of_self'|trans() }}
 
-{{ character.selfView|maybeNull() }}
+{{ object.selfView|maybe_null() }}
 
-### {{ 'title.emotional_characteristics'|trans() }}
+### {{ 'title.emotional_objectistics'|trans() }}
 
-{{ character.nickname }} {{ temperamentData() }}.
+{{ object.nickname }} {{ temperamentData() }}.
 
 ### {{ 'title.personality'|trans() }}
 
-{{ character.personality|maybeNull() }}
+{{ object.personality|maybe_null() }}
 
 ### {{ 'title.traumas'|trans() }}
 
-{{ character.emotionalTraumas|maybeNull() }}
+{{ object.emotionalTraumas|maybe_null() }}
 
 ### {{ 'title.what_motivates_you'|trans() }}
 
-{{ character.whatMotivates|maybeNull() }}
+{{ object.whatMotivates|maybe_null() }}
 
 ### {{ 'title.what_makes_you_happy'|trans() }}
 
-{{ character.whatMakesHappy|maybeNull() }}
+{{ object.whatMakesHappy|maybe_null() }}
 
 ### {{ 'title.what_are_you_afraid'|trans() }}
 
-{{ character.whatFrightens|maybeNull() }}
+{{ object.whatFrightens|maybe_null() }}
 
 ### {{ 'title.what_would_change_in_your_life'|trans() }}
 
-{{ character.whatWouldChange|maybeNull() }}
+{{ object.whatWouldChange|maybe_null() }}
 
 ### {{ 'title.your_biggest_secret'|trans() }}
 
-{{ character.deepestSecret|maybeNull() }}
+{{ object.deepestSecret|maybe_null() }}
 
 ### {{ 'title.beliefs_and_spirituality'|trans() }}
-{{ character.nickname }} {{spiritualData() }}.
+{{ object.nickname }} {{spiritualData() }}.
 
 ### {{ 'title.religious_beliefs'|trans() }}
 
-{{ character.spiritualBeliefs|maybeNull() }}
+{{ object.spiritualBeliefs|maybe_null() }}
 
 ### {{ 'title.how_do_your_beliefs_affect_your_life'|trans() }}
 
-{{ character.spiritualEffectsInLife|maybeNull() }}
+{{ object.spiritualEffectsInLife|maybe_null() }}
 
 ### {{ 'title.family_relationships'|trans() }}
 
 ### {{ 'title.parents'|trans() }}
 
-{{ character.parents|maybeNull() }}
+{{ object.parents|maybe_null() }}
 
 ### {{ 'title.siblings'|trans() }}
 
-{{ character.siblings|maybeNull() }}
+{{ object.siblings|maybe_null() }}
 
 ### {{ 'title.children'|trans() }}
 
-{{ character.children|maybeNull() }}
+{{ object.children|maybe_null() }}
 
 ### {{ 'title.spouses_and_exes'|trans() }}
 
-{{ character.spouse|maybeNull() }}
+{{ object.spouse|maybe_null() }}
 
 ### {{ 'title.friends'|trans() }}
 
-{{ character.friends|maybeNull() }}
+{{ object.friends|maybe_null() }}
 
 ### {{ 'title.enemies'|trans() }}
 
-{{ character.enemies|maybeNull() }}
+{{ object.enemies|maybe_null() }}
 
 ### {{ 'title.other_important_relationships'|trans() }}
 
-{{ character.significantOthers|maybeNull() }}
+{{ object.significantOthers|maybe_null() }}
 
 ### {{ 'title.personal_history'|trans() }}
 
-{{ character.personalHistory|maybeNull() }}
+{{ object.personalHistory|maybe_null() }}
 </code></pre>
 {% endblock %}

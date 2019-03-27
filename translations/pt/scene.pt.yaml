@@ -17,6 +17,16 @@ admin:
         notes: Notas
         scene: Cena
         time: Horário
+title:
+    characters: Personagens
+    description: Descrição
+    key_items: Items chave
+    locations: Locais
+    notes: Notas
+text:
+    project: Projeto
+    chapter: capítulo
+    location: local
 ambient:
     EXT: Exterior
     INT: Interior

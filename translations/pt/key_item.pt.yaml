@@ -18,6 +18,11 @@ admin:
         predefined: Predefinido
         slug: Slug
         uploaded_picture: Imagem
+title:
+    description: Descrição
+    notes: Notas
+    history: História
+    scenes: Cenas
 Action: Ações
 Menu Item Key Item: Item chave
 Key Item Create: Criar item chave

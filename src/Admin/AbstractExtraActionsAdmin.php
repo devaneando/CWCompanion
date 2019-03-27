@@ -9,6 +9,9 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 abstract class AbstractExtraActionsAdmin extends AbstractAdmin
 {
+    protected $hasRouteCancel = true;
+    protected $hasRoutePreview = false;
+
     protected $datagridValues = [
         '_sort_by'=> 'name',
         '_sort_order'=> 'ASC',
@@ -20,16 +23,28 @@ abstract class AbstractExtraActionsAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         parent::configureRoutes($collection);
-        $collection
-            ->add('cancel');
+        if (true === $this->hasRouteCancel) {
+            $collection->add('cancel');
+        }
+
+        if (true === $this->hasRoutePreview) {
+            $collection->add('preview', $this->getRouterIdParameter().'/preview/{type}', ['type' => 'html']);
+        }
     }
 
     public function configureActionButtons($action, $object = null)
     {
         $list = parent::configureActionButtons($action, $object);
-        if (in_array($action, ['create', 'show', 'edit']) && $object) {
+
+        if ($this->hasRouteCancel && in_array($action, ['create', 'show', 'edit']) && $object) {
             $list['cancel'] = [
                 'template' => 'Button/cancel_button.html.twig',
+            ];
+        }
+
+        if ($this->hasRoutePreview && in_array($action, ['show', 'list']) && $object) {
+            $list['preview'] = [
+                'template' => 'Button/preview_button.html.twig',
             ];
         }
 

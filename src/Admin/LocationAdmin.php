@@ -18,6 +18,7 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
     protected $baseRouteName = 'writing_location';
     protected $baseRoutePattern = 'writing/location';
     protected $translationDomain = 'location';
+    protected $hasRoutePreview = true;
 
     public function preUpdate($object)
     {
@@ -58,6 +59,7 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
+                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);

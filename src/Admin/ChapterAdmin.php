@@ -16,6 +16,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
     protected $baseRouteName = 'project_chapter';
     protected $baseRoutePattern = 'project/chapter';
     protected $translationDomain = 'chapter';
+    protected $hasRoutePreview = true;
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {

@@ -33,6 +33,7 @@ services:
         resource: '../src/Twig'
         calls:
             - ['setTranslator', ['@translator']]
+            - ['setRouter', ['@router']]
         tags: [twig.extension]
 
     ##### Test only

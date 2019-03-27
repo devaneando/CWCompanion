@@ -1,0 +1,42 @@
+{% extends 'sonata_preview.html.twig' %}
+{% set trans_default_domain = "scene" %}
+{% trans_default_domain 'scene' %}
+
+{% block title %}{{ the_scene_name(object)|raw() }}{% endblock %}
+
+{% block content %}
+    <div id="object">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 centered">
+                    <h1>{{ the_scene_name(object)|raw() }}</h1>
+                </div>
+            </div>
+            <div class="row left">
+                <p>
+                    <ul>
+                        <li><b>{{ 'text.project'|trans()|capitalize() }}</b>: {{ the_project(object.chapter.project)|raw() }}</li>
+                        <li><b>{{ 'text.chapter'|trans()|capitalize() }}</b>: {{ the_chapter(object.chapter)|raw() }}</li>
+                        <li><b>{{ 'text.location'|trans()|capitalize() }}</b>: {{ the_location(object.location)|raw() }}</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('description')|raw() }}</h2>
+                {{ object.description|maybe_null|markdown }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('notes')|raw() }}</h2>
+                {{ object.notes|maybe_null|markdown }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('characters')|raw() }}</h2>
+                {{ the_characters(object)|raw() }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('key_items')|raw() }}</h2>
+                {{ the_scenes(object)|raw() }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

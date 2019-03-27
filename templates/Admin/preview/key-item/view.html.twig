@@ -1,6 +1,6 @@
 {% extends 'sonata_preview.html.twig' %}
-{% set trans_default_domain = "concept" %}
-{% trans_default_domain 'concept' %}
+{% set trans_default_domain = "key_item" %}
+{% trans_default_domain 'key_item' %}
 
 {% block title %}{{ object.name }}{% endblock %}
 
@@ -14,20 +14,19 @@
                 </div>
             </div>
             <div class="row left">
-                <h2>{{ the_title('content')|raw() }}</h2>
-                {{ object.content|maybe_null|markdown }}
+                <h2>{{ the_title('description')|raw() }}</h2>
+                {{ object.description|maybe_null|markdown }}
             </div>
             <div class="row left">
-                <h2>{{ the_title('derivations')|raw() }}</h2>
+                <h2>{{ the_title('history')|raw() }}</h2>
+                {{ object.history|maybe_null|markdown }}
             </div>
             <div class="row left">
-                <h3>{{ 'title.parent'|trans() }}</h3>
-                {{ the_parent(object)|raw() }}
+                <h2>{{ the_title('notes')|raw() }}</h2>
+                {{ object.generalNotes|maybe_null|markdown }}
             </div>
             <div class="row left">
-                <h3>{{ 'title.children'|trans() }}</h3>
-                {{ the_children(object)|raw() }}
+                {{ the_scenes('scenes')|raw() }}
             </div>
-        </div>
     </div>
 {% endblock %}

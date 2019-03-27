@@ -18,6 +18,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
     protected $baseRouteName = 'project_scene';
     protected $baseRoutePattern = 'project/scene';
     protected $translationDomain = 'scene';
+    protected $hasRoutePreview = true;
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
@@ -79,6 +80,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
+                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);

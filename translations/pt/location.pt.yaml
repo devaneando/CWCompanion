@@ -18,6 +18,15 @@ admin:
         predefined: Predefinido
         slug: Slug
         uploaded_picture: Imagem
+title:
+    children: Locais filhos
+    description: Descrição
+    general_notes: Notas
+    history: História
+    notes: Notas
+    parent: Local pai
+    relations: Relações
+    scenes: Cenas
 Action: Ações
 Menu Item Location: Local
 Location Create: Criar local

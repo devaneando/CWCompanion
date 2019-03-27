@@ -7,6 +7,7 @@ namespace App\Controller\CRUD;
 use App\Controller\CRUD\ExtraActionsController;
 use App\Entity\Scene;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class SceneController extends ExtraActionsController
 {

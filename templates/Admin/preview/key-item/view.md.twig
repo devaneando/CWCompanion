@@ -1,0 +1,27 @@
+{% extends 'sonata_preview.html.twig' %}
+{% trans_default_domain 'key_item' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+<pre><code class="markdown">
+# {{ object.name }}
+&lt;img src=&quot;{{ object.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
+
+## {{ 'title.description'|trans() }}
+
+{{ object.description|maybe_null }}
+
+## {{ 'title.history'|trans() }}
+
+{{ object.history|maybe_null }}
+
+## {{ 'title.general_notes'|trans() }}
+
+{{ object.generalNotes|maybe_null }}
+
+## {{ 'title.scenes'|trans() }}
+
+{{ the_scenes(object, 'markdown') }}
+</code></pre>
+{% endblock %}

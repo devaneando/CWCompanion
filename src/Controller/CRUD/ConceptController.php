@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class ConceptController extends ExtraActionsController
 {
-    protected $templateFolder = 'key-item';
+    protected $templateFolder = 'concept';
 
     /**
      * @Route("/{id}/preview/{type}", name="writing_concept_preview")

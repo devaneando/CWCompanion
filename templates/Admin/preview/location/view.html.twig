@@ -1,6 +1,6 @@
 {% extends 'sonata_preview.html.twig' %}
-{% set trans_default_domain = "concept" %}
-{% trans_default_domain 'concept' %}
+{% set trans_default_domain = "location" %}
+{% trans_default_domain 'location' %}
 
 {% block title %}{{ object.name }}{% endblock %}
 
@@ -9,16 +9,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 centered">
-                    <img class="preview_main_picture" src="{{ object.picture }}" alt="{{ object.name }}">
                     <h1>{{ object.name }}</h1>
                 </div>
             </div>
             <div class="row left">
-                <h2>{{ the_title('content')|raw() }}</h2>
-                {{ object.content|maybe_null|markdown }}
+                <h2>{{ the_title('description')|raw() }}</h2>
+                {{ object.description|maybe_null|markdown }}
             </div>
             <div class="row left">
-                <h2>{{ the_title('derivations')|raw() }}</h2>
+                <h2>{{ the_title('history')|raw() }}</h2>
+                {{ object.history|maybe_null|markdown }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('notes')|raw() }}</h2>
+                {{ object.generalNotes|maybe_null|markdown }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('relations')|raw() }}</h2>
             </div>
             <div class="row left">
                 <h3>{{ 'title.parent'|trans() }}</h3>
@@ -27,6 +34,10 @@
             <div class="row left">
                 <h3>{{ 'title.children'|trans() }}</h3>
                 {{ the_children(object)|raw() }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('scenes')|raw() }}</h2>
+                {{ the_scenes(object)|raw() }}
             </div>
         </div>
     </div>

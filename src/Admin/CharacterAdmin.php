@@ -23,24 +23,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
     protected $baseRouteName = 'writing_character';
     protected $baseRoutePattern = 'writing/character';
     protected $translationDomain = 'character';
-
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        parent::configureRoutes($collection);
-        $collection->add('preview', $this->getRouterIdParameter().'/preview/{type}', ['type' => 'html']);
-    }
-
-    public function configureActionButtons($action, $object = null)
-    {
-        $list = parent::configureActionButtons($action, $object);
-        if (in_array($action, ['show', 'list']) && $object) {
-            $list['preview'] = [
-                'template' => 'Button/preview_button.html.twig',
-            ];
-        }
-
-        return $list;
-    }
+    protected $hasRoutePreview = true;
 
     public function preUpdate($object)
     {

@@ -10,6 +10,7 @@ use App\Entity\KeyItem;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
@@ -18,6 +19,7 @@ final class KeyItemAdmin extends AbstractExtraActionsAdmin
     protected $baseRouteName = 'writing_key_item';
     protected $baseRoutePattern = 'writing/key-item';
     protected $translationDomain = 'key_item';
+    protected $hasRoutePreview = true;
 
     public function preUpdate($object)
     {
@@ -56,6 +58,7 @@ final class KeyItemAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
+                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);
