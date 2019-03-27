@@ -10,14 +10,33 @@ use App\Entity\Concept;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 final class ConceptAdmin extends AbstractExtraActionsAdmin
 {
-    protected $baseRouteName = 'shared_concept';
-    protected $baseRoutePattern = 'shared/concept';
+    protected $baseRouteName = 'writing_concept';
+    protected $baseRoutePattern = 'writing/concept';
     protected $translationDomain = 'concept';
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        parent::configureRoutes($collection);
+        $collection->add('preview', $this->getRouterIdParameter().'/preview/{type}', ['type' => 'html']);
+    }
+
+    public function configureActionButtons($action, $object = null)
+    {
+        $list = parent::configureActionButtons($action, $object);
+        if (in_array($action, ['show', 'list']) && $object) {
+            $list['preview'] = [
+                'template' => 'Button/preview_button.html.twig',
+            ];
+        }
+
+        return $list;
+    }
 
     public function preUpdate($object)
     {
@@ -56,6 +75,7 @@ final class ConceptAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
+                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);
@@ -75,6 +95,7 @@ final class ConceptAdmin extends AbstractExtraActionsAdmin
         $formMapper
             ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('parent', null, ['label' => 'admin.label.parent'])
             ->end()
             ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)

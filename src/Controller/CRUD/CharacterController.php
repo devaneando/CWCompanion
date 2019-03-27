@@ -13,10 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class CharacterController extends ExtraActionsController
 {
-    const TYPE_HTML = 'html';
-    const TYPE_MARKDOWN = 'markdown';
-
-    /** @Route("/{id}/preview/{type}", name="writing_character_preview") */
     public function previewAction(Request $request, Character $character, string $type = self::TYPE_HTML)
     {
         switch (strtolower($type)) {

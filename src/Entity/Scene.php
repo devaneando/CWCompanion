@@ -123,11 +123,7 @@ class Scene
      */
     public function __toString(): string
     {
-        if (true === empty($this->scene)) {
-            return '';
-        }
-
-        return $this->getScene();
+        return (true === empty($this->getScene()))? '': $this->getScene();
     }
 
     public function getId(): ?UuidInterface

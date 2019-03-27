@@ -16,6 +16,11 @@ admin:
         predefined: Predefinido
         slug: Slug
         uploaded_picture: Imagem
+title:
+    content: Conteúdo
+    parent: Conceito pai
+    children: Conceitos filhos
+    derivations: Derivações
 Action: Ações
 Menu Item Concept: Conceito
 Concept Create: Criar conceito

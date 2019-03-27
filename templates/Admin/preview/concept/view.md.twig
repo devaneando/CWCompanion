@@ -1,0 +1,23 @@
+{% extends 'sonata_preview.html.twig' %}
+{% trans_default_domain 'concept' %}
+
+{% block title %}{{ concept.name }}{% endblock %}
+
+{% block content %}
+<pre><code class="markdown">
+# {{ concept.name }}
+&lt;img src=&quot;{{ concept.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
+
+## {{ 'title.content'|trans() }}
+
+{{ concept.content|maybeNull() }}
+
+## {{ 'title.parent'|trans() }}
+
+{{ the_parent(concept, 'markdown') }}
+
+## {{ 'title.children'|trans() }}
+
+{{ the_children(concept, 'markdown') }}
+</code></pre>
+{% endblock %}

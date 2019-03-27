@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 abstract class ExtraActionsController extends CRUDController
 {
+    const TYPE_HTML = 'html';
+    const TYPE_MARKDOWN = 'markdown';
+
     use LoggerTrait;
 
     public function cancelAction(Request $request)

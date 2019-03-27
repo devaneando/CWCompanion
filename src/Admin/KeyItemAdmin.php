@@ -15,8 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 final class KeyItemAdmin extends AbstractExtraActionsAdmin
 {
-    protected $baseRouteName = 'shared_key_item';
-    protected $baseRoutePattern = 'shared/key-item';
+    protected $baseRouteName = 'writing_key_item';
+    protected $baseRoutePattern = 'writing/key-item';
     protected $translationDomain = 'key_item';
 
     public function preUpdate($object)
