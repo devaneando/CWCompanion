@@ -26,7 +26,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\Repository\CharacterRepository")
- * @ORM\Table(name="characters")
+ * @ORM\Table(name="characters",
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unique_characters_fullname_nickname", columns={"fullname", "nickname"})
+ *     }
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
 class Character
