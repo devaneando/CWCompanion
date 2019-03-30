@@ -47,7 +47,8 @@ class Chapter
     /**
      * @var Project
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="chapters")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotNull(message="not_null.project")
      */
     protected $project;
 

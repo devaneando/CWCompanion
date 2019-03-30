@@ -42,7 +42,8 @@ class Scene
     /**
      * @var Chapter
      * @ORM\ManyToOne(targetEntity="Chapter", inversedBy="scenes")
-     * @ORM\JoinColumn(name="chapter_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="chapter_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotNull(message="not_null.chapter")
      */
     protected $chapter;
 
