@@ -34,11 +34,11 @@ class Zodiac
 
     /**
      * @ORM\Column(name="name", type="string", length=120, unique=true)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
      *     max = 120,
-     *     maxMessage="validator.length_max.name"
+     *     maxMessage="length.max.zodiac.name"
      * )
      */
     protected $name;
@@ -54,14 +54,14 @@ class Zodiac
     /**
      * @var \DateTimeInterface
      * @ORM\Column(name="start", type="date", nullable=false, unique=true)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $start;
 
     /**
      * @var \DateTimeInterface
      * @ORM\Column(name="end", type="date", nullable=false, unique=true)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $end;
 

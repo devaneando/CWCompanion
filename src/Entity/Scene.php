@@ -55,8 +55,8 @@ class Scene
     /**
      * @var string
      * @ORM\Column(name="ambient", type="string", length=3, unique=false, nullable=false, options={"default":"INT"})
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      */
     protected $ambient;
 
@@ -70,8 +70,8 @@ class Scene
     /**
      * @var string
      * @ORM\Column(name="time", type="string", length=5, unique=false, nullable=false, options={"default":"DAY"})
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      */
     protected $time;
 
@@ -123,7 +123,7 @@ class Scene
      */
     public function __toString(): string
     {
-        return (true === empty($this->getScene()))? '': $this->getScene();
+        return (true === empty($this->getScene())) ? '' : $this->getScene();
     }
 
     public function getId(): ?UuidInterface

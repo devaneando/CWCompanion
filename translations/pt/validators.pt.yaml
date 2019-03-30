@@ -1,0 +1,56 @@
+length:
+    max:
+        chapter:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        character:
+            birth_city: A cidade natal não pode ter mais do que {{ limit }} characteres.
+            body_odor: O cheiro olhos não pode ter mais do que {{ limit }} characteres.
+            body_type: O tipo físico olhos  não pode ter mais do que {{ limit }} characteres.
+            concept: O conceito não pode ter mais do que {{ limit }} characteres.
+            death_city: A cidande onde morreu não pode ter mais do que {{ limit }} characteres.
+            eyes: O campo olhos não pode ter mais do que {{ limit }} characteres.
+            fullname: O nome completo não pode ter mais do que {{ limit }} characteres.
+            hair: O campo cabelos  não pode ter mais do que {{ limit }} characteres.
+            home_city: O campo cidade onde vive não pode ter mais do que {{ limit }} characteres.
+            income: O renda olhos não pode ter mais do que {{ limit }} characteres.
+            nickname: A alcunha não pode ter mais do que {{ limit }} characteres.
+            skin: O campo pele  não pode ter mais do que {{ limit }} characteres.
+        character_type:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        concept:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        country:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+            code: O código não pode ter mais do que {{ limit }} characteres.
+        educational_degree:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        gender:
+            code: O código não pode ter mais do que {{ limit }} characteres.
+            icon: O ícone não pode ter mais do que {{ limit }} characteres.
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        intelligence_quotient:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        key_item:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        location:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        location_type:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        profession:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        project:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        religion:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        sexuality:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        temperament:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+        zodiac:
+            name: O nome não pode ter mais do que {{ limit }} characteres.
+not_blank:
+    default: O campo não pode estar em branco
+not_null:
+    default: O campo não pode estar em branco
+    chapter: Não é possível criar uma cena sem um capítulo.
+    project: Não é possível criar um capítulo sem um projeto.

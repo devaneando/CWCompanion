@@ -59,11 +59,11 @@ class Character
     /**
      * @var string
      * @ORM\Column(type="string", length=60, nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
      *     max = 60,
-     *     maxMessage="validator.character.length_max.nickname"
+     *     maxMessage="length.max.character.nickname"
      * )
      */
     protected $nickname;
@@ -77,11 +77,11 @@ class Character
     /**
      * @var string
      * @ORM\Column(name="fullname", type="string", length=255, nullable=true)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
      *     max = 255,
-     *     maxMessage="validator.character.length_max.fullname"
+     *     maxMessage="length.max.character.fullname"
      * )
      */
     protected $fullName;
@@ -97,7 +97,7 @@ class Character
      * @var Gender
      * @ORM\ManyToOne(targetEntity="Gender")
      * @ORM\JoinColumn(name="gender_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $gender;
 
@@ -105,18 +105,18 @@ class Character
      * @var CharacterType
      * @ORM\ManyToOne(targetEntity="CharacterType")
      * @ORM\JoinColumn(name="character_type_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $characterType;
 
     /**
      * @var string
      * @ORM\Column(name="concept", type="string", length=120, nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
      *     max = 120,
-     *     maxMessage="validator.character.length_max.concept"
+     *     maxMessage="length.max.character.concept"
      * )
      */
     protected $concept;
@@ -125,7 +125,7 @@ class Character
      * @var Country
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="birth_country_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $birthCountry;
 
@@ -134,7 +134,7 @@ class Character
      * @ORM\Column(name="birth_city", type="string", length=60, nullable=true)
      * @Assert\Length(
      *     max = 60,
-     *     maxMessage="validator.character.length_max.birth_city"
+     *     maxMessage="length.max.character.birth_city"
      * )
      */
     protected $birthCity;
@@ -164,7 +164,7 @@ class Character
      * @ORM\Column(name="death_city", type="string", length=60, nullable=true)
      * @Assert\Length(
      *     max = 60,
-     *     maxMessage="validator.character.length_max.death_city"
+     *     maxMessage="length.max.character.death_city"
      * )
      */
     protected $cityOfDeath;
@@ -180,7 +180,7 @@ class Character
      * @ORM\Column(name="eyes", type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255,
-     *     maxMessage="validator.character.length_max.eyes"
+     *     maxMessage="length.max.character.eyes"
      * )
      */
     protected $eyes;
@@ -190,7 +190,7 @@ class Character
      * @ORM\Column(name="skin", type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255,
-     *     maxMessage="validator.character.length_max.skin"
+     *     maxMessage="length.max.character.skin"
      * )
      */
     protected $skin;
@@ -200,7 +200,7 @@ class Character
      * @ORM\Column(name="hair", type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255,
-     *     maxMessage="validator.character.length_max.hair"
+     *     maxMessage="length.max.character.hair"
      * )
      */
     protected $hair;
@@ -210,7 +210,7 @@ class Character
      * @ORM\Column(name="body_type", type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255,
-     *     maxMessage="validator.character.length_max.body_type"
+     *     maxMessage="length.max.character.body_type"
      * )
      */
     protected $bodyType;
@@ -244,7 +244,7 @@ class Character
      * @ORM\Column(name="odor", type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255,
-     *     maxMessage="validator.character.length_max.body_odor"
+     *     maxMessage="length.max.character.body_odor"
      * )
      */
     protected $odor;
@@ -264,7 +264,7 @@ class Character
      * @var Country
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="home_country_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $homeCountry;
 
@@ -273,7 +273,7 @@ class Character
      * @ORM\Column(name="home_city", type="string", length=60, nullable=true)
      * @Assert\Length(
      *     max = 60,
-     *     maxMessage="validator.character.length_max.home_city"
+     *     maxMessage="length.max.character.home_city"
      * )
      */
     protected $homeCity;
@@ -282,7 +282,7 @@ class Character
      * @var Profession
      * @ORM\ManyToOne(targetEntity="Profession")
      * @ORM\JoinColumn(name="current_occupation_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $currentOccupation;
 
@@ -297,7 +297,7 @@ class Character
      * @ORM\Column(name="income", type="string", length=255, nullable=true)
      * @Assert\Length(
      *     max = 255,
-     *     maxMessage="validator.character.length_max.income"
+     *     maxMessage="length.max.character.income"
      * )
      */
     protected $income;
@@ -306,7 +306,7 @@ class Character
      * @var Sexuality
      * @ORM\ManyToOne(targetEntity="Sexuality")
      * @ORM\JoinColumn(name="sexuality_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $sexuality;
 
@@ -361,7 +361,7 @@ class Character
      * @var IntelligenceQuotient
      * @ORM\ManyToOne(targetEntity="IntelligenceQuotient")
      * @ORM\JoinColumn(name="iq_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $iqLevel;
 
@@ -369,7 +369,7 @@ class Character
      * @var EducationalDegree
      * @ORM\ManyToOne(targetEntity="EducationalDegree")
      * @ORM\JoinColumn(name="edu_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $educationalLevel;
 
@@ -394,7 +394,7 @@ class Character
      * @var Temperament
      * @ORM\ManyToOne(targetEntity="Temperament")
      * @ORM\JoinColumn(name="dom_temperament_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $dominantTemperament;
 
@@ -462,7 +462,7 @@ class Character
      * @var Religion
      * @ORM\ManyToOne(targetEntity="Religion")
      * @ORM\JoinColumn(name="religion_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotNull(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
      */
     protected $religion;
 

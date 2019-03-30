@@ -33,11 +33,11 @@ class Gender
     /**
      * @var string
      * @ORM\Column(name="code", type="string", length=1, unique=true)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
      *     max = 1,
-     *     maxMessage="validator.length_max.code"
+     *     maxMessage="length.max.gender.code"
      * )
      */
     protected $code;
@@ -47,18 +47,18 @@ class Gender
      * @ORM\Column(name="icon", type="string", length=60, unique=false)
      * @Assert\Length(
      *     max = 60,
-     *     maxMessage="validator.length_max.icon"
+     *     maxMessage="length.max.gender.icon"
      * )
      */
     protected $icon;
 
     /**
      * @ORM\Column(name="name", type="string", length=120, unique=true)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
      *     max = 120,
-     *     maxMessage="validator.length_max.name"
+     *     maxMessage="length.max.gender.name"
      * )
      */
     protected $name;

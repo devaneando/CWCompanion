@@ -33,11 +33,11 @@ class IntelligenceQuotient
 
     /**
      * @ORM\Column(name="name", type="string", length=120, unique=true)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
      *     max = 120,
-     *     maxMessage="validator.length_max.name"
+     *     maxMessage="length.max.intelligence_quotient.name"
      * )
      */
     protected $name;
@@ -45,16 +45,16 @@ class IntelligenceQuotient
 
     /**
      * @var int
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @ORM\Column(name="minimum", type="integer", nullable=false, unique=true)
      */
     protected $minimum;
 
     /**
      * @var int
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      * @ORM\Column(name="maximum", type="integer", nullable=false, unique=true)
      */
     protected $maximum;

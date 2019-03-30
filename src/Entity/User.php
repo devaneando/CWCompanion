@@ -37,8 +37,8 @@ class User extends BaseUser
     /**
      * @var string
      * @ORM\Column(name="name", type="string", length=120, unique=true)
-     * @Assert\NotNull(message="validator.not_blank")
-     * @Assert\NotBlank(message="validator.not_blank")
+     * @Assert\NotNull(message="not_null.default")
+     * @Assert\NotNull(message="not_blank.default")
      */
     protected $name;
 
