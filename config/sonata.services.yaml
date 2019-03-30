@@ -42,7 +42,6 @@ services:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.location_type, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
-
     sonata.admin.profession:
         class: App\Admin\ProfessionAdmin
         arguments: [~, App\Entity\Profession, App\Controller\CRUD\ProfessionController]
@@ -89,6 +88,9 @@ services:
     sonata.admin.project:
         class: App\Admin\ProjectAdmin
         arguments: [~, App\Entity\Project, App\Controller\CRUD\ProjectController]
+        calls:
+            - [setTokenStorage, ['@security.token_storage']]
+            - [setProjectRepository, ['@App\Entity\Repository\ProjectRepository']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: project, label: menu.item.project, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true

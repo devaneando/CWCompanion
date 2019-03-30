@@ -2,12 +2,10 @@
 
 namespace App\Entity;
 
-use App\Entity\Group;
 use App\Entity\Project;
-use App\Entity\Traits\CreatedTrait;
 use App\Entity\Traits\NameTrait;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\PersistentCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -42,8 +40,39 @@ class User extends BaseUser
     protected $name;
     use NameTrait;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="owner")
+     */
+    protected $projects;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /** @return ArrayCollection|PersistentCollection */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /** @param ArrayCollection|PersistentCollection|null $projects */
+    public function setProjects($projects): self
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    public function addProject(Project $object): self
+    {
+        if (true === $this->projects->contains($object)) {
+            return $this;
+        }
+        $this->projects->add($object);
+        $object->setOwner($this);
+
+        return $this;
     }
 }

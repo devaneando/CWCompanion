@@ -12,9 +12,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use App\Traits\LoggedUserTrait;
 
 final class ProjectAdmin extends AbstractExtraActionsAdmin
 {
+    use LoggedUserTrait;
     protected $baseRouteName = 'project_project';
     protected $baseRoutePattern = 'project/project';
     protected $translationDomain = 'project';
@@ -25,6 +27,10 @@ final class ProjectAdmin extends AbstractExtraActionsAdmin
         /** @var Project $object */
         if (null === $object->getUploadedPicture() && null === $object->getPicture()) {
             $object->setDefaultPicture();
+        }
+
+        if (null === $object->getOwner()) {
+            $object->setOwner($this->getLoggedUser());
         }
     }
 
