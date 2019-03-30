@@ -90,7 +90,6 @@ services:
         arguments: [~, App\Entity\Project, App\Controller\CRUD\ProjectController]
         calls:
             - [setTokenStorage, ['@security.token_storage']]
-            - [setProjectRepository, ['@App\Entity\Repository\ProjectRepository']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: project, label: menu.item.project, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
