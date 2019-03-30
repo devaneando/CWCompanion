@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Entity\Repository\ProjectRepository")
  * @ORM\Table(name="projects",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unique_projects_name", columns={"name"})
+ *         @ORM\UniqueConstraint(name="unique_projects_owner_name", columns={"owner_id", "name"})
  *     }
  * )
  * @ORM\HasLifecycleCallbacks()
@@ -47,7 +47,7 @@ class Project
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="string", length=120, unique=true)
+     * @ORM\Column(name="name", type="string", length=120)
      * @Assert\NotNull(message="not_null.default")
      * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
