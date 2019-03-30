@@ -94,7 +94,6 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
                     'route' => ['name' => 'show'],
                 ]
             )
-            ->add('slug', null, ['label' => 'admin.label.slug'])
             ->add(
                 'content',
                 null,

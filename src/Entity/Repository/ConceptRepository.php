@@ -12,9 +12,4 @@ class ConceptRepository extends AbstractBaseRepository
     {
         parent::__construct($registry, Concept::class);
     }
-
-    public function findBySlug(string $slug): ?self
-    {
-        return $this->findOneBy(['slug' => trim($slug)]);
-    }
 }

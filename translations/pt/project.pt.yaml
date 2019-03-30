@@ -14,7 +14,6 @@ admin:
         parent: Pai
         picture: Imagem
         predefined: Predefinido
-        slug: Slug
         uploaded_picture: Imagem
 Action: Ações
 Menu Item Project: Projeto

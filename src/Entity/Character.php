@@ -18,7 +18,6 @@ use App\Exception\ExtendedDate\InvalidExtendedDateStamp;
 use App\Model\ExtendedDate;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
-use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
@@ -67,12 +66,6 @@ class Character
      * )
      */
     protected $nickname;
-
-    /**
-     * @var string
-     * @ORM\Column(name="slug", type="string", length=60, nullable=false)
-     */
-    protected $slug;
 
     /**
      * @var string
@@ -597,26 +590,8 @@ class Character
     public function setNickname(string $nickname): self
     {
         $this->nickname = trim($nickname);
-        $this->setSlug();
 
         return $this;
-    }
-
-    public function setSlug(): ?string
-    {
-        $slugify = new Slugify();
-        $this->slug = $slugify->slugify($this->nickname);
-
-        return $this->slug;
-    }
-
-    public function getSlug(): ?string
-    {
-        if (null === $this->slug) {
-            $this->setSlug();
-        }
-
-        return $this->slug;
     }
 
     public function getFullName(): ?string

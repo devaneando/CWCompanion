@@ -37,8 +37,7 @@ final class ProjectAdmin extends AbstractExtraActionsAdmin
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.label.id'])
-            ->add('name', null, ['label' => 'admin.label.name'])
-            ->add('slug', null, ['label' => 'admin.label.slug']);
+            ->add('name', null, ['label' => 'admin.label.name']);
     }
 
     protected function configureListFields(ListMapper $listMapper): void
@@ -99,7 +98,6 @@ final class ProjectAdmin extends AbstractExtraActionsAdmin
             ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
-            ->add('slug', null, ['label' => 'admin.label.slug'])
             ->add(
                 'chapters',
                 null,

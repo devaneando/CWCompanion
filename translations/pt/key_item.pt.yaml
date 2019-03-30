@@ -16,7 +16,6 @@ admin:
         parent: Pai
         picture: Imagem
         predefined: Predefinido
-        slug: Slug
         uploaded_picture: Imagem
 title:
     description: Descrição

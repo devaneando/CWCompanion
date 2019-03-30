@@ -13,7 +13,6 @@ admin:
         name: Nome
         project: Projeto
         scenes: Cenas
-        slug: Slug
 Action: Ações
 Menu Item Chapter: Capítulo
 Chapter Create: Criar capítulo

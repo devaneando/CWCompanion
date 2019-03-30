@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Entity\Chapter;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\PictureTrait;
-use App\Entity\Traits\SlugTrait;
+use App\Entity\Traits\NameTrait;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -48,13 +48,7 @@ class Project
      * )
      */
     protected $name;
-
-    /**
-     * @var string
-     * @ORM\Column(name="slug", type="string", length=60, nullable=false)
-     */
-    protected $slug;
-    use SlugTrait;
+    use NameTrait;
 
     /**
      * @var string

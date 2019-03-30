@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Entity\Group;
 use App\Entity\Project;
 use App\Entity\Traits\CreatedTrait;
-use App\Entity\Traits\SlugTrait;
+use App\Entity\Traits\NameTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,7 +19,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         @ORM\UniqueConstraint(name="unique_users_confirmation_token", columns={"confirmation_token"}),
  *         @ORM\UniqueConstraint(name="unique_users_email_canonical", columns={"email_canonical"}),
  *         @ORM\UniqueConstraint(name="unique_users_name", columns={"name"}),
- *         @ORM\UniqueConstraint(name="unique_users_slug", columns={"slug"}),
  *         @ORM\UniqueConstraint(name="unique_users_username_canonical", columns={"username_canonical"}),
  *     }
  * )
@@ -41,13 +40,7 @@ class User extends BaseUser
      * @Assert\NotNull(message="not_blank.default")
      */
     protected $name;
-
-    /**
-     * @var string
-     * @ORM\Column(name="slug", type="string", length=120, unique=true)
-     */
-    protected $slug;
-    use SlugTrait;
+    use NameTrait;
 
     public function getId(): ?int
     {

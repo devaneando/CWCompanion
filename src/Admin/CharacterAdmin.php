@@ -268,7 +268,6 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ->with('in_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.inherited.bl_001'])
             ->add('id', null, ['label'=> 'admin.label.id'])
             ->add('nickname', null, ['label'=> 'admin.label.nickname'])
-            ->add('slug', null, ['label'=> 'admin.label.slug'])
             ->add('characterType', null, ['label'=> 'admin.label.character_type', 'route' => ['name' => 'show']])
             ->add('concept', null, ['label'=> 'admin.label.concept'])
             ->add('gender', null, ['label'=> 'admin.label.gender', 'route' => ['name' => 'show']])
