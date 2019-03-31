@@ -7,15 +7,16 @@ namespace App\Admin;
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
 use App\Entity\KeyItem;
+use App\Traits\LoggedUserTrait;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 final class KeyItemAdmin extends AbstractExtraActionsAdmin
 {
+    use LoggedUserTrait;
     protected $baseRouteName = 'writing_key_item';
     protected $baseRoutePattern = 'writing/key-item';
     protected $translationDomain = 'key_item';
@@ -26,6 +27,10 @@ final class KeyItemAdmin extends AbstractExtraActionsAdmin
         /** @var KeyItem $object */
         if (null === $object->getUploadedPicture() && null === $object->getPicture()) {
             $object->setDefaultPicture();
+        }
+
+        if (null === $object->getOwner()) {
+            $object->setOwner($this->getLoggedUser());
         }
     }
 

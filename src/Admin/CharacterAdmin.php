@@ -8,11 +8,11 @@ use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\ExtendedDateType;
 use App\Admin\Type\MarkDownType;
 use App\Entity\Character;
+use App\Traits\LoggedUserTrait;
 use App\Traits\Repository\ZodiacRepositoryTrait;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 final class CharacterAdmin extends AbstractExtraActionsAdmin
 {
     use ZodiacRepositoryTrait;
+    use LoggedUserTrait;
     protected $baseRouteName = 'writing_character';
     protected $baseRoutePattern = 'writing/character';
     protected $translationDomain = 'character';
@@ -35,6 +36,10 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
 
         if (null === $object->getUploadedPicture() && null === $object->getPicture()) {
             $object->setDefaultPicture();
+        }
+
+        if (null === $object->getOwner()) {
+            $object->setOwner($this->getLoggedUser());
         }
     }
 

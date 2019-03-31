@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
+use App\Traits\LoggedUserTrait;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -13,10 +14,23 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 final class ChapterAdmin extends AbstractExtraActionsAdmin
 {
+    use LoggedUserTrait;
     protected $baseRouteName = 'project_chapter';
     protected $baseRoutePattern = 'project/chapter';
     protected $translationDomain = 'chapter';
     protected $hasRoutePreview = true;
+
+    public function preUpdate($object)
+    {
+        if (null === $object->getOwner()) {
+            $object->setOwner($this->getLoggedUser());
+        }
+    }
+
+    public function prePersist($object)
+    {
+        $this->preUpdate($object);
+    }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {

@@ -1,6 +1,7 @@
 services:
 
     ##### Shared group
+
     sonata.admin.character_type:
         class: App\Admin\CharacterTypeAdmin
         arguments: [~, App\Entity\CharacterType, App\Controller\CRUD\CharacterController]
@@ -97,6 +98,8 @@ services:
     sonata.admin.chapter:
         class: App\Admin\ChapterAdmin
         arguments: [~, App\Entity\Chapter, App\Controller\CRUD\ChapterController]
+        calls:
+            - [setTokenStorage, ['@security.token_storage']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: project, label: menu.item.chapter, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
@@ -104,13 +107,13 @@ services:
     sonata.admin.scene:
         class: App\Admin\SceneAdmin
         arguments: [~, App\Entity\Scene, App\Controller\CRUD\SceneController]
+        calls:
+            - [setTokenStorage, ['@security.token_storage']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: project, label: menu.item.scene, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
-
     ##### Writing group
-
 
     sonata.admin.character:
         class: App\Admin\CharacterAdmin
@@ -119,11 +122,14 @@ services:
             - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.character, label_translator_strategy: "sonata.admin.label.strategy.native" }
         calls:
             - ['setZodiacRepository', ['@App\Entity\Repository\ZodiacRepository']]
+            - [setTokenStorage, ['@security.token_storage']]
         public: true
 
     sonata.admin.concept:
         class: App\Admin\ConceptAdmin
         arguments: [~, App\Entity\Concept, App\Controller\CRUD\ConceptController]
+        calls:
+            - [setTokenStorage, ['@security.token_storage']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.concept, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
@@ -131,6 +137,8 @@ services:
     sonata.admin.key_item:
         class: App\Admin\KeyItemAdmin
         arguments: [~, App\Entity\KeyItem, App\Controller\CRUD\KeyItemController]
+        calls:
+            - [setTokenStorage, ['@security.token_storage']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.key_item, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
@@ -138,6 +146,8 @@ services:
     sonata.admin.location:
         class: App\Admin\LocationAdmin
         arguments: [~, App\Entity\Location, App\Controller\CRUD\LocationController]
+        calls:
+            - [setTokenStorage, ['@security.token_storage']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.location, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
