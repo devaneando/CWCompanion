@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Project;
 use App\Entity\Scene;
 use App\Entity\Traits\NameTrait;
+use App\Entity\Traits\OwnerTrait;
+use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
@@ -30,6 +32,14 @@ class Chapter
      * @ORM\Column(name="id", type="uuid", unique=true)
      */
     protected $id;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="chapters")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+     */
+    protected $owner;
+    use OwnerTrait;
 
     /**
      * @var string

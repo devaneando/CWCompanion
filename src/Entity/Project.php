@@ -3,10 +3,11 @@
 namespace App\Entity;
 
 use App\Entity\Chapter;
-use App\Entity\User;
 use App\Entity\Traits\DescriptionTrait;
-use App\Entity\Traits\PictureTrait;
 use App\Entity\Traits\NameTrait;
+use App\Entity\Traits\OwnerTrait;
+use App\Entity\Traits\PictureTrait;
+use App\Entity\User;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -44,6 +45,7 @@ class Project
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
      */
     protected $owner;
+    use OwnerTrait;
 
     /**
      * @var string
@@ -86,18 +88,6 @@ class Project
     public function getId(): ?UuidInterface
     {
         return $this->id;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(User $owner): self
-    {
-        $this->owner = $owner;
-
-        return $this;
     }
 
     public function setDefaultPicture(): self

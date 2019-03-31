@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Entity\Scene;
 use App\Entity\Traits\DescriptionTrait;
-use App\Entity\Traits\PictureTrait;
 use App\Entity\Traits\NameTrait;
+use App\Entity\Traits\OwnerTrait;
+use App\Entity\Traits\PictureTrait;
+use App\Entity\User;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -36,6 +38,14 @@ class Location
      * @ORM\Column(name="id", type="uuid", unique=true)
      */
     protected $id;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="locations")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+     */
+    protected $owner;
+    use OwnerTrait;
 
     /**
      * @var ArrayCollection

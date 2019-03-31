@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\PictureTrait;
 use App\Entity\Traits\NameTrait;
+use App\Entity\Traits\OwnerTrait;
+use App\Entity\Traits\PictureTrait;
+use App\Entity\User;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -47,6 +49,14 @@ class Concept
      */
     protected $name;
     use NameTrait;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="concepts")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+     */
+    protected $owner;
+    use OwnerTrait;
 
     /**
      * @var ArrayCollection

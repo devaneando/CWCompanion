@@ -12,7 +12,9 @@ use App\Entity\Religion;
 use App\Entity\Scene;
 use App\Entity\Sexuality;
 use App\Entity\Temperament;
+use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\PictureTrait;
+use App\Entity\User;
 use App\Entity\Zodiac;
 use App\Exception\ExtendedDate\InvalidExtendedDateStamp;
 use App\Model\ExtendedDate;
@@ -52,6 +54,14 @@ class Character
      * @ORM\Column(name="id", type="uuid", unique=true)
      */
     protected $id;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="characters")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+     */
+    protected $owner;
+    use OwnerTrait;
 
     /**
      * @var ArrayCollection

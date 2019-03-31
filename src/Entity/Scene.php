@@ -7,6 +7,8 @@ use App\Entity\Character;
 use App\Entity\KeyItem;
 use App\Entity\Location;
 use App\Entity\Traits\DescriptionTrait;
+use App\Entity\Traits\OwnerTrait;
+use App\Entity\User;
 use App\Exception\Parameter\InvalidAmbient;
 use App\Exception\Parameter\InvalidTime;
 use App\Traits\ConstantValidationTrait;
@@ -38,6 +40,14 @@ class Scene
      * @ORM\Column(name="id", type="uuid", unique=true)
      */
     protected $id;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="scenes")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+     */
+    protected $owner;
+    use OwnerTrait;
 
     /**
      * @var Chapter
