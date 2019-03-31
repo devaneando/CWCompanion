@@ -1,6 +1,6 @@
 sonata_admin:
     title: 'Creative Writer Companion'
-    title_logo: /static/images/logo.png
+    title_logo: /static/images/logo.svg
     translate_group_label: true
     admin_services:
         -
