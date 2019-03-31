@@ -36,6 +36,31 @@ services:
             - ['setRouter', ['@router']]
         tags: [twig.extension]
 
+    ##### Other
+    App\Controller\CRUD\CharacterController:
+        class: App\Controller\CRUD\CharacterController
+        calls:
+            - ['setLogger', ['@logger']]
+            - [setTokenStorage, ['@security.token_storage']]
+            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
+        tags: ['controller.service_arguments']
+
+    App\Controller\CRUD\ChapterController:
+        class: App\Controller\CRUD\ChapterController
+        calls:
+            - ['setLogger', ['@logger']]
+            - [setTokenStorage, ['@security.token_storage']]
+            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
+        tags: ['controller.service_arguments']
+
+    App\Controller\CRUD\SceneController:
+        class: App\Controller\CRUD\SceneController
+        calls:
+            - ['setLogger', ['@logger']]
+            - [setTokenStorage, ['@security.token_storage']]
+            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
+        tags: ['controller.service_arguments']
+
     ##### Test only
     test.processor.image:
         alias: App\Processor\ImageProcessor

@@ -20,4 +20,10 @@ final class SceneController extends ExtraActionsController
     {
         return $this->preview($request, $object, $type);
     }
+
+    /** {@inheritdoc} */
+    public function createAction()
+    {
+        return $this->create();
+    }
 }

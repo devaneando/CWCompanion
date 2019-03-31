@@ -5,6 +5,9 @@ day:
     none: Dia
 extended_date:
     anno_domini: DC
+exceptions:
+    cant_create_without_project: Não é possível criar este objeto sem ter pelo menos um projecto.
+    not_the_page_youre_looking: Esta NÃO é a página que estás a procura.
 login:
     cmm: 'Entrar'
     password: Palavra passe
