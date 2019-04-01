@@ -1,0 +1,18 @@
+admin:
+    label:
+        email: eMail
+        enabled: Ativo
+        id: Id
+        name: Nome
+        plain_password: Palavra passe
+        roles: Permissões
+        salt: Sal
+        username: Utilizador
+menu:
+    item:
+        user: Utilizador
+Action: Ações
+Menu Item User: Utilizador
+User Create: Criar utilizador
+User List: Listar utilizadores
+User: Utilizador

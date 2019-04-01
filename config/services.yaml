@@ -36,7 +36,8 @@ services:
             - ['setRouter', ['@router']]
         tags: [twig.extension]
 
-    ##### Other
+    ##### Controllers
+
     App\Controller\CRUD\CharacterController:
         class: App\Controller\CRUD\CharacterController
         calls:
@@ -60,6 +61,14 @@ services:
             - [setTokenStorage, ['@security.token_storage']]
             - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
         tags: ['controller.service_arguments']
+
+    ##### Other
+
+    App\Admin\Type\SecurityRolesType:
+        class: App\Admin\Type\SecurityRolesType
+        calls:
+            - [setSecurityRoles, ['%security.role_hierarchy.roles%']]
+        tags: [form.type]
 
     ##### Test only
     test.processor.image:

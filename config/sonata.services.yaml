@@ -1,5 +1,14 @@
 services:
 
+    ##### Admin group
+
+    sonata.admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User, App\Controller\CRUD\UserController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: menu.item.user, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     ##### Shared group
 
     sonata.admin.character_type:

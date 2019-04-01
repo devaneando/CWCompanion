@@ -19,6 +19,7 @@ menu:
         project: Projeto
         shared: Comum
         writing: Escrita
+        admin: Gestão
 month:
     none: Mês
     january: Janeiro
