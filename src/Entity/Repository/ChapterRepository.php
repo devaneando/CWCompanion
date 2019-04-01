@@ -4,6 +4,7 @@ namespace App\Entity\Repository;
 
 use App\Entity\Chapter;
 use App\Entity\Repository\AbstractBaseRepository;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ChapterRepository extends AbstractBaseRepository

@@ -4,23 +4,39 @@ declare(strict_types=1);
 
 namespace App\Controller\CRUD;
 
+use App\Exception\Permissions\NoValidChapter;
 use App\Exception\Permissions\NoValidProject;
+use App\Exception\Permissions\NoValidScene;
 use App\Traits\LoggedUserTrait;
-use App\Traits\Repository\ProjectRepositoryTrait;
 use App\Traits\Services\LoggerTrait;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 abstract class ExtraActionsController extends CRUDController
 {
     use LoggedUserTrait;
-    use ProjectRepositoryTrait;
     const TYPE_HTML = 'html';
     const TYPE_MARKDOWN = 'markdown';
+
+    /** The folder used to keep preview templates */
     protected $templateFolder = null;
+
+    /** If true, will allow a preview action */
+    protected $allowPreview = false;
+
+    /** If true, the user won't be able to create objects without an existent Project */
+    protected $requireProject = false;
+
+    /** If true, the user won't be able to create objects without an existent Chapter */
+    protected $requireChapter = false;
+
+    /** If true, the user won't be able to create objects without an existent Scene */
+    protected $requireScene = false;
 
     use LoggerTrait;
 
@@ -29,34 +45,49 @@ abstract class ExtraActionsController extends CRUDController
         return new RedirectResponse($this->admin->generateUrl('list'));
     }
 
-    protected function preview(Request $request, $object, string $type = self::TYPE_HTML): Response
+    /**
+     * @param mixed $object
+     *
+     * @throws NotFoundHttpException If allowPreview is false
+     */
+    protected function previewAction(Request $request, $object, string $type = self::TYPE_HTML): Response
     {
-        switch (strtolower($type)) {
-            case self::TYPE_MARKDOWN:
-                return new Response(
-                    $this->renderView('Admin/preview/'.$this->templateFolder.'/view.md.twig', ['object' => $object])
-                );
-
-                break;
-
-            case self::TYPE_HTML:
-                return new Response(
-                    $this->renderView('Admin/preview/'.$this->templateFolder.'/view.html.twig', ['object' => $object])
-                );
-
-            break;
-
-            default:
-                throw new NotFoundHttpException('This is not the page you are looking for.', null, 1);
-
-                break;
+        if (false === $this->allowPreview) {
+            throw new NotFoundHttpException('This is not the page you are looking for.', null, 1);
         }
+
+        if (self::TYPE_MARKDOWN === strtolower($type)) {
+            return new Response(
+                $this->renderView('Admin/preview/'.$this->templateFolder.'/view.md.twig', ['object' => $object])
+            );
+        } elseif (self::TYPE_MARKDOWN === strtolower($type)) {
+            return new Response(
+                $this->renderView('Admin/preview/'.$this->templateFolder.'/view.html.twig', ['object' => $object])
+            );
+        }
+
+        throw new NotFoundHttpException('This is not the page you are looking for.', null, 1);
     }
 
-    protected function create(): Response
+    /**
+     * @throws AccessDeniedException If access is not granted
+     * @throws \RuntimeException If no editable field is defined
+     * @throws NoValidProject If the user has no project and it is required
+     * @throws NoValidChapter If the user has no chapter and it is required
+     * @throws NoValidScene If the user has no scene and it is required
+     */
+    public function createAction(): Response
     {
-        if (false === $this->getProjectRepository()->userHasProjects($this->getLoggedUser())) {
+        if (true === $this->requireProject && 0 >= $this->getLoggedUser()->getProjects()->count()) {
             throw new NoValidProject("Can't create this object without a project.");
+        }
+
+        if (true === $this->requireChapter && 0 >= $this->getLoggedUser()->getChapters()->count()) {
+            throw new NoValidChapter("Can't create this object without a chapter.");
+        }
+
+        if (true === $this->requireScene && 0 >= $this->getLoggedUser()->getScenes()->count()) {
+            throw new NoValidScene("Can't create this object without a chapter.");
         }
 
         return parent::createAction();

@@ -12,18 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class SceneController extends ExtraActionsController
 {
     protected $templateFolder = 'scene';
-
-    /**
-     * @Route("/{id}/preview/{type}", name="project_scene_preview")
-     */
-    public function previewAction(Request $request, Scene $object, string $type = self::TYPE_HTML)
-    {
-        return $this->preview($request, $object, $type);
-    }
-
-    /** {@inheritdoc} */
-    public function createAction()
-    {
-        return $this->create();
-    }
+    protected $allowPreview = true;
+    protected $requireProject = true;
+    protected $requireChapter = true;
 }

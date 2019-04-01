@@ -43,15 +43,13 @@ services:
         calls:
             - ['setLogger', ['@logger']]
             - [setTokenStorage, ['@security.token_storage']]
-            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
         tags: ['controller.service_arguments']
 
     App\Controller\CRUD\ChapterController:
         class: App\Controller\CRUD\ChapterController
         calls:
             - ['setLogger', ['@logger']]
-            - [setTokenStorage, ['@security.token_storage']]
-            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
+            - ['setTokenStorage', ['@security.token_storage']]
         tags: ['controller.service_arguments']
 
     App\Controller\CRUD\SceneController:
@@ -59,7 +57,6 @@ services:
         calls:
             - ['setLogger', ['@logger']]
             - [setTokenStorage, ['@security.token_storage']]
-            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
         tags: ['controller.service_arguments']
 
     ##### Other

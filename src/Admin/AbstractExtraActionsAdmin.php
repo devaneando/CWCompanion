@@ -56,6 +56,8 @@ abstract class AbstractExtraActionsAdmin extends AbstractAdmin
 
     /**
      * Filter the list query, showing only the objects that belong to the logged user.
+     *
+     * @param mixed $context
      */
     public function ownerOnlyListQuery($context = 'list'): ProxyQueryInterface
     {
@@ -63,9 +65,10 @@ abstract class AbstractExtraActionsAdmin extends AbstractAdmin
         $query = parent::createQuery($context);
         if (false === $this->getLoggedUser()->isSuperAdmin()) {
             $rootAlias = $query->getRootAliases()[0];
-            $query->andWhere($query->expr()->eq($rootAlias.'.owner', ':user'));
+            $query->andWhere($query->expr()->eq($rootAlias.'.owner', ':owner'));
             $query->setParameter(':owner', $this->getLoggedUser());
         }
+
         return $query;
     }
 }

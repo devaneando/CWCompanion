@@ -56,12 +56,14 @@ class AbstractPreviewExtension extends \Twig_Extension
     protected function generatePreviewRoute($object, string $type = self::TYPE_HTML): string
     {
         $base = strtolower((new \ReflectionClass(get_class($object)))->getShortName());
+        $route = null;
         if (true === in_array(get_class($object), [Project::class, Chapter::class, Scene::class])) {
             $route = 'project_'.$base.'_preview';
         } elseif (true === in_array(get_class($object), [Character::class, Concept::class, KeyItem::class, Location::class])) {
             $base = (KeyItem::class === get_class($object)) ? 'key_item' : $base;
             $route = 'writing_'.$base.'_preview';
-        } else {
+        }
+        if (null === $route) {
             throw new NotFoundHttpException('No route found for the given object.');
         }
 

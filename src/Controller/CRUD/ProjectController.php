@@ -12,12 +12,5 @@ use Symfony\Component\Routing\Annotation\Route;
 final class ProjectController extends ExtraActionsController
 {
     protected $templateFolder = 'project';
-
-    /**
-     * @Route("/{id}/preview/{type}", name="project_project_preview")
-     */
-    public function previewAction(Request $request, Project $object, string $type = self::TYPE_HTML)
-    {
-        return $this->preview($request, $object, $type);
-    }
+    protected $allowPreview = true;
 }

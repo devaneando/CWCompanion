@@ -12,12 +12,5 @@ use Symfony\Component\Routing\Annotation\Route;
 final class KeyItemController extends ExtraActionsController
 {
     protected $templateFolder = 'key-item';
-
-    /**
-     * @Route("/{id}/preview/{type}", name="writing_key_item_preview")
-     */
-    public function previewAction(Request $request, KeyItem $object, string $type = self::TYPE_HTML)
-    {
-        return $this->preview($request, $object, $type);
-    }
+    protected $allowPreview = true;
 }

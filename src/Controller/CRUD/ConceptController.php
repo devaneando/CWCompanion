@@ -12,12 +12,5 @@ use Symfony\Component\Routing\Annotation\Route;
 final class ConceptController extends ExtraActionsController
 {
     protected $templateFolder = 'concept';
-
-    /**
-     * @Route("/{id}/preview/{type}", name="writing_concept_preview")
-     */
-    public function previewAction(Request $request, Concept $object, string $type = self::TYPE_HTML)
-    {
-        return $this->preview($request, $object, $type);
-    }
+    protected $allowPreview = true;
 }

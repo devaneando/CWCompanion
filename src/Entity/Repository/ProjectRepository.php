@@ -13,17 +13,4 @@ class ProjectRepository extends AbstractBaseRepository
     {
         parent::__construct($registry, Project::class);
     }
-
-    public function userHasProjects(User $user): bool
-    {
-        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
-        $queryBuilder
-            ->select('COUNT(pro)')
-            ->from(Project::class, 'pro')
-            ->where('pro.owner = :owner');
-        $query = $queryBuilder->getQuery();
-        $query->setParameter('owner', $user);
-
-        return (0 >= $query->getSingleScalarResult()) ? false : true;
-    }
 }
