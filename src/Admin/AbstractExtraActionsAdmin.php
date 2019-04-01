@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use App\Traits\LoggedUserTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 abstract class AbstractExtraActionsAdmin extends AbstractAdmin
 {
+    use LoggedUserTrait;
     protected $hasRouteCancel = true;
     protected $hasRoutePreview = false;
 
@@ -49,5 +52,20 @@ abstract class AbstractExtraActionsAdmin extends AbstractAdmin
         }
 
         return $list;
+    }
+
+    /**
+     * Filter the list query, showing only the objects that belong to the logged user.
+     */
+    public function ownerOnlyListQuery($context = 'list'): ProxyQueryInterface
+    {
+        /** @var ProxyQueryInterface $query */
+        $query = parent::createQuery($context);
+        if (false === $this->getLoggedUser()->isSuperAdmin()) {
+            $rootAlias = $query->getRootAliases()[0];
+            $query->andWhere($query->expr()->eq($rootAlias.'.owner', ':user'));
+            $query->setParameter(':owner', $this->getLoggedUser());
+        }
+        return $query;
     }
 }

@@ -56,9 +56,9 @@ abstract class ExtraActionsController extends CRUDController
     protected function create(): Response
     {
         if (false === $this->getProjectRepository()->userHasProjects($this->getLoggedUser())) {
-            throw new NoValidProject();
+            throw new NoValidProject("Can't create this object without a project.");
         }
 
-        return parent::createAction("Can't create this object without a project.");
+        return parent::createAction();
     }
 }

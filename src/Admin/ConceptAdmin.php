@@ -7,7 +7,6 @@ namespace App\Admin;
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
 use App\Entity\Concept;
-use App\Traits\LoggedUserTrait;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -16,11 +15,15 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 final class ConceptAdmin extends AbstractExtraActionsAdmin
 {
-    use LoggedUserTrait;
     protected $baseRouteName = 'writing_concept';
     protected $baseRoutePattern = 'writing/concept';
     protected $translationDomain = 'concept';
     protected $hasRoutePreview = true;
+
+    public function createQuery($context = 'list')
+    {
+        return $this->ownerOnlyListQuery($context);
+    }
 
     public function preUpdate($object)
     {

@@ -26,6 +26,11 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
     protected $translationDomain = 'character';
     protected $hasRoutePreview = true;
 
+    public function createQuery($context = 'list')
+    {
+        return $this->ownerOnlyListQuery($context);
+    }
+
     public function preUpdate($object)
     {
         /** @var Character $object */

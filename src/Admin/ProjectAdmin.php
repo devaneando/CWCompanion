@@ -12,15 +12,18 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use App\Traits\LoggedUserTrait;
 
 final class ProjectAdmin extends AbstractExtraActionsAdmin
 {
-    use LoggedUserTrait;
     protected $baseRouteName = 'project_project';
     protected $baseRoutePattern = 'project/project';
     protected $translationDomain = 'project';
     protected $hasRoutePreview = true;
+
+    public function createQuery($context = 'list')
+    {
+        return $this->ownerOnlyListQuery($context);
+    }
 
     public function preUpdate($object)
     {

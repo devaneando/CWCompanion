@@ -8,7 +8,6 @@ use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\AmbientType;
 use App\Admin\Type\MarkDownType;
 use App\Admin\Type\TimeType;
-use App\Traits\LoggedUserTrait;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -16,11 +15,15 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 final class SceneAdmin extends AbstractExtraActionsAdmin
 {
-    use LoggedUserTrait;
     protected $baseRouteName = 'project_scene';
     protected $baseRoutePattern = 'project/scene';
     protected $translationDomain = 'scene';
     protected $hasRoutePreview = true;
+
+    public function createQuery($context = 'list')
+    {
+        return $this->ownerOnlyListQuery($context);
+    }
 
     public function preUpdate($object)
     {
