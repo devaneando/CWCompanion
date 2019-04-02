@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\CRUD;
 
 use App\Controller\CRUD\ExtraActionsController;
-use App\Entity\Scene;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +20,8 @@ final class SceneController extends ExtraActionsController
     /**
      * @Route("/scene/{id}/preview/{type}", name="project_scene_preview")
      * @ParamConverter("object", class="App\Entity\Scene", options={"mapping": {"id" = "id"}})
+     *
+     * @param mixed $object
      */
     public function previewAction(Request $request, $object, string $type = self::TYPE_HTML): Response
     {
