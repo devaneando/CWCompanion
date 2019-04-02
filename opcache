@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "<?php opcache_reset(); ?>" > ./web/clearOpCache.php
+echo "<?php opcache_reset(); ?>" > ./public/clearOpCache.php
 curl -kI https://cwc.local/clearOpCache.php
-rm ./web/clearOpCache.php
+rm ./public/clearOpCache.php
 
