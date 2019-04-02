@@ -57,10 +57,10 @@ class AbstractPreviewExtension extends \Twig_Extension
     {
         $base = strtolower((new \ReflectionClass(get_class($object)))->getShortName());
         $route = null;
-        if (true === in_array(get_class($object), [Project::class, Chapter::class, Scene::class])) {
+        if (true === in_array($base, ['project', 'chapter','scene'])) {
             $route = 'project_'.$base.'_preview';
-        } elseif (true === in_array(get_class($object), [Character::class, Concept::class, KeyItem::class, Location::class])) {
-            $base = (KeyItem::class === get_class($object)) ? 'key_item' : $base;
+        } elseif (true === in_array($base, ['character', 'concept', 'keyItem','location'])) {
+            $base = ('keyitem' === $base) ? 'key_item' : $base;
             $route = 'writing_'.$base.'_preview';
         }
         if (null === $route) {
