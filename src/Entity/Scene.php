@@ -20,7 +20,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\Repository\SceneRepository")
- * @ORM\Table(name="scenes")
+ * @ORM\Table(name="scenes",
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unique_scenes_chapter_scene", columns={"chapter_id", "scene"})
+ *     }
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
 class Scene

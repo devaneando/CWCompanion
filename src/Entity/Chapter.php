@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Entity\Repository\ChapterRepository")
  * @ORM\Table(name="chapters",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unique_chapters_name", columns={"name"})
+ *         @ORM\UniqueConstraint(name="unique_chapters_project_name", columns={"project_id", "name"})
  *     }
  * )
  * @ORM\HasLifecycleCallbacks()
@@ -43,7 +43,7 @@ class Chapter
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="string", length=120, unique=true)
+     * @ORM\Column(name="name", type="string", length=120, unique=false)
      * @Assert\NotNull(message="not_null.default")
      * @Assert\NotNull(message="not_blank.default")
      * @Assert\Length(
