@@ -20,6 +20,8 @@ class SceneExtension extends AbstractPreviewExtension
             'the_chapter' => new \Twig_Function('the_chapter', [$this, 'getChapter'], ['needs_context' => false]),
             'the_project' => new \Twig_Function('the_project', [$this, 'getProject'], ['needs_context' => false]),
             'the_location' => new \Twig_Function('the_location', [$this, 'getLocation'], ['needs_context' => false]),
+            'the_key_items' => new \Twig_Function('the_key_items', [$this, 'getKeyItems'], ['needs_context' => false]),
+
         ];
     }
 
@@ -83,12 +85,15 @@ class SceneExtension extends AbstractPreviewExtension
             return '';
         }
 
-        $result = '';
+        $list = '';
         foreach ($object->getScenes() as $scene) {
-            $result .= sprintf("- %s\n", $this->getSceneAsMarkdown($scene));
+            $list .= sprintf("- %s\n", $this->getSceneAsMarkdown($scene));
+        }
+        if (true === empty($list)) {
+            $this->getTranslator()->trans('text.no_scene', [], 'scene');
         }
 
-        return $result;
+        return $list;
     }
 
     public function getScenes($object, $type = self::TYPE_HTML): string
@@ -105,13 +110,15 @@ class SceneExtension extends AbstractPreviewExtension
             return '';
         }
 
-        $result = "<ul>\n";
+        $list = '';
         foreach ($object->getScenes() as $scene) {
-            $result .= sprintf("    <li>%s</li>\n", $this->getScene($scene));
+            $list .= sprintf("    <li>%s</li>\n", $this->getScene($scene));
         }
-        $result .= "</ul>\n";
+        if (true === empty($list)) {
+            $this->getTranslator()->trans('text.no_scene', [], 'scene');
+        }
 
-        return $result;
+        return "<ul>\n".$list."</ul>\n";
     }
 
     protected function getChapterAsMarkdown(?Chapter $chapter): string
@@ -230,5 +237,51 @@ class SceneExtension extends AbstractPreviewExtension
             $keyItem->getName(),
             $keyItem->getName()
         );
+    }
+
+    protected function getKeyItemsAsMarkdown($object): string
+    {
+        if (false === method_exists($object, 'getKeyItems')) {
+            return '';
+        }
+
+        if (true === empty($object->getKeyItems())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getKeyItems() as $keyitem) {
+            $list .= sprintf("- %s\n", $this->getKeyItemAsMarkdown($keyitem));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_key_item', [], 'scene');
+        }
+
+        return $list;
+    }
+
+    public function getKeyItems($object, $type = self::TYPE_HTML): string
+    {
+        if (self::TYPE_MARKDOWN === trim($type)) {
+            return $this->getKeyItemsAsMarkdown($object);
+        }
+
+        if (false === method_exists($object, 'getKeyItems')) {
+            return '';
+        }
+
+        if (true === empty($object->getKeyItems())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getKeyItems() as $keyItem) {
+            $list .= sprintf("    <li>%s</li>\n", $this->getKeyItem($keyItem));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_key_item', [], 'scene');
+        }
+
+        return "<ul>\n".$list."</ul>\n";
     }
 }

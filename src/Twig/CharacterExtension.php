@@ -202,13 +202,16 @@ class CharacterExtension extends AbstractPreviewExtension
             return '';
         }
 
-        $result = '';
+        $list = '';
         /** @var Character $character */
         foreach ($object->getCharacters() as $character) {
-            $result .= sprintf("- %s\n", $this->getCharacterAsMarkdown($character));
+            $list .= sprintf("- %s\n", $this->getCharacterAsMarkdown($character));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_character', [], 'character');
         }
 
-        return $result;
+        return $list;
     }
 
     public function getCharacters($object, $type = self::TYPE_HTML, string $class=''): string
@@ -225,13 +228,15 @@ class CharacterExtension extends AbstractPreviewExtension
             return '';
         }
 
-        $result = "<ul>\n";
+        $list = '';
         /** @var Character $character */
         foreach ($object->getCharacters() as $character) {
-            $result .= sprintf("    <li>%s</li>\n", $this->getCharacter($character, self::TYPE_HTML, $class));
+            $list .= sprintf("    <li>%s</li>\n", $this->getCharacter($character, self::TYPE_HTML, $class));
         }
-        $result .= "</ul>\n";
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_character', [], 'character');
+        }
 
-        return $result;
+        return "<ul>\n".$list."</ul>\n";
     }
 }

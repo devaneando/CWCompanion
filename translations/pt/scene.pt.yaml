@@ -24,9 +24,12 @@ title:
     locations: Locais
     notes: Notas
 text:
-    project: Projeto
     chapter: capítulo
     location: local
+    no_chapter: Nenhum capítulo
+    no_scene: Nenhuma cena
+    no_key_item: Nenhum item chave
+    project: Projeto
 ambient:
     EXT: Exterior
     INT: Interior

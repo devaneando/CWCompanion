@@ -1,0 +1,21 @@
+{% extends 'sonata_preview.html.twig' %}
+{% set trans_default_domain = "chapter" %}
+{% trans_default_domain 'chapter' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+<pre><code class="markdown">
+# {{ object.name }}
+
+**{{ 'title.project'|trans() }}**: {{ the_project(object.project, 'markdown')|raw() }}
+
+## {{ 'title.content'|trans() }}
+
+{{ object.content|maybe_null() }}
+
+## {{ 'title.scenes'|trans() }}
+
+{{ the_scenes(object, 'markdown')|raw() }}
+</code></pre>
+{% endblock %}

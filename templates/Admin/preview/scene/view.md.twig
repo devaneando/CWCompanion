@@ -1,37 +1,28 @@
 {% extends 'sonata_preview.html.twig' %}
 {% trans_default_domain 'scene' %}
 
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}{{ the_scene_name(object)|raw() }}{% endblock %}
 
 {% block content %}
 <pre><code class="markdown">
-# {{ object.name }}
-&lt;img src=&quot;{{ object.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
+# {{ the_scene_name(object)|raw() }}
+
+**{{ 'text.project'|trans()|capitalize() }}**: {{ the_project(object.chapter.project)|raw() }}</li>
 
 ## {{ 'title.description'|trans() }}
 
 {{ object.description|maybe_null }}
 
-## {{ 'title.history'|trans() }}
+## {{ 'title.notes'|trans() }}
 
-{{ object.history|maybe_null }}
+{{ object.notes|maybe_null }}
 
-## {{ 'title.general_notes'|trans() }}
+### {{ 'title.characters'|trans() }}
 
-{{ object.generalNotes|maybe_null }}
+{{ the_characters(object, 'markdown') }}
 
-## {{ 'title.relations'|trans() }}
+## {{ 'title.key_items'|trans() }}
 
-### {{ 'title.parent'|trans() }}
-
-{{ the_parent(object, 'markdown') }}
-
-### {{ 'title.children'|trans() }}
-
-{{ the_children(object, 'markdown') }}
-
-## {{ 'title.scenes'|trans() }}
-
-{{ the_scenes(object, 'markdown') }}
+{{ the_key_items(object, 'markdown') }}
 </code></pre>
 {% endblock %}

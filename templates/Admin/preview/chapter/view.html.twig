@@ -1,0 +1,32 @@
+{% extends 'sonata_preview.html.twig' %}
+{% set trans_default_domain = "chapter" %}
+{% trans_default_domain 'chapter' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+    <div id="object">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 centered">
+                    <h1>{{ object.name }}</h1>
+                </div>
+            </div>
+            <div class="row left">
+                <p>
+                    <ul>
+                        <li><b>{{ 'text.project'|trans()|capitalize() }}</b>: {{ the_project(object.project)|raw() }}</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('content')|raw() }}</h2>
+                {{ object.content|maybe_null|markdown }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('scenes')|raw() }}</h2>
+                {{ the_scenes(object)|raw() }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
