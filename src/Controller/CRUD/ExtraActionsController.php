@@ -44,11 +44,7 @@ abstract class ExtraActionsController extends CRUDController
         return new RedirectResponse($this->admin->generateUrl('list'));
     }
 
-    /**
-     * @param mixed $object
-     *
-     * @throws NotFoundHttpException If allowPreview is false
-     */
+    /** @throws NotFoundHttpException If allowPreview is false */
     protected function previewAction(Request $request, $object, string $type = self::TYPE_HTML): Response
     {
         if (false === $this->allowPreview) {
@@ -59,7 +55,7 @@ abstract class ExtraActionsController extends CRUDController
             return new Response(
                 $this->renderView('Admin/preview/'.$this->templateFolder.'/view.md.twig', ['object' => $object])
             );
-        } elseif (self::TYPE_MARKDOWN === strtolower($type)) {
+        } elseif (self::TYPE_HTML === strtolower($type)) {
             return new Response(
                 $this->renderView('Admin/preview/'.$this->templateFolder.'/view.html.twig', ['object' => $object])
             );
