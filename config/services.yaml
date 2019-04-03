@@ -67,6 +67,13 @@ services:
             - [setSecurityRoles, ['%security.role_hierarchy.roles%']]
         tags: [form.type]
 
+    App\Admin\Type\ProjectType:
+        class: App\Admin\Type\ProjectType
+        calls:
+            - ['setTokenStorage', ['@security.token_storage']]
+            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
+        tags: [form.type]
+
     ##### Test only
     test.processor.image:
         alias: App\Processor\ImageProcessor
