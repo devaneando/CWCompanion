@@ -8,6 +8,7 @@ use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\PictureTrait;
 use App\Entity\User;
+use App\Entity\Character;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -80,9 +81,16 @@ class Project
      */
     protected $chapters;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Character", mappedBy="projects")
+     */
+    protected $characters;
+
     public function __construct()
     {
         $this->chapters = new ArrayCollection();
+        $this->characters = new ArrayCollection();
     }
 
     public function getId(): ?UuidInterface
@@ -154,6 +162,40 @@ class Project
         }
         $this->chapters->removeElement($object);
         $object->setProject(null);
+
+        return $this;
+    }
+
+    public function getCharacters(): ?ArrayCollection
+    {
+        return $this->characters;
+    }
+
+    public function setCharacters(ArrayCollection $characters): self
+    {
+        $this->characters = $characters;
+
+        return $this;
+    }
+
+    public function addCharacter(Character $object): self
+    {
+        if (true === $this->characters->contains($object)) {
+            return $this;
+        }
+        $this->characters->add($object);
+        $object->addProject($this);
+
+        return $this;
+    }
+
+    public function removeCharacter(Character $object): self
+    {
+        if (false === $this->characters->contains($object)) {
+            return $this;
+        }
+        $this->characters->removeElement($object);
+        $object->removeProject($this);
 
         return $this;
     }

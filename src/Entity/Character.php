@@ -12,6 +12,7 @@ use App\Entity\Religion;
 use App\Entity\Scene;
 use App\Entity\Sexuality;
 use App\Entity\Temperament;
+use App\Entity\Project;
 use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\PictureTrait;
 use App\Entity\User;
@@ -30,7 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Entity\Repository\CharacterRepository")
  * @ORM\Table(name="characters",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unique_characters_fullname_nickname", columns={"fullname", "nickname"})
+ *         @ORM\UniqueConstraint(name="unique_characters_fullname_nickname", columns={"fullname", "nickname"}),
  *     }
  * )
  * @ORM\HasLifecycleCallbacks()
@@ -54,6 +55,15 @@ class Character
      * @ORM\Column(name="id", type="uuid", unique=true)
      */
     protected $id;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project")
+     * @ORM\JoinTable(name="characters_projects",
+     *     joinColumns={@ORM\JoinColumn(name="character_id", referencedColumnName="id")},
+     * )
+     */
+    protected $projects;
 
     /**
      * @var User
@@ -541,6 +551,7 @@ class Character
     public function __construct()
     {
         $this->scenes = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?UuidInterface
@@ -551,6 +562,40 @@ class Character
     public function setId(UuidInterface $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getProjects(): ?ArrayCollection
+    {
+        return $this->projects;
+    }
+
+    public function setProjects(ArrayCollection $projects): self
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    public function addProject(Project $object): self
+    {
+        if (true === $this->projects->contains($object)) {
+            return $this;
+        }
+        $this->projects->add($object);
+        $object->addCharacter($this);
+
+        return $this;
+    }
+
+    public function removeProject(Project $object): self
+    {
+        if (false === $this->projects->contains($object)) {
+            return $this;
+        }
+        $this->projects->removeElement($object);
+        $object->removeCharacter($this);
 
         return $this;
     }
@@ -719,7 +764,7 @@ class Character
 
     public function getBirthdate(): ?ExtendedDate
     {
-        return new ExtendedDate($this->birthdate);
+        return $this->birthdate;
     }
 
     /** @throws InvalidExtendedDateStamp */
@@ -779,7 +824,7 @@ class Character
 
     public function getDateOfDeath(): ?ExtendedDate
     {
-        return new ExtendedDate($this->dateOfDeath);
+        return $this->dateOfDeath;
     }
 
     /** @throws InvalidExtendedDateStamp */

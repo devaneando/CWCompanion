@@ -106,6 +106,15 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 ]
             )
             ->add('birthdate', null, ['label'=> 'admin.label.birthdate'])
+            ->add(
+                'projects',
+                null,
+                [
+                    'label' => 'admin.label.projects',
+                    'sortable' => true,
+                    'route' => ['name' => 'show'],
+                ]
+            )
             ->add('_action', null, [
                 'actions'=> [
                     'show'=> [],
@@ -157,6 +166,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             )
             ->add('countryOfDeath', null, ['label'=> 'admin.label.country_of_death'])
             ->add('cityOfDeath', null, ['label'=> 'admin.label.city_of_death'])
+            ->add('projects', null, ['label'=> 'admin.label.projects'])
             ->end()
             ->with('in_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.inherited.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
