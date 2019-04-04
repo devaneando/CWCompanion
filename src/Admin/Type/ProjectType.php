@@ -2,7 +2,6 @@
 
 namespace App\Admin\Type;
 
-use App\Entity\Project;
 use App\Traits\LoggedUserTrait;
 use App\Traits\Repository\ProjectRepositoryTrait;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
