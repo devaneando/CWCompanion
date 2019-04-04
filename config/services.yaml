@@ -59,7 +59,7 @@ services:
             - [setTokenStorage, ['@security.token_storage']]
         tags: ['controller.service_arguments']
 
-    ##### Other
+    ##### Types
 
     App\Admin\Type\SecurityRolesType:
         class: App\Admin\Type\SecurityRolesType
@@ -72,6 +72,13 @@ services:
         calls:
             - ['setTokenStorage', ['@security.token_storage']]
             - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
+        tags: [form.type]
+
+    App\Admin\Type\ChapterType:
+        class: App\Admin\Type\ChapterType
+        calls:
+            - ['setTokenStorage', ['@security.token_storage']]
+            - ['setChapterRepository', ['@App\Entity\Repository\ChapterRepository']]
         tags: [form.type]
 
     ##### Test only
