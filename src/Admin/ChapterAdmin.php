@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
+use App\Admin\Type\ProjectType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -72,7 +73,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add(
                 'project',
-                null,
+                ProjectType::class,
                 [
                     'label'=> 'admin.label.project',
                     'sortable' => true,
