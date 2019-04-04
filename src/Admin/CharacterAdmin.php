@@ -112,8 +112,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 null,
                 [
                     'label' => 'admin.label.projects',
-                    'sortable' => true,
-                    'route' => ['name' => 'show'],
+                    'sortable' => true
                 ]
             )
             ->add('_action', null, [

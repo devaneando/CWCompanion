@@ -566,13 +566,18 @@ class Character
         return $this;
     }
 
-    public function getProjects(): ?ArrayCollection
+    public function getProjects()
     {
-        return $this->projects;
+        return $this->projects->toArray();
     }
 
-    public function setProjects(ArrayCollection $projects): self
+    public function setProjects($projects = null): self
     {
+        if (null === $projects) {
+            $this->projects = new ArrayCollection();
+
+            return $this;
+        }
         $this->projects = $projects;
 
         return $this;

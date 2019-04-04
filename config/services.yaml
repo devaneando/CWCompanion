@@ -81,6 +81,13 @@ services:
             - ['setChapterRepository', ['@App\Entity\Repository\ChapterRepository']]
         tags: [form.type]
 
+    App\Admin\Type\SceneType:
+        class: App\Admin\Type\SceneType
+        calls:
+            - ['setTokenStorage', ['@security.token_storage']]
+            - ['setSceneRepository', ['@App\Entity\Repository\SceneRepository']]
+        tags: [form.type]
+
     ##### Test only
     test.processor.image:
         alias: App\Processor\ImageProcessor
