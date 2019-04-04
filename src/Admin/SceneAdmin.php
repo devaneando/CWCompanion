@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\AmbientType;
+use App\Admin\Type\ChapterType;
 use App\Admin\Type\MarkDownType;
 use App\Admin\Type\TimeType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -107,7 +108,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
     {
         $formMapper
             ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
-            ->add('chapter', null, ['label'=> 'admin.label.chapter'])
+            ->add('chapter', ChapterType::class, ['label'=> 'admin.label.chapter'])
             ->add('scene', null, ['label'=> 'admin.label.scene'])
             ->add('ambient', AmbientType::class, ['label' => 'admin.label.ambient'])
             ->add('time', TimeType::class, ['label' => 'admin.label.time'])
