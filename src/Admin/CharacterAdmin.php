@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\ExtendedDateType;
 use App\Admin\Type\MarkDownType;
-use App\Admin\Type\ProjectType;
+use App\Admin\Type\ProjectsType;
 use App\Entity\Character;
 use App\Traits\LoggedUserTrait;
 use App\Traits\Repository\ZodiacRepositoryTrait;
@@ -17,6 +17,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Doctrine\ORM\EntityRepository;
+use App\Entity\Project;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 final class CharacterAdmin extends AbstractExtraActionsAdmin
 {
@@ -57,13 +60,13 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('id', null, ['label'=> 'admin.label.id'])
-            ->add('nickname', null, ['label'=> 'admin.label.nickname'])
-            ->add('fullName', null, ['label'=> 'admin.label.full_name'])
-            ->add('gender', null, ['label'=> 'admin.label.gender'])
-            ->add('characterType', null, ['label'=> 'admin.label.character_type'])
-            ->add('concept', null, ['label'=> 'admin.label.concept'])
-            ->add('birthdate', null, ['label'=> 'admin.label.birthdate']);
+            ->add('id', null, ['label' => 'admin.label.id'])
+            ->add('nickname', null, ['label' => 'admin.label.nickname'])
+            ->add('fullName', null, ['label' => 'admin.label.full_name'])
+            ->add('gender', null, ['label' => 'admin.label.gender'])
+            ->add('characterType', null, ['label' => 'admin.label.character_type'])
+            ->add('concept', null, ['label' => 'admin.label.concept'])
+            ->add('birthdate', null, ['label' => 'admin.label.birthdate']);
     }
 
     protected function configureListFields(ListMapper $listMapper): void
@@ -81,12 +84,12 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 'characterType',
                 null,
                 [
-                    'label'=> 'admin.label.character_type',
+                    'label' => 'admin.label.character_type',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
             )
-            ->add('nickname', null, ['label'=> 'admin.label.nickname'])
+            ->add('nickname', null, ['label' => 'admin.label.nickname'])
             ->add(
                 'concept',
                 null,
@@ -106,7 +109,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                     'route' => ['name' => 'show'],
                 ]
             )
-            ->add('birthdate', null, ['label'=> 'admin.label.birthdate'])
+            ->add('birthdate', null, ['label' => 'admin.label.birthdate'])
             ->add(
                 'projects',
                 null,
@@ -116,11 +119,11 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 ]
             )
             ->add('_action', null, [
-                'actions'=> [
-                    'show'=> [],
-                    'edit'=> [],
-                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
-                    'delete'=> [],
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'list' => ['template' => 'CRUD/list__action_preview.html.twig'],
+                    'delete' => [],
                 ],
             ]);
     }
@@ -128,154 +131,155 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $pictureUploadedOptions = [
-                'required'=> false,
-                'data_class'=> null,
-                'label'=> 'admin.label.uploaded_picture',
-            ];
+            'required' => false,
+            'data_class' => null,
+            'label' => 'admin.label.uploaded_picture',
+        ];
         if (($subject = $this->getSubject()) && $subject->getPicture()) {
             $path = $subject->getPicture();
-            $pictureUploadedOptions['help'] = '<img id="member-edit-picture" src="'.$path.'" style=" max-height: 250px;"/>';
+            $pictureUploadedOptions['help'] = '<img id="member-edit-picture" src="' . $path . '" style=" max-height: 250px;"/>';
         }
 
         /** ----- Tab Inherited ---------------------------------------------------------------------- */
         $formMapper
-            ->tab('tab_inherited', ['label'=> 'admin.tab.inherited'])
-            ->with('in_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.inherited.bl_001'])
-            ->add('nickname', null, ['label'=> 'admin.label.nickname'])
-            ->add('characterType', null, ['label'=> 'admin.label.character_type'])
-            ->add('concept', null, ['label'=> 'admin.label.concept'])
-            ->add('gender', null, ['label'=> 'admin.label.gender'])
-            ->add('fullName', null, ['label'=> 'admin.label.full_name'])
+            ->tab('tab_inherited', ['label' => 'admin.tab.inherited'])
+            ->with('in_001', ['class' => 'col-md-4', 'label' => 'admin.block.inherited.bl_001'])
+            ->add('nickname', null, ['label' => 'admin.label.nickname'])
+            ->add('characterType', null, ['label' => 'admin.label.character_type'])
+            ->add('concept', null, ['label' => 'admin.label.concept'])
+            ->add('gender', null, ['label' => 'admin.label.gender'])
+            ->add('fullName', null, ['label' => 'admin.label.full_name'])
             ->add(
                 'birthdate',
                 ExtendedDateType::class,
                 [
-                    'label'=> 'admin.label.birthdate',
-                    'required'=> true,
+                    'label' => 'admin.label.birthdate',
+                    'required' => true,
                 ]
             )
-            ->add('birthCountry', null, ['label'=> 'admin.label.birth_country'])
-            ->add('birthCity', null, ['label'=> 'admin.label.birth_city'])
+            ->add('birthCountry', null, ['label' => 'admin.label.birth_country'])
+            ->add('birthCity', null, ['label' => 'admin.label.birth_city'])
             ->add(
                 'dateOfDeath',
                 ExtendedDateType::class,
                 [
-                    'label'=> 'admin.label.date_of_death',
-                    'required'=> false,
+                    'label' => 'admin.label.date_of_death',
+                    'required' => false,
                 ]
             )
-            ->add('countryOfDeath', null, ['label'=> 'admin.label.country_of_death'])
-            ->add('cityOfDeath', null, ['label'=> 'admin.label.city_of_death'])
-            ->add('projects', ProjectType::class, ['label'=> 'admin.label.projects', 'multiple' => true])
+            ->add('countryOfDeath', null, ['label' => 'admin.label.country_of_death'])
+            ->add('cityOfDeath', null, ['label' => 'admin.label.city_of_death'])
+            ->add('projects', EntityType::class, ['label' => 'admin.label.projects', 'multiple' => true, 'class' => Project::class])
             ->end()
-            ->with('in_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.inherited.bl_002'])
+            ->with('in_002', ['class' => 'col-md-8', 'label' => 'admin.block.inherited.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
-            ->add('generalNotes', MarkDownType::class, ['label'=> 'admin.label.general_notes', 'rows'=> 15])
+            ->add('generalNotes', MarkDownType::class, ['label' => 'admin.label.general_notes', 'rows' => 15])
             ->end()
-            ->with('in_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.inherited.bl_003'])
-            ->add('personalHistory', MarkDownType::class, ['label'=> 'admin.label.personal_history', 'rows'=> 20])
+            ->with('in_003', ['class' => 'col-md-12', 'label' => 'admin.block.inherited.bl_003'])
+            ->add('personalHistory', MarkDownType::class, ['label' => 'admin.label.personal_history', 'rows' => 20])
             ->end()
             ->end();
 
         /** ----- Tab Physical ---------------------------------------------------------------------- */
         $formMapper
-            ->tab('tab_physical', ['label'=> 'admin.tab.physical'])
-            ->with('phy_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.physical.bl_001'])
-            ->add('bodyType', null, ['label'=> 'admin.label.body_type'])
+            ->tab('tab_physical', ['label' => 'admin.tab.physical'])
+            ->with('phy_001', ['class' => 'col-md-4', 'label' => 'admin.block.physical.bl_001'])
+            ->add('bodyType', null, ['label' => 'admin.label.body_type'])
             ->add(
                 'height',
                 NumberType::class,
                 [
-                    'label'=> 'admin.label.height',
-                    'required'=> false,
-                    'scale'=> 2,
+                    'label' => 'admin.label.height',
+                    'required' => false,
+                    'scale' => 2,
                 ]
             )
-            ->add('eyes', null, ['label'=> 'admin.label.eyes'])
-            ->add('skin', null, ['label'=> 'admin.label.skin'])
-            ->add('hair', null, ['label'=> 'admin.label.hair'])
-            ->add('odor', null, ['label'=> 'admin.label.odor'])
+            ->add('eyes', null, ['label' => 'admin.label.eyes'])
+            ->add('skin', null, ['label' => 'admin.label.skin'])
+            ->add('hair', null, ['label' => 'admin.label.hair'])
+            ->add('odor', null, ['label' => 'admin.label.odor'])
             ->end()
-            ->with('phy_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.physical.bl_002'])
-            ->add('distinguishingMarks', MarkDownType::class, ['label'=> 'admin.label.distinguishing_marks'])
-            ->add('healthProblems', MarkDownType::class, ['label'=> 'admin.label.health_problems'])
-            ->add('speechPattern', MarkDownType::class, ['label'=> 'admin.label.speech_pattern'])
+            ->with('phy_002', ['class' => 'col-md-8', 'label' => 'admin.block.physical.bl_002'])
+            ->add('distinguishingMarks', MarkDownType::class, ['label' => 'admin.label.distinguishing_marks'])
+            ->add('healthProblems', MarkDownType::class, ['label' => 'admin.label.health_problems'])
+            ->add('speechPattern', MarkDownType::class, ['label' => 'admin.label.speech_pattern'])
             ->end()
             ->end();
 
         /** ----- Tab Life Style ---------------------------------------------------------------------- */
         $formMapper
-            ->tab('tab_life_style', ['label'=> 'admin.tab.life_style'])
-            ->with('lst_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.life_style.bl_001'])
-            ->add('sexuality', null, ['label'=> 'admin.label.sexuality'])
-            ->add('homeCountry', null, ['label'=> 'admin.label.home_country'])
-            ->add('homeCity', null, ['label'=> 'admin.label.home_city'])
-            ->add('income', null, ['label'=> 'admin.label.income'])
-            ->add('currentOccupation', null, ['label'=> 'admin.label.current_occupation'])
-            ->add('currentOccupationNice', null, ['label'=> 'admin.label.current_occupation_nice'])
+            ->tab('tab_life_style', ['label' => 'admin.tab.life_style'])
+            ->with('lst_001', ['class' => 'col-md-4', 'label' => 'admin.block.life_style.bl_001'])
+            ->add('sexuality', null, ['label' => 'admin.label.sexuality'])
+            ->add('homeCountry', null, ['label' => 'admin.label.home_country'])
+            ->add('homeCity', null, ['label' => 'admin.label.home_city'])
+            ->add('income', null, ['label' => 'admin.label.income'])
+            ->add('currentOccupation', null, ['label' => 'admin.label.current_occupation'])
+            ->add('currentOccupationNice', null, ['label' => 'admin.label.current_occupation_nice'])
             ->end()
-            ->with('lst_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.life_style.bl_002'])
-            ->add('dressStyle', MarkDownType::class, ['label'=> 'admin.label.dress_style'])
-            ->add('goodHabits', MarkDownType::class, ['label'=> 'admin.label.good_habits'])
-            ->add('badHabits', MarkDownType::class, ['label'=> 'admin.label.bad_habits'])
-            ->add('favoriteMusic', MarkDownType::class, ['label'=> 'admin.label.favorite_music'])
-            ->add('favoriteSports', MarkDownType::class, ['label'=> 'admin.label.favorite_sports'])
-            ->add('favoriteFood', MarkDownType::class, ['label'=> 'admin.label.favorite_food'])
-            ->add('hobbies', MarkDownType::class, ['label'=> 'admin.label.hobbies'])
+            ->with('lst_002', ['class' => 'col-md-8', 'label' => 'admin.block.life_style.bl_002'])
+            ->add('dressStyle', MarkDownType::class, ['label' => 'admin.label.dress_style'])
+            ->add('goodHabits', MarkDownType::class, ['label' => 'admin.label.good_habits'])
+            ->add('badHabits', MarkDownType::class, ['label' => 'admin.label.bad_habits'])
+            ->add('favoriteMusic', MarkDownType::class, ['label' => 'admin.label.favorite_music'])
+            ->add('favoriteSports', MarkDownType::class, ['label' => 'admin.label.favorite_sports'])
+            ->add('favoriteFood', MarkDownType::class, ['label' => 'admin.label.favorite_food'])
+            ->add('hobbies', MarkDownType::class, ['label' => 'admin.label.hobbies'])
             ->end()
             ->end();
 
         /** ----- Tab Intelectual ---------------------------------------------------------------------- */
         $formMapper
-            ->tab('tab_intelectual', ['label'=> 'admin.tab.intelectual'])
-            ->with('int_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.intelectual.bl_001'])
-            ->add('iqLevel', null, ['label'=> 'admin.label.iq_level'])
-            ->add('educationalLevel', null, ['label'=> 'admin.label.educational_level'])
-            ->add('skills', MarkDownType::class, ['label'=> 'admin.label.skills'])
-            ->add('personality', MarkDownType::class, ['label'=> 'admin.label.personality'])
+            ->tab('tab_intelectual', ['label' => 'admin.tab.intelectual'])
+            ->with('int_001', ['class' => 'col-md-6', 'label' => 'admin.block.intelectual.bl_001'])
+            ->add('iqLevel', null, ['label' => 'admin.label.iq_level'])
+            ->add('educationalLevel', null, ['label' => 'admin.label.educational_level'])
+            ->add('skills', MarkDownType::class, ['label' => 'admin.label.skills'])
+            ->add('personality', MarkDownType::class, ['label' => 'admin.label.personality'])
             ->end()
-            ->with('int_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.intelectual.bl_002'])
-            ->add('dominantTemperament', null, ['label'=> 'admin.label.dominant_temperament'])
-            ->add('secondaryTemperament', null, ['label'=> 'admin.label.secondary_temperament'])
-            ->add('selfView', MarkDownType::class, ['label'=> 'admin.label.self_view'])
-            ->add('whatWouldChange', MarkDownType::class, ['label'=> 'admin.label.what_would_change'])
+            ->with('int_002', ['class' => 'col-md-6', 'label' => 'admin.block.intelectual.bl_002'])
+            ->add('dominantTemperament', null, ['label' => 'admin.label.dominant_temperament'])
+            ->add('secondaryTemperament', null, ['label' => 'admin.label.secondary_temperament'])
+            ->add('selfView', MarkDownType::class, ['label' => 'admin.label.self_view'])
+            ->add('whatWouldChange', MarkDownType::class, ['label' => 'admin.label.what_would_change'])
             ->end()
             ->end();
 
         /** ----- Tab Emotional ---------------------------------------------------------------------- */
         $formMapper
-            ->tab('tab_emotional', ['label'=> 'admin.tab.emotional'])
-            ->with('emo_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.emotional.bl_001'])
-            ->add('emotionalTraumas', MarkDownType::class, ['label'=> 'admin.label.emotional_traumas'])
-            ->add('deepestSecret', MarkDownType::class, ['label'=> 'admin.label.deepest_secret'])
-            ->add('whatMotivates', MarkDownType::class, ['label'=> 'admin.label.what_motivates'])
-            ->add('whatMakesHappy', MarkDownType::class, ['label'=> 'admin.label.what_makes_happy'])
-            ->add('whatFrightens', MarkDownType::class, ['label'=> 'admin.label.what_frightens'])
-            ->end() /** end group #013 */
+            ->tab('tab_emotional', ['label' => 'admin.tab.emotional'])
+            ->with('emo_001', ['class' => 'col-md-12', 'label' => 'admin.block.emotional.bl_001'])
+            ->add('emotionalTraumas', MarkDownType::class, ['label' => 'admin.label.emotional_traumas'])
+            ->add('deepestSecret', MarkDownType::class, ['label' => 'admin.label.deepest_secret'])
+            ->add('whatMotivates', MarkDownType::class, ['label' => 'admin.label.what_motivates'])
+            ->add('whatMakesHappy', MarkDownType::class, ['label' => 'admin.label.what_makes_happy'])
+            ->add('whatFrightens', MarkDownType::class, ['label' => 'admin.label.what_frightens'])
+            ->end()
+            /** end group #013 */
             ->end();
 
         /** ----- Tab Spiritual ---------------------------------------------------------------------- */
         $formMapper
-            ->tab('tab_spiritual', ['label'=> 'admin.tab.spiritual'])
-            ->with('spi_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.spiritual.bl_001'])
-            ->add('religion', null, ['label'=> 'admin.label.religion'])
-            ->add('religious', null, ['label'=> 'admin.label.religious'])
-            ->add('spiritualBeliefs', MarkDownType::class, ['label'=> 'admin.label.spiritual_beliefs'])
-            ->add('spiritualEffectsInLife', MarkDownType::class, ['label'=> 'admin.label.spiritual_effects_in_life'])
+            ->tab('tab_spiritual', ['label' => 'admin.tab.spiritual'])
+            ->with('spi_001', ['class' => 'col-md-12', 'label' => 'admin.block.spiritual.bl_001'])
+            ->add('religion', null, ['label' => 'admin.label.religion'])
+            ->add('religious', null, ['label' => 'admin.label.religious'])
+            ->add('spiritualBeliefs', MarkDownType::class, ['label' => 'admin.label.spiritual_beliefs'])
+            ->add('spiritualEffectsInLife', MarkDownType::class, ['label' => 'admin.label.spiritual_effects_in_life'])
             ->end()
             ->end();
 
         /** ----- Tab Relationship ---------------------------------------------------------------------- */
         $formMapper
-            ->tab('tab_relationship', ['label'=> 'admin.tab.relationship'])
-            ->with('rel_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.relationship.bl_001'])
-            ->add('parents', MarkDownType::class, ['label'=> 'admin.label.parents'])
-            ->add('siblings', MarkDownType::class, ['label'=> 'admin.label.siblings'])
-            ->add('children', MarkDownType::class, ['label'=> 'admin.label.children'])
-            ->add('spouse', MarkDownType::class, ['label'=> 'admin.label.spouse'])
-            ->add('friends', MarkDownType::class, ['label'=> 'admin.label.friends'])
-            ->add('enemies', MarkDownType::class, ['label'=> 'admin.label.enemies'])
-            ->add('significantOthers', MarkDownType::class, ['label'=> 'admin.label.significant_others'])
+            ->tab('tab_relationship', ['label' => 'admin.tab.relationship'])
+            ->with('rel_001', ['class' => 'col-md-12', 'label' => 'admin.block.relationship.bl_001'])
+            ->add('parents', MarkDownType::class, ['label' => 'admin.label.parents'])
+            ->add('siblings', MarkDownType::class, ['label' => 'admin.label.siblings'])
+            ->add('children', MarkDownType::class, ['label' => 'admin.label.children'])
+            ->add('spouse', MarkDownType::class, ['label' => 'admin.label.spouse'])
+            ->add('friends', MarkDownType::class, ['label' => 'admin.label.friends'])
+            ->add('enemies', MarkDownType::class, ['label' => 'admin.label.enemies'])
+            ->add('significantOthers', MarkDownType::class, ['label' => 'admin.label.significant_others'])
             ->end()
             ->end();
     }
@@ -284,23 +288,23 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
     {
         /** ----- Tab Inherited ---------------------------------------------------------------------- */
         $showMapper
-            ->tab('tab_inherited', ['label'=> 'admin.tab.inherited'])
-            ->with('in_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.inherited.bl_001'])
-            ->add('id', null, ['label'=> 'admin.label.id'])
-            ->add('nickname', null, ['label'=> 'admin.label.nickname'])
-            ->add('characterType', null, ['label'=> 'admin.label.character_type', 'route' => ['name' => 'show']])
-            ->add('concept', null, ['label'=> 'admin.label.concept'])
-            ->add('gender', null, ['label'=> 'admin.label.gender', 'route' => ['name' => 'show']])
-            ->add('fullName', null, ['label'=> 'admin.label.full_name'])
-            ->add('birthdate', null, ['label'=> 'admin.label.birthdate'])
-            ->add('birthCountry', null, ['label'=> 'admin.label.birth_country', 'route' => ['name' => 'show']])
-            ->add('birthCity', null, ['label'=> 'admin.label.birth_city'])
-            ->add('dateOfDeath', null, ['label'=> 'admin.label.date_of_death'])
-            ->add('countryOfDeath', null, ['label'=> 'admin.label.country_of_death', 'route' => ['name' => 'show']])
-            ->add('cityOfDeath', null, ['label'=> 'admin.label.city_of_death'])
-            ->add('projects', null, ['label'=> 'admin.label.projects', 'route' => ['name' => 'show']])
+            ->tab('tab_inherited', ['label' => 'admin.tab.inherited'])
+            ->with('in_001', ['class' => 'col-md-4', 'label' => 'admin.block.inherited.bl_001'])
+            ->add('id', null, ['label' => 'admin.label.id'])
+            ->add('nickname', null, ['label' => 'admin.label.nickname'])
+            ->add('characterType', null, ['label' => 'admin.label.character_type', 'route' => ['name' => 'show']])
+            ->add('concept', null, ['label' => 'admin.label.concept'])
+            ->add('gender', null, ['label' => 'admin.label.gender', 'route' => ['name' => 'show']])
+            ->add('fullName', null, ['label' => 'admin.label.full_name'])
+            ->add('birthdate', null, ['label' => 'admin.label.birthdate'])
+            ->add('birthCountry', null, ['label' => 'admin.label.birth_country', 'route' => ['name' => 'show']])
+            ->add('birthCity', null, ['label' => 'admin.label.birth_city'])
+            ->add('dateOfDeath', null, ['label' => 'admin.label.date_of_death'])
+            ->add('countryOfDeath', null, ['label' => 'admin.label.country_of_death', 'route' => ['name' => 'show']])
+            ->add('cityOfDeath', null, ['label' => 'admin.label.city_of_death'])
+            ->add('projects', null, ['label' => 'admin.label.projects', 'route' => ['name' => 'show']])
             ->end()
-            ->with('in_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.inherited.bl_002'])
+            ->with('in_002', ['class' => 'col-md-8', 'label' => 'admin.block.inherited.bl_002'])
             ->add(
                 'picture',
                 null,
@@ -318,7 +322,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 ]
             )
             ->end()
-            ->with('in_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.inherited.bl_003'])
+            ->with('in_003', ['class' => 'col-md-12', 'label' => 'admin.block.inherited.bl_003'])
             ->add(
                 'personalHistory',
                 null,
@@ -332,10 +336,10 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
 
         /** ----- Tab Physical ---------------------------------------------------------------------- */
         $showMapper
-            ->tab('tab_physical', ['label'=> 'admin.tab.physical'])
-            ->with('phy_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.physical.bl_001'])
-            ->add('bodyType', null, ['label'=> 'admin.label.body_type'])
-            ->add('height', null, ['label'=> 'admin.label.height'])
+            ->tab('tab_physical', ['label' => 'admin.tab.physical'])
+            ->with('phy_001', ['class' => 'col-md-4', 'label' => 'admin.block.physical.bl_001'])
+            ->add('bodyType', null, ['label' => 'admin.label.body_type'])
+            ->add('height', null, ['label' => 'admin.label.height'])
             ->add(
                 'eyes',
                 null,
@@ -369,7 +373,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 ]
             )
             ->end()
-            ->with('phy_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.physical.bl_002'])
+            ->with('phy_002', ['class' => 'col-md-8', 'label' => 'admin.block.physical.bl_002'])
             ->add(
                 'distinguishingMarks',
                 null,
@@ -399,11 +403,11 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
 
         /** ----- Tab Life Style ---------------------------------------------------------------------- */
         $showMapper
-            ->tab('tab_life_style', ['label'=> 'admin.tab.life_style'])
-            ->with('lst_001', ['class'=> 'col-md-4', 'label'=> 'admin.block.life_style.bl_001'])
-            ->add('sexuality', null, ['label'=> 'admin.label.sexuality', 'route' => ['name' => 'show']])
-            ->add('homeCountry', null, ['label'=> 'admin.label.home_country', 'route' => ['name' => 'show']])
-            ->add('homeCity', null, ['label'=> 'admin.label.home_city'])
+            ->tab('tab_life_style', ['label' => 'admin.tab.life_style'])
+            ->with('lst_001', ['class' => 'col-md-4', 'label' => 'admin.block.life_style.bl_001'])
+            ->add('sexuality', null, ['label' => 'admin.label.sexuality', 'route' => ['name' => 'show']])
+            ->add('homeCountry', null, ['label' => 'admin.label.home_country', 'route' => ['name' => 'show']])
+            ->add('homeCity', null, ['label' => 'admin.label.home_city'])
             ->add(
                 'income',
                 null,
@@ -412,10 +416,10 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                     'template' => 'form/show/markdown.html.twig',
                 ]
             )
-            ->add('currentOccupation', null, ['label'=> 'admin.label.current_occupation', 'route' => ['name' => 'show']])
-            ->add('currentOccupationNice', null, ['label'=> 'admin.label.current_occupation_nice'])
+            ->add('currentOccupation', null, ['label' => 'admin.label.current_occupation', 'route' => ['name' => 'show']])
+            ->add('currentOccupationNice', null, ['label' => 'admin.label.current_occupation_nice'])
             ->end()
-            ->with('lst_002', ['class'=> 'col-md-8', 'label'=> 'admin.block.life_style.bl_002'])
+            ->with('lst_002', ['class' => 'col-md-8', 'label' => 'admin.block.life_style.bl_002'])
             ->add(
                 'dressStyle',
                 null,
@@ -477,10 +481,10 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
 
         /** ----- Tab Intelectual ---------------------------------------------------------------------- */
         $showMapper
-            ->tab('tab_intelectual', ['label'=> 'admin.tab.intelectual'])
-            ->with('int_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.intelectual.bl_001'])
-            ->add('iqLevel', null, ['label'=> 'admin.label.iq_level', 'route' => ['name' => 'show']])
-            ->add('educationalLevel', null, ['label'=> 'admin.label.educational_level', 'route' => ['name' => 'show']])
+            ->tab('tab_intelectual', ['label' => 'admin.tab.intelectual'])
+            ->with('int_001', ['class' => 'col-md-6', 'label' => 'admin.block.intelectual.bl_001'])
+            ->add('iqLevel', null, ['label' => 'admin.label.iq_level', 'route' => ['name' => 'show']])
+            ->add('educationalLevel', null, ['label' => 'admin.label.educational_level', 'route' => ['name' => 'show']])
             ->add(
                 'skills',
                 null,
@@ -498,9 +502,9 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                 ]
             )
             ->end()
-            ->with('int_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.intelectual.bl_002'])
-            ->add('dominantTemperament', null, ['label'=> 'admin.label.dominant_temperament', 'route' => ['name' => 'show']])
-            ->add('secondaryTemperament', null, ['label'=> 'admin.label.secondary_temperament', 'route' => ['name' => 'show']])
+            ->with('int_002', ['class' => 'col-md-6', 'label' => 'admin.block.intelectual.bl_002'])
+            ->add('dominantTemperament', null, ['label' => 'admin.label.dominant_temperament', 'route' => ['name' => 'show']])
+            ->add('secondaryTemperament', null, ['label' => 'admin.label.secondary_temperament', 'route' => ['name' => 'show']])
             ->add(
                 'selfView',
                 null,
@@ -522,8 +526,8 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
 
         /** ----- Tab Emotional ---------------------------------------------------------------------- */
         $showMapper
-            ->tab('tab_emotional', ['label'=> 'admin.tab.emotional'])
-            ->with('emo_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.emotional.bl_001'])
+            ->tab('tab_emotional', ['label' => 'admin.tab.emotional'])
+            ->with('emo_001', ['class' => 'col-md-12', 'label' => 'admin.block.emotional.bl_001'])
             ->add(
                 'emotionalTraumas',
                 null,
@@ -569,10 +573,10 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
 
         /** ----- Tab Spiritual ---------------------------------------------------------------------- */
         $showMapper
-            ->tab('tab_spiritual', ['label'=> 'admin.tab.spiritual'])
-            ->with('spi_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.spiritual.bl_001'])
-            ->add('religion', null, ['label'=> 'admin.label.religion', 'route' => ['name' => 'show']])
-            ->add('religious', null, ['label'=> 'admin.label.religious'])
+            ->tab('tab_spiritual', ['label' => 'admin.tab.spiritual'])
+            ->with('spi_001', ['class' => 'col-md-12', 'label' => 'admin.block.spiritual.bl_001'])
+            ->add('religion', null, ['label' => 'admin.label.religion', 'route' => ['name' => 'show']])
+            ->add('religious', null, ['label' => 'admin.label.religious'])
             ->add(
                 'spiritualBeliefs',
                 null,
@@ -594,8 +598,8 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
 
         /** ----- Tab Relationship ---------------------------------------------------------------------- */
         $showMapper
-            ->tab('tab_relationship', ['label'=> 'admin.tab.relationship'])
-            ->with('rel_001', ['class'=> 'col-md-12', 'label'=> 'admin.block.relationship.bl_001'])
+            ->tab('tab_relationship', ['label' => 'admin.tab.relationship'])
+            ->with('rel_001', ['class' => 'col-md-12', 'label' => 'admin.block.relationship.bl_001'])
             ->add(
                 'parents',
                 null,

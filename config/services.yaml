@@ -67,8 +67,8 @@ services:
             - [setSecurityRoles, ['%security.role_hierarchy.roles%']]
         tags: [form.type]
 
-    App\Admin\Type\ProjectType:
-        class: App\Admin\Type\ProjectType
+    App\Admin\Type\ProjectsType:
+        class: App\Admin\Type\ProjectsType
         calls:
             - ['setTokenStorage', ['@security.token_storage']]
             - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]

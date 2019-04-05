@@ -568,17 +568,27 @@ class Character
 
     public function getProjects()
     {
-        return $this->projects->toArray();
+        return $this->projects;
     }
 
     public function setProjects($projects = null): self
     {
-        if (null === $projects) {
-            $this->projects = new ArrayCollection();
-
-            return $this;
-        }
         $this->projects = $projects;
+
+        return $this;
+    }
+
+    public function getProjectsAsArray()
+    {
+        return $this->projects->toArray();
+    }
+
+    public function setProjectsAsArray($projects = null): self
+    {
+        if (null === $projects) {
+            $this->projects = null;
+        }
+        $this->projects = new ArrayCollection($projects);
 
         return $this;
     }
