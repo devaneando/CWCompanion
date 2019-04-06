@@ -157,7 +157,7 @@ class Character
     protected $birthCity;
 
     /**
-     * @var ExtendedDate
+     * @var string
      * @ORM\Column(name="birth_date", type="string", length=20, nullable=false)
      */
     protected $birthdate;
@@ -552,6 +552,8 @@ class Character
     {
         $this->scenes = new ArrayCollection();
         $this->projects = new ArrayCollection();
+        $date = new \DateTime('-30years');
+        $this->birthdate = $date->format('Y-m-d');
     }
 
     public function getId(): ?UuidInterface
@@ -779,7 +781,7 @@ class Character
 
     public function getBirthdate(): ?ExtendedDate
     {
-        return $this->birthdate;
+        return new ExtendedDate($this->birthdate);
     }
 
     /** @throws InvalidExtendedDateStamp */

@@ -19,3 +19,6 @@
 .sonata-cell {
     text-align: left !important;
 }
+.anno_domini > div > label > span {
+    font-size: 10px !important;
+}

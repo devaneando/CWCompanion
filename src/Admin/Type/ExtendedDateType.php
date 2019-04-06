@@ -6,7 +6,8 @@ use App\Admin\Mapper\ExtendedDateMapper;
 use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -41,11 +42,11 @@ class ExtendedDateType extends SymfonyAbstractType
                 'label' => $this->translator->trans('extended_date.anno_domini', [], $this->transDomain),
                 'translation_domain' => false,
             ])
-            ->add('year', IntegerType::class, [
+            ->add('year', TextType::class, [
                 'empty_data' => null,
                 'label' => false,
                 'required' => false,
-                'attr' => ['class' => 'form-inline', 'placeholder' => $this->translator->trans('year', [], $this->transDomain), 'min' => 0],
+                'attr' => ['class' => 'form-inline', 'placeholder' => $this->translator->trans('year', [], $this->transDomain)],
                 'translation_domain' => false,
             ])
             ->add('month', ChoiceType::class, [
