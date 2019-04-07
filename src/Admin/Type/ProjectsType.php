@@ -4,29 +4,19 @@ namespace App\Admin\Type;
 
 use App\Traits\LoggedUserTrait;
 use App\Traits\Repository\ProjectRepositoryTrait;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
-use App\Entity\Project;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 
-class ProjectsType extends EntityType
+class ProjectsType extends SymfonyAbstractType
 {
     use LoggedUserTrait;
     use ProjectRepositoryTrait;
 
-    protected function getProjects(): array
-    {
-        return $this->getProjectRepository()->getProjectArrayByOwner($this->getLoggedUser());
-    }
-
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'class' => Project::class,
-            'multiple' => true,
-            'empty_data' => null,
-        ]);
-
         if (false === $this->getLoggedUser()->isSuperAdmin()) {
             $resolver->setDefault('query_builder', function (Options $options) {
                 return function (EntityRepository $er) use ($options) {
