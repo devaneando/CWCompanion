@@ -17,9 +17,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Doctrine\ORM\EntityRepository;
 use App\Entity\Project;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 final class CharacterAdmin extends AbstractExtraActionsAdmin
 {
@@ -169,7 +167,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             )
             ->add('countryOfDeath', null, ['label' => 'admin.label.country_of_death'])
             ->add('cityOfDeath', null, ['label' => 'admin.label.city_of_death'])
-            ->add('projects', EntityType::class, ['label' => 'admin.label.projects', 'multiple' => true, 'class' => Project::class])
+            ->add('projects', ProjectsType::class, ['label' => 'admin.label.projects', 'multiple' => true, 'class' => Project::class])
             ->end()
             ->with('in_002', ['class' => 'col-md-8', 'label' => 'admin.block.inherited.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
