@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\PictureTrait;
+use App\Entity\Traits\ProjectsTrait;
 use App\Entity\User;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
@@ -38,6 +39,24 @@ class Concept
     protected $id;
 
     /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="concepts")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+     */
+    protected $owner;
+    use OwnerTrait;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project")
+     * @ORM\JoinTable(name="characters_projects",
+     *     joinColumns={@ORM\JoinColumn(name="character_id", referencedColumnName="id")},
+     * )
+     */
+    protected $projects;
+    use ProjectsTrait;
+
+    /**
      * @var string
      * @ORM\Column(name="name", type="string", length=120, unique=true)
      * @Assert\NotNull(message="not_null.default")
@@ -49,14 +68,6 @@ class Concept
      */
     protected $name;
     use NameTrait;
-
-    /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="concepts")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
-     */
-    protected $owner;
-    use OwnerTrait;
 
     /**
      * @var ArrayCollection
@@ -153,7 +164,7 @@ class Concept
 
         $image = ImageProcessor::IMAGE_CONCEPT;
         $date = new \DateTime();
-        $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
+        $newImage = ImageProcessor::PATH_UPLOAD . '/' . $this->getId() . '_' . $date->format('Ymd_His') . '.png';
         if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
             mkdir(ImageProcessor::PATH_UPLOAD);
         }
@@ -168,7 +179,7 @@ class Concept
             return $this;
         } catch (\Exception $ex) {
             throw new \Exception(
-                'Something unexpected happened in '.basename($ex->getFile()).'#'.$ex->getLine().': '.$ex->getMessage(),
+                'Something unexpected happened in ' . basename($ex->getFile()) . '#' . $ex->getLine() . ': ' . $ex->getMessage(),
                 0,
                 $ex
             );

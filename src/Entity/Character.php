@@ -8,13 +8,13 @@ use App\Entity\EducationalDegree;
 use App\Entity\Gender;
 use App\Entity\IntelligenceQuotient;
 use App\Entity\Profession;
-use App\Entity\Project;
 use App\Entity\Religion;
 use App\Entity\Scene;
 use App\Entity\Sexuality;
 use App\Entity\Temperament;
 use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\PictureTrait;
+use App\Entity\Traits\ProjectsTrait;
 use App\Entity\User;
 use App\Entity\Zodiac;
 use App\Exception\ExtendedDate\InvalidExtendedDateStamp;
@@ -57,6 +57,14 @@ class Character
     protected $id;
 
     /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="characters")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+     */
+    protected $owner;
+    use OwnerTrait;
+
+    /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Entity\Project")
      * @ORM\JoinTable(name="characters_projects",
@@ -64,14 +72,7 @@ class Character
      * )
      */
     protected $projects;
-
-    /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="characters")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
-     */
-    protected $owner;
-    use OwnerTrait;
+    use ProjectsTrait;
 
     /**
      * @var ArrayCollection
@@ -585,38 +586,6 @@ class Character
         return $this->projects->toArray();
     }
 
-    public function setProjectsAsArray($projects = null): self
-    {
-        if (null === $projects) {
-            $this->projects = null;
-        }
-        $this->projects = new ArrayCollection($projects);
-
-        return $this;
-    }
-
-    public function addProject(Project $object): self
-    {
-        if (true === $this->projects->contains($object)) {
-            return $this;
-        }
-        $this->projects->add($object);
-        $object->addCharacter($this);
-
-        return $this;
-    }
-
-    public function removeProject(Project $object): self
-    {
-        if (false === $this->projects->contains($object)) {
-            return $this;
-        }
-        $this->projects->removeElement($object);
-        $object->removeCharacter($this);
-
-        return $this;
-    }
-
     /** @return ArrayCollection|PersistentCollection */
     public function getScenes()
     {
@@ -695,7 +664,7 @@ class Character
             $image = ImageProcessor::IMAGE_CHARACTER_MALE;
         }
         $date = new \DateTime();
-        $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
+        $newImage = ImageProcessor::PATH_UPLOAD . '/' . $this->getId() . '_' . $date->format('Ymd_His') . '.png';
         if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
             mkdir(ImageProcessor::PATH_UPLOAD);
         }
@@ -710,7 +679,7 @@ class Character
             return $this;
         } catch (\Exception $ex) {
             throw new \Exception(
-                'Something unexpected happened in '.basename($ex->getFile()).'#'.$ex->getLine().': '.$ex->getMessage(),
+                'Something unexpected happened in ' . basename($ex->getFile()) . '#' . $ex->getLine() . ': ' . $ex->getMessage(),
                 0,
                 $ex
             );

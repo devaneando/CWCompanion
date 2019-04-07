@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
-use App\Admin\Type\ProjectType;
+use App\Admin\Type\ProjectsType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -52,7 +52,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
                 'project',
                 null,
                 [
-                    'label'=> 'admin.label.project',
+                    'label' => 'admin.label.project',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
@@ -61,7 +61,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
+                    'list' => ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);
@@ -73,17 +73,18 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add(
                 'project',
-                ProjectType::class,
+                ProjectsType::class,
                 [
-                    'label'=> 'admin.label.project',
+                    'label' => 'admin.label.project',
                     'sortable' => true,
+                    'multiple' => false
                 ]
             )
             ->add(
                 'scenes',
                 null,
                 [
-                    'label'=> 'admin.label.scenes',
+                    'label' => 'admin.label.scenes',
                     'sortable' => true,
                 ]
             )
@@ -99,7 +100,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
                 'project',
                 null,
                 [
-                    'label'=> 'admin.label.project',
+                    'label' => 'admin.label.project',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
@@ -108,7 +109,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
                 'scenes',
                 null,
                 [
-                    'label'=> 'admin.label.scenes',
+                    'label' => 'admin.label.scenes',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
