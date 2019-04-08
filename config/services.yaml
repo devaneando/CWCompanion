@@ -71,21 +71,18 @@ services:
         class: App\Admin\Type\ProjectsType
         calls:
             - ['setTokenStorage', ['@security.token_storage']]
-            - ['setProjectRepository', ['@App\Entity\Repository\ProjectRepository']]
         tags: [form.type]
 
     App\Admin\Type\ChapterType:
         class: App\Admin\Type\ChapterType
         calls:
             - ['setTokenStorage', ['@security.token_storage']]
-            - ['setChapterRepository', ['@App\Entity\Repository\ChapterRepository']]
         tags: [form.type]
 
     App\Admin\Type\SceneType:
         class: App\Admin\Type\SceneType
         calls:
             - ['setTokenStorage', ['@security.token_storage']]
-            - ['setSceneRepository', ['@App\Entity\Repository\SceneRepository']]
         tags: [form.type]
 
     ##### Test only

@@ -3,28 +3,28 @@
 namespace App\Admin\Type;
 
 use App\Traits\LoggedUserTrait;
-use App\Traits\Repository\SceneRepositoryTrait;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 
-class SceneType extends ChoiceType
+class SceneType extends SymfonyAbstractType
 {
     use LoggedUserTrait;
-    use SceneRepositoryTrait;
-
-    protected function getChapters(): array
-    {
-        return $this->getChapterRepository()->getChapterArrayByOwner($this->getLoggedUser());
-    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'choices' => $this->getChapters(),
-            'choices_as_values' => true,
-            'choice_translation_domain' => false,
-            'multiple' => false,
-        ]);
+        if (false === $this->getLoggedUser()->isSuperAdmin()) {
+            $resolver->setDefault('query_builder', function (Options $options) {
+                return function (EntityRepository $er) use ($options) {
+                    return $er->createQueryBuilder('sce')
+                        ->orderBy('sce.name', 'ASC')
+                        ->andWhere('sce.owner = :owner')
+                        ->setParameter('owner', $this->getLoggedUser());
+                };
+            });
+        }
     }
 
     /**
@@ -32,11 +32,11 @@ class SceneType extends ChoiceType
      */
     public function getBlockPrefix()
     {
-        return 'chapter';
+        return 'scene';
     }
 
     public function getParent()
     {
-        return ChoiceType::class;
+        return EntityType::class;
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Admin\Type;
 
 use App\Traits\LoggedUserTrait;
-use App\Traits\Repository\ProjectRepositoryTrait;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\Options;
@@ -13,7 +12,6 @@ use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 class ProjectType extends SymfonyAbstractType
 {
     use LoggedUserTrait;
-    use ProjectRepositoryTrait;
 
     public function configureOptions(OptionsResolver $resolver)
     {

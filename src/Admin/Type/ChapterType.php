@@ -3,28 +3,28 @@
 namespace App\Admin\Type;
 
 use App\Traits\LoggedUserTrait;
-use App\Traits\Repository\ChapterRepositoryTrait;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 
-class ChapterType extends ChoiceType
+class ChapterType extends SymfonyAbstractType
 {
     use LoggedUserTrait;
-    use ChapterRepositoryTrait;
-
-    protected function getChapters(): array
-    {
-        return $this->getChapterRepository()->getChapterArrayByOwner($this->getLoggedUser());
-    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'choices' => $this->getChapters(),
-            'choices_as_values' => true,
-            'choice_translation_domain' => false,
-            'multiple' => false,
-        ]);
+        if (false === $this->getLoggedUser()->isSuperAdmin()) {
+            $resolver->setDefault('query_builder', function (Options $options) {
+                return function (EntityRepository $er) use ($options) {
+                    return $er->createQueryBuilder('cha')
+                        ->orderBy('cha.name', 'ASC')
+                        ->andWhere('cha.owner = :owner')
+                        ->setParameter('owner', $this->getLoggedUser());
+                };
+            });
+        }
     }
 
     /**
@@ -37,6 +37,6 @@ class ChapterType extends ChoiceType
 
     public function getParent()
     {
-        return ChoiceType::class;
+        return EntityType::class;
     }
 }
