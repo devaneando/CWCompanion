@@ -31,6 +31,7 @@ parameters:
     ignoreErrors:
         - "#Call to function is_null.*with bool will always evaluate to false.#"
         - "#Strict comparison using === between true and false will always evaluate to false.#"
+        - "#Anonymous function has an unused use.*options.#"
     internalErrorsCountLimit: 50
     reportUnmatchedIgnoredErrors: true
     scopeClass: PHPStan\Analyser\Scope

@@ -13,25 +13,4 @@ class SceneRepository extends AbstractBaseRepository
     {
         parent::__construct($registry, Scene::class);
     }
-
-    public function getSceneArrayByOwner(User $owner): array
-    {
-        $sql = "SELECT CONCAT(scene, ' -- ', ambient, ' -- ',time) AS name, id FROM chapters";
-        $params = [];
-        if (true === $owner->isSuperAdmin()) {
-            $sql .= ' WHERE owner_id = :owner';
-            $params['owner'] = $owner->getId();
-        }
-        $sql .= ' ORDER BY name ASC';
-
-        $statement = $this->getEntityManager()->getConnection()->prepare($sql);
-        $statement->execute($params);
-
-        $result = [];
-        foreach ($statement->fetchAll(FetchMode::ASSOCIATIVE) as $item) {
-            $result[$item['name']] = $item['id'];
-        }
-
-        return $result;
-    }
 }

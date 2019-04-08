@@ -3,15 +3,20 @@
 namespace App\Entity\Traits;
 
 use App\Entity\Project;
+use Doctrine\Common\Collections\ArrayCollection;
 
 trait ProjectsTrait
 {
     public function setProjectsAsArray($projects = null): self
     {
         if (null === $projects) {
-            $this->projects = null;
+            $this->projects = new ArrayCollection();
         }
-        $this->projects = new ArrayCollection($projects);
+
+        if (true === is_array($projects)) {
+            $projects = new ArrayCollection($projects);
+        }
+        $this->projects = $projects;
 
         return $this;
     }

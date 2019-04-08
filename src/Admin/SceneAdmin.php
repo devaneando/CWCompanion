@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Admin;
 
@@ -56,7 +56,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
                 'chapter',
                 null,
                 [
-                    'label'=> 'admin.label.chapter',
+                    'label' => 'admin.label.chapter',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
@@ -65,7 +65,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
                 'scene',
                 null,
                 [
-                    'label'=> 'admin.label.scene',
+                    'label' => 'admin.label.scene',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
@@ -90,7 +90,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
                 'location',
                 null,
                 [
-                    'label'=> 'admin.label.location',
+                    'label' => 'admin.label.location',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
@@ -99,7 +99,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
+                    'list' => ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);
@@ -108,18 +108,18 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
-            ->add('chapter', ChapterType::class, ['label'=> 'admin.label.chapter'])
-            ->add('scene', SceneType::type, ['label'=> 'admin.label.scene'])
+            ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
+            ->add('chapter', ChapterType::class, ['label' => 'admin.label.chapter'])
+            ->add('scene', SceneType::class, ['label' => 'admin.label.scene'])
             ->add('ambient', AmbientType::class, ['label' => 'admin.label.ambient'])
             ->add('time', TimeType::class, ['label' => 'admin.label.time'])
             ->add('location', null, ['label' => 'admin.label.location'])
             ->end()
-            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
-            ->add('characters', null, ['label'=> 'admin.label.characters'])
-            ->add('keyItems', null, ['label'=> 'admin.label.key_items'])
+            ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
+            ->add('characters', null, ['label' => 'admin.label.characters'])
+            ->add('keyItems', null, ['label' => 'admin.label.key_items'])
             ->end()
-            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_003', ['class' => 'col-md-12', 'label' => 'admin.block.bl_002'])
             ->add('description', MarkDownType::class, ['label' => 'admin.label.description'])
             ->add('notes', MarkDownType::class, ['label' => 'admin.label.notes'])
             ->end();
@@ -128,9 +128,9 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
-            ->add('chapter', null, ['label'=> 'admin.label.chapter'])
-            ->add('scene', null, ['label'=> 'admin.label.scene'])
+            ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
+            ->add('chapter', null, ['label' => 'admin.label.chapter'])
+            ->add('scene', null, ['label' => 'admin.label.scene'])
             ->add(
                 'ambient',
                 null,
@@ -151,18 +151,18 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
                 'location',
                 null,
                 [
-                    'label'=> 'admin.label.location',
+                    'label' => 'admin.label.location',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
             )
             ->end()
-            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
             ->add(
                 'characters',
                 null,
                 [
-                    'label'=> 'admin.label.characters',
+                    'label' => 'admin.label.characters',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
@@ -171,13 +171,13 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
                 'keyItems',
                 null,
                 [
-                    'label'=> 'admin.label.key_items',
+                    'label' => 'admin.label.key_items',
                     'sortable' => true,
                     'route' => ['name' => 'show'],
                 ]
             )
             ->end()
-            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_003', ['class' => 'col-md-12', 'label' => 'admin.block.bl_002'])
             ->add(
                 'description',
                 null,

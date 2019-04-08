@@ -41,9 +41,11 @@ abstract class AbstractBaseRepository extends ServiceEntityRepository
             ->from($this->_entityName, 'ent')
             ->addOrderBy('ent.name', 'ASC');
 
-        if (true === in_array(
-            'predefined',
-            $this->getEntityManager()->getClassMetadata($this->_entityName)->getColumnNames())
+        if (
+            true === in_array(
+                'predefined',
+                $this->getEntityManager()->getClassMetadata($this->_entityName)->getColumnNames()
+            )
         ) {
             $queryBuilder->addOrderBy('ent.predefined', 'ASC');
         }
@@ -55,9 +57,11 @@ abstract class AbstractBaseRepository extends ServiceEntityRepository
 
     public function ensurePredefined(object $object)
     {
-        if (false === in_array(
-            'predefined',
-            $this->getEntityManager()->getClassMetadata($this->_entityName)->getColumnNames())
+        if (
+            false === in_array(
+                'predefined',
+                $this->getEntityManager()->getClassMetadata($this->_entityName)->getColumnNames()
+            )
         ) {
             return;
         }
