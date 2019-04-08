@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Traits\Collections\ProjectsTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\Repository\LocationRepository")
@@ -52,6 +53,17 @@ class Location
      * @ORM\OneToMany(targetEntity="Location", mappedBy="parent")
      */
     protected $children;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project", inversedBy="locations")
+     * @ORM\JoinTable(name="locations_projects",
+     *     joinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
+     * )
+     */
+    protected $projects;
+    use ProjectsTrait;
 
     /**
      * @var self
@@ -111,17 +123,17 @@ class Location
         $this->scenes = new ArrayCollection();
     }
 
-    public function getId(): ?UuidInterface
+    public function getId() : ? UuidInterface
     {
         return $this->id;
     }
 
-    public function getParent(): ?self
+    public function getParent() : ? self
     {
         return $this->parent;
     }
 
-    public function setParent(?self $parent): self
+    public function setParent(? self $parent) : self
     {
         $this->parent = $parent;
 
@@ -135,14 +147,14 @@ class Location
     }
 
     /** @param ArrayCollection|PersistentCollection|null $children */
-    public function setChildren($children): self
+    public function setChildren($children) : self
     {
         $this->children = $children;
 
         return $this;
     }
 
-    public function addChild(self $child): self
+    public function addChild(self $child) : self
     {
         if ($this === $child) {
             return $this;
@@ -156,7 +168,7 @@ class Location
         return $this;
     }
 
-    public function removeChild(self $child): self
+    public function removeChild(self $child) : self
     {
         if (false === $this->children->contains($child)) {
             return $this;
@@ -167,7 +179,7 @@ class Location
         return $this;
     }
 
-    public function setDefaultPicture(): self
+    public function setDefaultPicture() : self
     {
         if (null !== $this->picture) {
             return $this;
@@ -175,7 +187,7 @@ class Location
 
         $image = ImageProcessor::IMAGE_LOCALE;
         $date = new \DateTime();
-        $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
+        $newImage = ImageProcessor::PATH_UPLOAD . '/' . $this->getId() . '_' . $date->format('Ymd_His') . '.png';
         if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
             mkdir(ImageProcessor::PATH_UPLOAD);
         }
@@ -190,7 +202,7 @@ class Location
             return $this;
         } catch (\Exception $ex) {
             throw new \Exception(
-                'Something unexpected happened in '.basename($ex->getFile()).'#'.$ex->getLine().': '.$ex->getMessage(),
+                'Something unexpected happened in ' . basename($ex->getFile()) . '#' . $ex->getLine() . ': ' . $ex->getMessage(),
                 0,
                 $ex
             );
@@ -199,24 +211,24 @@ class Location
         }
     }
 
-    public function getHistory(): ?string
+    public function getHistory() : ? string
     {
         return $this->history;
     }
 
-    public function setHistory(string $history): self
+    public function setHistory(string $history) : self
     {
         $this->history = trim($history);
 
         return $this;
     }
 
-    public function getGeneralNotes(): ?string
+    public function getGeneralNotes() : ? string
     {
         return $this->generalNotes;
     }
 
-    public function setGeneralNotes(string $generalNotes): self
+    public function setGeneralNotes(string $generalNotes) : self
     {
         $this->generalNotes = trim($generalNotes);
 
@@ -230,14 +242,14 @@ class Location
     }
 
     /** @param ArrayCollection|PersistentCollection|null $scenes */
-    public function setScenes($scenes): self
+    public function setScenes($scenes) : self
     {
         $this->scenes = $scenes;
 
         return $this;
     }
 
-    public function addScene(Scene $object): self
+    public function addScene(Scene $object) : self
     {
         if (true === $this->scenes->contains($object)) {
             return $this;
@@ -248,7 +260,7 @@ class Location
         return $this;
     }
 
-    public function removeScene(Scene $object): self
+    public function removeScene(Scene $object) : self
     {
         if (false === $this->scenes->contains($object)) {
             return $this;

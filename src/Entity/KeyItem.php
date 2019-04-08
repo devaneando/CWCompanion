@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Scene;
+use App\Entity\Traits\Collections\ProjectsTrait;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\OwnerTrait;
@@ -46,6 +47,17 @@ class KeyItem
      */
     protected $owner;
     use OwnerTrait;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project", inversedBy="keyItems")
+     * @ORM\JoinTable(name="key_items_projects",
+     *     joinColumns={@ORM\JoinColumn(name="key_items_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
+     * )
+     */
+    protected $projects;
+    use ProjectsTrait;
 
     /**
      * @var ArrayCollection
@@ -97,12 +109,12 @@ class KeyItem
         $this->scenes = new ArrayCollection();
     }
 
-    public function getId(): ?UuidInterface
+    public function getId() : ? UuidInterface
     {
         return $this->id;
     }
 
-    public function setDefaultPicture(): self
+    public function setDefaultPicture() : self
     {
         if (null !== $this->picture) {
             return $this;
@@ -110,7 +122,7 @@ class KeyItem
 
         $image = ImageProcessor::IMAGE_KEY_ITEM;
         $date = new \DateTime();
-        $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
+        $newImage = ImageProcessor::PATH_UPLOAD . '/' . $this->getId() . '_' . $date->format('Ymd_His') . '.png';
         if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
             mkdir(ImageProcessor::PATH_UPLOAD);
         }
@@ -125,7 +137,7 @@ class KeyItem
             return $this;
         } catch (\Exception $ex) {
             throw new \Exception(
-                'Something unexpected happened in '.basename($ex->getFile()).'#'.$ex->getLine().': '.$ex->getMessage(),
+                'Something unexpected happened in ' . basename($ex->getFile()) . '#' . $ex->getLine() . ': ' . $ex->getMessage(),
                 0,
                 $ex
             );
@@ -134,24 +146,24 @@ class KeyItem
         }
     }
 
-    public function getHistory(): ?string
+    public function getHistory() : ? string
     {
         return $this->history;
     }
 
-    public function setHistory(string $history): self
+    public function setHistory(string $history) : self
     {
         $this->history = trim($history);
 
         return $this;
     }
 
-    public function getGeneralNotes(): ?string
+    public function getGeneralNotes() : ? string
     {
         return $this->generalNotes;
     }
 
-    public function setGeneralNotes(string $generalNotes): self
+    public function setGeneralNotes(string $generalNotes) : self
     {
         $this->generalNotes = trim($generalNotes);
 
@@ -165,14 +177,14 @@ class KeyItem
     }
 
     /** @param ArrayCollection|PersistentCollection|null $scenes */
-    public function setScenes($scenes): self
+    public function setScenes($scenes) : self
     {
         $this->scenes = $scenes;
 
         return $this;
     }
 
-    public function addScene(Scene $object): self
+    public function addScene(Scene $object) : self
     {
         if (true === $this->scenes->contains($object)) {
             return $this;
@@ -183,7 +195,7 @@ class KeyItem
         return $this;
     }
 
-    public function removeScene(Scene $object): self
+    public function removeScene(Scene $object) : self
     {
         if (false === $this->scenes->contains($object)) {
             return $this;

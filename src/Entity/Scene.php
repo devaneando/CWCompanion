@@ -136,46 +136,46 @@ class Scene
      *
      * @return string
      */
-    public function __toString(): string
+    public function __toString() : string
     {
         return (true === empty($this->getScene())) ? '' : $this->getScene();
     }
 
-    public function getId(): ?UuidInterface
+    public function getId() : ? UuidInterface
     {
         return $this->id;
     }
 
-    public function getChapter(): ?Chapter
+    public function getChapter() : ? Chapter
     {
         return $this->chapter;
     }
 
-    public function setChapter(?Chapter $chapter): self
+    public function setChapter(? Chapter $chapter) : self
     {
         $this->chapter = $chapter;
 
         return $this;
     }
 
-    public function getScene(): ?int
+    public function getScene() : ? int
     {
         return $this->scene;
     }
 
-    public function setScene(int $scene): self
+    public function setScene(int $scene) : self
     {
         $this->scene = $scene;
 
         return $this;
     }
 
-    public function getAmbient(): ?string
+    public function getAmbient() : ? string
     {
         return $this->ambient;
     }
 
-    public function setAmbient(string $ambient): self
+    public function setAmbient(string $ambient) : self
     {
         if (false === $this->isValidConstant($ambient, '/^AMBIENT_.*/')) {
             throw new InvalidAmbient();
@@ -185,24 +185,24 @@ class Scene
         return $this;
     }
 
-    public function getLocation(): ?Location
+    public function getLocation() : ? Location
     {
         return $this->location;
     }
 
-    public function setLocation(?Location $location): self
+    public function setLocation(? Location $location) : self
     {
         $this->location = $location;
 
         return $this;
     }
 
-    public function getTime(): ?string
+    public function getTime() : ? string
     {
         return $this->time;
     }
 
-    public function setTime(string $time): self
+    public function setTime(string $time) : self
     {
         if (false === $this->isValidConstant($time, '/^TIME_.*/')) {
             throw new InvalidTime();
@@ -212,24 +212,24 @@ class Scene
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription() : ? string
     {
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(? string $description) : self
     {
         $this->description = trim($description);
 
         return $this;
     }
 
-    public function getNotes(): ?string
+    public function getNotes() : ? string
     {
         return $this->notes;
     }
 
-    public function setNotes(?string $notes): self
+    public function setNotes(? string $notes) : self
     {
         $this->notes = trim($notes);
 
@@ -243,14 +243,14 @@ class Scene
     }
 
     /** @param ArrayCollection|PersistentCollection|null $characters */
-    public function setCharacters($characters): self
+    public function setCharacters($characters) : self
     {
         $this->characters = $characters;
 
         return $this;
     }
 
-    public function addCharacter(Character $object): self
+    public function addCharacter(Character $object) : self
     {
         if (true === $this->characters->contains($object)) {
             return $this;
@@ -261,7 +261,7 @@ class Scene
         return $this;
     }
 
-    public function removeCharacter(Character $object): self
+    public function removeCharacter(Character $object) : self
     {
         if (false === $this->characters->contains($object)) {
             return $this;
@@ -279,14 +279,14 @@ class Scene
     }
 
     /** @param ArrayCollection|PersistentCollection|null $keyItems */
-    public function setKeyItems($keyItems): self
+    public function setKeyItems($keyItems) : self
     {
         $this->keyItems = $keyItems;
 
         return $this;
     }
 
-    public function addKeyItem(KeyItem $object): self
+    public function addKeyItem(KeyItem $object) : self
     {
         if (true === $this->keyItems->contains($object)) {
             return $this;
@@ -297,7 +297,7 @@ class Scene
         return $this;
     }
 
-    public function removeKeyItem(KeyItem $object): self
+    public function removeKeyItem(KeyItem $object) : self
     {
         if (false === $this->keyItems->contains($object)) {
             return $this;

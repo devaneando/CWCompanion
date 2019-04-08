@@ -9,12 +9,12 @@ use App\Entity\Gender;
 use App\Entity\IntelligenceQuotient;
 use App\Entity\Profession;
 use App\Entity\Religion;
-use App\Entity\Scene;
 use App\Entity\Sexuality;
 use App\Entity\Temperament;
+use App\Entity\Traits\Collections\ProjectsTrait;
+use App\Entity\Traits\Collections\ScenesTrait;
 use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\PictureTrait;
-use App\Entity\Traits\ProjectsTrait;
 use App\Entity\User;
 use App\Entity\Zodiac;
 use App\Exception\ExtendedDate\InvalidExtendedDateStamp;
@@ -23,7 +23,6 @@ use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -66,9 +65,10 @@ class Character
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="App\Entity\Project")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project", inversedBy="characters")
      * @ORM\JoinTable(name="characters_projects",
      *     joinColumns={@ORM\JoinColumn(name="character_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
      * )
      */
     protected $projects;
@@ -79,6 +79,7 @@ class Character
      * @ORM\ManyToMany(targetEntity="Scene", mappedBy="characters")
      */
     protected $scenes;
+    use ScenesTrait;
 
     /**
      * @var string
@@ -158,7 +159,7 @@ class Character
     protected $birthCity;
 
     /**
-     * @var string
+     * @var ExtendedDate
      * @ORM\Column(name="birth_date", type="string", length=20, nullable=false)
      */
     protected $birthdate;
@@ -554,104 +555,51 @@ class Character
         $this->scenes = new ArrayCollection();
         $this->projects = new ArrayCollection();
         $date = new \DateTime('-30years');
-        $this->birthdate = $date->format('Y-m-d');
+        $this->birthdate = new ExtendedDate($date->format('Y-m-d'));
     }
 
-    public function getId(): ?UuidInterface
+    public function getId() : ? UuidInterface
     {
         return $this->id;
     }
 
-    public function setId(UuidInterface $id): self
+    public function setId(UuidInterface $id) : self
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function getProjects()
-    {
-        return $this->projects;
-    }
-
-    public function setProjects($projects = null): self
-    {
-        $this->projects = $projects;
-
-        return $this;
-    }
-
-    public function getProjectsAsArray()
-    {
-        return $this->projects->toArray();
-    }
-
-    /** @return ArrayCollection|PersistentCollection */
-    public function getScenes()
-    {
-        return $this->scenes;
-    }
-
-    /** @param ArrayCollection|PersistentCollection|null $scenes */
-    public function setScenes($scenes): self
-    {
-        $this->scenes = $scenes;
-
-        return $this;
-    }
-
-    public function addScene(Scene $object): self
-    {
-        if (true === $this->scenes->contains($object)) {
-            return $this;
-        }
-        $this->scenes->add($object);
-        $object->addCharacter($this);
-
-        return $this;
-    }
-
-    public function removeScene(Scene $object): self
-    {
-        if (false === $this->scenes->contains($object)) {
-            return $this;
-        }
-        $this->scenes->removeElement($object);
-        $object->removeCharacter($this);
-
-        return $this;
-    }
-
-    public function getNickname(): ?string
+    public function getNickname() : ? string
     {
         return $this->nickname;
     }
 
-    public function __toString(): string
+    public function __toString() : string
     {
         return (null !== $this->nickname) ? $this->nickname : '';
     }
 
-    public function setNickname(string $nickname): self
+    public function setNickname(string $nickname) : self
     {
         $this->nickname = trim($nickname);
 
         return $this;
     }
 
-    public function getFullName(): ?string
+    public function getFullName() : ? string
     {
         return $this->fullName;
     }
 
-    public function setFullName(string $fullName): self
+    public function setFullName(string $fullName) : self
     {
         $this->fullName = trim($fullName);
 
         return $this;
     }
 
-    public function setDefaultPicture(): self
+    public function setDefaultPicture() : self
     {
         if (null !== $this->picture) {
             return $this;
@@ -688,80 +636,80 @@ class Character
         }
     }
 
-    public function getGender(): ?Gender
+    public function getGender() : ? Gender
     {
         return $this->gender;
     }
 
-    public function setGender(Gender $gender): self
+    public function setGender(Gender $gender) : self
     {
         $this->gender = $gender;
 
         return $this;
     }
 
-    public function getCharacterType(): ?CharacterType
+    public function getCharacterType() : ? CharacterType
     {
         return $this->characterType;
     }
 
-    public function setCharacterType(CharacterType $characterType): self
+    public function setCharacterType(CharacterType $characterType) : self
     {
         $this->characterType = $characterType;
 
         return $this;
     }
 
-    public function getConcept(): ?string
+    public function getConcept() : ? string
     {
         return $this->concept;
     }
 
-    public function setConcept(string $concept = null): self
+    public function setConcept(string $concept = null) : self
     {
         $this->concept = trim($concept);
 
         return $this;
     }
 
-    public function getBirthCountry(): ?Country
+    public function getBirthCountry() : ? Country
     {
         return $this->birthCountry;
     }
 
-    public function setBirthCountry(Country $birthCountry): self
+    public function setBirthCountry(Country $birthCountry) : self
     {
         $this->birthCountry = $birthCountry;
 
         return $this;
     }
 
-    public function getBirthCity(): ?string
+    public function getBirthCity() : ? string
     {
         return $this->birthCity;
     }
 
-    public function setBirthCity(string $birthCity = null): self
+    public function setBirthCity(string $birthCity = null) : self
     {
         $this->birthCity = trim($birthCity);
 
         return $this;
     }
 
-    public function getBirthdate(): ?ExtendedDate
+    public function getBirthdate() : ? ExtendedDate
     {
         return new ExtendedDate($this->birthdate);
     }
 
     /** @throws InvalidExtendedDateStamp */
-    public function setBirthdate(ExtendedDate $birthdate = null): self
+    public function setBirthdate(ExtendedDate $birthdate = null) : self
     {
         $this->birthdate = $birthdate;
 
         return $this;
     }
 
-    public function getAge(): int
+    public function getAge() : int
     {
         $currentYear = new \DateTime();
         $currentYear = (int)$currentYear->format('Y');
@@ -772,625 +720,625 @@ class Character
         return $currentYear - $this->getBirthdate()->getYear();
     }
 
-    public function getZodiacSign(): ?Zodiac
+    public function getZodiacSign() : ? Zodiac
     {
         return $this->zodiacSign;
     }
 
-    public function setZodiacSign(Zodiac $zodiacSign = null): self
+    public function setZodiacSign(Zodiac $zodiacSign = null) : self
     {
         $this->zodiacSign = $zodiacSign;
 
         return $this;
     }
 
-    public function getCountryOfDeath(): ?Country
+    public function getCountryOfDeath() : ? Country
     {
         return $this->countryOfDeath;
     }
 
-    public function setCountryOfDeath(Country $countryOfDeath = null): self
+    public function setCountryOfDeath(Country $countryOfDeath = null) : self
     {
         $this->countryOfDeath = $countryOfDeath;
 
         return $this;
     }
 
-    public function getCityOfDeath(): ?string
+    public function getCityOfDeath() : ? string
     {
         return $this->cityOfDeath;
     }
 
-    public function setCityOfDeath(string $cityOfDeath = null): self
+    public function setCityOfDeath(string $cityOfDeath = null) : self
     {
         $this->cityOfDeath = trim($cityOfDeath);
 
         return $this;
     }
 
-    public function getDateOfDeath(): ?ExtendedDate
+    public function getDateOfDeath() : ? ExtendedDate
     {
         return $this->dateOfDeath;
     }
 
     /** @throws InvalidExtendedDateStamp */
-    public function setDateOfDeath(ExtendedDate $dateOfDeath = null): self
+    public function setDateOfDeath(ExtendedDate $dateOfDeath = null) : self
     {
         $this->dateOfDeath = $dateOfDeath;
 
         return $this;
     }
 
-    public function getEyes(): ?string
+    public function getEyes() : ? string
     {
         return $this->eyes;
     }
 
-    public function setEyes(string $eyes = null): self
+    public function setEyes(string $eyes = null) : self
     {
         $this->eyes = trim($eyes);
 
         return $this;
     }
 
-    public function getSkin(): ?string
+    public function getSkin() : ? string
     {
         return $this->skin;
     }
 
-    public function setSkin(string $skin = null): self
+    public function setSkin(string $skin = null) : self
     {
         $this->skin = trim($skin);
 
         return $this;
     }
 
-    public function getHair(): ?string
+    public function getHair() : ? string
     {
         return $this->hair;
     }
 
-    public function setHair(string $hair = null): self
+    public function setHair(string $hair = null) : self
     {
         $this->hair = trim($hair);
 
         return $this;
     }
 
-    public function getBodyType(): ?string
+    public function getBodyType() : ? string
     {
         return $this->bodyType;
     }
 
-    public function setBodyType(string $bodyType = null): self
+    public function setBodyType(string $bodyType = null) : self
     {
         $this->bodyType = trim($bodyType);
 
         return $this;
     }
 
-    public function getHeight(): ?float
+    public function getHeight() : ? float
     {
         return $this->height;
     }
 
-    public function setHeight(float $height = null): self
+    public function setHeight(float $height = null) : self
     {
         $this->height = $height;
 
         return $this;
     }
 
-    public function getDistinguishingMarks(): ?string
+    public function getDistinguishingMarks() : ? string
     {
         return $this->distinguishingMarks;
     }
 
-    public function setDistinguishingMarks(string $distinguishingMarks = null): self
+    public function setDistinguishingMarks(string $distinguishingMarks = null) : self
     {
         $this->distinguishingMarks = trim($distinguishingMarks);
 
         return $this;
     }
 
-    public function getHealthProblems(): ?string
+    public function getHealthProblems() : ? string
     {
         return $this->healthProblems;
     }
 
-    public function setHealthProblems(string $healthProblems = null): self
+    public function setHealthProblems(string $healthProblems = null) : self
     {
         $this->healthProblems = trim($healthProblems);
 
         return $this;
     }
 
-    public function getSpeechPattern(): ?string
+    public function getSpeechPattern() : ? string
     {
         return $this->speechPattern;
     }
 
-    public function setSpeechPattern(string $speechPattern = null): self
+    public function setSpeechPattern(string $speechPattern = null) : self
     {
         $this->speechPattern = trim($speechPattern);
 
         return $this;
     }
 
-    public function getOdor(): ?string
+    public function getOdor() : ? string
     {
         return $this->odor;
     }
 
-    public function setOdor(string $odor = null): self
+    public function setOdor(string $odor = null) : self
     {
         $this->odor = trim($odor);
 
         return $this;
     }
 
-    public function getGeneralNotes(): ?string
+    public function getGeneralNotes() : ? string
     {
         return $this->generalNotes;
     }
 
-    public function setGeneralNotes(string $generalNotes = null): self
+    public function setGeneralNotes(string $generalNotes = null) : self
     {
         $this->generalNotes = trim($generalNotes);
 
         return $this;
     }
 
-    public function getHomeCountry(): ?Country
+    public function getHomeCountry() : ? Country
     {
         return $this->homeCountry;
     }
 
-    public function setHomeCountry(Country $homeCountry = null): self
+    public function setHomeCountry(Country $homeCountry = null) : self
     {
         $this->homeCountry = $homeCountry;
 
         return $this;
     }
 
-    public function getHomeCity(): ?string
+    public function getHomeCity() : ? string
     {
         return $this->homeCity;
     }
 
-    public function setHomeCity(string $homeCity = null): self
+    public function setHomeCity(string $homeCity = null) : self
     {
         $this->homeCity = trim($homeCity);
 
         return $this;
     }
 
-    public function getCurrentOccupation(): ?Profession
+    public function getCurrentOccupation() : ? Profession
     {
         return $this->currentOccupation;
     }
 
-    public function setCurrentOccupation(Profession $currentOccupation): self
+    public function setCurrentOccupation(Profession $currentOccupation) : self
     {
         $this->currentOccupation = $currentOccupation;
 
         return $this;
     }
 
-    public function isCurrentOccupationNice(): ?bool
+    public function isCurrentOccupationNice() : ? bool
     {
         return $this->currentOccupationNice;
     }
 
-    public function setCurrentOccupationNice(bool $currentOccupationNice): self
+    public function setCurrentOccupationNice(bool $currentOccupationNice) : self
     {
         $this->currentOccupationNice = $currentOccupationNice;
 
         return $this;
     }
 
-    public function getIncome(): ?string
+    public function getIncome() : ? string
     {
         return $this->income;
     }
 
-    public function setIncome(string $income = null): self
+    public function setIncome(string $income = null) : self
     {
         $this->income = trim($income);
 
         return $this;
     }
 
-    public function getSexuality(): ?Sexuality
+    public function getSexuality() : ? Sexuality
     {
         return $this->sexuality;
     }
 
-    public function setSexuality(Sexuality $sexuality): self
+    public function setSexuality(Sexuality $sexuality) : self
     {
         $this->sexuality = $sexuality;
 
         return $this;
     }
 
-    public function getDressStyle(): ?string
+    public function getDressStyle() : ? string
     {
         return $this->dressStyle;
     }
 
-    public function setDressStyle(string $dressStyle = null): self
+    public function setDressStyle(string $dressStyle = null) : self
     {
         $this->dressStyle = trim($dressStyle);
 
         return $this;
     }
 
-    public function getHobbies(): ?string
+    public function getHobbies() : ? string
     {
         return $this->hobbies;
     }
 
-    public function setHobbies(string $hobbies = null): self
+    public function setHobbies(string $hobbies = null) : self
     {
         $this->hobbies = trim($hobbies);
 
         return $this;
     }
 
-    public function getGoodHabits(): ?string
+    public function getGoodHabits() : ? string
     {
         return $this->goodHabits;
     }
 
-    public function setGoodHabits(string $goodHabits = null): self
+    public function setGoodHabits(string $goodHabits = null) : self
     {
         $this->goodHabits = trim($goodHabits);
 
         return $this;
     }
 
-    public function getBadHabits(): ?string
+    public function getBadHabits() : ? string
     {
         return $this->badHabits;
     }
 
-    public function setBadHabits(string $badHabits = null): self
+    public function setBadHabits(string $badHabits = null) : self
     {
         $this->badHabits = trim($badHabits);
 
         return $this;
     }
 
-    public function getFavoriteMusic(): ?string
+    public function getFavoriteMusic() : ? string
     {
         return $this->favoriteMusic;
     }
 
-    public function setFavoriteMusic(string $favoriteMusic = null): self
+    public function setFavoriteMusic(string $favoriteMusic = null) : self
     {
         $this->favoriteMusic = trim($favoriteMusic);
 
         return $this;
     }
 
-    public function getFavoriteSports(): ?string
+    public function getFavoriteSports() : ? string
     {
         return $this->favoriteSports;
     }
 
-    public function setFavoriteSports(string $favoriteSports = null): self
+    public function setFavoriteSports(string $favoriteSports = null) : self
     {
         $this->favoriteSports = trim($favoriteSports);
 
         return $this;
     }
 
-    public function getFavoriteFood(): ?string
+    public function getFavoriteFood() : ? string
     {
         return $this->favoriteFood;
     }
 
-    public function setFavoriteFood(string $favoriteFood = null): self
+    public function setFavoriteFood(string $favoriteFood = null) : self
     {
         $this->favoriteFood = trim($favoriteFood);
 
         return $this;
     }
 
-    public function getIqLevel(): ?IntelligenceQuotient
+    public function getIqLevel() : ? IntelligenceQuotient
     {
         return $this->iqLevel;
     }
 
-    public function setIqLevel(IntelligenceQuotient $iqLevel): self
+    public function setIqLevel(IntelligenceQuotient $iqLevel) : self
     {
         $this->iqLevel = $iqLevel;
 
         return $this;
     }
 
-    public function getEducationalLevel(): ?EducationalDegree
+    public function getEducationalLevel() : ? EducationalDegree
     {
         return $this->educationalLevel;
     }
 
-    public function setEducationalLevel(EducationalDegree $educationalLevel): self
+    public function setEducationalLevel(EducationalDegree $educationalLevel) : self
     {
         $this->educationalLevel = $educationalLevel;
 
         return $this;
     }
 
-    public function getSkills(): ?string
+    public function getSkills() : ? string
     {
         return $this->skills;
     }
 
-    public function setSkills(string $skills = null): self
+    public function setSkills(string $skills = null) : self
     {
         $this->skills = trim($skills);
 
         return $this;
     }
 
-    public function getSelfView(): ?string
+    public function getSelfView() : ? string
     {
         return $this->selfView;
     }
 
-    public function setSelfView(string $selfView = null): self
+    public function setSelfView(string $selfView = null) : self
     {
         $this->selfView = trim($selfView);
 
         return $this;
     }
 
-    public function getDominantTemperament(): ?Temperament
+    public function getDominantTemperament() : ? Temperament
     {
         return $this->dominantTemperament;
     }
 
-    public function setDominantTemperament(Temperament $dominantTemperament): self
+    public function setDominantTemperament(Temperament $dominantTemperament) : self
     {
         $this->dominantTemperament = $dominantTemperament;
 
         return $this;
     }
 
-    public function getSecondaryTemperament(): ?Temperament
+    public function getSecondaryTemperament() : ? Temperament
     {
         return $this->secondaryTemperament;
     }
 
-    public function setSecondaryTemperament(Temperament $secondaryTemperament = null): self
+    public function setSecondaryTemperament(Temperament $secondaryTemperament = null) : self
     {
         $this->secondaryTemperament = $secondaryTemperament;
 
         return $this;
     }
 
-    public function getPersonality(): ?string
+    public function getPersonality() : ? string
     {
         return $this->personality;
     }
 
-    public function setPersonality(string $personality = null): self
+    public function setPersonality(string $personality = null) : self
     {
         $this->personality = trim($personality);
 
         return $this;
     }
 
-    public function getEmotionalTraumas(): ?string
+    public function getEmotionalTraumas() : ? string
     {
         return $this->emotionalTraumas;
     }
 
-    public function setEmotionalTraumas(string $emotionalTraumas = null): self
+    public function setEmotionalTraumas(string $emotionalTraumas = null) : self
     {
         $this->emotionalTraumas = trim($emotionalTraumas);
 
         return $this;
     }
 
-    public function getWhatMotivates(): ?string
+    public function getWhatMotivates() : ? string
     {
         return $this->whatMotivates;
     }
 
-    public function setWhatMotivates(string $whatMotivates = null): self
+    public function setWhatMotivates(string $whatMotivates = null) : self
     {
         $this->whatMotivates = trim($whatMotivates);
 
         return $this;
     }
 
-    public function getWhatMakesHappy(): ?string
+    public function getWhatMakesHappy() : ? string
     {
         return $this->whatMakesHappy;
     }
 
-    public function setWhatMakesHappy(string $whatMakesHappy = null): self
+    public function setWhatMakesHappy(string $whatMakesHappy = null) : self
     {
         $this->whatMakesHappy = trim($whatMakesHappy);
 
         return $this;
     }
 
-    public function getWhatFrightens(): ?string
+    public function getWhatFrightens() : ? string
     {
         return $this->whatFrightens;
     }
 
-    public function setWhatFrightens(string $whatFrightens = null): self
+    public function setWhatFrightens(string $whatFrightens = null) : self
     {
         $this->whatFrightens = trim($whatFrightens);
 
         return $this;
     }
 
-    public function getWhatWouldChange(): ?string
+    public function getWhatWouldChange() : ? string
     {
         return $this->whatWouldChange;
     }
 
-    public function setWhatWouldChange(string $whatWouldChange = null): self
+    public function setWhatWouldChange(string $whatWouldChange = null) : self
     {
         $this->whatWouldChange = trim($whatWouldChange);
 
         return $this;
     }
 
-    public function getDeepestSecret(): ?string
+    public function getDeepestSecret() : ? string
     {
         return $this->deepestSecret;
     }
 
-    public function setDeepestSecret(string $deepestSecret = null): self
+    public function setDeepestSecret(string $deepestSecret = null) : self
     {
         $this->deepestSecret = trim($deepestSecret);
 
         return $this;
     }
 
-    public function isReligious(): ?bool
+    public function isReligious() : ? bool
     {
         return $this->religious;
     }
 
-    public function setReligious(bool $religious): self
+    public function setReligious(bool $religious) : self
     {
         $this->religious = $religious;
 
         return $this;
     }
 
-    public function getReligion(): ?Religion
+    public function getReligion() : ? Religion
     {
         return $this->religion;
     }
 
-    public function setReligion(Religion $religion): self
+    public function setReligion(Religion $religion) : self
     {
         $this->religion = $religion;
 
         return $this;
     }
 
-    public function getSpiritualBeliefs(): ?string
+    public function getSpiritualBeliefs() : ? string
     {
         return $this->spiritualBeliefs;
     }
 
-    public function setSpiritualBeliefs(string $spiritualBeliefs = null): self
+    public function setSpiritualBeliefs(string $spiritualBeliefs = null) : self
     {
         $this->spiritualBeliefs = trim($spiritualBeliefs);
 
         return $this;
     }
 
-    public function getSpiritualEffectsInLife(): ?string
+    public function getSpiritualEffectsInLife() : ? string
     {
         return $this->spiritualEffectsInLife;
     }
 
-    public function setSpiritualEffectsInLife(string $spiritualEffectsInLife = null): self
+    public function setSpiritualEffectsInLife(string $spiritualEffectsInLife = null) : self
     {
         $this->spiritualEffectsInLife = trim($spiritualEffectsInLife);
 
         return $this;
     }
 
-    public function getParents(): ?string
+    public function getParents() : ? string
     {
         return $this->parents;
     }
 
-    public function setParents(string $parents = null): self
+    public function setParents(string $parents = null) : self
     {
         $this->parents = trim($parents);
 
         return $this;
     }
 
-    public function getSiblings(): ?string
+    public function getSiblings() : ? string
     {
         return $this->siblings;
     }
 
-    public function setSiblings(string $siblings = null): self
+    public function setSiblings(string $siblings = null) : self
     {
         $this->siblings = trim($siblings);
 
         return $this;
     }
 
-    public function getChildren(): ?string
+    public function getChildren() : ? string
     {
         return $this->children;
     }
 
-    public function setChildren(string $children = null): self
+    public function setChildren(string $children = null) : self
     {
         $this->children = trim($children);
 
         return $this;
     }
 
-    public function getSpouse(): ?string
+    public function getSpouse() : ? string
     {
         return $this->spouse;
     }
 
-    public function setSpouse(string $spouse = null): self
+    public function setSpouse(string $spouse = null) : self
     {
         $this->spouse = trim($spouse);
 
         return $this;
     }
 
-    public function getFriends(): ?string
+    public function getFriends() : ? string
     {
         return $this->friends;
     }
 
-    public function setFriends(string $friends = null): self
+    public function setFriends(string $friends = null) : self
     {
         $this->friends = trim($friends);
 
         return $this;
     }
 
-    public function getEnemies(): ?string
+    public function getEnemies() : ? string
     {
         return $this->enemies;
     }
 
-    public function setEnemies(string $enemies = null): self
+    public function setEnemies(string $enemies = null) : self
     {
         $this->enemies = trim($enemies);
 
         return $this;
     }
 
-    public function getSignificantOthers(): ?string
+    public function getSignificantOthers() : ? string
     {
         return $this->significantOthers;
     }
 
-    public function setSignificantOthers(string $significantOthers = null): self
+    public function setSignificantOthers(string $significantOthers = null) : self
     {
         $this->significantOthers = trim($significantOthers);
 
         return $this;
     }
 
-    public function getPersonalHistory(): ?string
+    public function getPersonalHistory() : ? string
     {
         return $this->personalHistory;
     }
 
-    public function setPersonalHistory(string $personalHistory = null): self
+    public function setPersonalHistory(string $personalHistory = null) : self
     {
         $this->personalHistory = trim($personalHistory);
 

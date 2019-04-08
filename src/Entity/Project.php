@@ -2,18 +2,20 @@
 
 namespace App\Entity;
 
-use App\Entity\Chapter;
+use App\Entity\Traits\Collections\ChaptersTrait;
+use App\Entity\Traits\Collections\CharactersTrait;
+use App\Entity\Traits\Collections\ConceptsTrait;
+use App\Entity\Traits\Collections\KeyItemsTrait;
+use App\Entity\Traits\Collections\LocationsTrait;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\PictureTrait;
 use App\Entity\User;
-use App\Entity\Character;
 use App\Model\Image;
 use App\Processor\ImageProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -80,25 +82,51 @@ class Project
      * @ORM\OneToMany(targetEntity="Chapter", mappedBy="project")
      */
     protected $chapters;
+    use ChaptersTrait;
 
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="App\Entity\Character", mappedBy="projects")
      */
     protected $characters;
+    use CharactersTrait;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Concept", mappedBy="projects")
+     */
+    protected $concepts;
+    use ConceptsTrait;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\KeyItem", mappedBy="projects")
+     */
+    protected $keyItems;
+    use KeyItemsTrait;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="App\Entity\LOcation", mappedBy="projects")
+     */
+    protected $locations;
+    use LocationsTrait;
 
     public function __construct()
     {
         $this->chapters = new ArrayCollection();
         $this->characters = new ArrayCollection();
+        $this->concepts = new ArrayCollection();
+        $this->keyItems = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
-    public function getId(): ?UuidInterface
+    public function getId() : ? UuidInterface
     {
         return $this->id;
     }
 
-    public function setDefaultPicture(): self
+    public function setDefaultPicture() : self
     {
         if (null !== $this->picture) {
             return $this;
@@ -106,7 +134,7 @@ class Project
 
         $image = ImageProcessor::IMAGE_PROJECT;
         $date = new \DateTime();
-        $newImage = ImageProcessor::PATH_UPLOAD.'/'.$this->getId().'_'.$date->format('Ymd_His').'.png';
+        $newImage = ImageProcessor::PATH_UPLOAD . '/' . $this->getId() . '_' . $date->format('Ymd_His') . '.png';
         if (false === file_exists(ImageProcessor::PATH_UPLOAD)) {
             mkdir(ImageProcessor::PATH_UPLOAD);
         }
@@ -121,82 +149,12 @@ class Project
             return $this;
         } catch (\Exception $ex) {
             throw new \Exception(
-                'Something unexpected happened in '.basename($ex->getFile()).'#'.$ex->getLine().': '.$ex->getMessage(),
+                'Something unexpected happened in ' . basename($ex->getFile()) . '#' . $ex->getLine() . ': ' . $ex->getMessage(),
                 0,
                 $ex
             );
 
             return $this;
         }
-    }
-
-    /** @return PersistentCollection|ArrayCollection */
-    public function getChapters()
-    {
-        return $this->chapters;
-    }
-
-    /** @param ArrayCollection|PersistentCollection|null $chapters */
-    public function setChapters($chapters): self
-    {
-        $this->chapters = $chapters;
-
-        return $this;
-    }
-
-    public function addChapter(Chapter $object): self
-    {
-        if (true === $this->chapters->contains($object)) {
-            return $this;
-        }
-        $this->chapters->add($object);
-        $object->setProject($this);
-
-        return $this;
-    }
-
-    public function removeChapter(Chapter $object): self
-    {
-        if (false === $this->chapters->contains($object)) {
-            return $this;
-        }
-        $this->chapters->removeElement($object);
-        $object->setProject(null);
-
-        return $this;
-    }
-
-    public function getCharacters(): ?ArrayCollection
-    {
-        return $this->characters;
-    }
-
-    public function setCharacters(ArrayCollection $characters): self
-    {
-        $this->characters = $characters;
-
-        return $this;
-    }
-
-    public function addCharacter(Character $object): self
-    {
-        if (true === $this->characters->contains($object)) {
-            return $this;
-        }
-        $this->characters->add($object);
-        $object->addProject($this);
-
-        return $this;
-    }
-
-    public function removeCharacter(Character $object): self
-    {
-        if (false === $this->characters->contains($object)) {
-            return $this;
-        }
-        $this->characters->removeElement($object);
-        $object->removeProject($this);
-
-        return $this;
     }
 }

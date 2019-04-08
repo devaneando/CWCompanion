@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Entity\Traits;
+namespace App\Entity\Traits\Collections;
 
 use App\Entity\Project;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 
 trait ProjectsTrait
 {
-    public function setProjectsAsArray($projects = null): self
+    /** @return PersistentCollection|ArrayCollection */
+    public function getProjects()
     {
-        if (null === $projects) {
-            $this->projects = new ArrayCollection();
-        }
+        return $this->projects;
+    }
 
-        if (true === is_array($projects)) {
-            $projects = new ArrayCollection($projects);
-        }
+    /** @param ArrayCollection|PersistentCollection|null $projects */
+    public function setProjects($projects = null): self
+    {
         $this->projects = $projects;
 
         return $this;
