@@ -16,6 +16,12 @@ services:
     App\Admin\Type\:
         resource: '../src/Admin/Type'
         tags: [form.type]
+    App\Admin\Type\OwnerAware\:
+        resource: '../src/Admin/Type/OwnerAware'
+        calls:
+            - ['setTokenStorage', ['@security.token_storage']]
+            - ['setRouter', ['@router']]
+        tags: [form.type]
     App\Controller\:
         resource: '../src/Controller'
         calls:
@@ -65,24 +71,6 @@ services:
         class: App\Admin\Type\SecurityRolesType
         calls:
             - [setSecurityRoles, ['%security.role_hierarchy.roles%']]
-        tags: [form.type]
-
-    App\Admin\Type\ProjectsType:
-        class: App\Admin\Type\ProjectsType
-        calls:
-            - ['setTokenStorage', ['@security.token_storage']]
-        tags: [form.type]
-
-    App\Admin\Type\ChapterType:
-        class: App\Admin\Type\ChapterType
-        calls:
-            - ['setTokenStorage', ['@security.token_storage']]
-        tags: [form.type]
-
-    App\Admin\Type\SceneType:
-        class: App\Admin\Type\SceneType
-        calls:
-            - ['setTokenStorage', ['@security.token_storage']]
         tags: [form.type]
 
     ##### Test only

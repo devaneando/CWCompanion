@@ -15,6 +15,7 @@ admin:
         picture: Imagem
         predefined: Predefinido
         uploaded_picture: Imagem
+        projects: Projetos
 title:
     content: Conteúdo
     parent: Conceito pai

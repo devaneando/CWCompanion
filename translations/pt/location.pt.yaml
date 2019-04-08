@@ -17,6 +17,8 @@ admin:
         picture: Imagem
         predefined: Predefinido
         uploaded_picture: Imagem
+        projects: Projetos
+        scenes: Cenas
 title:
     children: Locais filhos
     description: Descrição

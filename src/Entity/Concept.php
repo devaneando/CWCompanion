@@ -99,19 +99,20 @@ class Concept
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
-    public function getId() : ? UuidInterface
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }
 
-    public function getParent() : ? self
+    public function getParent(): ?self
     {
         return $this->parent;
     }
 
-    public function setParent(? self $parent) : self
+    public function setParent(?self $parent): self
     {
         $this->parent = $parent;
 
@@ -125,14 +126,14 @@ class Concept
     }
 
     /** @param ArrayCollection|PersistentCollection|null $children */
-    public function setChildren($children) : self
+    public function setChildren($children): self
     {
         $this->children = $children;
 
         return $this;
     }
 
-    public function addChild(self $child) : self
+    public function addChild(self $child): self
     {
         if ($this === $child) {
             return $this;
@@ -146,7 +147,7 @@ class Concept
         return $this;
     }
 
-    public function removeChild(self $child) : self
+    public function removeChild(self $child): self
     {
         if (false === $this->children->contains($child)) {
             return $this;
@@ -157,7 +158,7 @@ class Concept
         return $this;
     }
 
-    public function setDefaultPicture() : self
+    public function setDefaultPicture(): self
     {
         if (null !== $this->picture) {
             return $this;
@@ -189,12 +190,12 @@ class Concept
         }
     }
 
-    public function getContent() : ? string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    public function setContent(string $content) : self
+    public function setContent(string $content): self
     {
         $this->content = trim($content);
 

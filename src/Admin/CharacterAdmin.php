@@ -7,7 +7,7 @@ namespace App\Admin;
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\ExtendedDateType;
 use App\Admin\Type\MarkDownType;
-use App\Admin\Type\ProjectType;
+use App\Admin\Type\OwnerAware\ProjectType;
 use App\Entity\Character;
 use App\Traits\LoggedUserTrait;
 use App\Traits\Repository\ZodiacRepositoryTrait;
@@ -55,7 +55,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
         $this->preUpdate($object);
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper) : void
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.label.id'])
@@ -67,7 +67,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ->add('birthdate', null, ['label' => 'admin.label.birthdate']);
     }
 
-    protected function configureListFields(ListMapper $listMapper): void
+    protected function configureListFields(ListMapper $listMapper) : void
     {
         $listMapper
             ->add(
@@ -126,7 +126,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper): void
+    protected function configureFormFields(FormMapper $formMapper) : void
     {
         $pictureUploadedOptions = [
             'required' => false,
@@ -282,7 +282,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ->end();
     }
 
-    protected function configureShowFields(ShowMapper $showMapper): void
+    protected function configureShowFields(ShowMapper $showMapper) : void
     {
         /** ----- Tab Inherited ---------------------------------------------------------------------- */
         $showMapper

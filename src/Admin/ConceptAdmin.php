@@ -1,11 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
+use App\Admin\Type\OwnerAware\ProjectType;
+use App\Admin\Type\OwnerAware\ConceptType;
 use App\Entity\Concept;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -65,7 +67,7 @@ final class ConceptAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
+                    'list' => ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);
@@ -74,23 +76,24 @@ final class ConceptAdmin extends AbstractExtraActionsAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $pictureUploadedOptions = [
-            'required'=> false,
-            'data_class'=> null,
-            'label'=> 'admin.label.uploaded_picture',
+            'required' => false,
+            'data_class' => null,
+            'label' => 'admin.label.uploaded_picture',
         ];
         if (($subject = $this->getSubject()) && $subject->getPicture()) {
             $path = $subject->getPicture();
-            $pictureUploadedOptions['help'] = '<img id="member-edit-picture" src="'.$path.'" style=" max-height: 250px;"/>';
+            $pictureUploadedOptions['help'] = '<img id="member-edit-picture" src="' . $path . '" style=" max-height: 250px;"/>';
         }
         $formMapper
-            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
+            ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
             ->add('name', null, ['label' => 'admin.label.name'])
-            ->add('parent', null, ['label' => 'admin.label.parent'])
+            ->add('parent', ConceptType::class, ['label' => 'admin.label.parent', 'multiple' => false])
+            ->add('projects', ProjectType::class, ['label' => 'admin.label.projects'])
             ->end()
-            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
             ->end()
-            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_003', ['class' => 'col-md-12', 'label' => 'admin.block.bl_002'])
             ->add('content', MarkDownType::class, ['label' => 'admin.label.content', 'rows' => 30])
             ->end();
     }
@@ -98,11 +101,14 @@ final class ConceptAdmin extends AbstractExtraActionsAdmin
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
+            ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('parent', null, ['label' => 'admin.label.parent'])
+            ->add('projects', null, ['label' => 'admin.label.projects'])
+
             ->end()
-            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
             ->add(
                 'picture',
                 null,
@@ -112,7 +118,7 @@ final class ConceptAdmin extends AbstractExtraActionsAdmin
                 ]
             )
             ->end()
-            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_003', ['class' => 'col-md-12', 'label' => 'admin.block.bl_002'])
             ->add(
                 'content',
                 null,

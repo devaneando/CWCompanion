@@ -6,12 +6,15 @@ namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
+use App\Admin\Type\OwnerAware\ProjectType;
+use App\Admin\Type\OwnerAware\SceneType;
 use App\Entity\Location;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use App\Entity\Scene;
 
 final class LocationAdmin extends AbstractExtraActionsAdmin
 {
@@ -89,6 +92,8 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add('parent', null, ['label' => 'admin.label.parent'])
             ->add('children', null, ['label' => 'admin.label.children'])
+            ->add('projects', ProjectType::class, ['label' => 'admin.label.projects'])
+            ->add('scenes', SceneType::class, ['label' => 'admin.label.scenes'])
             ->end()
             ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
@@ -108,6 +113,8 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
             ->add('name', null, ['label' => 'admin.label.name'])
             ->add('parent', null, ['label' => 'admin.label.parent'])
             ->add('children', null, ['label' => 'admin.label.children'])
+            ->add('projects', null, ['label' => 'admin.label.projects'])
+            ->add('scenes', null, ['label' => 'admin.label.scenes'])
             ->end()
             ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
             ->add(

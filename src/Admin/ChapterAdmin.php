@@ -6,7 +6,7 @@ namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
-use App\Admin\Type\ProjectType;
+use App\Admin\Type\OwnerAware\ProjectType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -36,7 +36,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
         $this->preUpdate($object);
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper) : void
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.label.id'])
@@ -44,7 +44,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
             ->add('project', null, ['label' => 'admin.label.project']);
     }
 
-    protected function configureListFields(ListMapper $listMapper): void
+    protected function configureListFields(ListMapper $listMapper) : void
     {
         $listMapper
             ->add('name', null, ['label' => 'admin.label.name'])
@@ -67,7 +67,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper): void
+    protected function configureFormFields(FormMapper $formMapper) : void
     {
         $formMapper
             ->add('name', null, ['label' => 'admin.label.name'])
@@ -91,7 +91,7 @@ final class ChapterAdmin extends AbstractExtraActionsAdmin
             ->add('content', MarkDownType::class, ['label' => 'admin.label.content']);
     }
 
-    protected function configureShowFields(ShowMapper $showMapper): void
+    protected function configureShowFields(ShowMapper $showMapper) : void
     {
         $showMapper
             ->add('id', null, ['label' => 'admin.label.id'])

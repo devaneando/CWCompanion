@@ -1,11 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
+use App\Admin\Type\OwnerAware\ProjectType;
+use App\Admin\Type\OwnerAware\SceneType;
 use App\Entity\KeyItem;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -42,14 +44,14 @@ final class KeyItemAdmin extends AbstractExtraActionsAdmin
         $this->preUpdate($object);
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper) : void
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name']);
     }
 
-    protected function configureListFields(ListMapper $listMapper): void
+    protected function configureListFields(ListMapper $listMapper) : void
     {
         $listMapper
             ->add(
@@ -65,45 +67,49 @@ final class KeyItemAdmin extends AbstractExtraActionsAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'list'=> ['template' => 'CRUD/list__action_preview.html.twig'],
+                    'list' => ['template' => 'CRUD/list__action_preview.html.twig'],
                     'delete' => [],
                 ],
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper): void
+    protected function configureFormFields(FormMapper $formMapper) : void
     {
         $pictureUploadedOptions = [
-            'required'=> false,
-            'data_class'=> null,
-            'label'=> 'admin.label.uploaded_picture',
+            'required' => false,
+            'data_class' => null,
+            'label' => 'admin.label.uploaded_picture',
         ];
         if (($subject = $this->getSubject()) && $subject->getPicture()) {
             $path = $subject->getPicture();
-            $pictureUploadedOptions['help'] = '<img id="member-edit-picture" src="'.$path.'" style=" max-height: 250px;"/>';
+            $pictureUploadedOptions['help'] = '<img id="member-edit-picture" src="' . $path . '" style=" max-height: 250px;"/>';
         }
         $formMapper
-            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
+            ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('projects', ProjectType::class, ['label' => 'admin.label.projects'])
+            ->add('scenes', SceneType::class, ['label' => 'admin.label.scenes'])
             ->end()
-            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
             ->end()
-            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_003', ['class' => 'col-md-12', 'label' => 'admin.block.bl_002'])
             ->add('description', MarkDownType::class, ['label' => 'admin.label.description'])
             ->add('history', MarkDownType::class, ['label' => 'admin.label.history'])
             ->add('generalNotes', MarkDownType::class, ['label' => 'admin.label.general_notes'])
             ->end();
     }
 
-    protected function configureShowFields(ShowMapper $showMapper): void
+    protected function configureShowFields(ShowMapper $showMapper) : void
     {
         $showMapper
-            ->with('bl_001', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_001'])
+            ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name'])
+            ->add('projects', null, ['label' => 'admin.label.projects'])
+            ->add('scenes', null, ['label' => 'admin.label.scenes'])
             ->end()
-            ->with('bl_002', ['class'=> 'col-md-6', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
             ->add(
                 'picture',
                 null,
@@ -113,7 +119,7 @@ final class KeyItemAdmin extends AbstractExtraActionsAdmin
                 ]
             )
             ->end()
-            ->with('bl_003', ['class'=> 'col-md-12', 'label'=> 'admin.block.bl_002'])
+            ->with('bl_003', ['class' => 'col-md-12', 'label' => 'admin.block.bl_002'])
             ->add(
                 'description',
                 null,
