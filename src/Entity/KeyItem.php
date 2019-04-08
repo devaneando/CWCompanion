@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Scene;
 use App\Entity\Traits\Collections\ProjectsTrait;
+use App\Entity\Traits\Collections\ScenesTrait;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\OwnerTrait;
@@ -64,6 +65,7 @@ class KeyItem
      * @ORM\ManyToMany(targetEntity="Scene", mappedBy="keyItems")
      */
     protected $scenes;
+    use ScenesTrait;
 
     /**
      * @var string
@@ -161,48 +163,5 @@ class KeyItem
     public function getGeneralNotes() : ? string
     {
         return $this->generalNotes;
-    }
-
-    public function setGeneralNotes(string $generalNotes) : self
-    {
-        $this->generalNotes = trim($generalNotes);
-
-        return $this;
-    }
-
-    /** @return ArrayCollection|PersistentCollection */
-    public function getScenes()
-    {
-        return $this->scenes;
-    }
-
-    /** @param ArrayCollection|PersistentCollection|null $scenes */
-    public function setScenes($scenes) : self
-    {
-        $this->scenes = $scenes;
-
-        return $this;
-    }
-
-    public function addScene(Scene $object) : self
-    {
-        if (true === $this->scenes->contains($object)) {
-            return $this;
-        }
-        $this->scenes->add($object);
-        $object->addKeyItem($this);
-
-        return $this;
-    }
-
-    public function removeScene(Scene $object) : self
-    {
-        if (false === $this->scenes->contains($object)) {
-            return $this;
-        }
-        $this->scenes->removeElement($object);
-        $object->removeKeyItem($this);
-
-        return $this;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Scene;
+use App\Entity\Traits\Collections\ProjectsTrait;
+use App\Entity\Traits\Collections\ScenesTrait;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\OwnerTrait;
@@ -15,7 +17,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\Traits\Collections\ProjectsTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\Repository\LocationRepository")
@@ -116,6 +117,7 @@ class Location
      * @ORM\OneToMany(targetEntity="Scene", mappedBy="location")
      */
     protected $scenes;
+    use ScenesTrait;
 
     public function __construct()
     {
@@ -231,42 +233,6 @@ class Location
     public function setGeneralNotes(string $generalNotes) : self
     {
         $this->generalNotes = trim($generalNotes);
-
-        return $this;
-    }
-
-    /** @return ArrayCollection|PersistentCollection */
-    public function getScenes()
-    {
-        return $this->scenes;
-    }
-
-    /** @param ArrayCollection|PersistentCollection|null $scenes */
-    public function setScenes($scenes) : self
-    {
-        $this->scenes = $scenes;
-
-        return $this;
-    }
-
-    public function addScene(Scene $object) : self
-    {
-        if (true === $this->scenes->contains($object)) {
-            return $this;
-        }
-        $this->scenes->add($object);
-        $object->setLocation($this);
-
-        return $this;
-    }
-
-    public function removeScene(Scene $object) : self
-    {
-        if (false === $this->scenes->contains($object)) {
-            return $this;
-        }
-        $this->scenes->removeElement($object);
-        $object->setLocation(null);
 
         return $this;
     }

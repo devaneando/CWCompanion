@@ -8,6 +8,8 @@ use App\Entity\KeyItem;
 use App\Entity\Location;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\OwnerTrait;
+use App\Entity\Traits\Collections\CharactersTrait;
+use App\Entity\Traits\Collections\KeyItemsTrait;
 use App\Entity\User;
 use App\Exception\Parameter\InvalidAmbient;
 use App\Exception\Parameter\InvalidTime;
@@ -113,6 +115,7 @@ class Scene
      * )
      */
     protected $characters;
+    use CharactersTrait;
 
     /**
      * @var ArrayCollection
@@ -124,6 +127,7 @@ class Scene
      * )
      */
     protected $keyItems;
+    use KeyItemsTrait;
 
     public function __construct()
     {
@@ -232,78 +236,6 @@ class Scene
     public function setNotes(? string $notes) : self
     {
         $this->notes = trim($notes);
-
-        return $this;
-    }
-
-    /** @return ArrayCollection|PersistentCollection */
-    public function getCharacters()
-    {
-        return $this->characters;
-    }
-
-    /** @param ArrayCollection|PersistentCollection|null $characters */
-    public function setCharacters($characters) : self
-    {
-        $this->characters = $characters;
-
-        return $this;
-    }
-
-    public function addCharacter(Character $object) : self
-    {
-        if (true === $this->characters->contains($object)) {
-            return $this;
-        }
-        $this->characters->add($object);
-        $object->addScene($this);
-
-        return $this;
-    }
-
-    public function removeCharacter(Character $object) : self
-    {
-        if (false === $this->characters->contains($object)) {
-            return $this;
-        }
-        $this->characters->removeElement($object);
-        $object->removeScene($this);
-
-        return $this;
-    }
-
-    /** @return ArrayCollection|PersistentCollection */
-    public function getKeyItems()
-    {
-        return $this->keyItems;
-    }
-
-    /** @param ArrayCollection|PersistentCollection|null $keyItems */
-    public function setKeyItems($keyItems) : self
-    {
-        $this->keyItems = $keyItems;
-
-        return $this;
-    }
-
-    public function addKeyItem(KeyItem $object) : self
-    {
-        if (true === $this->keyItems->contains($object)) {
-            return $this;
-        }
-        $this->keyItems->add($object);
-        $object->addScene($this);
-
-        return $this;
-    }
-
-    public function removeKeyItem(KeyItem $object) : self
-    {
-        if (false === $this->keyItems->contains($object)) {
-            return $this;
-        }
-        $this->keyItems->removeElement($object);
-        $object->removeScene($this);
 
         return $this;
     }
