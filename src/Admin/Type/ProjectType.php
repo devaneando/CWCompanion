@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 
-class ProjectsType extends SymfonyAbstractType
+class ProjectType extends SymfonyAbstractType
 {
     use LoggedUserTrait;
     use ProjectRepositoryTrait;
@@ -34,7 +34,7 @@ class ProjectsType extends SymfonyAbstractType
      */
     public function getBlockPrefix()
     {
-        return 'projects';
+        return 'project';
     }
 
     public function getParent()

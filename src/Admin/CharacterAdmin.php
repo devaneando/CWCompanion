@@ -7,7 +7,7 @@ namespace App\Admin;
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\ExtendedDateType;
 use App\Admin\Type\MarkDownType;
-use App\Admin\Type\ProjectsType;
+use App\Admin\Type\ProjectType;
 use App\Entity\Character;
 use App\Traits\LoggedUserTrait;
 use App\Traits\Repository\ZodiacRepositoryTrait;
@@ -167,7 +167,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             )
             ->add('countryOfDeath', null, ['label' => 'admin.label.country_of_death'])
             ->add('cityOfDeath', null, ['label' => 'admin.label.city_of_death'])
-            ->add('projects', ProjectsType::class, ['label' => 'admin.label.projects', 'multiple' => true, 'class' => Project::class])
+            ->add('projects', ProjectType::class, ['label' => 'admin.label.projects', 'multiple' => true, 'class' => Project::class])
             ->end()
             ->with('in_002', ['class' => 'col-md-8', 'label' => 'admin.block.inherited.bl_002'])
             ->add('uploadedPicture', FileType::class, $pictureUploadedOptions)
