@@ -2,21 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\Chapter;
-use App\Entity\Character;
-use App\Entity\KeyItem;
-use App\Entity\Location;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\OwnerTrait;
 use App\Entity\Traits\Collections\CharactersTrait;
 use App\Entity\Traits\Collections\KeyItemsTrait;
-use App\Entity\User;
 use App\Exception\Parameter\InvalidAmbient;
 use App\Exception\Parameter\InvalidTime;
 use App\Traits\ConstantValidationTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -94,6 +88,12 @@ class Scene
 
     /**
      * @var string
+     * @ORM\Column(name="name", type="string", length=255, unique=false, nullable=true)
+     */
+    protected $name;
+
+    /**
+     * @var string
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     protected $description;
@@ -140,46 +140,46 @@ class Scene
      *
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return (true === empty($this->getScene())) ? '' : $this->getScene();
     }
 
-    public function getId() : ? UuidInterface
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }
 
-    public function getChapter() : ? Chapter
+    public function getChapter(): ?Chapter
     {
         return $this->chapter;
     }
 
-    public function setChapter(? Chapter $chapter) : self
+    public function setChapter(?Chapter $chapter): self
     {
         $this->chapter = $chapter;
 
         return $this;
     }
 
-    public function getScene() : ? int
+    public function getScene(): ?int
     {
         return $this->scene;
     }
 
-    public function setScene(int $scene) : self
+    public function setScene(int $scene): self
     {
         $this->scene = $scene;
 
         return $this;
     }
 
-    public function getAmbient() : ? string
+    public function getAmbient(): ?string
     {
         return $this->ambient;
     }
 
-    public function setAmbient(string $ambient) : self
+    public function setAmbient(string $ambient): self
     {
         if (false === $this->isValidConstant($ambient, '/^AMBIENT_.*/')) {
             throw new InvalidAmbient();
@@ -189,24 +189,24 @@ class Scene
         return $this;
     }
 
-    public function getLocation() : ? Location
+    public function getLocation(): ?Location
     {
         return $this->location;
     }
 
-    public function setLocation(? Location $location) : self
+    public function setLocation(?Location $location): self
     {
         $this->location = $location;
 
         return $this;
     }
 
-    public function getTime() : ? string
+    public function getTime(): ?string
     {
         return $this->time;
     }
 
-    public function setTime(string $time) : self
+    public function setTime(string $time): self
     {
         if (false === $this->isValidConstant($time, '/^TIME_.*/')) {
             throw new InvalidTime();
@@ -216,24 +216,55 @@ class Scene
         return $this;
     }
 
-    public function getDescription() : ? string
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(): self
+    {
+        $name = '';
+        if (false === empty($this->getAmbient())) {
+            $name .= $this->getAmbient() . '(' . $this->getScene() . ').';
+        }
+        if (false === empty($this->getLocation())) {
+            $name .= ' -- ' . $this->getLocation()->getName();
+        }
+        if (false === empty($this->getTime())) {
+            $name .= ' -- ' . $this->getTime();
+        }
+        $this->name = trim($name);
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpdateName()
+    {
+        $this->setName();
+    }
+
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(? string $description) : self
+    public function setDescription(?string $description): self
     {
         $this->description = trim($description);
 
         return $this;
     }
 
-    public function getNotes() : ? string
+    public function getNotes(): ?string
     {
         return $this->notes;
     }
 
-    public function setNotes(? string $notes) : self
+    public function setNotes(?string $notes): self
     {
         $this->notes = trim($notes);
 
