@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\MarkDownType;
+use App\Admin\Type\OwnerAware\LocationType;
 use App\Admin\Type\OwnerAware\ProjectType;
 use App\Admin\Type\OwnerAware\SceneType;
 use App\Entity\Location;
@@ -14,7 +15,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use App\Entity\Scene;
 
 final class LocationAdmin extends AbstractExtraActionsAdmin
 {
@@ -45,14 +45,14 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
         $this->preUpdate($object);
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper) : void
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.label.id'])
             ->add('name', null, ['label' => 'admin.label.name']);
     }
 
-    protected function configureListFields(ListMapper $listMapper) : void
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add(
@@ -76,7 +76,7 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper) : void
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $pictureUploadedOptions = [
             'required' => false,
@@ -90,8 +90,7 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
         $formMapper
             ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
             ->add('name', null, ['label' => 'admin.label.name'])
-            ->add('parent', null, ['label' => 'admin.label.parent'])
-            ->add('children', null, ['label' => 'admin.label.children'])
+            ->add('parent', LocationType::class, ['label' => 'admin.label.parent'])
             ->add('projects', ProjectType::class, ['label' => 'admin.label.projects'])
             ->add('scenes', SceneType::class, ['label' => 'admin.label.scenes'])
             ->end()
@@ -105,7 +104,7 @@ final class LocationAdmin extends AbstractExtraActionsAdmin
             ->end();
     }
 
-    protected function configureShowFields(ShowMapper $showMapper) : void
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])

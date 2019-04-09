@@ -121,12 +121,12 @@ class Project
         $this->locations = new ArrayCollection();
     }
 
-    public function getId() : ? UuidInterface
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }
 
-    public function setDefaultPicture() : self
+    public function setDefaultPicture(): self
     {
         if (null !== $this->picture) {
             return $this;

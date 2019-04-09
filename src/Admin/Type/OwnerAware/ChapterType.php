@@ -11,5 +11,5 @@ class ChapterType extends AbstractOnwerAwareType
     protected $class = Chapter::class;
 
     /** @var string $class */
-    protected $blockPrefix = 'chapter';
+    protected $blockPrefix = 'chapter_type';
 }

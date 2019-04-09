@@ -8,6 +8,9 @@ use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\AmbientType;
 use App\Admin\Type\MarkDownType;
 use App\Admin\Type\OwnerAware\ChapterType;
+use App\Admin\Type\OwnerAware\CharacterType;
+use App\Admin\Type\OwnerAware\KeyItemType;
+use App\Admin\Type\OwnerAware\LocationType;
 use App\Admin\Type\OwnerAware\SceneType;
 use App\Admin\Type\TimeType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -32,6 +35,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
         if (null === $object->getOwner()) {
             $object->setOwner($this->getLoggedUser());
         }
+        $object->setName();
     }
 
     public function prePersist($object)
@@ -39,7 +43,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
         $this->preUpdate($object);
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper) : void
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.label.id'])
@@ -49,7 +53,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
             ->add('location', null, ['label' => 'admin.label.time']);
     }
 
-    protected function configureListFields(ListMapper $listMapper) : void
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add(
@@ -105,19 +109,19 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper) : void
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])
-            ->add('chapter', ChapterType::class, ['label' => 'admin.label.chapter'])
-            ->add('scene', SceneType::class, ['label' => 'admin.label.scene'])
+            ->add('chapter', ChapterType::class, ['label' => 'admin.label.chapter', 'multiple' => false])
+            ->add('scene', null, ['label' => 'admin.label.scene'])
             ->add('ambient', AmbientType::class, ['label' => 'admin.label.ambient'])
             ->add('time', TimeType::class, ['label' => 'admin.label.time'])
-            ->add('location', null, ['label' => 'admin.label.location'])
+            ->add('location', LocationType::class, ['label' => 'admin.label.location', 'multiple' => false])
             ->end()
             ->with('bl_002', ['class' => 'col-md-6', 'label' => 'admin.block.bl_002'])
-            ->add('characters', null, ['label' => 'admin.label.characters'])
-            ->add('keyItems', null, ['label' => 'admin.label.key_items'])
+            ->add('characters', CharacterType::class, ['label' => 'admin.label.characters'])
+            ->add('keyItems', KeyItemType::class, ['label' => 'admin.label.key_items'])
             ->end()
             ->with('bl_003', ['class' => 'col-md-12', 'label' => 'admin.block.bl_002'])
             ->add('description', MarkDownType::class, ['label' => 'admin.label.description'])
@@ -125,7 +129,7 @@ final class SceneAdmin extends AbstractExtraActionsAdmin
             ->end();
     }
 
-    protected function configureShowFields(ShowMapper $showMapper) : void
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->with('bl_001', ['class' => 'col-md-6', 'label' => 'admin.block.bl_001'])

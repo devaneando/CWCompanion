@@ -11,5 +11,5 @@ class KeyItemType extends AbstractOnwerAwareType
     protected $class = KeyItem::class;
 
     /** @var string $class */
-    protected $blockPrefix = 'key_item';
+    protected $blockPrefix = 'key_item_type';
 }

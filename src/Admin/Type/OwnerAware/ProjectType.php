@@ -11,5 +11,5 @@ class ProjectType extends AbstractOnwerAwareType
     protected $class = Project::class;
 
     /** @var string $class */
-    protected $blockPrefix = 'project';
+    protected $blockPrefix = 'project_type';
 }

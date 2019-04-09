@@ -2,7 +2,6 @@
 
 namespace App\Admin\Type\OwnerAware;
 
-use App\Admin\Type\OwnerAware\AbstractOnwerAwareType;
 use App\Entity\Scene;
 
 class SceneType extends AbstractOnwerAwareType
@@ -11,5 +10,5 @@ class SceneType extends AbstractOnwerAwareType
     protected $class = Scene::class;
 
     /** @var string $class */
-    protected $blockPrefix = 'scene';
+    protected $blockPrefix = 'scene_type';
 }

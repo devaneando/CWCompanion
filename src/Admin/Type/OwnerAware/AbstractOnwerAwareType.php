@@ -3,12 +3,12 @@
 namespace App\Admin\Type\OwnerAware;
 
 use App\Traits\LoggedUserTrait;
+use App\Traits\RouterTrait;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\AbstractType as SymfonyAbstractType;
-use App\Traits\RouterTrait;
 
 abstract class AbstractOnwerAwareType extends SymfonyAbstractType
 {
@@ -27,6 +27,7 @@ abstract class AbstractOnwerAwareType extends SymfonyAbstractType
         $resolver->setDefaults([
             'class' => $this->class,
             'required' => false,
+            'choice_label' => 'name',
             'multiple' => true
         ]);
 

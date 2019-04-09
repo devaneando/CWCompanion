@@ -11,5 +11,5 @@ class LocationType extends AbstractOnwerAwareType
     protected $class = Location::class;
 
     /** @var string $class */
-    protected $blockPrefix = 'location';
+    protected $blockPrefix = 'location_type';
 }
