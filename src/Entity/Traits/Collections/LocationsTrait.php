@@ -11,33 +11,39 @@ trait LocationsTrait
     /** @return PersistentCollection|ArrayCollection */
     public function getLocations()
     {
+        if (null === $this->locations) {
+            $this->setLocations();
+        }
         return $this->locations;
     }
 
     /** @param ArrayCollection|PersistentCollection|null $locations */
-    public function setLocations($locations): self
+    public function setLocations($locations = null): self
     {
         $this->locations = $locations;
+        if (null === $locations) {
+            $this->locations = new ArrayCollection();
+        }
 
         return $this;
     }
 
     public function addLocation(Location $object): self
     {
-        if (true === $this->locations->contains($object)) {
+        if (true === $this->getLocations()->contains($object)) {
             return $this;
         }
-        $this->locations->add($object);
+        $this->getLocations()->add($object);
 
         return $this;
     }
 
     public function removeLocation(Location $object): self
     {
-        if (false === $this->locations->contains($object)) {
+        if (false === $this->getLocations()->contains($object)) {
             return $this;
         }
-        $this->locations->removeElement($object);
+        $this->getLocations()->removeElement($object);
 
         return $this;
     }

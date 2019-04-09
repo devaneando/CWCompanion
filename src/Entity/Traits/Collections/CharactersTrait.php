@@ -11,33 +11,39 @@ trait CharactersTrait
     /** @return PersistentCollection|ArrayCollection */
     public function getCharacters()
     {
+        if (null === $this->characters) {
+            $this->setCharacters();
+        }
         return $this->characters;
     }
 
     /** @param ArrayCollection|PersistentCollection|null $characters */
-    public function setCharacters($characters): self
+    public function setCharacters($characters = null): self
     {
         $this->characters = $characters;
+        if (null === $characters) {
+            $this->characters = new ArrayCollection();
+        }
 
         return $this;
     }
 
     public function addCharacter(Character $object): self
     {
-        if (true === $this->characters->contains($object)) {
+        if (true === $this->getCharacters()->contains($object)) {
             return $this;
         }
-        $this->characters->add($object);
+        $this->getCharacters()->add($object);
 
         return $this;
     }
 
     public function removeCharacter(Character $object): self
     {
-        if (false === $this->characters->contains($object)) {
+        if (false === $this->getCharacters()->contains($object)) {
             return $this;
         }
-        $this->characters->removeElement($object);
+        $this->getCharacters()->removeElement($object);
 
         return $this;
     }

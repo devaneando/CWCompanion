@@ -11,33 +11,39 @@ trait ConceptsTrait
     /** @return PersistentCollection|ArrayCollection */
     public function getConcepts()
     {
+        if (null === $this->concepts) {
+            $this->setConcepts();
+        }
         return $this->concepts;
     }
 
     /** @param ArrayCollection|PersistentCollection|null $concepts */
-    public function setConcepts($concepts): self
+    public function setConcepts($concepts = null): self
     {
         $this->concepts = $concepts;
+        if (null === $concepts) {
+            $this->concepts = new ArrayCollection();
+        }
 
         return $this;
     }
 
     public function addConcept(Concept $object): self
     {
-        if (true === $this->concepts->contains($object)) {
+        if (true === $this->getConcepts()->contains($object)) {
             return $this;
         }
-        $this->concepts->add($object);
+        $this->getConcepts()->add($object);
 
         return $this;
     }
 
     public function removeConcept(Concept $object): self
     {
-        if (false === $this->concepts->contains($object)) {
+        if (false === $this->getConcepts()->contains($object)) {
             return $this;
         }
-        $this->concepts->removeElement($object);
+        $this->getConcepts()->removeElement($object);
 
         return $this;
     }

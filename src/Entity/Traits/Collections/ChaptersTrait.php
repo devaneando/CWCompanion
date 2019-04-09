@@ -11,33 +11,39 @@ trait ChaptersTrait
     /** @return PersistentCollection|ArrayCollection */
     public function getChapters()
     {
+        if (null === $this->chapters) {
+            $this->setChapters();
+        }
         return $this->chapters;
     }
 
     /** @param ArrayCollection|PersistentCollection|null $chapters */
-    public function setChapters($chapters): self
+    public function setChapters($chapters = null): self
     {
         $this->chapters = $chapters;
+        if (null === $chapters) {
+            $this->chapters = new ArrayCollection();
+        }
 
         return $this;
     }
 
     public function addChapter(Chapter $object): self
     {
-        if (true === $this->chapters->contains($object)) {
+        if (true === $this->getChapters()->contains($object)) {
             return $this;
         }
-        $this->chapters->add($object);
+        $this->getChapters()->add($object);
 
         return $this;
     }
 
     public function removeChapter(Chapter $object): self
     {
-        if (false === $this->chapters->contains($object)) {
+        if (false === $this->getChapters()->contains($object)) {
             return $this;
         }
-        $this->chapters->removeElement($object);
+        $this->getChapters()->removeElement($object);
 
         return $this;
     }

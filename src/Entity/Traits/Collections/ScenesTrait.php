@@ -11,33 +11,39 @@ trait ScenesTrait
     /** @return PersistentCollection|ArrayCollection */
     public function getScenes()
     {
+        if (null === $this->scenes) {
+            $this->setScenes();
+        }
         return $this->scenes;
     }
 
     /** @param ArrayCollection|PersistentCollection|null $scenes */
-    public function setScenes($scenes): self
+    public function setScenes($scenes = null): self
     {
         $this->scenes = $scenes;
+        if (null === $scenes) {
+            $this->scenes = new ArrayCollection();
+        }
 
         return $this;
     }
 
     public function addScene(Scene $object): self
     {
-        if (true === $this->scenes->contains($object)) {
+        if (true === $this->getScenes()->contains($object)) {
             return $this;
         }
-        $this->scenes->add($object);
+        $this->getScenes()->add($object);
 
         return $this;
     }
 
     public function removeScene(Scene $object): self
     {
-        if (false === $this->scenes->contains($object)) {
+        if (false === $this->getScenes()->contains($object)) {
             return $this;
         }
-        $this->scenes->removeElement($object);
+        $this->getScenes()->removeElement($object);
 
         return $this;
     }

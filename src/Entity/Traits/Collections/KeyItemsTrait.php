@@ -11,33 +11,39 @@ trait KeyItemsTrait
     /** @return PersistentCollection|ArrayCollection */
     public function getKeyItems()
     {
+        if (null === $this->keyItems) {
+            $this->setKeyItems();
+        }
         return $this->keyItems;
     }
 
     /** @param ArrayCollection|PersistentCollection|null $keyItems */
-    public function setKeyItems($keyItems) : self
+    public function setKeyItems($keyItems = null): self
     {
         $this->keyItems = $keyItems;
+        if (null === $keyItems) {
+            $this->keyItems = new ArrayCollection();
+        }
 
         return $this;
     }
 
-    public function addKeyItem(KeyItem $object) : self
+    public function addKeyItem(KeyItem $object): self
     {
-        if (true === $this->keyItems->contains($object)) {
+        if (true === $this->getKeyItems()->contains($object)) {
             return $this;
         }
-        $this->keyItems->add($object);
+        $this->getKeyItems()->add($object);
 
         return $this;
     }
 
-    public function removeKeyItem(KeyItem $object) : self
+    public function removeKeyItem(KeyItem $object): self
     {
-        if (false === $this->keyItems->contains($object)) {
+        if (false === $this->getKeyItems()->contains($object)) {
             return $this;
         }
-        $this->keyItems->removeElement($object);
+        $this->getKeyItems()->removeElement($object);
 
         return $this;
     }
