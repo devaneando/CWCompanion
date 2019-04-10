@@ -1,0 +1,14 @@
+admin:
+    label:
+        description: Descrição
+        id: Id
+        name: Nome
+        predefined: Predefinido
+menu:
+    item:
+        educational_degree: escolaridade
+Action: Ações
+Menu Item Educational Degree: Escolaridade
+Educational Degree Create: Criar escolaridade
+Educational Degree List: Listar escolaridades
+Educational Degree: Escolaridade

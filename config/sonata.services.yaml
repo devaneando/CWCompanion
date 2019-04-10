@@ -27,6 +27,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.country, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
+    sonata.admin.educational_degree:
+        class: App\Admin\EducationalDegreeAdmin
+        arguments: [~, App\Entity\EducationalDegree, App\Controller\CRUD\EducationalDegreeController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.educational_degree, label_translator_strategy: "sonata.admin.label.strategy.native" }
+        public: true
+
     sonata.admin.gender:
         class: App\Admin\GenderAdmin
         arguments: [~, App\Entity\Gender, App\Controller\CRUD\GenderController]
