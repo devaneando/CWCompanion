@@ -3,6 +3,7 @@ action:
     preview: Preview
 day:
     none: Dia
+year: Ano
 extended_date:
     anno_domini: DC
 exceptions:

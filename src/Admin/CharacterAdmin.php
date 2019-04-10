@@ -8,7 +8,17 @@ use App\Admin\AbstractExtraActionsAdmin;
 use App\Admin\Type\ExtendedDateType;
 use App\Admin\Type\MarkDownType;
 use App\Admin\Type\OwnerAware\ProjectType;
+use App\Admin\Type\Predefined\CharacterType;
+use App\Admin\Type\Predefined\CountryType;
+use App\Admin\Type\Predefined\GenderType;
+use App\Admin\Type\Predefined\IntelligenceQuotientType;
+use App\Admin\Type\Predefined\LocationType;
+use App\Admin\Type\Predefined\ProfessionType;
+use App\Admin\Type\Predefined\ReligionType;
+use App\Admin\Type\Predefined\SexualityType;
+use App\Admin\Type\Predefined\TemperamentType;
 use App\Entity\Character;
+use App\Entity\Project;
 use App\Traits\LoggedUserTrait;
 use App\Traits\Repository\ZodiacRepositoryTrait;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -17,7 +27,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use App\Entity\Project;
+use App\Entity\EducationalDegree;
+use App\Admin\Type\Predefined\EducationalDegreeType;
 
 final class CharacterAdmin extends AbstractExtraActionsAdmin
 {
@@ -55,7 +66,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
         $this->preUpdate($object);
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper) : void
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.label.id'])
@@ -67,7 +78,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ->add('birthdate', null, ['label' => 'admin.label.birthdate']);
     }
 
-    protected function configureListFields(ListMapper $listMapper) : void
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add(
@@ -126,7 +137,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper) : void
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $pictureUploadedOptions = [
             'required' => false,
@@ -143,9 +154,9 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ->tab('tab_inherited', ['label' => 'admin.tab.inherited'])
             ->with('in_001', ['class' => 'col-md-4', 'label' => 'admin.block.inherited.bl_001'])
             ->add('nickname', null, ['label' => 'admin.label.nickname'])
-            ->add('characterType', null, ['label' => 'admin.label.character_type'])
+            ->add('characterType', CharacterType::class, ['label' => 'admin.label.character_type'])
             ->add('concept', null, ['label' => 'admin.label.concept'])
-            ->add('gender', null, ['label' => 'admin.label.gender'])
+            ->add('gender', GenderType::class, ['label' => 'admin.label.gender'])
             ->add('fullName', null, ['label' => 'admin.label.full_name'])
             ->add(
                 'birthdate',
@@ -155,7 +166,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                     'required' => true,
                 ]
             )
-            ->add('birthCountry', null, ['label' => 'admin.label.birth_country'])
+            ->add('birthCountry', CountryType::class, ['label' => 'admin.label.birth_country'])
             ->add('birthCity', null, ['label' => 'admin.label.birth_city'])
             ->add(
                 'dateOfDeath',
@@ -165,7 +176,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
                     'required' => false,
                 ]
             )
-            ->add('countryOfDeath', null, ['label' => 'admin.label.country_of_death'])
+            ->add('countryOfDeath', CountryType::class, ['label' => 'admin.label.country_of_death'])
             ->add('cityOfDeath', null, ['label' => 'admin.label.city_of_death'])
             ->add('projects', ProjectType::class, ['label' => 'admin.label.projects', 'multiple' => true, 'class' => Project::class])
             ->end()
@@ -208,11 +219,11 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
         $formMapper
             ->tab('tab_life_style', ['label' => 'admin.tab.life_style'])
             ->with('lst_001', ['class' => 'col-md-4', 'label' => 'admin.block.life_style.bl_001'])
-            ->add('sexuality', null, ['label' => 'admin.label.sexuality'])
-            ->add('homeCountry', null, ['label' => 'admin.label.home_country'])
+            ->add('sexuality', SexualityType::class, ['label' => 'admin.label.sexuality'])
+            ->add('homeCountry', CountryType::class, ['label' => 'admin.label.home_country'])
             ->add('homeCity', null, ['label' => 'admin.label.home_city'])
             ->add('income', null, ['label' => 'admin.label.income'])
-            ->add('currentOccupation', null, ['label' => 'admin.label.current_occupation'])
+            ->add('currentOccupation', ProfessionType::class, ['label' => 'admin.label.current_occupation'])
             ->add('currentOccupationNice', null, ['label' => 'admin.label.current_occupation_nice'])
             ->end()
             ->with('lst_002', ['class' => 'col-md-8', 'label' => 'admin.block.life_style.bl_002'])
@@ -230,14 +241,14 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
         $formMapper
             ->tab('tab_intelectual', ['label' => 'admin.tab.intelectual'])
             ->with('int_001', ['class' => 'col-md-6', 'label' => 'admin.block.intelectual.bl_001'])
-            ->add('iqLevel', null, ['label' => 'admin.label.iq_level'])
-            ->add('educationalLevel', null, ['label' => 'admin.label.educational_level'])
+            ->add('iqLevel', IntelligenceQuotientType::class, ['label' => 'admin.label.iq_level'])
+            ->add('educationalLevel', EducationalDegreeType::class, ['label' => 'admin.label.educational_level'])
             ->add('skills', MarkDownType::class, ['label' => 'admin.label.skills'])
             ->add('personality', MarkDownType::class, ['label' => 'admin.label.personality'])
             ->end()
             ->with('int_002', ['class' => 'col-md-6', 'label' => 'admin.block.intelectual.bl_002'])
-            ->add('dominantTemperament', null, ['label' => 'admin.label.dominant_temperament'])
-            ->add('secondaryTemperament', null, ['label' => 'admin.label.secondary_temperament'])
+            ->add('dominantTemperament', TemperamentType::class, ['label' => 'admin.label.dominant_temperament'])
+            ->add('secondaryTemperament', TemperamentType::class, ['label' => 'admin.label.secondary_temperament'])
             ->add('selfView', MarkDownType::class, ['label' => 'admin.label.self_view'])
             ->add('whatWouldChange', MarkDownType::class, ['label' => 'admin.label.what_would_change'])
             ->end()
@@ -260,7 +271,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
         $formMapper
             ->tab('tab_spiritual', ['label' => 'admin.tab.spiritual'])
             ->with('spi_001', ['class' => 'col-md-12', 'label' => 'admin.block.spiritual.bl_001'])
-            ->add('religion', null, ['label' => 'admin.label.religion'])
+            ->add('religion', ReligionType::class, ['label' => 'admin.label.religion'])
             ->add('religious', null, ['label' => 'admin.label.religious'])
             ->add('spiritualBeliefs', MarkDownType::class, ['label' => 'admin.label.spiritual_beliefs'])
             ->add('spiritualEffectsInLife', MarkDownType::class, ['label' => 'admin.label.spiritual_effects_in_life'])
@@ -282,7 +293,7 @@ final class CharacterAdmin extends AbstractExtraActionsAdmin
             ->end();
     }
 
-    protected function configureShowFields(ShowMapper $showMapper) : void
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         /** ----- Tab Inherited ---------------------------------------------------------------------- */
         $showMapper
