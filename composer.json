@@ -12,6 +12,7 @@
         "fzaninotto/faker": "^1.8",
         "knplabs/knp-markdown-bundle": "^1.7",
         "nubs/random-name-generator": "^2.1",
+        "ornicar/gravatar-bundle": "^1.3",
         "phpstan/phpstan": "^0.11.2",
         "phpstan/phpstan-doctrine": "^0.11.1",
         "phpstan/phpstan-symfony": "^0.11.1",
