@@ -1,5 +1,5 @@
 ornicar_gravatar:
-    size: '50'
+    size: ~
     rating: g
-    default: px
+    default: ~
     secure: true
