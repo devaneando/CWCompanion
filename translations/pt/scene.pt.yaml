@@ -15,7 +15,7 @@ admin:
         key_items: Items chave
         location: Local
         notes: Notas
-        scene: Número da Cena
+        scene: Cena
         time: Horário
 title:
     characters: Personagens

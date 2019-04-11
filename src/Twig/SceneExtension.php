@@ -27,12 +27,17 @@ class SceneExtension extends AbstractPreviewExtension
 
     protected function getSceneNameAsMarkdown(Scene $scene): string
     {
+        $location = '';
+        if (null !== $scene->getLocation()) {
+            $location = '-- ' . $scene->getLocation()->getName() . ' ';
+        }
         return sprintf(
-            '%s %03d -- %s -- %s',
+            '%s %03d %s-- %s -- %s',
             $this->getTranslator()->trans('admin.label.scene', [], 'scene'),
             $scene->getScene(),
-            $this->getTranslator()->trans('ambient.'.$scene->getAmbient(), [], 'scene'),
-            $this->getTranslator()->trans('time.'.$scene->getTime(), [], 'scene')
+            $location,
+            $this->getTranslator()->trans('ambient.' . $scene->getAmbient(), [], 'scene'),
+            $this->getTranslator()->trans('time.' . $scene->getTime(), [], 'scene')
         );
     }
 
@@ -42,12 +47,18 @@ class SceneExtension extends AbstractPreviewExtension
             return $this->getSceneNameAsMarkdown($scene);
         }
 
+        $location = '';
+        if (null !== $scene->getLocation()) {
+            $location = '&mdash; ' . $scene->getLocation()->getName() . ' ';
+        }
+
         return sprintf(
-            '%s %03d &mdash; %s &mdash; %s',
+            '%s %03d %s&mdash; %s &mdash; %s',
             $this->getTranslator()->trans('admin.label.scene', [], 'scene'),
             $scene->getScene(),
-            $this->getTranslator()->trans('ambient.'.$scene->getAmbient(), [], 'scene'),
-            $this->getTranslator()->trans('time.'.$scene->getTime(), [], 'scene')
+            $location,
+            $this->getTranslator()->trans('ambient.' . $scene->getAmbient(), [], 'scene'),
+            $this->getTranslator()->trans('time.' . $scene->getTime(), [], 'scene')
         );
     }
 
@@ -60,7 +71,7 @@ class SceneExtension extends AbstractPreviewExtension
         );
     }
 
-    public function getScene(Scene $scene, $type = self::TYPE_HTML, string $class=''): string
+    public function getScene(Scene $scene, $type = self::TYPE_HTML, string $class = ''): string
     {
         if (self::TYPE_MARKDOWN === trim($type)) {
             return $this->getSceneAsMarkdown($scene);
@@ -118,7 +129,7 @@ class SceneExtension extends AbstractPreviewExtension
             $this->getTranslator()->trans('text.no_scene', [], 'scene');
         }
 
-        return "<ul>\n".$list."</ul>\n";
+        return "<ul>\n" . $list . "</ul>\n";
     }
 
     protected function getChapterAsMarkdown(?Chapter $chapter): string
@@ -224,7 +235,7 @@ class SceneExtension extends AbstractPreviewExtension
         );
     }
 
-    public function getKeyItem(KeyItem $keyItem, $type = self::TYPE_HTML, string $class=''): string
+    public function getKeyItem(KeyItem $keyItem, $type = self::TYPE_HTML, string $class = ''): string
     {
         if (self::TYPE_MARKDOWN === trim($type)) {
             return $this->getKeyItemAsMarkdown($keyItem);
@@ -282,6 +293,6 @@ class SceneExtension extends AbstractPreviewExtension
             $list = $this->getTranslator()->trans('text.no_key_item', [], 'scene');
         }
 
-        return "<ul>\n".$list."</ul>\n";
+        return "<ul>\n" . $list . "</ul>\n";
     }
 }
