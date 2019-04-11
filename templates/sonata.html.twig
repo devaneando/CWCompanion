@@ -148,8 +148,8 @@
 
         <div class="navbar-right">
         {% block devaneando_user_area %}
+            {% include 'User/widget.html.twig' %}
         {% endblock %}
-        <img src="{{ gravatar('edu.fernandes.pt@gmail.com') }}" />
         </div>
     </nav>
 {% endblock sonata_nav %}

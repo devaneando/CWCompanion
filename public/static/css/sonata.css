@@ -22,3 +22,11 @@
 .anno_domini > div > label > span {
     font-size: 10px !important;
 }
+
+.pad-right {
+    padding-right: 20px;
+}
+
+.title-case {
+    text-transform: capitalize !important;
+}

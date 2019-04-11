@@ -1,0 +1,55 @@
+{% extends 'sonata_preview.html.twig' %}
+{% set trans_default_domain = "user_profile" %}
+{% trans_default_domain 'user_profile' %}
+
+{% block content %}
+<section class="content-header">
+    <h1>{{ 'title.user_profile'|trans() }}</h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="{{ gravatar(user.email) }}" alt="{{ user.name }}">
+                    <h3 class="profile-username text-center">{{ user.name }}</h3>
+                    <p class="text-muted text-center">{{ 'text.writer'|trans() }}</p>
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>{{ 'title.projects'|trans() }}</b> <a class="pull-right">{{ user.projects|length }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>{{ 'title.chapters'|trans() }}</b> <a class="pull-right">{{ user.chapters|length }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>{{ 'title.scenes'|trans() }}</b> <a class="pull-right">{{ user.scenes|length }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>{{ 'title.characters'|trans() }}</b> <a class="pull-right">{{ user.characters|length }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>{{ 'title.concepts'|trans() }}</b> <a class="pull-right">{{ user.concepts|length }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>{{ 'title.key_items'|trans() }}</b> <a class="pull-right">{{ user.keyItems|length }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>{{ 'title.locations'|trans() }}</b> <a class="pull-right">{{ user.locations|length }}</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ 'title.about_me'|trans() }}</h3>
+                </div>
+                <div class="box-body">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+        </div>
+    </div>
+</section>
+{% endblock %}

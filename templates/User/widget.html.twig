@@ -1,3 +1,27 @@
-       <div class="navbar-right">
-        <img src="{{ gravatar('edu.fernandes.pt@gmail.com') }}" />
-        </div>
+<div class="navbar-custom-menu pad-right">
+    <ul class="nav navbar-nav">
+        <!-- User Account: style can be found in dropdown.less -->
+        <li class="dropdown user user-menu title-case">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <img src="{{ gravatar(app.user.email) }}" class="user-image" alt="{{ app.user.name }}">
+            <span class="hidden-xs">{{ app.user.name }}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                    <img src="{{ gravatar('edu.fernandes.pt@gmail.com') }}" class="img-circle" alt="User Image">
+                    <p>{{ app.user.name }}</p>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                    <div class="pull-left">
+                        <a href="{{ path('user_profile') }}" class="btn btn-default btn-flat">{{ 'user.profile'|trans() }}</a>
+                    </div>
+                    <div class="pull-right">
+                        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">{{ 'user.sign_out'|trans() }}</a>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

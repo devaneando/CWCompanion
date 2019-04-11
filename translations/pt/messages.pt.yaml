@@ -35,3 +35,6 @@ month:
     october: Outubro
     november: Novembro
     december: Dezembro
+user:
+    profile: Perfil
+    sign_out: Encerrar sessão

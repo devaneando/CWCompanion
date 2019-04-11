@@ -65,6 +65,13 @@ services:
             - [setTokenStorage, ['@security.token_storage']]
         tags: ['controller.service_arguments']
 
+    App\Controller\UserController:
+        class: App\Controller\UserController
+        calls:
+            - ['setLogger', ['@logger']]
+            - [setTokenStorage, ['@security.token_storage']]
+        tags: ['controller.service_arguments']
+
     ##### Types
 
     App\Admin\Type\SecurityRolesType:
