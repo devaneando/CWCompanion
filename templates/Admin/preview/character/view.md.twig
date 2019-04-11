@@ -8,9 +8,9 @@
 # {{ object.nickname }}
 &lt;img src=&quot;{{ object.picture }}&quot; style=&quot;float: right; height: 250px; margin: 10px;&quot;&gt;
 
-**{{ object.fullName }}** (_{{ birthData() }}{{ deathData() }}_) {{ 'text.is_a_object'|trans() }} **{{ object.characterType.name }}**  {{ 'text.conceptualized_as'|trans() }} **{{ object.concept }}**.
+**{{ object.fullName }}** (_{{ birth_data() }}{{ death_data() }}_) {{ 'text.is_a_object'|trans() }} **{{ object.characterType.name }}**  {{ 'text.conceptualized_as'|trans() }} **{{ object.concept }}**.
 
-{{ object.nickname }}, {{ ageData() }}, {{ genderdata() }}, {{ object.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ object.zodiacSign }}.
+{{ object.nickname }}, {{ age_data() }}, {{ gender_data() }}, {{ object.sexuality }} {{ 'text.is_zodiac_sign'|trans() }} {{ object.zodiacSign }}.
 
 ### {{ 'title.inherited_objectistics'|trans() }}
 
@@ -44,7 +44,7 @@
 
 ### {{ 'title.lifestyle'|trans() }}
 
-{{ object.nickname }} {{ 'text.lives_in'|trans() }} {{ homeData() }}, {{ occupationData() }}. {{ 'text.earns'|trans()|capitalize }} {{ object.income|maybe_null() }}
+{{ object.nickname }} {{ 'text.lives_in'|trans() }} {{ home_data() }}, {{ occupation_data() }}. {{ 'text.earns'|trans()|capitalize }} {{ object.income|maybe_null() }}
 
 ### {{ 'title.lifestyle'|trans() }}
 
@@ -88,7 +88,7 @@
 
 ### {{ 'title.emotional_objectistics'|trans() }}
 
-{{ object.nickname }} {{ temperamentData() }}.
+{{ object.nickname }} {{ temperament_data() }}.
 
 ### {{ 'title.personality'|trans() }}
 
@@ -119,7 +119,7 @@
 {{ object.deepestSecret|maybe_null() }}
 
 ### {{ 'title.beliefs_and_spirituality'|trans() }}
-{{ object.nickname }} {{spiritualData() }}.
+{{ object.nickname }} {{spiritual_data() }}.
 
 ### {{ 'title.religious_beliefs'|trans() }}
 
