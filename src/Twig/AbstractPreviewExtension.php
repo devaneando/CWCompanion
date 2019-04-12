@@ -55,16 +55,17 @@ class AbstractPreviewExtension extends \Twig_Extension
     /** @throws NotFoundHttpException */
     protected function generatePreviewRoute($object, string $type = self::TYPE_HTML): string
     {
-        $base = strtolower((new \ReflectionClass(get_class($object)))->getShortName());
+        $base = trim(strtolower((new \ReflectionClass(get_class($object)))->getShortName()));
         $route = null;
-        if (true === in_array($base, ['project', 'chapter','scene'])) {
-            $route = 'project_'.$base.'_preview';
-        } elseif (true === in_array($base, ['character', 'concept', 'keyItem','location'])) {
-            $base = ('keyitem' === $base) ? 'key_item' : $base;
-            $route = 'writing_'.$base.'_preview';
+        if (true === in_array($base, ['project', 'chapter', 'scene'])) {
+            $route = 'project_' . $base . '_preview';
+        } elseif (true === in_array($base, ['character', 'concept', 'keyItem', 'location'])) {
+            $route = 'writing_' . $base . '_preview';
+        } elseif ('keyitem' === $base) {
+            $route = 'writing_key_item_preview';
         }
         if (null === $route) {
-            throw new NotFoundHttpException('No route found for the given object.');
+            throw new NotFoundHttpException('No route found for the given object [' . $base . '].');
         }
 
         return $this->router->generate($route, ['id' => $object->getId(), 'type' => $type], RouterInterface::ABSOLUTE_URL);

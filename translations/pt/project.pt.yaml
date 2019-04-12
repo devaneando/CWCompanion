@@ -15,6 +15,14 @@ admin:
         picture: Imagem
         predefined: Predefinido
         uploaded_picture: Imagem
+title:
+    chapters: Capítulos
+    characters: Personagens
+    concepts: Conceitos
+    description: Descrição
+    key_items: Items chave
+    locations: Locais
+    scenes: Cenas
 Action: Ações
 Menu Item Project: Projeto
 Project Create: Criar projeto

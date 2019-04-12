@@ -1,0 +1,41 @@
+{% extends 'sonata_preview.html.twig' %}
+{% set trans_default_domain = "project" %}
+{% trans_default_domain 'project' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+    <div id="object">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 centered">
+                    <img class="preview_main_picture" src="{{ object.picture }}" alt="{{ object.name }}">
+                    <h1>{{ object.name }}</h1>
+                </div>
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('description')|raw() }}</h2>
+                {{ object.description|maybe_null|markdown }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('chapters')|raw() }}</h2>
+                {{ the_chapters(object)|raw() }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('locations')|raw() }}</h2>
+                {{ the_locations(object)|raw() }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('characters')|raw() }}</h2>
+                {{ the_characters(object)|raw() }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('key_items')|raw() }}</h2>
+                {{ the_key_items(object)|raw() }}
+            </div>
+            <div class="row left">
+                <h2>{{ the_title('concepts')|raw() }}</h2>
+                {{ the_concepts(object)|raw() }}
+            </div>
+    </div>
+{% endblock %}

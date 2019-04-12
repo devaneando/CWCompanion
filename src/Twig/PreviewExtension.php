@@ -19,7 +19,9 @@ class PreviewExtension extends AbstractPreviewExtension
     {
         $icons = [
             'beliefs_and_spirituality' => 'fas fa-pray',
+            'chapters' => 'fas fa-sitemap',
             'characters' => 'fas fa-theater-masks',
+            'concepts' => 'far fa-lightbulb',
             'content' => 'fas fa-file-signature',
             'derivations' => 'fas fa-code-branch',
             'description' => 'fas fa-comment-alt',
@@ -44,7 +46,7 @@ class PreviewExtension extends AbstractPreviewExtension
         return sprintf(
             '<i class="%s"></i> %s',
             $icons[$title],
-            $this->getTranslator()->trans('title.'.$title, [], $context['trans_default_domain'])
+            $this->getTranslator()->trans('title.' . $title, [], $context['trans_default_domain'])
         );
     }
 

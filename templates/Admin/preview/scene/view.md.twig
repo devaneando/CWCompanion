@@ -7,7 +7,10 @@
 <pre><code class="markdown">
 # {{ the_scene_name(object)|raw() }}
 
-**{{ 'text.project'|trans()|capitalize() }}**: {{ the_project(object.chapter.project)|raw() }}</li>
+- **{{ 'text.project'|trans()|capitalize() }}**: {{ the_project(object.chapter.project, 'markdown')|raw() }}
+- **{{ 'text.location'|trans()|capitalize() }}**: {{ the_location(object.location, 'markdown')|raw() }}
+- **{{ 'text.ambient'|trans()|capitalize() }}**: {{ ('ambient.' ~ object.ambient)|trans()  }}
+- **{{ 'text.time'|trans()|capitalize() }}**: {{ ('time.' ~ object.time)|trans() }}
 
 ## {{ 'title.description'|trans() }}
 

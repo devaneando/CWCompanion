@@ -24,12 +24,16 @@ title:
     locations: Locais
     notes: Notas
 text:
+    ambient: Ambiente
     chapter: capítulo
     location: local
     no_chapter: Nenhum capítulo
-    no_scene: Nenhuma cena
+    no_character: Nenhuma personagem
     no_key_item: Nenhum item chave
+    no_location: Nenhum local
+    no_scene: Nenhuma cena
     project: Projeto
+    time: Horário
 ambient:
     EXT: Exterior
     INT: Interior

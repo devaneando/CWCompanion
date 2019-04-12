@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Entity\Chapter;
+use App\Entity\Concept;
 use App\Entity\KeyItem;
 use App\Entity\Location;
 use App\Entity\Project;
@@ -18,10 +19,14 @@ class SceneExtension extends AbstractPreviewExtension
             'the_scene' => new \Twig_Function('the_scene', [$this, 'getScene'], ['needs_context' => false]),
             'the_scenes' => new \Twig_Function('the_scenes', [$this, 'getScenes'], ['needs_context' => false]),
             'the_chapter' => new \Twig_Function('the_chapter', [$this, 'getChapter'], ['needs_context' => false]),
+            'the_chapters' => new \Twig_Function('the_chapters', [$this, 'getChapters'], ['needs_context' => false]),
             'the_project' => new \Twig_Function('the_project', [$this, 'getProject'], ['needs_context' => false]),
             'the_location' => new \Twig_Function('the_location', [$this, 'getLocation'], ['needs_context' => false]),
+            'the_locations' => new \Twig_Function('the_locations', [$this, 'getLocations'], ['needs_context' => false]),
+            'the_key_item' => new \Twig_Function('the_key_item', [$this, 'getKeyItem'], ['needs_context' => false]),
             'the_key_items' => new \Twig_Function('the_key_items', [$this, 'getKeyItems'], ['needs_context' => false]),
-
+            'the_concept' => new \Twig_Function('the_concept', [$this, 'getConcept'], ['needs_context' => false]),
+            'the_concepts' => new \Twig_Function('the_concepts', [$this, 'getConcepts'], ['needs_context' => false]),
         ];
     }
 
@@ -163,6 +168,52 @@ class SceneExtension extends AbstractPreviewExtension
         );
     }
 
+    protected function getChaptersAsMarkdown($object): string
+    {
+        if (false === method_exists($object, 'getChapters')) {
+            return '';
+        }
+
+        if (true === empty($object->getChapters())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getChapters() as $chapters) {
+            $list .= sprintf("- %s\n", $this->getChapterAsMarkdown($chapters));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_chapter', [], 'scene');
+        }
+
+        return $list;
+    }
+
+    public function getChapters($object, $type = self::TYPE_HTML): string
+    {
+        if (self::TYPE_MARKDOWN === trim($type)) {
+            return $this->getChaptersAsMarkdown($object);
+        }
+
+        if (false === method_exists($object, 'getChapters')) {
+            return '';
+        }
+
+        if (true === empty($object->getChapters())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getChapters() as $chapter) {
+            $list .= sprintf("    <li>%s</li>\n", $this->getChapter($chapter));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_chapter', [], 'scene');
+        }
+
+        return "<ul>\n" . $list . "</ul>\n";
+    }
+
     protected function getProjectAsMarkdown(?Project $project): string
     {
         if (true === empty($project)) {
@@ -225,6 +276,53 @@ class SceneExtension extends AbstractPreviewExtension
             $location->getName()
         );
     }
+
+    protected function getLocationsAsMarkdown($object): string
+    {
+        if (false === method_exists($object, 'getLocations')) {
+            return '';
+        }
+
+        if (true === empty($object->getLocations())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getLocations() as $location) {
+            $list .= sprintf("- %s\n", $this->getLocationAsMarkdown($location));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_location', [], 'scene');
+        }
+
+        return $list;
+    }
+
+    public function getLocations($object, $type = self::TYPE_HTML): string
+    {
+        if (self::TYPE_MARKDOWN === trim($type)) {
+            return $this->getLocationsAsMarkdown($object);
+        }
+
+        if (false === method_exists($object, 'getLocations')) {
+            return '';
+        }
+
+        if (true === empty($object->getLocations())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getLocations() as $locations) {
+            $list .= sprintf("    <li>%s</li>\n", $this->getLocation($locations));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_location', [], 'scene');
+        }
+
+        return "<ul>\n" . $list . "</ul>\n";
+    }
+
 
     protected function getKeyItemAsMarkdown(KeyItem $keyItem): string
     {
@@ -291,6 +389,84 @@ class SceneExtension extends AbstractPreviewExtension
         }
         if (true === empty($list)) {
             $list = $this->getTranslator()->trans('text.no_key_item', [], 'scene');
+        }
+
+        return "<ul>\n" . $list . "</ul>\n";
+    }
+
+    protected function getConceptAsMarkdown(?Concept $concept): string
+    {
+        if (true === empty($concept)) {
+            return '';
+        }
+
+        return sprintf(
+            '[%s](%s)',
+            $concept->getName(),
+            $this->generatePreviewRoute($concept, self::TYPE_MARKDOWN)
+        );
+    }
+
+    public function getConcept(?Concept $concept, $type = self::TYPE_HTML, string $class = ''): string
+    {
+        if (self::TYPE_MARKDOWN === trim($type)) {
+            return $this->getConceptAsMarkdown($concept);
+        }
+
+        if (true === empty($concept)) {
+            return '';
+        }
+
+        return sprintf(
+            '<a class="%s"href="%s" target="_blank" alt="%s">%s</a>',
+            $class,
+            $this->generatePreviewRoute($concept),
+            $concept->getName(),
+            $concept->getName()
+        );
+    }
+
+    protected function getConceptsAsMarkdown($object): string
+    {
+        if (false === method_exists($object, 'getConcepts')) {
+            return '';
+        }
+
+        if (true === empty($object->getConcepts())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getConcepts() as $concept) {
+            $list .= sprintf("- %s\n", $this->getConceptAsMarkdown($concept));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.concept', [], 'scene');
+        }
+
+        return $list;
+    }
+
+    public function getConcepts($object, $type = self::TYPE_HTML): string
+    {
+        if (self::TYPE_MARKDOWN === trim($type)) {
+            return $this->getConceptsAsMarkdown($object);
+        }
+
+        if (false === method_exists($object, 'getConcepts')) {
+            return '';
+        }
+
+        if (true === empty($object->getConcepts())) {
+            return '';
+        }
+
+        $list = '';
+        foreach ($object->getConcepts() as $concept) {
+            $list .= sprintf("    <li>%s</li>\n", $this->getConcept($concept));
+        }
+        if (true === empty($list)) {
+            $list = $this->getTranslator()->trans('text.no_concept', [], 'scene');
         }
 
         return "<ul>\n" . $list . "</ul>\n";

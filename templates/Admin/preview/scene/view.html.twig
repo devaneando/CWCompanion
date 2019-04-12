@@ -16,6 +16,9 @@
                 <p>
                     <ul>
                         <li><b>{{ 'text.project'|trans()|capitalize() }}</b>: {{ the_project(object.chapter.project)|raw() }}</li>
+                        <li><b>{{ 'text.location'|trans()|capitalize() }}</b>: {{ the_location(object.location)|raw() }}</li>
+                        <li><b>{{ 'text.ambient'|trans()|capitalize() }}</b>: {{ ('ambient.' ~ object.ambient)|trans() }}</li>
+                        <li><b>{{ 'text.time'|trans()|capitalize() }}</b>: {{ ('time.' ~ object.time)|trans() }}</li>
                     </ul>
                 </p>
             </div>
