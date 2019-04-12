@@ -27,6 +27,12 @@ services:
         calls:
             - ['setLogger', ['@logger']]
         tags: ['controller.service_arguments']
+    App\Controller\CRUD\:
+        resource: '../src/Controller/CRUD'
+        calls:
+            - ['setLogger', ['@logger']]
+            - ['setTokenStorage', ['@security.token_storage']]
+        tags: ['controller.service_arguments']
     App\DataFixtures\:
         resource: '../src/DataFixtures'
         arguments:
@@ -41,36 +47,6 @@ services:
             - ['setTranslator', ['@translator']]
             - ['setRouter', ['@router']]
         tags: [twig.extension]
-
-    ##### Controllers
-
-    App\Controller\CRUD\CharacterController:
-        class: App\Controller\CRUD\CharacterController
-        calls:
-            - ['setLogger', ['@logger']]
-            - [setTokenStorage, ['@security.token_storage']]
-        tags: ['controller.service_arguments']
-
-    App\Controller\CRUD\ChapterController:
-        class: App\Controller\CRUD\ChapterController
-        calls:
-            - ['setLogger', ['@logger']]
-            - ['setTokenStorage', ['@security.token_storage']]
-        tags: ['controller.service_arguments']
-
-    App\Controller\CRUD\SceneController:
-        class: App\Controller\CRUD\SceneController
-        calls:
-            - ['setLogger', ['@logger']]
-            - [setTokenStorage, ['@security.token_storage']]
-        tags: ['controller.service_arguments']
-
-    App\Controller\UserController:
-        class: App\Controller\UserController
-        calls:
-            - ['setLogger', ['@logger']]
-            - [setTokenStorage, ['@security.token_storage']]
-        tags: ['controller.service_arguments']
 
     ##### Types
 

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Controller\CRUD;
 
@@ -14,6 +14,7 @@ final class CharacterController extends ExtraActionsController
 {
     protected $templateFolder = 'character';
     protected $allowPreview = true;
+    protected $enforceOwner = true;
 
     /**
      * @Route("/character/{id}/preview/{type}", name="writing_character_preview")

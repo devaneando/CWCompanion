@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Controller\CRUD;
 
@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpKernel\Exception\PreconditionFailedHttpException;
 
 abstract class ExtraActionsController extends CRUDController
 {
@@ -37,7 +38,26 @@ abstract class ExtraActionsController extends CRUDController
     /** If true, the user won't be able to create objects without an existent Scene */
     protected $requireScene = false;
 
+    /** If true, only the owner will be able to edit, delete and view the content */
+    protected $enforceOwner = false;
+
     use LoggerTrait;
+
+
+    protected function canAccess($object): bool
+    {
+        if (true === $this->getLoggedUser()->isSuperAdmin()) {
+            return true;
+        }
+        if (false === $this->enforceOwner) {
+            return true;
+        }
+        if (false === method_exists($object, 'getOwner')) {
+            return true;
+        }
+
+        return $this->getLoggedUser() === $object->getOwner();
+    }
 
     public function cancelAction(Request $request): Response
     {
@@ -47,17 +67,17 @@ abstract class ExtraActionsController extends CRUDController
     /** @throws NotFoundHttpException If allowPreview is false */
     protected function previewAction(Request $request, $object, string $type = self::TYPE_HTML): Response
     {
-        if (false === $this->allowPreview) {
+        if (false === $this->allowPreview || false === $this->canAccess($object)) {
             throw new NotFoundHttpException('This is not the page you are looking for.', null, 1);
         }
 
         if (self::TYPE_MARKDOWN === strtolower($type)) {
             return new Response(
-                $this->renderView('Admin/preview/'.$this->templateFolder.'/view.md.twig', ['object' => $object])
+                $this->renderView('Admin/preview/' . $this->templateFolder . '/view.md.twig', ['object' => $object])
             );
         } elseif (self::TYPE_HTML === strtolower($type)) {
             return new Response(
-                $this->renderView('Admin/preview/'.$this->templateFolder.'/view.html.twig', ['object' => $object])
+                $this->renderView('Admin/preview/' . $this->templateFolder . '/view.html.twig', ['object' => $object])
             );
         }
 

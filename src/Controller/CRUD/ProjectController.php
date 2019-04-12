@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Controller\CRUD;
 
@@ -14,6 +14,7 @@ final class ProjectController extends ExtraActionsController
 {
     protected $templateFolder = 'project';
     protected $allowPreview = true;
+    protected $enforceOwner = true;
 
     /**
      * @Route("/project/{id}/preview/{type}", name="project_project_preview")

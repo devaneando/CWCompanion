@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Controller\CRUD;
 
@@ -14,6 +14,7 @@ final class LocationController extends ExtraActionsController
 {
     protected $templateFolder = 'location';
     protected $allowPreview = true;
+    protected $enforceOwner = true;
 
     /**
      * @Route("/location/{id}/preview/{type}", name="writing_location_preview")
