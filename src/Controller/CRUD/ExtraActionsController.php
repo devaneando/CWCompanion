@@ -23,6 +23,11 @@ abstract class ExtraActionsController extends CRUDController
     const TYPE_HTML = 'html';
     const TYPE_MARKDOWN = 'markdown';
 
+    const ACTION_DELETE = 'delete';
+    const ACTION_EDIT = 'edit';
+    const ACTION_PREVIEW = 'preview';
+    const ACTION_VIEW = 'view';
+
     /** The folder used to keep preview templates */
     protected $templateFolder = null;
 
@@ -38,26 +43,7 @@ abstract class ExtraActionsController extends CRUDController
     /** If true, the user won't be able to create objects without an existent Scene */
     protected $requireScene = false;
 
-    /** If true, only the owner will be able to edit, delete and view the content */
-    protected $enforceOwner = false;
-
     use LoggerTrait;
-
-
-    protected function canAccess($object): bool
-    {
-        if (true === $this->getLoggedUser()->isSuperAdmin()) {
-            return true;
-        }
-        if (false === $this->enforceOwner) {
-            return true;
-        }
-        if (false === method_exists($object, 'getOwner')) {
-            return true;
-        }
-
-        return $this->getLoggedUser() === $object->getOwner();
-    }
 
     public function cancelAction(Request $request): Response
     {
@@ -67,9 +53,10 @@ abstract class ExtraActionsController extends CRUDController
     /** @throws NotFoundHttpException If allowPreview is false */
     protected function previewAction(Request $request, $object, string $type = self::TYPE_HTML): Response
     {
-        if (false === $this->allowPreview || false === $this->canAccess($object)) {
+        if (false === $this->allowPreview) {
             throw new NotFoundHttpException('This is not the page you are looking for.', null, 1);
         }
+        $this->denyAccessUnlessGranted(self::ACTION_PREVIEW, $object);
 
         if (self::TYPE_MARKDOWN === strtolower($type)) {
             return new Response(
@@ -106,5 +93,26 @@ abstract class ExtraActionsController extends CRUDController
         }
 
         return parent::createAction();
+    }
+
+    /** @inheritDoc */
+    public function deleteAction($id)
+    {
+        $object = $this->admin->getObject($id);
+        $this->denyAccessUnlessGranted(self::ACTION_DELETE, $object);
+    }
+
+    /** @inheritDoc */
+    public function editAction($id = null)
+    {
+        $object = $this->admin->getObject($id);
+        $this->denyAccessUnlessGranted(self::ACTION_EDIT, $object);
+    }
+
+    /** @inheritDoc */
+    public function showAction($id = null)
+    {
+        $object = $this->admin->getObject($id);
+        $this->denyAccessUnlessGranted(self::ACTION_EDIT, $object);
     }
 }
