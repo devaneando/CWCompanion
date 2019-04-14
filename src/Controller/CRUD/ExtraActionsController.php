@@ -100,6 +100,8 @@ abstract class ExtraActionsController extends CRUDController
     {
         $object = $this->admin->getObject($id);
         $this->denyAccessUnlessGranted(self::ACTION_DELETE, $object);
+
+        return parent::deleteAction($id);
     }
 
     /** @inheritDoc */
@@ -107,6 +109,8 @@ abstract class ExtraActionsController extends CRUDController
     {
         $object = $this->admin->getObject($id);
         $this->denyAccessUnlessGranted(self::ACTION_EDIT, $object);
+
+        return parent::editAction($id);
     }
 
     /** @inheritDoc */

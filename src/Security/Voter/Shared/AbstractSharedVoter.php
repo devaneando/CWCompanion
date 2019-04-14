@@ -6,7 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-abstract class AbstractOwnerVoter extends Voter
+abstract class AbstractSharedVoter extends Voter
 {
     const DELETE = 'delete';
     const EDIT = 'edit';
@@ -17,7 +17,7 @@ abstract class AbstractOwnerVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, [self::DELETE, self::EDIT, self::VIEW, self::PREVIEW])) {
+        if (!in_array($attribute, [self::DELETE, self::EDIT, self::VIEW, self::PREVIEW,])) {
             return false;
         }
 
@@ -36,24 +36,19 @@ abstract class AbstractOwnerVoter extends Voter
     {
         $user = $token->getUser();
 
-        // the user must be logged in; if not, deny access
+        // The user must be logged in; if not, deny access
         if (false === ($user instanceof User)) {
             return false;
         }
 
-        // If the object has no owner, writers or more can do anything with it
-        if (null === $subject->getOwner()) {
-            return $user->hasRole('ROLE_WRITER');
-        }
-
-        // Owners and moderators can view an object
+        // Any logged user can view shared objects
         if (self::VIEW === $attribute || self::PREVIEW === $attribute) {
-            return ($user === $subject->getOwner() || $user->hasRole('ROLE_MODERATOR'));
+            return true;
         }
 
-        // Owners and moderators can edit and delete an object
+        // Only moderator or greater roles can edit or delete shared objects
         if (self::EDIT === $attribute || self::DELETE === $attribute) {
-            return ($user === $subject->getOwner() || $user->hasRole('ROLE_MODERATOR'));
+            return $user->hasRole('ROLE_WRITER');
         }
 
         // If no other condition applies, the user has not access
