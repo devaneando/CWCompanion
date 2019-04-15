@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/** @Security("has_role('ROLE_WRITER')") */
 abstract class AbstractOwnerController extends CRUDController
 {
     use LoggedUserTrait;
@@ -47,8 +48,6 @@ abstract class AbstractOwnerController extends CRUDController
     }
 
     /**
-     * @Security("has_role('ROLE_WRITER')")
-     *
      * @throws AccessDeniedException If access is not granted
      * @throws \RuntimeException If no editable field is defined
      * @throws NoValidProject If the user has no project and it is required

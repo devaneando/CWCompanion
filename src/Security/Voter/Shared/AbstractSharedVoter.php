@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Security\Voter\Owner;
+namespace App\Security\Voter\Shared;
 
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -10,14 +10,13 @@ abstract class AbstractSharedVoter extends Voter
 {
     const DELETE = 'delete';
     const EDIT = 'edit';
-    const PREVIEW = 'preview';
     const VIEW = 'view';
 
     protected $class;
 
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, [self::DELETE, self::EDIT, self::VIEW, self::PREVIEW,])) {
+        if (!in_array($attribute, [self::DELETE, self::EDIT, self::VIEW])) {
             return false;
         }
 
@@ -42,7 +41,7 @@ abstract class AbstractSharedVoter extends Voter
         }
 
         // Any logged user can view shared objects
-        if (self::VIEW === $attribute || self::PREVIEW === $attribute) {
+        if (self::VIEW === $attribute) {
             return true;
         }
 
