@@ -13,14 +13,14 @@ services:
 
     sonata.admin.character_type:
         class: App\Admin\CharacterTypeAdmin
-        arguments: [~, App\Entity\CharacterType, App\Controller\CRUD\CharacterController]
+        arguments: [~, App\Entity\CharacterType, App\Controller\CRUD\Shared\CharacterController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.character_type, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
     sonata.admin.country:
         class: App\Admin\CountryAdmin
-        arguments: [~, App\Entity\Country, App\Controller\CRUD\CountryController]
+        arguments: [~, App\Entity\Country, App\Controller\CRUD\Shared\CountryController]
         calls:
             - [setRepository, ['@App\Entity\Repository\CountryRepository']]
         tags:
@@ -29,14 +29,14 @@ services:
 
     sonata.admin.educational_degree:
         class: App\Admin\EducationalDegreeAdmin
-        arguments: [~, App\Entity\EducationalDegree, App\Controller\CRUD\EducationalDegreeController]
+        arguments: [~, App\Entity\EducationalDegree, App\Controller\CRUD\Shared\EducationalDegreeController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.educational_degree, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
     sonata.admin.gender:
         class: App\Admin\GenderAdmin
-        arguments: [~, App\Entity\Gender, App\Controller\CRUD\GenderController]
+        arguments: [~, App\Entity\Gender, App\Controller\CRUD\Shared\GenderController]
         calls:
             - [setRepository, ['@App\Entity\Repository\CountryRepository']]
         tags:
@@ -45,7 +45,7 @@ services:
 
     sonata.admin.intelligence_quotient:
         class: App\Admin\IntelligenceQuotientAdmin
-        arguments: [~, App\Entity\IntelligenceQuotient, App\Controller\CRUD\IntelligenceQuotientController]
+        arguments: [~, App\Entity\IntelligenceQuotient, App\Controller\CRUD\Shared\IntelligenceQuotientController]
         calls:
             - [setRepository, ['@App\Entity\Repository\IntelligenceQuotientRepository']]
         tags:
@@ -54,14 +54,14 @@ services:
 
     sonata.admin.location_type:
         class: App\Admin\LocationTypeAdmin
-        arguments: [~, App\Entity\LocationType, App\Controller\CRUD\LocationTypeController]
+        arguments: [~, App\Entity\LocationType, App\Controller\CRUD\Shared\LocationTypeController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.location_type, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
     sonata.admin.profession:
         class: App\Admin\ProfessionAdmin
-        arguments: [~, App\Entity\Profession, App\Controller\CRUD\ProfessionController]
+        arguments: [~, App\Entity\Profession, App\Controller\CRUD\Shared\ProfessionController]
         calls:
             - [setRepository, ['@App\Entity\Repository\IntelligenceQuotientRepository']]
         tags:
@@ -70,7 +70,7 @@ services:
 
     sonata.admin.religion:
         class: App\Admin\ReligionAdmin
-        arguments: [~, App\Entity\Religion, App\Controller\CRUD\ReligionController]
+        arguments: [~, App\Entity\Religion, App\Controller\CRUD\Shared\ReligionController]
         calls:
             - [setRepository, ['@App\Entity\Repository\ReligionRepository']]
         tags:
@@ -79,7 +79,7 @@ services:
 
     sonata.admin.sexuality:
         class: App\Admin\SexualityAdmin
-        arguments: [~, App\Entity\Sexuality, App\Controller\CRUD\SexualityController]
+        arguments: [~, App\Entity\Sexuality, App\Controller\CRUD\Shared\SexualityController]
         calls:
             - [setRepository, ['@App\Entity\Repository\SexualityRepository']]
         tags:
@@ -88,14 +88,14 @@ services:
 
     sonata.admin.temperament:
         class: App\Admin\TemperamentAdmin
-        arguments: [~, App\Entity\Temperament, App\Controller\CRUD\TemperamentController]
+        arguments: [~, App\Entity\Temperament, App\Controller\CRUD\Shared\TemperamentController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.temperament, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
 
     sonata.admin.zodiac:
         class: App\Admin\ZodiacAdmin
-        arguments: [~, App\Entity\Zodiac, App\Controller\CRUD\ZodiacController]
+        arguments: [~, App\Entity\Zodiac, App\Controller\CRUD\Shared\ZodiacController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: shared, label: menu.item.zodiac, label_translator_strategy: "sonata.admin.label.strategy.native" }
         public: true
