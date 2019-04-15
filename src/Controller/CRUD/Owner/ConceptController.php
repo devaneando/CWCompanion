@@ -2,23 +2,21 @@
 
 declare (strict_types = 1);
 
-namespace App\Controller\CRUD;
+namespace App\Controller\CRUD\Owner;
 
-use App\Controller\CRUD\ExtraActionsController;
+use App\Controller\CRUD\Owner\AbstractOwnerController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class CharacterController extends ExtraActionsController
+final class ConceptController extends AbstractOwnerController
 {
-    protected $templateFolder = 'character';
-    protected $allowPreview = true;
-    protected $enforceOwner = true;
+    protected $templateFolder = 'concept';
 
     /**
-     * @Route("/character/{id}/preview/{type}", name="writing_character_preview")
-     * @ParamConverter("object", class="App\Entity\Character", options={"mapping": {"id" = "id"}})
+     * @Route("/concept/{id}/preview/{type}", name="writing_concept_preview")
+     * @ParamConverter("object", class="App\Entity\Concept", options={"mapping": {"id" = "id"}})
      *
      * @param mixed $object
      */

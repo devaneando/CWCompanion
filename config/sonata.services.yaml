@@ -104,7 +104,7 @@ services:
 
     sonata.admin.project:
         class: App\Admin\ProjectAdmin
-        arguments: [~, App\Entity\Project, App\Controller\CRUD\ProjectController]
+        arguments: [~, App\Entity\Project, App\Controller\CRUD\Owner\ProjectController]
         calls:
             - [setTokenStorage, ['@security.token_storage']]
         tags:
@@ -113,7 +113,7 @@ services:
 
     sonata.admin.chapter:
         class: App\Admin\ChapterAdmin
-        arguments: [~, App\Entity\Chapter, App\Controller\CRUD\ChapterController]
+        arguments: [~, App\Entity\Chapter, App\Controller\CRUD\Owner\ChapterController]
         calls:
             - [setTokenStorage, ['@security.token_storage']]
         tags:
@@ -122,7 +122,7 @@ services:
 
     sonata.admin.scene:
         class: App\Admin\SceneAdmin
-        arguments: [~, App\Entity\Scene, App\Controller\CRUD\SceneController]
+        arguments: [~, App\Entity\Scene, App\Controller\CRUD\Owner\SceneController]
         calls:
             - [setTokenStorage, ['@security.token_storage']]
         tags:
@@ -133,7 +133,7 @@ services:
 
     sonata.admin.character:
         class: App\Admin\CharacterAdmin
-        arguments: [~, App\Entity\Character, App\Controller\CRUD\CharacterController]
+        arguments: [~, App\Entity\Character, App\Controller\CRUD\Owner\CharacterController]
         tags:
             - { name: sonata.admin, manager_type: orm, group: writing, label: menu.item.character, label_translator_strategy: "sonata.admin.label.strategy.native" }
         calls:
@@ -143,7 +143,7 @@ services:
 
     sonata.admin.concept:
         class: App\Admin\ConceptAdmin
-        arguments: [~, App\Entity\Concept, App\Controller\CRUD\ConceptController]
+        arguments: [~, App\Entity\Concept, App\Controller\CRUD\Owner\ConceptController]
         calls:
             - [setTokenStorage, ['@security.token_storage']]
         tags:
@@ -152,7 +152,7 @@ services:
 
     sonata.admin.key_item:
         class: App\Admin\KeyItemAdmin
-        arguments: [~, App\Entity\KeyItem, App\Controller\CRUD\KeyItemController]
+        arguments: [~, App\Entity\KeyItem, App\Controller\CRUD\Owner\KeyItemController]
         calls:
             - [setTokenStorage, ['@security.token_storage']]
         tags:
@@ -161,7 +161,7 @@ services:
 
     sonata.admin.location:
         class: App\Admin\LocationAdmin
-        arguments: [~, App\Entity\Location, App\Controller\CRUD\LocationController]
+        arguments: [~, App\Entity\Location, App\Controller\CRUD\Owner\LocationController]
         calls:
             - [setTokenStorage, ['@security.token_storage']]
         tags:
