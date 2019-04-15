@@ -5,8 +5,8 @@ return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setFinder(
         PhpCsFixer\Finder::create()
-        ->in(__DIR__.'/src')
-        ->append([__FILE__])
+            ->in(__DIR__ . '/src')
+            ->append([__FILE__])
     )
     // Check https://github.com/FriendsOfPHP/PHP-CS-Fixer
     ->setRules([
@@ -18,7 +18,7 @@ return PhpCsFixer\Config::create()
          */
         'blank_line_before_statement' => true,
 
-        /* Concatenation should be spaced according configuration. */// Configuration: ['spacing' => 'none']
+        /* Concatenation should be spaced according configuration. */ // Configuration: ['spacing' => 'none']
         'concat_space' => true,
 
         // Equal sign in declare statement should be surrounded by spaces or not following configuration.
@@ -71,7 +71,7 @@ return PhpCsFixer\Config::create()
          * Configuration:
          * ['tokens' => ['curly_brace_block', 'extra', 'parenthesis_brace_block', 'square_brace_block', 'throw', 'use']]
          */
-        'no_extra_blank_lines' => ['tokens' => ['extra']],
+        'no_extra_blank_lines' => ['tokens' => ['curly_brace_block', 'extra', 'parenthesis_brace_block', 'square_brace_block', 'throw', 'use']],
 
         // The namespace declaration line shouldn't contain leading whitespace.
         'no_leading_namespace_whitespace' => true,
@@ -235,7 +235,7 @@ return PhpCsFixer\Config::create()
         // Convert double quotes to single quotes for simple strings.
         'single_quote' => true,
 
-        /* Fix whitespace after a semicolon. */// Configuration: ['remove_in_empty_for_expressions' => true]
+        /* Fix whitespace after a semicolon. */ // Configuration: ['remove_in_empty_for_expressions' => true]
         'space_after_semicolon' => true,
 
         // Replace all `<>` with `!=`.
