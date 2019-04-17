@@ -38,3 +38,8 @@ month:
 user:
     profile: Perfil
     sign_out: Encerrar sessão
+resetting:
+    request:
+        reset_password: Esqueci minha palavra passe
+        submit: Enviar
+        username: Utilizador

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'resetting.request.reset_password'|trans }}{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel = "stylesheet" type = "text/css" href = "/static/css/user.css" />
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            &nbsp;
+        </div>
+        <div class="col-md-4">
+            &nbsp;
+        </div>
+        <div class="col-md-4">
+            <p class="form-user">{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}, 'FOSUserBundle')|nl2br }}</p>
+        </div>
+    </div>
+</div>
+{% endblock body %}

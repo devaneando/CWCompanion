@@ -2,7 +2,7 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: #ffffff;
-    color: #eee;
+    color: #c2694d;
     background-image: url('/static/images/login.gif');
     background-position: center;
     background-repeat: no-repeat;
@@ -20,9 +20,8 @@ body {
 }
 
 .form-signin-heading {
-    color: lightgray;
+    color: #78b7af;
     font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     font-size: 24px;
     text-align: center;
 }
@@ -64,6 +63,5 @@ body {
 }
 
 label {
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: #78b7af;
 }
